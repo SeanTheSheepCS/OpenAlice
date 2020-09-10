@@ -13,7 +13,7 @@ An open source game inspired heavily by the 2007 game Alice Greenfingers.
  </ul> 
 <h4> Sprites + Animation </h4>
  <ul>
-  <li> Sprite for tomato at each stage of growth </li>
+  <li> <s> Sprite for tomato at each stage of growth </s> </li>
   <li> Sprite for regular grasss and tilled grass </li>
   <li> Sprite for grass outside the playable zone </li>
   <li> Sprite for each tool that can be picked up </li>
