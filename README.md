@@ -1,5 +1,5 @@
 # OpenAlice
-An open source game inspired heavily by the 2007 game Alice Greenfingers.
+An open source game heavily inspired by the 2007 game Alice Greenfingers.
 
 <h2> Development Roadmap </h2>
 
@@ -14,7 +14,7 @@ An open source game inspired heavily by the 2007 game Alice Greenfingers.
 <h4> Sprites + Animation </h4>
  <ul>
   <li> <s> Sprite for tomato at each stage of growth </s> </li>
-  <li> Sprite for regular grasss and tilled grass </li>
+  <li> <s> Sprite for regular grass and tilled grass </s> </li>
   <li> Sprite for grass outside the playable zone </li>
   <li> Sprite for each tool that can be picked up </li>
  </ul> 
