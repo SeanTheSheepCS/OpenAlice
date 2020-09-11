@@ -1,0 +1,3 @@
+
+# So that object files are not included.
+*.o
