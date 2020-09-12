@@ -8,7 +8,7 @@ CreditsScreen::CreditsScreen(int x, int y, unsigned int width, unsigned int heig
 
 }
 
-void CreditsScreen::handleEvent(sf::Event event)
+void CreditsScreen::handleEvent(sf::Event event, sf::RenderWindow& window)
 {
 
 }

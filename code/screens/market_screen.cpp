@@ -5,7 +5,7 @@ MarketScreen::MarketScreen(int x, int y, unsigned int width, unsigned int height
 
 }
 
-void MarketScreen::handleEvent(sf::Event event)
+void MarketScreen::handleEvent(sf::Event event, sf::RenderWindow& window)
 {
 
 }

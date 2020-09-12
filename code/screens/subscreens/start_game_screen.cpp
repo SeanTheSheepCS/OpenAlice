@@ -14,7 +14,7 @@ StartGameScreen::StartGameScreen(int x, int y, unsigned int width, unsigned int 
 
 }
 
-void StartGameScreen::handleEvent(sf::Event event)
+void StartGameScreen::handleEvent(sf::Event event, sf::RenderWindow& window)
 {
     
 }

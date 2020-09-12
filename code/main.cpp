@@ -52,7 +52,7 @@ int main()
             {
                 if(pointerToCurrentlyActiveScreen != nullptr)
                 {
-                    pointerToCurrentlyActiveScreen->handleEvent(event);
+                    pointerToCurrentlyActiveScreen->handleEvent(event, window);
                 }
             }
         }

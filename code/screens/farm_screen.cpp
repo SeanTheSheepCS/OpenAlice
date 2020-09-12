@@ -5,7 +5,7 @@ FarmScreen::FarmScreen(int x, int y, unsigned int width, unsigned int height): O
 
 }
 
-void FarmScreen::handleEvent(sf::Event event)
+void FarmScreen::handleEvent(sf::Event event, sf::RenderWindow& window)
 {
     
 }

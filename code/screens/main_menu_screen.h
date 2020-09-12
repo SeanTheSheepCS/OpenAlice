@@ -19,7 +19,7 @@ class MainMenuScreen: public OAEScreen
 {
     public:
         MainMenuScreen(int x, int y, unsigned int width, unsigned int height);
-        void handleEvent(sf::Event event); 
+        void handleEvent(sf::Event event, sf::RenderWindow& window);
         void forceFullDraw(sf::RenderWindow& windowToDrawIn);
         void update(sf::Int32 millisecondsElapsedSinceLastUpdate);
     protected:
