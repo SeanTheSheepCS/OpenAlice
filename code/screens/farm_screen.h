@@ -7,8 +7,8 @@
 class FarmScreen: public OAEScreen
 {
     public:
-        FarmScreen(int width, int height);
-        void handleEvent(sf::Event); 
+        FarmScreen(int x, int y, unsigned int width, unsigned int height);
+        void handleEvent(sf::Event event); 
         void forceFullDraw();
         void update(sf::Int32 millisecondsElapsedSinceLastUpdate);
     protected:

@@ -1,11 +1,11 @@
 #include "farm_screen.h"
 
-FarmScreen::FarmScreen(int width, int height): OAEScreen(width, height)
+FarmScreen::FarmScreen(int x, int y, int width, int height): OAEScreen(x, y, width, height)
 {
 
 }
 
-void FarmScreen::handleEvent(sf::Event)
+void FarmScreen::handleEvent(sf::Event event)
 {
     
 }
