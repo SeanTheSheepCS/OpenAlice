@@ -2,9 +2,9 @@
 #define MARKET_SCREEN_H
 
 #include <SFML/Graphics.hpp>
-#include "screen.h"
+#include "oae_screen.h"
 
-class MarketScreen: public Screen
+class MarketScreen: public OAEScreen
 {
     public:
         MarketScreen(int width, int height);

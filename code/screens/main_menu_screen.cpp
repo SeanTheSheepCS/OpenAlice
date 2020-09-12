@@ -1,6 +1,6 @@
 #include "main_menu_screen.h"
 
-MainMenuScreen::MainMenuScreen(int width, int height): Screen(width, height)
+MainMenuScreen::MainMenuScreen(int width, int height): OAEScreen(width, height)
 {
     
 }

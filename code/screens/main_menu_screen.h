@@ -2,9 +2,9 @@
 #define MAIN_MENU_SCREEN_H
 
 #include <SFML/Graphics.hpp>
-#include "screen.h"
+#include "oae_screen.h"
 
-class MainMenuScreen: public Screen
+class MainMenuScreen: public OAEScreen
 {
     public:
         MainMenuScreen(int width, int height);

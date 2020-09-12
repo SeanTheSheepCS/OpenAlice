@@ -2,9 +2,9 @@
 #define FARM_SCREEN_H
 
 #include <SFML/Graphics.hpp>
-#include "screen.h"
+#include "oae_screen.h"
 
-class FarmScreen: public Screen
+class FarmScreen: public OAEScreen
 {
     public:
         FarmScreen(int width, int height);

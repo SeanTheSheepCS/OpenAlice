@@ -3,19 +3,17 @@
 #include <iostream>
 #include "main.h"
 
-ScreenEnum screenDisplayedOnLastIteration = NULL_SCREEN;
-ScreenEnum currentScreenToDisplay = MAIN_MENU_SCREEN;
-MainMenuScreen mainMenuScreenVar;
-FarmScreen farmScreenVar;
-MarketScreen marketScreenVar;
-Screen* pointerToCurrentlyActiveScreen;
-
 int main()
 {
+    ScreenEnum screenDisplayedOnLastIteration = NULL_SCREEN;
+    ScreenEnum currentScreenToDisplay = MAIN_MENU_SCREEN;
+    MainMenuScreen mainMenuScreenVar(WINDOW_WIDTH, WINDOW_HEIGHT);
+    FarmScreen farmScreenVar(WINDOW_WIDTH, WINDOW_HEIGHT);
+    MarketScreen marketScreenVar(WINDOW_WIDTH, WINDOW_HEIGHT);
+    OAEScreen* pointerToCurrentlyActiveScreen = nullptr;
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "OpenAlice V1.0");
-    mainMenuScreenVar.initializeAssets(WINDOW_WIDTH, WINDOW_HEIGHT);
-    farmScreenVar.initializeAssets(WINDOW_WIDTH, WINDOW_HEIGHT);
-    marketScreenVar.initializeAssets(WINDOW_WIDTH, WINDOW_HEIGHT);
+    sf::Clock clockForApplication;
+
     while(window.isOpen())
     {
         switch(currentScreenToDisplay)
@@ -54,12 +52,12 @@ int main()
             {
                 if(pointerToCurrentlyActiveScreen != nullptr)
                 {
-                    screenToDisplay.handleEvent(event);
+                    pointerToCurrentlyActiveScreen->handleEvent(event);
                 }
             }
         }
 
-        sf::Time timeElapsed = clock.restart();
-        screenToDisplay.update(timeElapsed.asMilliseconds());
+        sf::Time timeElapsed = clockForApplication.restart();
+        pointerToCurrentlyActiveScreen->update(timeElapsed.asMilliseconds());
     }
 }
