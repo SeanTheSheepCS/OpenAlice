@@ -9,7 +9,7 @@ TexturedObject::TexturedObject(int xArg, int yArg, int widthArg, int heightArg, 
     this->texturePointer = texturePointerArg;
     if(isDefaultTextureInitialized == false)
     {
-        if(!defaultTexture.loadFromFile("../../../sprites/invalid_texture.png"))
+        if(defaultTexture.loadFromFile("../sprites/invalid_texture.png"))
         {
             isDefaultTextureInitialized = true;
         }

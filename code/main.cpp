@@ -7,9 +7,9 @@ int main()
 {
     ScreenEnum screenDisplayedOnLastIteration = NULL_SCREEN;
     ScreenEnum currentScreenToDisplay = MAIN_MENU_SCREEN;
-    MainMenuScreen mainMenuScreenVar(WINDOW_WIDTH, WINDOW_HEIGHT);
-    FarmScreen farmScreenVar(WINDOW_WIDTH, WINDOW_HEIGHT);
-    MarketScreen marketScreenVar(WINDOW_WIDTH, WINDOW_HEIGHT);
+    MainMenuScreen mainMenuScreenVar(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+    FarmScreen farmScreenVar(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+    MarketScreen marketScreenVar(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
     OAEScreen* pointerToCurrentlyActiveScreen = nullptr;
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "OpenAlice V1.0");
     sf::Clock clockForApplication;
@@ -36,7 +36,7 @@ int main()
         {
             if(pointerToCurrentlyActiveScreen != nullptr)
             {
-                pointerToCurrentlyActiveScreen->forceFullDraw();
+                pointerToCurrentlyActiveScreen->forceFullDraw(window);
             }
         }
         screenDisplayedOnLastIteration = currentScreenToDisplay;
@@ -59,5 +59,7 @@ int main()
 
         sf::Time timeElapsed = clockForApplication.restart();
         pointerToCurrentlyActiveScreen->update(timeElapsed.asMilliseconds());
+
+        window.display();
     }
 }

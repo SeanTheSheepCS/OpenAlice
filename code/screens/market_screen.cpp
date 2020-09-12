@@ -10,7 +10,7 @@ void MarketScreen::handleEvent(sf::Event event)
 
 }
 
-void MarketScreen::forceFullDraw()
+void MarketScreen::forceFullDraw(sf::RenderWindow& windowToDrawIn)
 {
 
 }

@@ -1,6 +1,6 @@
 #include "oae_screen.h"
 
-OAEScreen::OAEScreen(int xArg, int yArg, int widthArg, int heightArg)
+OAEScreen::OAEScreen(int xArg, int yArg, unsigned int widthArg, unsigned int heightArg)
 {
     this->x = xArg;
     this->y = yArg;

@@ -9,7 +9,7 @@ class MarketScreen: public OAEScreen
     public:
         MarketScreen(int x, int y, unsigned int width, unsigned int height);
         void handleEvent(sf::Event event); 
-        void forceFullDraw();
+        void forceFullDraw(sf::RenderWindow& windowToDrawIn);
         void update(sf::Int32 millisecondsElapsedSinceLastUpdate);
     protected:
         //
