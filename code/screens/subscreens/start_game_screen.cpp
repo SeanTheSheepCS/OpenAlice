@@ -11,12 +11,40 @@ StartGameScreen::StartGameScreen(int x, int y, unsigned int width, unsigned int 
     selectFileThreeButton(x+(width*0.1),y+(height*0.625),(width*0.8),(height*0.25),nullptr),
     deleteFileThreeButton(x+(width*0.65),y+(height*0.7),(width*0.1),(height*0.1),nullptr)
 {
-
+    bool closeScreenRequestFlag = false;
+    int chosenSavegameIsZeroIfNoSavegameHasBeenChosen = 0;
 }
 
 void StartGameScreen::handleEvent(sf::Event event, sf::RenderWindow& window)
 {
-    
+    switch(event.type)
+    {
+        case sf::Event::MouseButtonPressed:
+            {
+                sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
+                int mouseX = mousePosition.x;
+                int mouseY = mousePosition.y;
+                if(selectFileOneButton.theMouseHasBeenClickedAtTheSpecifiedCoordinatesHasTheButtonBeenClicked(mouseX, mouseY))
+                {
+                    chosenSavegameIsZeroIfNoSavegameHasBeenChosen = 1;
+                }
+                else if(selectFileTwoButton.theMouseHasBeenClickedAtTheSpecifiedCoordinatesHasTheButtonBeenClicked(mouseX, mouseY))
+                {
+                    chosenSavegameIsZeroIfNoSavegameHasBeenChosen = 2;
+                }
+                else if(selectFileThreeButton.theMouseHasBeenClickedAtTheSpecifiedCoordinatesHasTheButtonBeenClicked(mouseX, mouseY))
+                {
+                    chosenSavegameIsZeroIfNoSavegameHasBeenChosen = 3;
+                }
+                else if(exitScreenButton.theMouseHasBeenClickedAtTheSpecifiedCoordinatesHasTheButtonBeenClicked(mouseX, mouseY))
+                {
+                    closeScreenRequestFlag = true;
+                }
+            }
+            break;
+        default:
+            break;
+    }
 }
 
 void StartGameScreen::forceFullDraw(sf::RenderWindow& windowToDrawIn)
@@ -33,6 +61,25 @@ void StartGameScreen::forceFullDraw(sf::RenderWindow& windowToDrawIn)
 
 void StartGameScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate)
 {
-
+    //
 }
 
+bool StartGameScreen::hasCloseScreenRequestBeenMade()
+{
+    return closeScreenRequestFlag;
+}
+
+void StartGameScreen::acknowledgeCloseScreenRequest()
+{
+    closeScreenRequestFlag = false;
+}
+
+int StartGameScreen::whichSaveGameHasBeenChosenReturnsZeroIfNoSavegameHasBeenChosen()
+{
+    return chosenSavegameIsZeroIfNoSavegameHasBeenChosen;
+}
+
+void StartGameScreen::acknowledgeChosenSavegame()
+{
+    chosenSavegameIsZeroIfNoSavegameHasBeenChosen = 0;
+}

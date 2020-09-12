@@ -1,4 +1,5 @@
 #include "main_menu_screen.h"
+#include <iostream>
 
 MainMenuScreen::MainMenuScreen(int x, int y, unsigned int width, unsigned int height): 
     OAEScreen(x, y, width, height),
@@ -20,32 +21,44 @@ void MainMenuScreen::handleEvent(sf::Event event, sf::RenderWindow& window)
             switch(event.type)
             {
                 case sf::Event::MouseButtonPressed:
-                {
-                    sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
-                    int mouseX = mousePosition.x;
-                    int mouseY = mousePosition.y;
-                    if(startGameButton.theMouseHasBeenClickedAtTheSpecifiedCoordinatesHasTheButtonBeenClicked(mouseX, mouseY))
                     {
-                        subscreenState = START_GAME_SUBSCREEN_ACTIVE;
-                        startGameScreenVar.forceFullDraw(window);
-                    }
-                    else if(creditsButton.theMouseHasBeenClickedAtTheSpecifiedCoordinatesHasTheButtonBeenClicked(mouseX, mouseY))
-                    {
-                        subscreenState = CREDITS_SUBSCREEN_ACTIVE;
-                        creditsScreenVar.forceFullDraw(window);
-                    }
-                    else if(exitGameButton.theMouseHasBeenClickedAtTheSpecifiedCoordinatesHasTheButtonBeenClicked(mouseX, mouseY))
-                    {
-                        window.close();
+                        sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
+                        int mouseX = mousePosition.x;
+                        int mouseY = mousePosition.y;
+                        if(startGameButton.theMouseHasBeenClickedAtTheSpecifiedCoordinatesHasTheButtonBeenClicked(mouseX, mouseY))
+                        {
+                            subscreenState = START_GAME_SUBSCREEN_ACTIVE;
+                            startGameScreenVar.forceFullDraw(window);
+                        }
+                        else if(creditsButton.theMouseHasBeenClickedAtTheSpecifiedCoordinatesHasTheButtonBeenClicked(mouseX, mouseY))
+                        {
+                            subscreenState = CREDITS_SUBSCREEN_ACTIVE;
+                            creditsScreenVar.forceFullDraw(window);
+                        }
+                        else if(exitGameButton.theMouseHasBeenClickedAtTheSpecifiedCoordinatesHasTheButtonBeenClicked(mouseX, mouseY))
+                        {
+                            window.close();
+                        }
                     }
                     break;
-                }
                 default:
                     break;
             }
             break;
         case START_GAME_SUBSCREEN_ACTIVE:
             startGameScreenVar.handleEvent(event, window);
+            if(startGameScreenVar.hasCloseScreenRequestBeenMade())
+            {
+                std::cout << "A" << std::endl;
+                startGameScreenVar.acknowledgeCloseScreenRequest();
+                subscreenState = NO_SUBSCREEN_ACTIVE;
+                forceFullDraw(window);
+            }
+            else if(startGameScreenVar.whichSaveGameHasBeenChosenReturnsZeroIfNoSavegameHasBeenChosen() != 0)
+            {
+                startGameScreenVar.acknowledgeChosenSavegame();
+                //TODO
+            }
             break;
         case CREDITS_SUBSCREEN_ACTIVE:
             creditsScreenVar.handleEvent(event, window);
@@ -61,6 +74,17 @@ void MainMenuScreen::forceFullDraw(sf::RenderWindow& windowToDrawIn)
     startGameButton.draw(windowToDrawIn);
     creditsButton.draw(windowToDrawIn);
     exitGameButton.draw(windowToDrawIn);
+    switch (subscreenState)
+    {
+        case START_GAME_SUBSCREEN_ACTIVE:
+            startGameScreenVar.forceFullDraw(windowToDrawIn);
+            break;
+        case CREDITS_SUBSCREEN_ACTIVE:
+            creditsScreenVar.forceFullDraw(windowToDrawIn);
+            break;
+        default:
+            break;
+    }
 }
 
 void MainMenuScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate)

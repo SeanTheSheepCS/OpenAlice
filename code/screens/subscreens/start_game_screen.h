@@ -13,6 +13,14 @@ class StartGameScreen: public OAEScreen
         void handleEvent(sf::Event event, sf::RenderWindow& window);
         void forceFullDraw(sf::RenderWindow& windowToDrawIn);
         void update(sf::Int32 millisecondsElapsedSinceLastUpdate);
+
+        //Functions for a start game screen specifically
+        bool hasCloseScreenRequestBeenMade();
+        void acknowledgeCloseScreenRequest();
+
+        int whichSaveGameHasBeenChosenReturnsZeroIfNoSavegameHasBeenChosen();
+        void acknowledgeChosenSavegame();
+
     protected:
         //
     private:
@@ -24,6 +32,9 @@ class StartGameScreen: public OAEScreen
         TexturedButtonObject deleteFileTwoButton;
         TexturedButtonObject selectFileThreeButton;
         TexturedButtonObject deleteFileThreeButton;
+
+        bool closeScreenRequestFlag;
+        int chosenSavegameIsZeroIfNoSavegameHasBeenChosen;
 };
 
 #endif
