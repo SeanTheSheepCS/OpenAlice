@@ -2,6 +2,7 @@
 #include <iostream>
 
 bool TexturedObject::isDefaultTextureInitialized = false;
+sf::Texture TexturedObject::defaultTexture;
 
 TexturedObject::TexturedObject(int xArg, int yArg, int widthArg, int heightArg, sf::Texture* texturePointerArg): DrawableObject(xArg,yArg,widthArg,heightArg)
 {

@@ -7,7 +7,7 @@ MainMenuScreen::MainMenuScreen(int width, int height): OAEScreen(width, height)
 
 void MainMenuScreen::handleEvent(sf::Event) 
 {
-    return;
+
 }
 
 void MainMenuScreen::forceFullDraw()
