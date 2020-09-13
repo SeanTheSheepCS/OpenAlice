@@ -17,6 +17,10 @@ class FarmScreen: public OAEScreen
     protected:
         //
     private:
+        TexturedObject displaysTheWordDay;
+        NumberDisplay dayNumberDisplay;
+        TexturedObject displaysAMoneySign;
+        NumberDisplay moneyDisplay;
         TexturedObject background;
 };
 

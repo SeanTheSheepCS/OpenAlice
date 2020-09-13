@@ -1,8 +1,8 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-#define WINDOW_WIDTH 600
-#define WINDOW_HEIGHT 600
+#define WINDOW_WIDTH 800
+#define WINDOW_HEIGHT 800
 
 #include "screens/screen_enum.h"
 #include "screens/oae_screen.h"
