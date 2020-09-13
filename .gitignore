@@ -1,3 +1,6 @@
 
 # So that object files are not included.
 *.o
+
+# So that the executable is not included.
+build/alice_game
