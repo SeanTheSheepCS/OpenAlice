@@ -22,6 +22,11 @@ class MainMenuScreen: public OAEScreen
         void handleEvent(sf::Event event, sf::RenderWindow& window);
         void forceFullDraw(sf::RenderWindow& windowToDrawIn);
         void update(sf::Int32 millisecondsElapsedSinceLastUpdate);
+
+        //Function to signal when savegame should be loaded.
+        int returnSavegameThatShouldBeLoadedReturnsZeroIfNoSavegameIsChosenYet();
+        void acknowledgeSavegameChoice();
+
     protected:
         //
     private:
@@ -30,6 +35,9 @@ class MainMenuScreen: public OAEScreen
         TexturedButtonObject startGameButton;
         TexturedButtonObject creditsButton;
         TexturedButtonObject exitGameButton;
+
+        //For signals when savegame is loaded.
+        int savegameToLoadSetToZeroWhenNoSavegameHasBeenChosen;
 
         //For subscreens
         MainMenuScreenSubscreenState subscreenState;

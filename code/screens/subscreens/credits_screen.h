@@ -13,11 +13,16 @@ class CreditsScreen: public OAEScreen
         void handleEvent(sf::Event event, sf::RenderWindow& window);
         void forceFullDraw(sf::RenderWindow& windowToDrawIn);
         void update(sf::Int32 millisecondsElapsedSinceLastUpdate);
+
+        bool hasCloseScreenRequestBeenMade();
+        void acknowledgeCloseScreenRequest();
     protected:
         //
     private:
         TexturedObject background;
         TexturedButtonObject exitScreenButton;
+
+        bool closeScreenRequestFlag;
 };
 
 #endif

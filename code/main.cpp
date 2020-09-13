@@ -20,6 +20,11 @@ int main()
         {
             case MAIN_MENU_SCREEN:
                 pointerToCurrentlyActiveScreen = &mainMenuScreenVar;
+                if(mainMenuScreenVar.returnSavegameThatShouldBeLoadedReturnsZeroIfNoSavegameIsChosenYet() != 0)
+                {
+                    SaveFileHelper::loadSaveFile(mainMenuScreenVar.returnSavegameThatShouldBeLoadedReturnsZeroIfNoSavegameIsChosenYet());
+                    mainMenuScreenVar.acknowledgeSavegameChoice();
+                }
                 break;
             case FARM_SCREEN:
                 pointerToCurrentlyActiveScreen = &farmScreenVar;
@@ -56,6 +61,7 @@ int main()
                 }
             }
         }
+
 
         sf::Time timeElapsed = clockForApplication.restart();
         pointerToCurrentlyActiveScreen->update(timeElapsed.asMilliseconds());

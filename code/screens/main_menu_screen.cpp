@@ -11,6 +11,7 @@ MainMenuScreen::MainMenuScreen(int x, int y, unsigned int width, unsigned int he
     creditsScreenVar(x+(width*0.1),y+(height*0.1),(width*0.8),(height*0.8))
 {
     subscreenState = NO_SUBSCREEN_ACTIVE;
+    savegameToLoadSetToZeroWhenNoSavegameHasBeenChosen = 0;
 }
 
 void MainMenuScreen::handleEvent(sf::Event event, sf::RenderWindow& window)
@@ -49,19 +50,24 @@ void MainMenuScreen::handleEvent(sf::Event event, sf::RenderWindow& window)
             startGameScreenVar.handleEvent(event, window);
             if(startGameScreenVar.hasCloseScreenRequestBeenMade())
             {
-                std::cout << "A" << std::endl;
                 startGameScreenVar.acknowledgeCloseScreenRequest();
                 subscreenState = NO_SUBSCREEN_ACTIVE;
                 forceFullDraw(window);
             }
             else if(startGameScreenVar.whichSaveGameHasBeenChosenReturnsZeroIfNoSavegameHasBeenChosen() != 0)
             {
+                savegameToLoadSetToZeroWhenNoSavegameHasBeenChosen = startGameScreenVar.whichSaveGameHasBeenChosenReturnsZeroIfNoSavegameHasBeenChosen();
                 startGameScreenVar.acknowledgeChosenSavegame();
-                //TODO
             }
             break;
         case CREDITS_SUBSCREEN_ACTIVE:
             creditsScreenVar.handleEvent(event, window);
+            if(creditsScreenVar.hasCloseScreenRequestBeenMade())
+            {
+                creditsScreenVar.acknowledgeCloseScreenRequest();
+                subscreenState = NO_SUBSCREEN_ACTIVE;
+                forceFullDraw(window);
+            }
             break;
         default:
             break;
@@ -90,4 +96,14 @@ void MainMenuScreen::forceFullDraw(sf::RenderWindow& windowToDrawIn)
 void MainMenuScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate)
 {
 
+}
+
+int MainMenuScreen::returnSavegameThatShouldBeLoadedReturnsZeroIfNoSavegameIsChosenYet()
+{
+    return savegameToLoadSetToZeroWhenNoSavegameHasBeenChosen;
+}
+
+void MainMenuScreen::acknowledgeSavegameChoice()
+{
+    savegameToLoadSetToZeroWhenNoSavegameHasBeenChosen = 0;    
 }

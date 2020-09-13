@@ -9,5 +9,7 @@
 #include "screens/main_menu_screen.h"
 #include "screens/farm_screen.h"
 #include "screens/market_screen.h"
+#include "save_file_helper.h"
+#include "save_file.h"
 
 #endif
