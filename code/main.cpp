@@ -22,8 +22,9 @@ int main()
                 pointerToCurrentlyActiveScreen = &mainMenuScreenVar;
                 if(mainMenuScreenVar.returnSavegameThatShouldBeLoadedReturnsZeroIfNoSavegameIsChosenYet() != 0)
                 {
-                    SaveFileHelper::loadSaveFile(mainMenuScreenVar.returnSavegameThatShouldBeLoadedReturnsZeroIfNoSavegameIsChosenYet());
+                    SaveFile fileToLoad = SaveGameHelper::loadSaveFile(mainMenuScreenVar.returnSavegameThatShouldBeLoadedReturnsZeroIfNoSavegameIsChosenYet());
                     mainMenuScreenVar.acknowledgeSavegameChoice();
+                    //TODO
                 }
                 break;
             case FARM_SCREEN:

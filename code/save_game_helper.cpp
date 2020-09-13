@@ -1,6 +1,8 @@
-#include "save_file_helper.h"
+#include "save_game_helper.h"
 
-/*static*/ SaveFile SaveFileHelper::loadSaveFile(int saveFileNumberToLoad)
+/*static*/ SaveFile SaveGameHelper::loadSaveFile(int saveFileNumberToLoad)
 {
-    
+    SaveFile returnValue;
+    //TODO implement loading save feature.
+    return returnValue;
 }
