@@ -3,6 +3,9 @@
 
 #include <SFML/Graphics.hpp>
 #include "oae_screen.h"
+#include "../engine/primitive_classes/textured_object.h"
+#include "../engine/primitive_classes/textured_button_object.h"
+#include "../engine/advanced_classes/number_display_module/number_display_module.h"
 
 class FarmScreen: public OAEScreen
 {
@@ -14,7 +17,7 @@ class FarmScreen: public OAEScreen
     protected:
         //
     private:
-        //
+        TexturedObject background;
 };
 
 #endif

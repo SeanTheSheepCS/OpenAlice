@@ -1,6 +1,6 @@
 #include "drawable_object.h"
 
-DrawableObject::DrawableObject(int xArg, int yArg, int widthArg, int heightArg)
+DrawableObject::DrawableObject(int xArg, int yArg, unsigned int widthArg, unsigned int heightArg)
 {
     this->x = xArg;
     this->y = yArg;
