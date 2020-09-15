@@ -7,6 +7,11 @@
 #include "../engine/primitive_classes/textured_button_object.h"
 #include "../engine/advanced_classes/number_display_module/number_display_module.h"
 
+enum TileMapRefNumberEnum
+{
+    TILE_REF_NUM_
+};
+
 class FarmScreen: public OAEScreen
 {
     public:
