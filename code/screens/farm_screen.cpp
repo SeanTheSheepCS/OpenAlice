@@ -6,9 +6,10 @@ FarmScreen::FarmScreen(int x, int y, unsigned int width, unsigned int height):
     displaysTheWordDay(x, y, (width*0.2), height*0.1, nullptr),
     dayNumberDisplay(x+(width*0.2), y, (width*0.4), height*0.1, 4),
     displaysAMoneySign(x+(width*0.6), y, (width*0.1), height*0.1, nullptr),
-    moneyDisplay(x+(width*0.7), y, width*0.3, (height*0.1), 8)
+    moneyDisplay(x+(width*0.7), y, width*0.3, (height*0.1), 8),
+    groundTileMap(x, y+(height*0.1), width, (height*0.9), 10, 10)
 {
-
+    
 }
 
 void FarmScreen::handleEvent(sf::Event event, sf::RenderWindow& window)
@@ -23,6 +24,7 @@ void FarmScreen::forceFullDraw(sf::RenderWindow& windowToDrawIn)
     dayNumberDisplay.draw(windowToDrawIn);
     displaysAMoneySign.draw(windowToDrawIn);
     moneyDisplay.draw(windowToDrawIn);
+    groundTileMap.draw(windowToDrawIn);
 }
 
 void FarmScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate)

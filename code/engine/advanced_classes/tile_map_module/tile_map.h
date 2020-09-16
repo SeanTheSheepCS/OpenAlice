@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "../../primitive_classes/drawable_object.h"
+#include "../../primitive_classes/textured_object.h"
 
 class TileMap: public DrawableObject
 {
@@ -39,7 +40,7 @@ class TileMap: public DrawableObject
     private:
         void deleteTileMap(); //Helper function for ~TileMap() and TileMap& operator=(...)
 
-        void drawTileAtRowAndColInWindow(int row, int col, sf::RenderWindow& windowToDrawIn);
+        void drawTileAtRowAndColInWindow(int row, int col, sf::RenderWindow& windowToDrawIn); //Helper function for draw(...) and setTileAtIndicesToReferenceNumberAndPartialDraw(...).
 
         int tileWidth;
         int tileHeight;

@@ -6,10 +6,14 @@
 #include "../engine/primitive_classes/textured_object.h"
 #include "../engine/primitive_classes/textured_button_object.h"
 #include "../engine/advanced_classes/number_display_module/number_display_module.h"
+#include "../engine/advanced_classes/tile_map_module/tile_map_module.h"
 
-enum TileMapRefNumberEnum
+enum TileMapReferenceNumbersForGroundEnum
 {
-    TILE_REF_NUM_
+    TILE_REF_NUM_OUT_OF_BOUNDS_GRASS = 0,
+    TILE_REF_NUM_IN_BOUNDS_GRASS = 1,
+    TILE_REF_NUM_UNWATERED_TILLED_DIRT = 2,
+    TILE_REF_NUM_WATERED_TILLED_DIRT = 3,
 };
 
 class FarmScreen: public OAEScreen
@@ -27,6 +31,7 @@ class FarmScreen: public OAEScreen
         TexturedObject displaysAMoneySign;
         NumberDisplay moneyDisplay;
         TexturedObject background;
+        TileMap groundTileMap;
 };
 
 #endif

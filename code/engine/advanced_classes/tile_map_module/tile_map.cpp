@@ -166,5 +166,13 @@ void TileMap::deleteTileMap() //Helper function for ~TileMap() and TileMap& oper
 
 void TileMap::drawTileAtRowAndColInWindow(int row, int col, sf::RenderWindow& windowToDrawIn)
 {
-    //
+    int tileX = x + (tileWidth*row) + ( ( (float) tileWidth) * centreOffsetTileCountX);
+    int tileY = y + (tileHeight*col) + ( ( (float) tileHeight) * centreOffsetTileCountY);
+    
+    if( (tileX >= (-tileWidth)) && (tileX <= (width + tileWidth)) && (tileY >= (-tileHeight)) && (tileY <= (height + tileHeight)))
+    {
+        sf::Texture* textureToUse = referenceNumberToTexturePointerMap[getReferenceNumberAtIndices(row, col)];
+        TexturedObject objectToDraw = TexturedObject(tileX, tileY, tileWidth, tileHeight, textureToUse);
+        objectToDraw.draw(windowToDrawIn);
+    }
 }
