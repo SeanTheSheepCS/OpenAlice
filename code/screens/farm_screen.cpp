@@ -15,7 +15,52 @@ FarmScreen::FarmScreen(int x, int y, unsigned int width, unsigned int height):
 
 void FarmScreen::handleEvent(sf::Event event, sf::RenderWindow& window)
 {
-    
+    switch(event.type)
+    {
+        case sf::Event::KeyPressed:
+            switch(event.key.code)
+            {
+                case sf::Keyboard::A:
+                    alice.setXMovementAmount(-1.0);
+                    break;
+                case sf::Keyboard::D:
+                    alice.setXMovementAmount(1.0);
+                    break;
+                case sf::Keyboard::W:
+                    alice.setYMovementAmount(1.0);
+                    break;
+                case sf::Keyboard::S:
+                    alice.setYMovementAmount(-1.0);
+                    break;
+                default:
+                    //
+                    break;
+            }
+            break;
+        case sf::Event::KeyReleased:
+            switch(event.key.code)
+            {
+                case sf::Keyboard::A:
+                    alice.setXMovementAmount(0.0);
+                    break;
+                case sf::Keyboard::D:
+                    alice.setXMovementAmount(0.0);
+                    break;
+                case sf::Keyboard::W:
+                    alice.setYMovementAmount(0.0);
+                    break;
+                case sf::Keyboard::S:
+                    alice.setYMovementAmount(0.0);
+                    break;
+                default:
+                    //
+                    break;
+            }
+            break;
+        default:
+            //
+            break;
+    }
 }
 
 void FarmScreen::associateWithTexturesInBank(const TextureBank& textureBankToTakeFrom)
@@ -39,5 +84,5 @@ void FarmScreen::forceFullDraw(sf::RenderWindow& windowToDrawIn)
 
 void FarmScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate)
 {
-
+    //
 }
