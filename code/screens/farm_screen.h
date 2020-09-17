@@ -7,6 +7,9 @@
 #include "../engine/primitive_classes/textured_button_object.h"
 #include "../engine/advanced_classes/number_display_module/number_display_module.h"
 #include "../engine/advanced_classes/tile_map_module/tile_map_module.h"
+#include "../engine/advanced_classes/player_object_module/player_object_module.h"
+#include "../texture_bank.h"
+#include "../main.h"
 
 enum TileMapReferenceNumbersForGroundEnum
 {
@@ -23,6 +26,7 @@ class FarmScreen: public OAEScreen
         void handleEvent(sf::Event event, sf::RenderWindow& window); 
         void forceFullDraw(sf::RenderWindow& windowToDrawIn);
         void update(sf::Int32 millisecondsElapsedSinceLastUpdate);
+        void associateWithTexturesInBank(const TextureBank& textureBankToTakeFrom);
     protected:
         //
     private:
@@ -32,6 +36,7 @@ class FarmScreen: public OAEScreen
         NumberDisplay moneyDisplay;
         TexturedObject background;
         TileMap groundTileMap;
+        PlayerObject alice;
 };
 
 #endif

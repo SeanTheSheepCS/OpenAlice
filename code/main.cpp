@@ -3,14 +3,69 @@
 #include <iostream>
 #include "main.h"
 
+TextureBank initializeTextureBank()
+{
+    TextureBank returnValue;    
+    sf::Texture outOfBoundsGrassTexture;
+    sf::Texture inBoundsGrassTexture;
+    sf::Texture unwateredTilledDirtTexture;
+    sf::Texture wateredTilledDirtTexture;
+    if(!(outOfBoundsGrassTexture.loadFromFile("../sprites/grass_out_of_bounds.png")))
+    {
+        std::cout << "Failed to load texture: ../sprites/grass_out_of_bounds.png" << std::endl;
+        outOfBoundsGrassTexture.loadFromFile("../sprites/invalid_texture.png");
+        if(!(outOfBoundsGrassTexture.loadFromFile("../sprites/invalid_texture.png")))
+        {
+            std::cout << "Failed to load texture: ../sprites/invalid_texture.png" << std::endl;
+        }
+    }
+    if(!(inBoundsGrassTexture.loadFromFile("../sprites/grass.png")))
+    {
+        std::cout << "Failed to load texture: ../sprites/grass.png" << std::endl;
+        inBoundsGrassTexture.loadFromFile("../sprites/invalid_texture.png");
+        if(!(inBoundsGrassTexture.loadFromFile("../sprites/invalid_texture.png")))
+        {
+            std::cout << "Failed to load texture: ../sprites/invalid_texture.png" << std::endl;
+        }
+    }
+    if(!(unwateredTilledDirtTexture.loadFromFile("../sprites/dirt_tilled_unwatered.png")))
+    {
+        std::cout << "Failed to load texture: ../sprites/dirt_tilled_unwatered.png" << std::endl;
+        if(!(unwateredTilledDirtTexture.loadFromFile("../sprites/invalid_texture.png")))
+        {
+            std::cout << "Failed to load texture: ../sprites/invalid_texture.png" << std::endl;
+        }
+    }
+    if(!(wateredTilledDirtTexture.loadFromFile("../sprites/dirt_tilled_watered.png")))
+    {
+        std::cout << "Failed to load texture: ../sprites/dirt_tilled_watered.png" << std::endl;
+        if(!(wateredTilledDirtTexture.loadFromFile("../sprites/invalid_texture.png")))
+        {
+            std::cout << "Failed to load texture: ../sprites/invalid_texture.png" << std::endl;
+        }
+    }
+    returnValue.saveTextureWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_OUT_OF_BOUNDS_GRASS, outOfBoundsGrassTexture);
+    returnValue.saveTextureWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_IN_BOUNDS_GRASS, inBoundsGrassTexture);
+    returnValue.saveTextureWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT, unwateredTilledDirtTexture);
+    returnValue.saveTextureWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_WATERED_TILLED_DIRT, wateredTilledDirtTexture);
+    return returnValue;
+}
+
 int main()
 {
+    //TEXTURE VARS
+    TextureBank textureBankForApplication = initializeTextureBank();
+
+    //SCREEN STATE MACHINE VARS
     ScreenEnum screenDisplayedOnLastIteration = NULL_SCREEN;
     ScreenEnum currentScreenToDisplay = MAIN_MENU_SCREEN;
     MainMenuScreen mainMenuScreenVar(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
     FarmScreen farmScreenVar(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+    farmScreenVar.associateWithTexturesInBank(textureBankForApplication);
     MarketScreen marketScreenVar(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
     OAEScreen* pointerToCurrentlyActiveScreen = nullptr;
+
+    //VARS FOR SFML
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "OpenAlice V1.0");
     sf::Clock clockForApplication;
 

@@ -75,9 +75,9 @@ TileMap& TileMap::operator=(const TileMap& rhs)
     return (*this);
 }
 
-void TileMap::associateReferenceNumberWithTexture(int referenceNumber, sf::Texture* texture)
+void TileMap::associateReferenceNumberWithTexture(int referenceNumber, const sf::Texture* texture)
 {
-    referenceNumberToTexturePointerMap.insert(std::pair<int, sf::Texture*>(referenceNumber, texture));
+    referenceNumberToTexturePointerMap.insert(std::pair<int, const sf::Texture*>(referenceNumber, texture));
 }
 
 void TileMap::deassociateTextureWithSpecificReferenceNumber(int referenceNumber)
@@ -171,7 +171,7 @@ void TileMap::drawTileAtRowAndColInWindow(int row, int col, sf::RenderWindow& wi
     
     if( (tileX >= (-tileWidth)) && (tileX <= (width + tileWidth)) && (tileY >= (-tileHeight)) && (tileY <= (height + tileHeight)))
     {
-        sf::Texture* textureToUse = referenceNumberToTexturePointerMap[getReferenceNumberAtIndices(row, col)];
+        const sf::Texture* textureToUse = referenceNumberToTexturePointerMap[getReferenceNumberAtIndices(row, col)];
         TexturedObject objectToDraw = TexturedObject(tileX, tileY, tileWidth, tileHeight, textureToUse);
         objectToDraw.draw(windowToDrawIn);
     }

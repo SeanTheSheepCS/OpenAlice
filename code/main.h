@@ -11,5 +11,16 @@
 #include "screens/market_screen.h"
 #include "save_game_helper.h"
 #include "save_file.h"
+#include "texture_bank.h"
+
+enum textureBankReferenceNumbers
+{
+    TEXTURE_BANK_REF_NUMBER_OUT_OF_BOUNDS_GRASS = 0,
+    TEXTURE_BANK_REF_NUMBER_IN_BOUNDS_GRASS = 1,
+    TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT = 2,
+    TEXTURE_BANK_REF_NUMBER_WATERED_TILLED_DIRT = 3,
+};
+
+TextureBank initializeTextureBank();
 
 #endif

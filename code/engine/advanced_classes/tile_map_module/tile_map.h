@@ -18,7 +18,7 @@ class TileMap: public DrawableObject
         TileMap& operator=(const TileMap& rhs);
 
         //FOR ASSOCIATING AND DEASSOCIATING TEXTURES
-	    void associateReferenceNumberWithTexture(int referenceNumber, sf::Texture* texture);
+	    void associateReferenceNumberWithTexture(int referenceNumber, const sf::Texture* texture);
         void deassociateTextureWithSpecificReferenceNumber(int referenceNumber);
 
         //FOR WRITING/READING AT INDICES
@@ -50,7 +50,7 @@ class TileMap: public DrawableObject
         int rowCount;
         int colCount;
 	    int** referenceNumberTwoDimensionArrayRepresentingTileMap;
-        std::map<int, sf::Texture*> referenceNumberToTexturePointerMap;
+        std::map<int, const sf::Texture*> referenceNumberToTexturePointerMap;
 };
 
 #endif

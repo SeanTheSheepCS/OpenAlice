@@ -4,7 +4,7 @@
 bool TexturedObject::isDefaultTextureInitialized = false;
 sf::Texture TexturedObject::defaultTexture;
 
-TexturedObject::TexturedObject(int xArg, int yArg, unsigned int widthArg, unsigned int heightArg, sf::Texture* texturePointerArg): DrawableObject(xArg,yArg,widthArg,heightArg)
+TexturedObject::TexturedObject(int xArg, int yArg, unsigned int widthArg, unsigned int heightArg, const sf::Texture* texturePointerArg): DrawableObject(xArg,yArg,widthArg,heightArg)
 {
     this->texturePointer = texturePointerArg;
     if(isDefaultTextureInitialized == false)
@@ -25,7 +25,7 @@ void TexturedObject::decoupleObjectFromItsTexture()
     this->texturePointer = nullptr;
 }
 
-void TexturedObject::associateWithNewTexture(sf::Texture* newTextureToAssociateWith)
+void TexturedObject::associateWithNewTexture(const sf::Texture* newTextureToAssociateWith)
 {
     this->texturePointer = newTextureToAssociateWith;
 }
