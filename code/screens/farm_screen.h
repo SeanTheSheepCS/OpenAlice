@@ -25,7 +25,7 @@ class FarmScreen: public OAEScreen
         FarmScreen(int x, int y, unsigned int width, unsigned int height);
         void handleEvent(sf::Event event, sf::RenderWindow& window); 
         void forceFullDraw(sf::RenderWindow& windowToDrawIn);
-        void update(sf::Int32 millisecondsElapsedSinceLastUpdate);
+        void update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::RenderWindow& windowToDrawIn);
         void associateWithTexturesInBank(const TextureBank& textureBankToTakeFrom);
     protected:
         //

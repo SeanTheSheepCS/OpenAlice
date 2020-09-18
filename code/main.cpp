@@ -125,7 +125,7 @@ int main()
 
 
         sf::Time timeElapsed = clockForApplication.restart();
-        pointerToCurrentlyActiveScreen->update(timeElapsed.asMilliseconds());
+        pointerToCurrentlyActiveScreen->update(timeElapsed.asMilliseconds(), window);
 
         window.display();
     }

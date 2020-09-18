@@ -59,7 +59,7 @@ void StartGameScreen::forceFullDraw(sf::RenderWindow& windowToDrawIn)
     deleteFileThreeButton.draw(windowToDrawIn);
 }
 
-void StartGameScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate)
+void StartGameScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::RenderWindow& window)
 {
     //
 }

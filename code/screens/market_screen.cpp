@@ -15,7 +15,7 @@ void MarketScreen::forceFullDraw(sf::RenderWindow& windowToDrawIn)
 
 }
 
-void MarketScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate)
+void MarketScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::RenderWindow& window)
 {
 
 }

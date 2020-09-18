@@ -93,7 +93,7 @@ void MainMenuScreen::forceFullDraw(sf::RenderWindow& windowToDrawIn)
     }
 }
 
-void MainMenuScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate)
+void MainMenuScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::RenderWindow& window)
 {
 
 }

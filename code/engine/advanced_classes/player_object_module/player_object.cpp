@@ -16,12 +16,12 @@ void PlayerObject::setYMovementAmount(float newYMovementAmount)
     yMovementAmount = newYMovementAmount;
 }
 
-float getXMovementAmount()
+float PlayerObject::getXMovementAmount()
 {
     return xMovementAmount;
 }
 
-float getYMovementAmount()
+float PlayerObject::getYMovementAmount()
 {
     return yMovementAmount;
 }

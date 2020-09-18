@@ -21,10 +21,10 @@ void FarmScreen::handleEvent(sf::Event event, sf::RenderWindow& window)
             switch(event.key.code)
             {
                 case sf::Keyboard::A:
-                    alice.setXMovementAmount(-1.0);
+                    alice.setXMovementAmount(1.0);
                     break;
                 case sf::Keyboard::D:
-                    alice.setXMovementAmount(1.0);
+                    alice.setXMovementAmount(-1.0);
                     break;
                 case sf::Keyboard::W:
                     alice.setYMovementAmount(1.0);
@@ -82,7 +82,19 @@ void FarmScreen::forceFullDraw(sf::RenderWindow& windowToDrawIn)
     alice.draw(windowToDrawIn);
 }
 
-void FarmScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate)
+void FarmScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::RenderWindow& windowToDrawIn)
 {
-    //
+    float aliceSpeedInTilesPerSecond = 1;
+    int numberOfMillisecondsSinceLastUpdate = millisecondsElapsedSinceLastUpdate;
+    if((alice.getXMovementAmount() == 0) || (alice.getYMovementAmount() == 0))
+    {
+        float numberOfSecondsSinceLastUpdate = ((float)numberOfMillisecondsSinceLastUpdate) / 1000.0;
+        float tilesTravelledSinceLastUpdateX = numberOfSecondsSinceLastUpdate * (alice.getXMovementAmount()) * aliceSpeedInTilesPerSecond;
+        float tilesTravelledSinceLastUpdateY = numberOfSecondsSinceLastUpdate * (alice.getYMovementAmount()) * aliceSpeedInTilesPerSecond;
+        groundTileMap.changeCentreOffsetTileCountXByAmount(tilesTravelledSinceLastUpdateX);
+        groundTileMap.changeCentreOffsetTileCountYByAmount(tilesTravelledSinceLastUpdateY);
+        groundTileMap.draw(windowToDrawIn);
+        alice.draw(windowToDrawIn);
+
+    }
 }

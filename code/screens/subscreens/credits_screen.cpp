@@ -34,7 +34,7 @@ void CreditsScreen::forceFullDraw(sf::RenderWindow& windowToDrawIn)
     exitScreenButton.draw(windowToDrawIn);
 }
 
-void CreditsScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate)
+void CreditsScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::RenderWindow& window)
 {
 
 }
