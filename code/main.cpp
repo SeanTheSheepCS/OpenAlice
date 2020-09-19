@@ -67,6 +67,7 @@ int main()
 
     //VARS FOR SFML
     sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "OpenAlice V1.0");
+    window.setFramerateLimit(60);
     sf::Clock clockForApplication;
 
     while(window.isOpen())

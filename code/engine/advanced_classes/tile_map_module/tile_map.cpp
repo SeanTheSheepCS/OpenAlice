@@ -4,10 +4,12 @@ TileMap::TileMap(int x, int y, unsigned int width, unsigned int height, unsigned
 {
     this->rowCount = rowCountArg;
     this->colCount = colCountArg;
-    this->tileWidth = (width/rowCount);
-    this->tileHeight = (height/colCount);
+    this->setTileWidth(width/rowCount);
+    this->setTileHeight(height/colCount);
     this->centreOffsetTileCountX = 0.0;
     this->centreOffsetTileCountY = 0.0;
+    this->offsetToMakeScreenStartCenteredX = 0;
+    this->offsetToMakeScreenStartCenteredY = 0;
 
     referenceNumberTwoDimensionArrayRepresentingTileMap = new int*[rowCountArg];
     for(unsigned int i = 0; i < rowCountArg; i++)
@@ -18,10 +20,12 @@ TileMap::TileMap(int x, int y, unsigned int width, unsigned int height, unsigned
 
 TileMap::TileMap(const TileMap& other): DrawableObject(other.x, other.y, other.width, other.height)
 {
-    this->tileWidth = other.tileWidth;
-    this->tileHeight = other.tileHeight;
+    this->setTileWidth(other.tileWidth);
+    this->setTileHeight(other.tileHeight);
     this->centreOffsetTileCountX = other.centreOffsetTileCountX;
     this->centreOffsetTileCountY = other.centreOffsetTileCountY;
+    this->offsetToMakeScreenStartCenteredX = other.offsetToMakeScreenStartCenteredX;
+    this->offsetToMakeScreenStartCenteredY = other.offsetToMakeScreenStartCenteredY;
     referenceNumberTwoDimensionArrayRepresentingTileMap = new int*[other.rowCount];
     for(unsigned int i = 0; i < rowCount; i++)
     {
@@ -50,10 +54,12 @@ TileMap& TileMap::operator=(const TileMap& rhs)
 {
     deleteTileMap();
     DrawableObject::operator=(rhs);
-    this->tileWidth = rhs.tileWidth;
-    this->tileHeight = rhs.tileHeight;
+    this->setTileWidth(rhs.tileWidth);
+    this->setTileHeight(rhs.tileHeight);
     this->centreOffsetTileCountX = rhs.centreOffsetTileCountX;
     this->centreOffsetTileCountY = rhs.centreOffsetTileCountY;
+    this->offsetToMakeScreenStartCenteredX = rhs.offsetToMakeScreenStartCenteredX;
+    this->offsetToMakeScreenStartCenteredY = rhs.offsetToMakeScreenStartCenteredY;
     referenceNumberTwoDimensionArrayRepresentingTileMap = new int*[rhs.rowCount];
     for(unsigned int i = 0; i < rhs.rowCount; i++)
     {
@@ -106,11 +112,15 @@ int TileMap::getReferenceNumberAtIndices(unsigned int row, unsigned int col)
 void TileMap::setTileWidth(int tileWidthArg)
 {
     this->tileWidth = tileWidthArg;
+    int totalLengthOfAllTilesX = (tileWidthArg * (this->rowCount));
+    this->offsetToMakeScreenStartCenteredX = (totalLengthOfAllTilesX - width) / 2;
 }
 
 void TileMap::setTileHeight(int tileHeightArg)
 {
     this->tileHeight = tileHeightArg;
+    int totalLengthOfAllTilesY = (tileHeightArg * (this->colCount));
+    this->offsetToMakeScreenStartCenteredY = (totalLengthOfAllTilesY - height) / 2;
 }
 
 void TileMap::setCentreOffsetTileCountX(float newCentreOffsetTileCountX)
@@ -154,6 +164,8 @@ void TileMap::deleteTileMap() //Helper function for ~TileMap() and TileMap& oper
     this->tileHeight = 0;
     this->centreOffsetTileCountX = 0.0;
     this->centreOffsetTileCountY = 0.0;
+    this->offsetToMakeScreenStartCenteredX = 0;
+    this->offsetToMakeScreenStartCenteredY = 0;
     for(unsigned int i = 0; i < rowCount; i++)
     {
         delete[] referenceNumberTwoDimensionArrayRepresentingTileMap[i];
@@ -166,8 +178,8 @@ void TileMap::deleteTileMap() //Helper function for ~TileMap() and TileMap& oper
 
 void TileMap::drawTileAtRowAndColInWindow(int row, int col, sf::RenderWindow& windowToDrawIn)
 {
-    int tileX = x + (tileWidth*row) + ( ( (float) tileWidth) * centreOffsetTileCountX);
-    int tileY = y + (tileHeight*col) + ( ( (float) tileHeight) * centreOffsetTileCountY);
+    int tileX = x + (tileWidth*row) + ( ( (float) tileWidth) * centreOffsetTileCountX) - this->offsetToMakeScreenStartCenteredX;
+    int tileY = y + (tileHeight*col) + ( ( (float) tileHeight) * centreOffsetTileCountY) - this->offsetToMakeScreenStartCenteredY;
     if( (tileX >= (x-(tileWidth))) && (tileX <= (x + ((int)width))) && (tileY >= (y-tileHeight)) && (tileY <= (y + ((int)height))))
     {
         const sf::Texture* textureToUse = referenceNumberToTexturePointerMap[getReferenceNumberAtIndices(row, col)];

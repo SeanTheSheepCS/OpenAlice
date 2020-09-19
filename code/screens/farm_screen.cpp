@@ -10,7 +10,8 @@ FarmScreen::FarmScreen(int x, int y, unsigned int width, unsigned int height):
     groundTileMap(x, y+(height*0.1), width, (height*0.9), 10, 10),
     alice(x+(width*0.45), y+(height*0.4), width*0.1, height*0.2, nullptr)
 {
-
+    groundTileMap.setTileWidth(100);
+    groundTileMap.setTileHeight(100);
 }
 
 void FarmScreen::handleEvent(sf::Event event, sf::RenderWindow& window)

@@ -9,6 +9,8 @@ class PlayerObject: public TexturedObject
         PlayerObject(int x, int y, unsigned int width, unsigned int height, const sf::Texture* texture);
         void setXMovementAmount(float newXMovementAmount);
         void setYMovementAmount(float newYMovementAmount);
+        void changeXMovementAmountByAmount(float amountToChangeXMovementAmountBy);
+        void changeYMovementAmountByAmount(float amountToChangeYMovementAmountBy);
         float getXMovementAmount();
         float getYMovementAmount();
     protected:
@@ -16,6 +18,8 @@ class PlayerObject: public TexturedObject
     private:
         float xMovementAmount;
         float yMovementAmount;
+        float xMovementCap;
+        float yMovementCap;
 };
 
 #endif
