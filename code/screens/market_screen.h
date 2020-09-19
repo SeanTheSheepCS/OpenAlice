@@ -5,6 +5,8 @@
 #include "oae_screen.h"
 #include "../engine/primitive_classes/textured_object.h"
 #include "../engine/primitive_classes/textured_button_object.h"
+#include "../engine/advanced_classes/number_display_module/number_display_module.h"
+#include "../engine/advanced_classes/selectable_object_list_module/selectable_object_list_module.h"
 
 class MarketScreen: public OAEScreen
 {
@@ -19,6 +21,28 @@ class MarketScreen: public OAEScreen
         //
     private:
         bool shouldSwitchToFarmScreenFlag;
+
+        //Shared with farm screen
+        TexturedObject displaysTheWordDay;
+        NumberDisplay dayNumberDisplay;
+        TexturedObject displaysAMoneySign;
+        NumberDisplay moneyDisplay;
+
+        //Icons for stock
+        TexturedObject tomatoIcon;
+        NumberDisplay tomatoCount;
+        TexturedObject zucchiniIcon;
+        NumberDisplay zucchiniCount;
+        TexturedObject carrotIcon;
+        NumberDisplay carrotCount;
+
+        //Buy/Sell UI
+        TexturedObject sellWord;
+        SelectableObjectList itemsForSale;
+        TexturedObject buyWord;
+        SelectableObjectList itemsToBuy;
+
+        //Misc stuff
         TexturedObject background;
         TexturedButtonObject returnToFarmButton;
 };
