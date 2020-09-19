@@ -74,12 +74,12 @@ void FarmScreen::associateWithTexturesInBank(const TextureBank& textureBankToTak
 void FarmScreen::forceFullDraw(sf::RenderWindow& windowToDrawIn)
 {
     background.draw(windowToDrawIn);
+    groundTileMap.draw(windowToDrawIn);
+    alice.draw(windowToDrawIn);
     displaysTheWordDay.draw(windowToDrawIn);
     dayNumberDisplay.draw(windowToDrawIn);
     displaysAMoneySign.draw(windowToDrawIn);
     moneyDisplay.draw(windowToDrawIn);
-    groundTileMap.draw(windowToDrawIn);
-    alice.draw(windowToDrawIn);
 }
 
 void FarmScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::RenderWindow& windowToDrawIn)
@@ -95,6 +95,9 @@ void FarmScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::Render
         groundTileMap.changeCentreOffsetTileCountYByAmount(tilesTravelledSinceLastUpdateY);
         groundTileMap.draw(windowToDrawIn);
         alice.draw(windowToDrawIn);
-
+        displaysTheWordDay.draw(windowToDrawIn);
+        dayNumberDisplay.draw(windowToDrawIn);
+        displaysAMoneySign.draw(windowToDrawIn);
+        moneyDisplay.draw(windowToDrawIn);
     }
 }

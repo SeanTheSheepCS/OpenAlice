@@ -168,8 +168,7 @@ void TileMap::drawTileAtRowAndColInWindow(int row, int col, sf::RenderWindow& wi
 {
     int tileX = x + (tileWidth*row) + ( ( (float) tileWidth) * centreOffsetTileCountX);
     int tileY = y + (tileHeight*col) + ( ( (float) tileHeight) * centreOffsetTileCountY);
-    
-    if( (tileX >= (-tileWidth)) && (tileX <= (width + tileWidth)) && (tileY >= (-tileHeight)) && (tileY <= (height + tileHeight)))
+    if( (tileX >= (x-(tileWidth))) && (tileX <= (x + ((int)width))) && (tileY >= (y-tileHeight)) && (tileY <= (y + ((int)height))))
     {
         const sf::Texture* textureToUse = referenceNumberToTexturePointerMap[getReferenceNumberAtIndices(row, col)];
         TexturedObject objectToDraw = TexturedObject(tileX, tileY, tileWidth, tileHeight, textureToUse);

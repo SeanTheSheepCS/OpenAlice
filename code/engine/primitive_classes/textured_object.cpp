@@ -15,7 +15,7 @@ TexturedObject::TexturedObject(int xArg, int yArg, unsigned int widthArg, unsign
         }
         else
         {
-            std::cout << "Failed to load texture: sprites/invalid_texture.png" << std::endl;
+            std::cout << "Failed to load texture: ../sprites/invalid_texture.png" << std::endl;
         }
     }
 }
