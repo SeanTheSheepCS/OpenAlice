@@ -27,14 +27,19 @@ class FarmScreen: public OAEScreen
         void forceFullDraw(sf::RenderWindow& windowToDrawIn);
         void update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::RenderWindow& windowToDrawIn);
         void associateWithTexturesInBank(const TextureBank& textureBankToTakeFrom);
+
+        bool returnIfShouldSwitchToMarketScreen();
+        void acknowledgeShouldSwitchToMarketScreen();
     protected:
         //
     private:
+        bool shouldSwitchToMarketScreenFlag;
         TexturedObject displaysTheWordDay;
         NumberDisplay dayNumberDisplay;
         TexturedObject displaysAMoneySign;
         NumberDisplay moneyDisplay;
         TexturedObject background;
+        TexturedButtonObject marketButton;
         TileMap groundTileMap;
         PlayerObject alice;
 };

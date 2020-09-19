@@ -7,9 +7,11 @@ FarmScreen::FarmScreen(int x, int y, unsigned int width, unsigned int height):
     dayNumberDisplay(x+(width*0.2), y, (width*0.4), height*0.1, 4),
     displaysAMoneySign(x+(width*0.6), y, (width*0.1), height*0.1, nullptr),
     moneyDisplay(x+(width*0.7), y, width*0.3, (height*0.1), 8),
+    marketButton(x+(width*0.7), y+(height*0.9), width*0.3, height*0.1, nullptr),
     groundTileMap(x, y+(height*0.1), width, (height*0.9), 10, 10),
     alice(x+(width*0.45), y+(height*0.4), width*0.1, height*0.2, nullptr)
 {
+    shouldSwitchToMarketScreenFlag = false;
     groundTileMap.setTileWidth(100);
     groundTileMap.setTileHeight(100);
 }
@@ -58,6 +60,17 @@ void FarmScreen::handleEvent(sf::Event event, sf::RenderWindow& window)
                     break;
             }
             break;
+        case sf::Event::MouseButtonPressed:
+            {
+                sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
+                int mouseX = mousePosition.x;
+                int mouseY = mousePosition.y;
+                if(marketButton.theMouseHasBeenClickedAtTheSpecifiedCoordinatesHasTheButtonBeenClicked(mouseX, mouseY))
+                {
+                    this->shouldSwitchToMarketScreenFlag = true;
+                }
+            }
+            break;
         default:
             //
             break;
@@ -81,6 +94,7 @@ void FarmScreen::forceFullDraw(sf::RenderWindow& windowToDrawIn)
     dayNumberDisplay.draw(windowToDrawIn);
     displaysAMoneySign.draw(windowToDrawIn);
     moneyDisplay.draw(windowToDrawIn);
+    marketButton.draw(windowToDrawIn);
 }
 
 void FarmScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::RenderWindow& windowToDrawIn)
@@ -100,5 +114,16 @@ void FarmScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::Render
         dayNumberDisplay.draw(windowToDrawIn);
         displaysAMoneySign.draw(windowToDrawIn);
         moneyDisplay.draw(windowToDrawIn);
+        marketButton.draw(windowToDrawIn);
     }
+}
+
+bool FarmScreen::returnIfShouldSwitchToMarketScreen()
+{
+    return shouldSwitchToMarketScreenFlag;
+}
+
+void FarmScreen::acknowledgeShouldSwitchToMarketScreen()
+{
+    shouldSwitchToMarketScreenFlag = false;
 }

@@ -75,7 +75,6 @@ int main()
         switch(currentScreenToDisplay)
         {
             case MAIN_MENU_SCREEN:
-                pointerToCurrentlyActiveScreen = &mainMenuScreenVar;
                 if(mainMenuScreenVar.returnSavegameThatShouldBeLoadedReturnsZeroIfNoSavegameIsChosenYet() == 0)
                 {
                     pointerToCurrentlyActiveScreen = &mainMenuScreenVar;
@@ -90,9 +89,21 @@ int main()
                 break;
             case FARM_SCREEN:
                 pointerToCurrentlyActiveScreen = &farmScreenVar;
+                if(farmScreenVar.returnIfShouldSwitchToMarketScreen())
+                {
+                    pointerToCurrentlyActiveScreen = &marketScreenVar;
+                    currentScreenToDisplay = MARKET_SCREEN;
+                    farmScreenVar.acknowledgeShouldSwitchToMarketScreen();
+                }
                 break;
             case MARKET_SCREEN:
                 pointerToCurrentlyActiveScreen = &marketScreenVar;
+                if(marketScreenVar.returnIfShouldSwitchToFarmScreen())
+                {
+                    pointerToCurrentlyActiveScreen = &farmScreenVar;
+                    currentScreenToDisplay = FARM_SCREEN;
+                    marketScreenVar.acknowledgeShouldSwitchToFarmScreen();
+                }
                 break;
             default:
                 pointerToCurrentlyActiveScreen = nullptr;
