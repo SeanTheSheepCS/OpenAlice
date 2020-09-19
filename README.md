@@ -6,7 +6,7 @@ An open source game heavily inspired by the 2007 game Alice Greenfingers.
 <h3> September </h3>
 <h4> Engine </h4>
  <ul>
-  <li> State machine for screens is established </li>
+  <li> <s> State machine for screens is established </s> </li>
   <li> <s> Structure for classes is established </s> </li>
   <li> Barebones version of each screen is established </li>
   <li> <s> Alice can move, and the screen adjusts accordingly </s> </li>
