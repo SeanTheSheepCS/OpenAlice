@@ -20,8 +20,9 @@ An open source game heavily inspired by the 2007 game Alice Greenfingers.
  </ul> 
 <h4> Music </h4>
  <ul>
-  <li> Startup jingle is completed </li>
- </ul> 
+  <li> <s> Startup jingle is completed </s> </li>
+ </ul>
+<h5> September milestone completed on September 21st </h5> 
 
 <h3> October </h3>
 <h4> Engine </h4>
