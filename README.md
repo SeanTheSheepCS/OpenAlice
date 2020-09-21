@@ -8,7 +8,7 @@ An open source game heavily inspired by the 2007 game Alice Greenfingers.
  <ul>
   <li> <s> State machine for screens is established </s> </li>
   <li> <s> Structure for classes is established </s> </li>
-  <li> Barebones version of each screen is established </li>
+  <li> <s> Barebones version of each screen is established </s> </li>
   <li> <s> Alice can move, and the screen adjusts accordingly </s> </li>
  </ul> 
 <h4> Sprites + Animation </h4>
