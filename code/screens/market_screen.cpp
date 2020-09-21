@@ -14,10 +14,10 @@ MarketScreen::MarketScreen(int x, int y, unsigned int width, unsigned int height
     zucchiniCount(x+(width*0.60), y+(height*0.1), (width*0.12), (height*0.1), 2),
     carrotIcon(x+(width*0.72), y+(height*0.1), (width*0.12), (height*0.1), nullptr),
     carrotCount(x+(width*0.84), y+(height*0.1), (width*0.12), (height*0.1), 2),
-    sellWord(x+(width*0.1), y+(height*0.3), (width*0.35), (height*0.1)),
-    itemsForSale(x+(width*0.1), y+(height*0.45), (width*0.35), (height*0.4), 3),
-    buyWord(x+(width*0.55), y+(height*0.3), (width*0.35), (height*0.1)),
-    itemsToBuy(x+(width*0.55), y+(height*0.45), (width*0.35), (height*0.4), 3)
+    sellWord(x+(width*0.02), y+(height*0.3), (width*0.35), (height*0.1), nullptr),
+    itemsForSale(x+(width*0.02), y+(height*0.45), (width*0.35), (height*0.5), 3),
+    buyWord(x+(width*0.4), y+(height*0.3), (width*0.35), (height*0.1), nullptr),
+    itemsToBuy(x+(width*0.4), y+(height*0.45), (width*0.35), (height*0.5), 3)
 {
     shouldSwitchToFarmScreenFlag = false;
 }
