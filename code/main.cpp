@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <X11/Xlib.h>
 #include <iostream>
 #include "main.h"
@@ -55,6 +56,14 @@ int main()
 {
     //TEXTURE VARS
     TextureBank textureBankForApplication = initializeTextureBank();
+
+    //MUSIC VARS
+    sf::Music mainMenuMusic;
+    if(!(mainMenuMusic.openFromFile("../music/main_menu_music.wav")))
+    {
+        std::cout << "Failed to open music music/main_menu_music.wav" << std::endl;
+    }
+    mainMenuMusic.play();
 
     //SCREEN STATE MACHINE VARS
     ScreenEnum screenDisplayedOnLastIteration = NULL_SCREEN;
