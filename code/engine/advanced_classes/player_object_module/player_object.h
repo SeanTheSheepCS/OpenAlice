@@ -11,8 +11,14 @@ class PlayerObject: public TexturedObject
         void setYMovementAmount(float newYMovementAmount);
         void changeXMovementAmountByAmount(float amountToChangeXMovementAmountBy);
         void changeYMovementAmountByAmount(float amountToChangeYMovementAmountBy);
+
+	    void associateReferenceNumberWithTexture(int referenceNumber, const sf::Texture* texture);
+        void deassociateTextureWithSpecificReferenceNumber(int referenceNumber);
+
         float getXMovementAmount();
         float getYMovementAmount();
+
+        void draw(sf::RenderWindow& windowToDrawObjectIn, int referenceNumberForTexture);
     protected:
         //
     private:
@@ -20,6 +26,8 @@ class PlayerObject: public TexturedObject
         float yMovementAmount;
         float xMovementCap;
         float yMovementCap;
+
+        std::map<int, const sf::Texture*> referenceNumberToTexturePointerMap;
 };
 
 #endif

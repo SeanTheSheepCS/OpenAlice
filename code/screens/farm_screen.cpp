@@ -83,13 +83,14 @@ void FarmScreen::associateWithTexturesInBank(const TextureBank& textureBankToTak
     groundTileMap.associateReferenceNumberWithTexture(TEXTURE_BANK_REF_NUMBER_IN_BOUNDS_GRASS, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber((int)TEXTURE_BANK_REF_NUMBER_IN_BOUNDS_GRASS));
     groundTileMap.associateReferenceNumberWithTexture(TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber((int)TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT));
     groundTileMap.associateReferenceNumberWithTexture(TEXTURE_BANK_REF_NUMBER_WATERED_TILLED_DIRT, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber((int)TEXTURE_BANK_REF_NUMBER_WATERED_TILLED_DIRT));
+    alice.associateReferenceNumberWithTexture(TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_BASE, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber((int)TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_BASE));
 }
 
 void FarmScreen::forceFullDraw(sf::RenderWindow& windowToDrawIn)
 {
     background.draw(windowToDrawIn);
     groundTileMap.draw(windowToDrawIn);
-    alice.draw(windowToDrawIn);
+    alice.draw(windowToDrawIn, TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_BASE);
     displaysTheWordDay.draw(windowToDrawIn);
     dayNumberDisplay.draw(windowToDrawIn);
     displaysAMoneySign.draw(windowToDrawIn);
@@ -109,7 +110,7 @@ void FarmScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::Render
         groundTileMap.changeCentreOffsetTileCountXByAmount(tilesTravelledSinceLastUpdateX);
         groundTileMap.changeCentreOffsetTileCountYByAmount(tilesTravelledSinceLastUpdateY);
         groundTileMap.draw(windowToDrawIn);
-        alice.draw(windowToDrawIn);
+        alice.draw(windowToDrawIn, TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_BASE);
         displaysTheWordDay.draw(windowToDrawIn);
         dayNumberDisplay.draw(windowToDrawIn);
         displaysAMoneySign.draw(windowToDrawIn);

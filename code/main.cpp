@@ -2,53 +2,34 @@
 #include <SFML/Audio.hpp>
 #include <X11/Xlib.h>
 #include <iostream>
+#include <string>
 #include "main.h"
+
+void addTextureToTextureBank(int referenceNumber, std::string path, TextureBank* bankToWriteTo)
+{
+    sf::Texture textureToAdd;
+    std::string fullPath = std::string("../sprites/").append(path);
+    if(!(textureToAdd.loadFromFile(fullPath)))
+    {
+        std::cout << "Failed to load texture: " << fullPath << std::endl;
+        std::string invalidTexturePath = std::string("../sprites/").append("invalid_texture.png");
+        if(!(textureToAdd.loadFromFile(invalidTexturePath)))
+        {
+            std::cout << "Failed to load texture: " << invalidTexturePath << std::endl;
+        }
+    }
+    bankToWriteTo->saveTextureWithReferenceNumber(referenceNumber, textureToAdd);
+}
 
 TextureBank initializeTextureBank()
 {
     TextureBank returnValue;    
-    sf::Texture outOfBoundsGrassTexture;
-    sf::Texture inBoundsGrassTexture;
-    sf::Texture unwateredTilledDirtTexture;
-    sf::Texture wateredTilledDirtTexture;
-    if(!(outOfBoundsGrassTexture.loadFromFile("../sprites/grass_out_of_bounds.png")))
-    {
-        std::cout << "Failed to load texture: ../sprites/grass_out_of_bounds.png" << std::endl;
-        outOfBoundsGrassTexture.loadFromFile("../sprites/invalid_texture.png");
-        if(!(outOfBoundsGrassTexture.loadFromFile("../sprites/invalid_texture.png")))
-        {
-            std::cout << "Failed to load texture: ../sprites/invalid_texture.png" << std::endl;
-        }
-    }
-    if(!(inBoundsGrassTexture.loadFromFile("../sprites/grass.png")))
-    {
-        std::cout << "Failed to load texture: ../sprites/grass.png" << std::endl;
-        inBoundsGrassTexture.loadFromFile("../sprites/invalid_texture.png");
-        if(!(inBoundsGrassTexture.loadFromFile("../sprites/invalid_texture.png")))
-        {
-            std::cout << "Failed to load texture: ../sprites/invalid_texture.png" << std::endl;
-        }
-    }
-    if(!(unwateredTilledDirtTexture.loadFromFile("../sprites/dirt_tilled_unwatered.png")))
-    {
-        std::cout << "Failed to load texture: ../sprites/dirt_tilled_unwatered.png" << std::endl;
-        if(!(unwateredTilledDirtTexture.loadFromFile("../sprites/invalid_texture.png")))
-        {
-            std::cout << "Failed to load texture: ../sprites/invalid_texture.png" << std::endl;
-        }
-    }
-    if(!(wateredTilledDirtTexture.loadFromFile("../sprites/dirt_tilled_watered.png")))
-    {
-        std::cout << "Failed to load texture: ../sprites/dirt_tilled_watered.png" << std::endl;
-        if(!(wateredTilledDirtTexture.loadFromFile("../sprites/invalid_texture.png")))
-        {
-            std::cout << "Failed to load texture: ../sprites/invalid_texture.png" << std::endl;
-        }
-    }
-    returnValue.saveTextureWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_OUT_OF_BOUNDS_GRASS, outOfBoundsGrassTexture);
-    returnValue.saveTextureWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_IN_BOUNDS_GRASS, inBoundsGrassTexture);
-    returnValue.saveTextureWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT, unwateredTilledDirtTexture);
-    returnValue.saveTextureWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_WATERED_TILLED_DIRT, wateredTilledDirtTexture);
+    addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_OUT_OF_BOUNDS_GRASS, "grass_out_of_bounds.png", &returnValue);
+    addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_IN_BOUNDS_GRASS, "grass.png", &returnValue);
+    addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT, "dirt_tilled_unwatered.png", &returnValue);
+    addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_WATERED_TILLED_DIRT, "dirt_tilled_watered.png", &returnValue);
+    addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_WATERED_TILLED_DIRT, "dirt_tilled_watered.png", &returnValue);
+    addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_BASE, "alice_down_base.png", &returnValue);
     return returnValue;
 }
 

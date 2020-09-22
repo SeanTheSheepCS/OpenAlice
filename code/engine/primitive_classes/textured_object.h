@@ -13,11 +13,11 @@ class TexturedObject: public DrawableObject
 	    void associateWithNewTexture(const sf::Texture* newTextureToAssociateWith);
         void draw(sf::RenderWindow& windowToDrawObjectIn);
     protected:
-	    //
-    private:
         static bool isDefaultTextureInitialized;
         static sf::Texture defaultTexture;
 	    const sf::Texture* texturePointer;
+    private:
+        //
 };
 
 

@@ -8,6 +8,16 @@ PlayerObject::PlayerObject(int x, int y, unsigned int width, unsigned int height
     yMovementCap = 1.0;
 }
 
+void PlayerObject::associateReferenceNumberWithTexture(int referenceNumber, const sf::Texture* texture)
+{
+    referenceNumberToTexturePointerMap.insert(std::pair<int, const sf::Texture*>(referenceNumber, texture));
+}
+
+void PlayerObject::deassociateTextureWithSpecificReferenceNumber(int referenceNumber)
+{
+    referenceNumberToTexturePointerMap.erase(referenceNumber);
+}
+
 void PlayerObject::setXMovementAmount(float newXMovementAmount)
 {
     if((xMovementAmount >= -xMovementCap) && (xMovementAmount <= xMovementCap))
@@ -64,4 +74,27 @@ float PlayerObject::getXMovementAmount()
 float PlayerObject::getYMovementAmount()
 {
     return yMovementAmount;
+}
+
+void PlayerObject::draw(sf::RenderWindow& windowToDrawObjectIn, int textureReferenceNumber)
+{
+    sf::RectangleShape rectangleToTexture(sf::Vector2f(this->width,this->height));
+    rectangleToTexture.setPosition(this->x, this->y);
+    try
+    {
+        const sf::Texture* textureToUse = referenceNumberToTexturePointerMap.at(textureReferenceNumber);
+        if((textureToUse)!= nullptr) 
+        {
+            rectangleToTexture.setTexture(textureToUse);
+        }
+        else
+        {
+            rectangleToTexture.setTexture(&defaultTexture);
+        }
+    }
+    catch(const std::exception& e)
+    {
+        rectangleToTexture.setTexture(&defaultTexture);
+    }
+    windowToDrawObjectIn.draw(rectangleToTexture);
 }
