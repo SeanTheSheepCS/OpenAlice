@@ -32,11 +32,11 @@ An open source game heavily inspired by the 2007 game Alice Greenfingers.
  </ul> 
 <h4> Sprites + Animation </h4>
  <ul>
-  <li> Sprite for Alice</li>
-  <li> Animation for alice walking </li>
+  <li> Sprite for Alice (1/4) </li>
+  <li> Animation for alice walking (1/4) </li>
   <li> Sprite for zucchini at each stage of growth </li>
   <li> Sprite for house </li>
-  <li> Sprite for well </li>
+  <li> <s> Sprite for well </s> </li>
  </ul> 
 <h4> Music </h4>
  <ul>
