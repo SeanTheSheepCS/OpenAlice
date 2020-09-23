@@ -6,16 +6,17 @@ PlayerObject::PlayerObject(int x, int y, unsigned int width, unsigned int height
     yMovementAmount = 0;
     xMovementCap = 1.0;
     yMovementCap = 1.0;
+    currentAnimationReferenceNumber = 0;
 }
 
-void PlayerObject::associateReferenceNumberWithTexture(int referenceNumber, const sf::Texture* texture)
+void PlayerObject::associateReferenceNumberWithAnimation(int referenceNumber, OAEAnimation animation)
 {
-    referenceNumberToTexturePointerMap.insert(std::pair<int, const sf::Texture*>(referenceNumber, texture));
+    referenceNumberToAnimationMap.insert(std::pair<int, OAEAnimation>(referenceNumber, animation));
 }
 
-void PlayerObject::deassociateTextureWithSpecificReferenceNumber(int referenceNumber)
+void PlayerObject::deassociateAnimationWithSpecificReferenceNumber(int referenceNumber)
 {
-    referenceNumberToTexturePointerMap.erase(referenceNumber);
+    referenceNumberToAnimationMap.erase(referenceNumber);
 }
 
 void PlayerObject::setXMovementAmount(float newXMovementAmount)
@@ -66,6 +67,19 @@ void PlayerObject::changeYMovementAmountByAmount(float amountToChangeYMovementAm
     this->setYMovementAmount(yMovementAmount + amountToChangeYMovementAmountBy);
 }
 
+void PlayerObject::setCurrentAnimationReferenceNumber(int currentAnimationReferenceNumberArg)
+{
+    try
+    {
+        referenceNumberToAnimationMap.at(currentAnimationReferenceNumberArg).setMillisecondCountToZero();
+    }
+    catch(std::exception& e)
+    {
+
+    }
+    currentAnimationReferenceNumber = currentAnimationReferenceNumberArg;
+}
+
 float PlayerObject::getXMovementAmount()
 {
     return xMovementAmount;
@@ -76,25 +90,11 @@ float PlayerObject::getYMovementAmount()
     return yMovementAmount;
 }
 
-void PlayerObject::draw(sf::RenderWindow& windowToDrawObjectIn, int textureReferenceNumber)
+void PlayerObject::draw(sf::RenderWindow& windowToDrawObjectIn, int millisecondsPassedSinceLastDraw)
 {
-    sf::RectangleShape rectangleToTexture(sf::Vector2f(this->width,this->height));
-    rectangleToTexture.setPosition(this->x, this->y);
-    try
-    {
-        const sf::Texture* textureToUse = referenceNumberToTexturePointerMap.at(textureReferenceNumber);
-        if((textureToUse)!= nullptr) 
-        {
-            rectangleToTexture.setTexture(textureToUse);
-        }
-        else
-        {
-            rectangleToTexture.setTexture(&defaultTexture);
-        }
-    }
-    catch(const std::exception& e)
-    {
-        rectangleToTexture.setTexture(&defaultTexture);
-    }
-    windowToDrawObjectIn.draw(rectangleToTexture);
+    TexturedObject objectToDraw = TexturedObject(x, y, width, height, nullptr);
+    OAEAnimation animationToUse = referenceNumberToAnimationMap.at(currentAnimationReferenceNumber);
+    animationToUse.incrementMillisecondCountByAmount(millisecondsPassedSinceLastDraw);
+    objectToDraw.associateWithNewTexture(animationToUse.getCurrentFrame());
+    objectToDraw.draw(windowToDrawObjectIn);
 }

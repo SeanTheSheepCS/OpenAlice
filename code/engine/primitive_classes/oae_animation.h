@@ -6,17 +6,18 @@
 class OAEAnimation
 {
     public:
-        OAEAnimation();
+        OAEAnimation(unsigned int speedInMillisecondsPerAdvanceFrame);
         unsigned int getFrameVectorSize();
-        void setAnimationSpeedInFramesAdvancedPerMillisecond(unsigned int newSpeed);
+        void setAnimationSpeedInMillisecondsPerAdvanceFrame(unsigned int newSpeed);
         void incrementMillisecondCountByAmount(unsigned int amountToIncrementBy);
+        void setMillisecondCountToZero();
         sf::Texture* getCurrentFrame();
     protected:
         //
     private:
         std::vector<sf::Texture*> frameVector;
         unsigned int currentMillisecondCount;
-        unsigned int animationSpeedInFramesAdvancedPerMillisecond;
+        unsigned int animationSpeedInMillisecondsToAdvanceFrame;
 };
 
 #endif
