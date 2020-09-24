@@ -30,6 +30,21 @@ TextureBank initializeTextureBank()
     addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_WATERED_TILLED_DIRT, "dirt_tilled_watered.png", &returnValue);
     addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_WATERED_TILLED_DIRT, "dirt_tilled_watered.png", &returnValue);
     addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_BASE, "alice_down_base.png", &returnValue);
+    addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_WALK_CYCLE_ONE, "alice_down_walk_cycle_1.png", &returnValue);
+    addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_WALK_CYCLE_TWO_FOUR, "alice_down_walk_cycle_2_4.png", &returnValue);
+    addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_WALK_CYCLE_THREE, "alice_down_walk_cycle_3.png", &returnValue);
+    return returnValue;
+}
+
+OAEAnimationBank initializeOAEAnimationBank(const TextureBank& textureBankToUse)
+{
+    OAEAnimationBank returnValue;
+    OAEAnimation aliceWalkDownAnimation = OAEAnimation(DEFAULT_ANIMATION_SPEED);
+    aliceWalkDownAnimation.appendTextureToAnimation(textureBankToUse.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_WALK_CYCLE_ONE));
+    aliceWalkDownAnimation.appendTextureToAnimation(textureBankToUse.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_WALK_CYCLE_TWO_FOUR));
+    aliceWalkDownAnimation.appendTextureToAnimation(textureBankToUse.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_WALK_CYCLE_THREE));
+    aliceWalkDownAnimation.appendTextureToAnimation(textureBankToUse.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_WALK_CYCLE_TWO_FOUR));
+    returnValue.saveOAEAnimationWithReferenceNumber(ANIMATION_BANK_REF_NUMBER_ALICE_DOWN_WALK, aliceWalkDownAnimation);
     return returnValue;
 }
 
@@ -37,6 +52,7 @@ int main()
 {
     //TEXTURE VARS
     TextureBank textureBankForApplication = initializeTextureBank();
+    OAEAnimationBank animationBankForApplication = initializeOAEAnimationBank(textureBankForApplication);
 
     //MUSIC VARS
     sf::Music mainMenuMusic;

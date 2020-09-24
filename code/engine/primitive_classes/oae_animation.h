@@ -1,5 +1,5 @@
-#ifndef ANIMATION_H
-#define ANIMATION_H
+#ifndef OAE_ANIMATION_H
+#define OAE_ANIMATION_H
 
 #include <SFML/Graphics.hpp>
 
@@ -7,16 +7,15 @@ class OAEAnimation
 {
     public:
         OAEAnimation(unsigned int speedInMillisecondsPerAdvanceFrame);
-        unsigned int getFrameVectorSize();
+        unsigned int getFrameVectorSize() const;
         void setAnimationSpeedInMillisecondsPerAdvanceFrame(unsigned int newSpeed);
-        void incrementMillisecondCountByAmount(unsigned int amountToIncrementBy);
-        void setMillisecondCountToZero();
-        sf::Texture* getCurrentFrame();
+        const sf::Texture* getFrameAtSpecifiedMilliseconds(unsigned int specifiedMilliseconds) const;
+        unsigned int getTotalMillisecondCountForAnimation() const;
+        void appendTextureToAnimation(const sf::Texture* textureToAppend);
     protected:
         //
     private:
-        std::vector<sf::Texture*> frameVector;
-        unsigned int currentMillisecondCount;
+        std::vector<const sf::Texture*> frameVector;
         unsigned int animationSpeedInMillisecondsToAdvanceFrame;
 };
 

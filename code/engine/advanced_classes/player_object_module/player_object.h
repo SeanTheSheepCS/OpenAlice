@@ -3,6 +3,7 @@
 
 #include "../../primitive_classes/textured_object.h"
 #include "../../primitive_classes/oae_animation.h"
+#include "../../primitive_classes/oae_animation_instance.h"
 #include <exception>
 #include <map>
 
@@ -15,10 +16,10 @@ class PlayerObject: public TexturedObject
         void changeXMovementAmountByAmount(float amountToChangeXMovementAmountBy);
         void changeYMovementAmountByAmount(float amountToChangeYMovementAmountBy);
 
-        void associateReferenceNumberWithAnimation(int referenceNumber, OAEAnimation animation);
-        void deassociateAnimationWithSpecificReferenceNumber(int referenceNumber);
+        void associateReferenceNumberWithAnimationInstance(int referenceNumber, const OAEAnimationInstance animationInstance);
+        void deassociateAnimationInstanceWithSpecificReferenceNumber(int referenceNumber);
 
-        void setCurrentAnimationReferenceNumber(int currentAnimationReferenceNumber);
+        void setCurrentAnimationInstanceReferenceNumber(int currentAnimationInstanceReferenceNumber);
 
         float getXMovementAmount();
         float getYMovementAmount();
@@ -32,9 +33,9 @@ class PlayerObject: public TexturedObject
         float xMovementCap;
         float yMovementCap;
 
-        int currentAnimationReferenceNumber;
+        int currentAnimationInstanceReferenceNumber;
 
-        std::map<int, OAEAnimation> referenceNumberToAnimationMap;
+        std::map<int, OAEAnimationInstance> referenceNumberToAnimationInstanceMap;
 };
 
 #endif

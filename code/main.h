@@ -12,6 +12,9 @@
 #include "save_game_helper.h"
 #include "save_file.h"
 #include "texture_bank.h"
+#include "oae_animation_bank.h"
+
+#define DEFAULT_ANIMATION_SPEED 1
 
 enum textureBankReferenceNumbers
 {
@@ -20,8 +23,17 @@ enum textureBankReferenceNumbers
     TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT = 2,
     TEXTURE_BANK_REF_NUMBER_WATERED_TILLED_DIRT = 3,
     TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_BASE = 4,
+    TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_WALK_CYCLE_ONE = 5,
+    TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_WALK_CYCLE_TWO_FOUR = 6,
+    TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_WALK_CYCLE_THREE = 7
+};
+
+enum animationBankReferenceNumbers
+{
+    ANIMATION_BANK_REF_NUMBER_ALICE_DOWN_WALK = 0,
 };
 
 TextureBank initializeTextureBank();
+OAEAnimationBank initializeOAEAnimationBank();
 
 #endif

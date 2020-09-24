@@ -6,17 +6,17 @@ PlayerObject::PlayerObject(int x, int y, unsigned int width, unsigned int height
     yMovementAmount = 0;
     xMovementCap = 1.0;
     yMovementCap = 1.0;
-    currentAnimationReferenceNumber = 0;
+    currentAnimationInstanceReferenceNumber = 0;
 }
 
-void PlayerObject::associateReferenceNumberWithAnimation(int referenceNumber, OAEAnimation animation)
+void PlayerObject::associateReferenceNumberWithAnimationInstance(int referenceNumber, const OAEAnimationInstance animationInstance)
 {
-    referenceNumberToAnimationMap.insert(std::pair<int, OAEAnimation>(referenceNumber, animation));
+    referenceNumberToAnimationInstanceMap.insert(std::pair<int, OAEAnimationInstance>(referenceNumber, animationInstance));
 }
 
-void PlayerObject::deassociateAnimationWithSpecificReferenceNumber(int referenceNumber)
+void PlayerObject::deassociateAnimationInstanceWithSpecificReferenceNumber(int referenceNumber)
 {
-    referenceNumberToAnimationMap.erase(referenceNumber);
+    referenceNumberToAnimationInstanceMap.erase(referenceNumber);
 }
 
 void PlayerObject::setXMovementAmount(float newXMovementAmount)
@@ -67,17 +67,17 @@ void PlayerObject::changeYMovementAmountByAmount(float amountToChangeYMovementAm
     this->setYMovementAmount(yMovementAmount + amountToChangeYMovementAmountBy);
 }
 
-void PlayerObject::setCurrentAnimationReferenceNumber(int currentAnimationReferenceNumberArg)
+void PlayerObject::setCurrentAnimationInstanceReferenceNumber(int currentAnimationInstanceReferenceNumberArg)
 {
     try
     {
-        referenceNumberToAnimationMap.at(currentAnimationReferenceNumberArg).setMillisecondCountToZero();
+        referenceNumberToAnimationInstanceMap.at(currentAnimationInstanceReferenceNumberArg).setMillisecondCountToZero();
     }
     catch(std::exception& e)
     {
 
     }
-    currentAnimationReferenceNumber = currentAnimationReferenceNumberArg;
+    currentAnimationInstanceReferenceNumber = currentAnimationInstanceReferenceNumberArg;
 }
 
 float PlayerObject::getXMovementAmount()
@@ -93,8 +93,8 @@ float PlayerObject::getYMovementAmount()
 void PlayerObject::draw(sf::RenderWindow& windowToDrawObjectIn, int millisecondsPassedSinceLastDraw)
 {
     TexturedObject objectToDraw = TexturedObject(x, y, width, height, nullptr);
-    OAEAnimation animationToUse = referenceNumberToAnimationMap.at(currentAnimationReferenceNumber);
-    animationToUse.incrementMillisecondCountByAmount(millisecondsPassedSinceLastDraw);
-    objectToDraw.associateWithNewTexture(animationToUse.getCurrentFrame());
+    OAEAnimationInstance animationInstanceToUse = referenceNumberToAnimationInstanceMap.at(currentAnimationInstanceReferenceNumber);
+    animationInstanceToUse.incrementMillisecondCountByAmount(millisecondsPassedSinceLastDraw);
+    objectToDraw.associateWithNewTexture(animationInstanceToUse.getCurrentFrame());
     objectToDraw.draw(windowToDrawObjectIn);
 }

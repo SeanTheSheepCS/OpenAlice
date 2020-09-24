@@ -9,6 +9,7 @@
 #include "../engine/advanced_classes/tile_map_module/tile_map_module.h"
 #include "../engine/advanced_classes/player_object_module/player_object_module.h"
 #include "../texture_bank.h"
+#include "../oae_animation_bank.h"
 #include "../main.h"
 
 enum TileMapReferenceNumbersForGroundEnum
@@ -26,7 +27,9 @@ class FarmScreen: public OAEScreen
         void handleEvent(sf::Event event, sf::RenderWindow& window); 
         void forceFullDraw(sf::RenderWindow& windowToDrawIn);
         void update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::RenderWindow& windowToDrawIn);
+
         void associateWithTexturesInBank(const TextureBank& textureBankToTakeFrom);
+        void associateWithAnimationsInBank(const OAEAnimationBank animationBankToTakeFrom);
 
         bool returnIfShouldSwitchToMarketScreen();
         void acknowledgeShouldSwitchToMarketScreen();

@@ -2,7 +2,6 @@
 
 OAEAnimation::OAEAnimation(unsigned int animationSpeedInMillisecondsToAdvanceFrameArg)
 {
-    currentMillisecondCount = 0;
     animationSpeedInMillisecondsToAdvanceFrame = animationSpeedInMillisecondsToAdvanceFrameArg;
 }
 
@@ -11,23 +10,23 @@ void OAEAnimation::setAnimationSpeedInMillisecondsPerAdvanceFrame(unsigned int n
     animationSpeedInMillisecondsToAdvanceFrame = newSpeed;
 }
 
-unsigned int OAEAnimation::getFrameVectorSize()
+unsigned int OAEAnimation::getFrameVectorSize() const
 {
     return frameVector.size();
 }
 
-void OAEAnimation::setMillisecondCountToZero()
+const sf::Texture* OAEAnimation::getFrameAtSpecifiedMilliseconds(unsigned int specifiedMilliseconds) const
 {
-    currentMillisecondCount = 0;
-}
-
-void OAEAnimation::incrementMillisecondCountByAmount(unsigned int millisecondsToAdd)
-{
-    currentMillisecondCount += millisecondsToAdd;
-}
-
-sf::Texture* OAEAnimation::getCurrentFrame()
-{
-    unsigned int currentIndex = ((currentMillisecondCount / animationSpeedInMillisecondsToAdvanceFrame) % frameVector.size());
+    unsigned int currentIndex = ((specifiedMilliseconds / animationSpeedInMillisecondsToAdvanceFrame) % frameVector.size());
     return frameVector.at(currentIndex);
+}
+
+unsigned int OAEAnimation::getTotalMillisecondCountForAnimation() const
+{
+    return animationSpeedInMillisecondsToAdvanceFrame*(frameVector.size());
+}
+
+void OAEAnimation::appendTextureToAnimation(const sf::Texture* textureToAppend)
+{
+    frameVector.push_back(textureToAppend);
 }
