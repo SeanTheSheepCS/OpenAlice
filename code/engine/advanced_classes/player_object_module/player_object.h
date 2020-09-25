@@ -2,12 +2,11 @@
 #define PLAYER_OBJECT_H
 
 #include "../../primitive_classes/textured_object.h"
-#include "../../primitive_classes/oae_animation.h"
-#include "../../primitive_classes/oae_animation_instance.h"
+#include "../../primitive_classes/oae_animated_object.h"
 #include <exception>
 #include <map>
 
-class PlayerObject: public TexturedObject
+class PlayerObject: public TexturedObject, public OAEAnimatedObject
 {
     public:
         PlayerObject(int x, int y, unsigned int width, unsigned int height, const sf::Texture* texture);
@@ -18,11 +17,6 @@ class PlayerObject: public TexturedObject
 
         void associateReferenceNumberWithTexturePointer(int referenceNumber, const sf::Texture* texturePointer);
         void deassociateTexturePointerWithSpecifiedReferenceNumber(int referenceNumber);
-
-        void associateReferenceNumberWithAnimationInstance(int referenceNumber, const OAEAnimationInstance animationInstance);
-        void deassociateAnimationInstanceWithSpecificReferenceNumber(int referenceNumber);
-
-        void setCurrentAnimationInstanceReferenceNumber(int currentAnimationInstanceReferenceNumber);
 
         float getXMovementAmount();
         float getYMovementAmount();
@@ -37,10 +31,6 @@ class PlayerObject: public TexturedObject
         float yMovementAmount;
         float xMovementCap;
         float yMovementCap;
-
-        int currentAnimationInstanceReferenceNumber;
-
-        std::map<int, OAEAnimationInstance> referenceNumberToAnimationInstanceMap;
 };
 
 #endif

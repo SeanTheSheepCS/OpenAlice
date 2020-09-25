@@ -1,22 +1,12 @@
 #include "player_object.h"
+#include <iostream>
 
-PlayerObject::PlayerObject(int x, int y, unsigned int width, unsigned int height, const sf::Texture* texture): TexturedObject(x, y, width, height, texture)
+PlayerObject::PlayerObject(int x, int y, unsigned int width, unsigned int height, const sf::Texture* texture): TexturedObject(x, y, width, height, texture), OAEAnimatedObject()
 {
     xMovementAmount = 0;
     yMovementAmount = 0;
     xMovementCap = 1.0;
     yMovementCap = 1.0;
-    currentAnimationInstanceReferenceNumber = 0;
-}
-
-void PlayerObject::associateReferenceNumberWithAnimationInstance(int referenceNumber, const OAEAnimationInstance animationInstance)
-{
-    referenceNumberToAnimationInstanceMap.insert(std::pair<int, OAEAnimationInstance>(referenceNumber, animationInstance));
-}
-
-void PlayerObject::deassociateAnimationInstanceWithSpecificReferenceNumber(int referenceNumber)
-{
-    referenceNumberToAnimationInstanceMap.erase(referenceNumber);
 }
 
 void PlayerObject::setXMovementAmount(float newXMovementAmount)
@@ -48,7 +38,7 @@ void PlayerObject::setYMovementAmount(float newYMovementAmount)
     {
         if(yMovementAmount < 0)
         {
-            yMovementAmount = -yMovementCap;
+           yMovementAmount = -yMovementCap;
         }
         else
         {
@@ -65,19 +55,6 @@ void PlayerObject::changeXMovementAmountByAmount(float amountToChangeXMovementAm
 void PlayerObject::changeYMovementAmountByAmount(float amountToChangeYMovementAmountBy)
 {
     this->setYMovementAmount(yMovementAmount + amountToChangeYMovementAmountBy);
-}
-
-void PlayerObject::setCurrentAnimationInstanceReferenceNumber(int currentAnimationInstanceReferenceNumberArg)
-{
-    try
-    {
-        referenceNumberToAnimationInstanceMap.at(currentAnimationInstanceReferenceNumberArg).setMillisecondCountToZero();
-    }
-    catch(std::exception& e)
-    {
-
-    }
-    currentAnimationInstanceReferenceNumber = currentAnimationInstanceReferenceNumberArg;
 }
 
 float PlayerObject::getXMovementAmount()
