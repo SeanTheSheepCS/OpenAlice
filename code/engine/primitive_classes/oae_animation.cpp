@@ -1,4 +1,5 @@
 #include "oae_animation.h"
+#include <iostream>
 
 OAEAnimation::OAEAnimation(unsigned int animationSpeedInMillisecondsToAdvanceFrameArg)
 {

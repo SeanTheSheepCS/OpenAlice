@@ -29,7 +29,7 @@ class FarmScreen: public OAEScreen
         void update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::RenderWindow& windowToDrawIn);
 
         void associateWithTexturesInBank(const TextureBank& textureBankToTakeFrom);
-        void associateWithAnimationsInBank(const OAEAnimationBank animationBankToTakeFrom);
+        void associateWithAnimationsInBank(const OAEAnimationBank& animationBankToTakeFrom);
 
         bool returnIfShouldSwitchToMarketScreen();
         void acknowledgeShouldSwitchToMarketScreen();

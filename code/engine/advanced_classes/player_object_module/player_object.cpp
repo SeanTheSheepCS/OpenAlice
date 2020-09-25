@@ -90,11 +90,47 @@ float PlayerObject::getYMovementAmount()
     return yMovementAmount;
 }
 
-void PlayerObject::draw(sf::RenderWindow& windowToDrawObjectIn, int millisecondsPassedSinceLastDraw)
+
+void PlayerObject::updateSprite(unsigned int millisecondsPassedSinceLastDraw)
+{
+    try
+    {
+        OAEAnimationInstance animationInstanceToUse = referenceNumberToAnimationInstanceMap.at(currentAnimationInstanceReferenceNumber);
+        animationInstanceToUse.incrementMillisecondCountByAmount(millisecondsPassedSinceLastDraw);
+    }
+    catch (std::exception& e)
+    {
+
+    }
+}
+
+void PlayerObject::draw(sf::RenderWindow& windowToDrawObjectIn)
 {
     TexturedObject objectToDraw = TexturedObject(x, y, width, height, nullptr);
-    OAEAnimationInstance animationInstanceToUse = referenceNumberToAnimationInstanceMap.at(currentAnimationInstanceReferenceNumber);
-    animationInstanceToUse.incrementMillisecondCountByAmount(millisecondsPassedSinceLastDraw);
-    objectToDraw.associateWithNewTexture(animationInstanceToUse.getCurrentFrame());
+    try
+    {
+        OAEAnimationInstance animationInstanceToUse = referenceNumberToAnimationInstanceMap.at(currentAnimationInstanceReferenceNumber);
+        objectToDraw.associateWithNewTexture(animationInstanceToUse.getCurrentFrame());
+    }
+    catch(std::exception& e)
+    {
+        objectToDraw.associateWithNewTexture(this->texturePointer);
+    }
+    objectToDraw.draw(windowToDrawObjectIn);
+}
+
+void PlayerObject::drawAndUpdateSprite(sf::RenderWindow& windowToDrawObjectIn, unsigned int millisecondsPassedSinceLastDraw)
+{
+    TexturedObject objectToDraw = TexturedObject(x, y, width, height, nullptr);
+    try
+    {
+        OAEAnimationInstance animationInstanceToUse = referenceNumberToAnimationInstanceMap.at(currentAnimationInstanceReferenceNumber);
+        animationInstanceToUse.incrementMillisecondCountByAmount(millisecondsPassedSinceLastDraw);
+        objectToDraw.associateWithNewTexture(animationInstanceToUse.getCurrentFrame());
+    }
+    catch(std::exception& e)
+    {
+        objectToDraw.associateWithNewTexture(this->texturePointer);
+    }
     objectToDraw.draw(windowToDrawObjectIn);
 }

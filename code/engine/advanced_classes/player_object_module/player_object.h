@@ -24,7 +24,9 @@ class PlayerObject: public TexturedObject
         float getXMovementAmount();
         float getYMovementAmount();
 
-        void draw(sf::RenderWindow& windowToDrawObjectIn, int referenceNumberForTexture);
+        void updateSprite(unsigned int millisecondsPassedSinceLastDraw);
+        void draw(sf::RenderWindow& windowToDrawObjectIn);
+        void drawAndUpdateSprite(sf::RenderWindow& windowToDrawObjectIn, unsigned int millisecondsPassedSinceLastDraw);
     protected:
         //
     private:

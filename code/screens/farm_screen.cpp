@@ -85,7 +85,7 @@ void FarmScreen::associateWithTexturesInBank(const TextureBank& textureBankToTak
     groundTileMap.associateReferenceNumberWithTexture(TEXTURE_BANK_REF_NUMBER_WATERED_TILLED_DIRT, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber((int)TEXTURE_BANK_REF_NUMBER_WATERED_TILLED_DIRT));
 }
 
-void FarmScreen::associateWithAnimationsInBank(const OAEAnimationBank animationBankToTakeFrom)
+void FarmScreen::associateWithAnimationsInBank(const OAEAnimationBank& animationBankToTakeFrom)
 {
     alice.associateReferenceNumberWithAnimationInstance(ANIMATION_BANK_REF_NUMBER_ALICE_DOWN_WALK, OAEAnimationInstance(animationBankToTakeFrom.getAnimationAssociatedWithReferenceNumber(ANIMATION_BANK_REF_NUMBER_ALICE_DOWN_WALK)));
 }
@@ -94,7 +94,7 @@ void FarmScreen::forceFullDraw(sf::RenderWindow& windowToDrawIn)
 {
     background.draw(windowToDrawIn);
     groundTileMap.draw(windowToDrawIn);
-    alice.draw(windowToDrawIn, TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_BASE);
+    alice.draw(windowToDrawIn);
     displaysTheWordDay.draw(windowToDrawIn);
     dayNumberDisplay.draw(windowToDrawIn);
     displaysAMoneySign.draw(windowToDrawIn);
@@ -114,7 +114,7 @@ void FarmScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::Render
         groundTileMap.changeCentreOffsetTileCountXByAmount(tilesTravelledSinceLastUpdateX);
         groundTileMap.changeCentreOffsetTileCountYByAmount(tilesTravelledSinceLastUpdateY);
         groundTileMap.draw(windowToDrawIn);
-        alice.draw(windowToDrawIn, TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_BASE);
+        alice.drawAndUpdateSprite(windowToDrawIn, numberOfMillisecondsSinceLastUpdate);
         displaysTheWordDay.draw(windowToDrawIn);
         dayNumberDisplay.draw(windowToDrawIn);
         displaysAMoneySign.draw(windowToDrawIn);

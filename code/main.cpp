@@ -66,8 +66,11 @@ int main()
     ScreenEnum screenDisplayedOnLastIteration = NULL_SCREEN;
     ScreenEnum currentScreenToDisplay = MAIN_MENU_SCREEN;
     MainMenuScreen mainMenuScreenVar(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+
     FarmScreen farmScreenVar(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
     farmScreenVar.associateWithTexturesInBank(textureBankForApplication);
+    farmScreenVar.associateWithAnimationsInBank(animationBankForApplication);
+
     MarketScreen marketScreenVar(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
     OAEScreen* pointerToCurrentlyActiveScreen = nullptr;
 

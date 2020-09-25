@@ -18,5 +18,12 @@ void OAEAnimationInstance::setMillisecondCountToZero()
 
 const sf::Texture* OAEAnimationInstance::getCurrentFrame()
 {
-    return animationToUse->getFrameAtSpecifiedMilliseconds(millisecondsProgressInAnimation);
+    if(animationToUse != nullptr)
+    {
+        return animationToUse->getFrameAtSpecifiedMilliseconds(millisecondsProgressInAnimation);
+    }
+    else
+    {
+        return nullptr;
+    }
 }
