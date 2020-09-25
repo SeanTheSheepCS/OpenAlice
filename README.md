@@ -28,7 +28,7 @@ An open source game heavily inspired by the 2007 game Alice Greenfingers.
 <h4> Engine </h4>
  <ul>
   <li> Full version of each screen is established </li>
-  <li> Animated sprites are handled </li>
+  <li> <s> Animated sprites are handled </s> </li>
  </ul> 
 <h4> Sprites + Animation </h4>
  <ul>
