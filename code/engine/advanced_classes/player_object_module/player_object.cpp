@@ -95,7 +95,7 @@ void PlayerObject::updateSprite(unsigned int millisecondsPassedSinceLastDraw)
 {
     try
     {
-        OAEAnimationInstance animationInstanceToUse = referenceNumberToAnimationInstanceMap.at(currentAnimationInstanceReferenceNumber);
+        OAEAnimationInstance& animationInstanceToUse = referenceNumberToAnimationInstanceMap.at(currentAnimationInstanceReferenceNumber);
         animationInstanceToUse.incrementMillisecondCountByAmount(millisecondsPassedSinceLastDraw);
     }
     catch (std::exception& e)
@@ -107,12 +107,19 @@ void PlayerObject::updateSprite(unsigned int millisecondsPassedSinceLastDraw)
 void PlayerObject::draw(sf::RenderWindow& windowToDrawObjectIn)
 {
     TexturedObject objectToDraw = TexturedObject(x, y, width, height, nullptr);
-    try
+    if((xMovementAmount != 0) || (yMovementAmount != 0))
     {
-        OAEAnimationInstance animationInstanceToUse = referenceNumberToAnimationInstanceMap.at(currentAnimationInstanceReferenceNumber);
-        objectToDraw.associateWithNewTexture(animationInstanceToUse.getCurrentFrame());
+        try
+        {
+            OAEAnimationInstance& animationInstanceToUse = referenceNumberToAnimationInstanceMap.at(currentAnimationInstanceReferenceNumber);
+            objectToDraw.associateWithNewTexture(animationInstanceToUse.getCurrentFrame());
+        }
+        catch(std::exception& e)
+        {
+            objectToDraw.associateWithNewTexture(this->texturePointer);
+        }
     }
-    catch(std::exception& e)
+    else
     {
         objectToDraw.associateWithNewTexture(this->texturePointer);
     }
@@ -122,13 +129,20 @@ void PlayerObject::draw(sf::RenderWindow& windowToDrawObjectIn)
 void PlayerObject::drawAndUpdateSprite(sf::RenderWindow& windowToDrawObjectIn, unsigned int millisecondsPassedSinceLastDraw)
 {
     TexturedObject objectToDraw = TexturedObject(x, y, width, height, nullptr);
-    try
+    if((xMovementAmount != 0) || (yMovementAmount != 0))
     {
-        OAEAnimationInstance animationInstanceToUse = referenceNumberToAnimationInstanceMap.at(currentAnimationInstanceReferenceNumber);
-        animationInstanceToUse.incrementMillisecondCountByAmount(millisecondsPassedSinceLastDraw);
-        objectToDraw.associateWithNewTexture(animationInstanceToUse.getCurrentFrame());
+        try
+        {
+            OAEAnimationInstance& animationInstanceToUse = referenceNumberToAnimationInstanceMap.at(currentAnimationInstanceReferenceNumber);
+            animationInstanceToUse.incrementMillisecondCountByAmount(millisecondsPassedSinceLastDraw);
+            objectToDraw.associateWithNewTexture(animationInstanceToUse.getCurrentFrame());
+        }
+        catch(std::exception& e)
+        {
+            objectToDraw.associateWithNewTexture(this->texturePointer);
+        }
     }
-    catch(std::exception& e)
+    else
     {
         objectToDraw.associateWithNewTexture(this->texturePointer);
     }

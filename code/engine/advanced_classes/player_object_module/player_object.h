@@ -16,6 +16,9 @@ class PlayerObject: public TexturedObject
         void changeXMovementAmountByAmount(float amountToChangeXMovementAmountBy);
         void changeYMovementAmountByAmount(float amountToChangeYMovementAmountBy);
 
+        void associateReferenceNumberWithTexturePointer(int referenceNumber, const sf::Texture* texturePointer);
+        void deassociateTexturePointerWithSpecifiedReferenceNumber(int referenceNumber);
+
         void associateReferenceNumberWithAnimationInstance(int referenceNumber, const OAEAnimationInstance animationInstance);
         void deassociateAnimationInstanceWithSpecificReferenceNumber(int referenceNumber);
 

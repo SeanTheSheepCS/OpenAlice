@@ -83,6 +83,7 @@ void FarmScreen::associateWithTexturesInBank(const TextureBank& textureBankToTak
     groundTileMap.associateReferenceNumberWithTexture(TEXTURE_BANK_REF_NUMBER_IN_BOUNDS_GRASS, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber((int)TEXTURE_BANK_REF_NUMBER_IN_BOUNDS_GRASS));
     groundTileMap.associateReferenceNumberWithTexture(TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber((int)TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT));
     groundTileMap.associateReferenceNumberWithTexture(TEXTURE_BANK_REF_NUMBER_WATERED_TILLED_DIRT, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber((int)TEXTURE_BANK_REF_NUMBER_WATERED_TILLED_DIRT));
+    alice.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber((int)TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_BASE));
 }
 
 void FarmScreen::associateWithAnimationsInBank(const OAEAnimationBank& animationBankToTakeFrom)
@@ -104,6 +105,7 @@ void FarmScreen::forceFullDraw(sf::RenderWindow& windowToDrawIn)
 
 void FarmScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::RenderWindow& windowToDrawIn)
 {
+    static bool wasAliceDrawnMovingLastFrame = false;
     float aliceSpeedInTilesPerSecond = 1;
     int numberOfMillisecondsSinceLastUpdate = millisecondsElapsedSinceLastUpdate;
     if((alice.getXMovementAmount() == 0) || (alice.getYMovementAmount() == 0))
@@ -115,11 +117,17 @@ void FarmScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::Render
         groundTileMap.changeCentreOffsetTileCountYByAmount(tilesTravelledSinceLastUpdateY);
         groundTileMap.draw(windowToDrawIn);
         alice.drawAndUpdateSprite(windowToDrawIn, numberOfMillisecondsSinceLastUpdate);
+        wasAliceDrawnMovingLastFrame = true;
         displaysTheWordDay.draw(windowToDrawIn);
         dayNumberDisplay.draw(windowToDrawIn);
         displaysAMoneySign.draw(windowToDrawIn);
         moneyDisplay.draw(windowToDrawIn);
         marketButton.draw(windowToDrawIn);
+    }
+    else if(wasAliceDrawnMovingLastFrame == true)
+    {
+        alice.drawAndUpdateSprite(windowToDrawIn, numberOfMillisecondsSinceLastUpdate);
+        wasAliceDrawnMovingLastFrame = false;
     }
 }
 

@@ -1,4 +1,5 @@
 #include "oae_animation_instance.h"
+#include <iostream>
 
 OAEAnimationInstance::OAEAnimationInstance(const OAEAnimation* animationToUseArg)
 {
@@ -8,7 +9,7 @@ OAEAnimationInstance::OAEAnimationInstance(const OAEAnimation* animationToUseArg
 
 void OAEAnimationInstance::incrementMillisecondCountByAmount(unsigned int amountToIncrementBy)
 {
-    millisecondsProgressInAnimation = (millisecondsProgressInAnimation + amountToIncrementBy) % (animationToUse->getTotalMillisecondCountForAnimation());
+    millisecondsProgressInAnimation = ((millisecondsProgressInAnimation + amountToIncrementBy) % (animationToUse->getTotalMillisecondCountForAnimation()));
 }
 
 void OAEAnimationInstance::setMillisecondCountToZero()
