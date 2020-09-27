@@ -18,13 +18,16 @@ void OAEAnimatedObject::deassociateAnimationInstanceWithSpecificReferenceNumber(
 
 void OAEAnimatedObject::setCurrentAnimationInstanceReferenceNumber(int currentAnimationInstanceReferenceNumberArg)
 {
-    try
+    if(currentAnimationInstanceReferenceNumber != currentAnimationInstanceReferenceNumberArg)
     {
-        referenceNumberToAnimationInstanceMap.at(currentAnimationInstanceReferenceNumber).setMillisecondCountToZero();
-    }
-    catch(std::exception& e)
-    {
+        try
+        {
+            referenceNumberToAnimationInstanceMap.at(currentAnimationInstanceReferenceNumber).setMillisecondCountToZero();
+            currentAnimationInstanceReferenceNumber = currentAnimationInstanceReferenceNumberArg;
+        }
+        catch(std::exception& e)
+        {
 
+        }
     }
-    currentAnimationInstanceReferenceNumber = currentAnimationInstanceReferenceNumberArg;
 }

@@ -36,6 +36,7 @@ class FarmScreen: public OAEScreen
     protected:
         //
     private:
+        void associateAliceWithCorrectAnimation(); //HELPER FUNCTION FOR UPDATE
         bool shouldSwitchToMarketScreenFlag;
         TexturedObject displaysTheWordDay;
         NumberDisplay dayNumberDisplay;

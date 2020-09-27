@@ -1,7 +1,7 @@
 #include "player_object.h"
 #include <iostream>
 
-PlayerObject::PlayerObject(int x, int y, unsigned int width, unsigned int height, const sf::Texture* texture): TexturedObject(x, y, width, height, texture), OAEAnimatedObject()
+PlayerObject::PlayerObject(int x, int y, unsigned int width, unsigned int height): DrawableObject(x, y, width, height) , OAEAnimatedObject(), ObjectWithTextureMap()
 {
     xMovementAmount = 0;
     yMovementAmount = 0;
@@ -93,12 +93,12 @@ void PlayerObject::draw(sf::RenderWindow& windowToDrawObjectIn)
         }
         catch(std::exception& e)
         {
-            objectToDraw.associateWithNewTexture(this->texturePointer);
+            objectToDraw.associateWithNewTexture(this->getCurrentTexture());
         }
     }
     else
     {
-        objectToDraw.associateWithNewTexture(this->texturePointer);
+        objectToDraw.associateWithNewTexture(this->getCurrentTexture());
     }
     objectToDraw.draw(windowToDrawObjectIn);
 }
@@ -116,12 +116,12 @@ void PlayerObject::drawAndUpdateSprite(sf::RenderWindow& windowToDrawObjectIn, u
         }
         catch(std::exception& e)
         {
-            objectToDraw.associateWithNewTexture(this->texturePointer);
+            objectToDraw.associateWithNewTexture(this->getCurrentTexture());
         }
     }
     else
     {
-        objectToDraw.associateWithNewTexture(this->texturePointer);
+        objectToDraw.associateWithNewTexture(this->getCurrentTexture());
     }
     objectToDraw.draw(windowToDrawObjectIn);
 }

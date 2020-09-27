@@ -32,6 +32,15 @@ TextureBank initializeTextureBank()
     addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_BASE, "alice_down_base.png", &returnValue);
     addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_WALK_CYCLE_ONE, "alice_down_walk_cycle_1.png", &returnValue);
     addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_WALK_CYCLE_TWO, "alice_down_walk_cycle_2.png", &returnValue);
+    addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_UP_BASE, "alice_up_base.png", &returnValue);
+    addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_UP_WALK_CYCLE_ONE, "alice_up_walk_cycle_1.png", &returnValue);
+    addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_UP_WALK_CYCLE_TWO, "alice_up_walk_cycle_2.png", &returnValue);
+    addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_LEFT_BASE, "alice_left_base.png", &returnValue);
+    addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_LEFT_WALK_CYCLE_ONE, "alice_left_walk_cycle_1.png", &returnValue);
+    addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_LEFT_WALK_CYCLE_TWO, "alice_left_walk_cycle_2.png", &returnValue);
+    addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_RIGHT_BASE, "alice_right_base.png", &returnValue);
+    addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_RIGHT_WALK_CYCLE_ONE, "alice_right_walk_cycle_1.png", &returnValue);
+    addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_RIGHT_WALK_CYCLE_TWO, "alice_right_walk_cycle_2.png", &returnValue);
     return returnValue;
 }
 
@@ -39,9 +48,27 @@ OAEAnimationBank initializeOAEAnimationBank(const TextureBank& textureBankToUse)
 {
     OAEAnimationBank returnValue;
     OAEAnimation aliceWalkDownAnimation = OAEAnimation(DEFAULT_ANIMATION_SPEED);
+    OAEAnimation aliceWalkUpAnimation = OAEAnimation(DEFAULT_ANIMATION_SPEED);
+    OAEAnimation aliceWalkLeftAnimation = OAEAnimation(DEFAULT_ANIMATION_SPEED);
+    OAEAnimation aliceWalkRightAnimation = OAEAnimation(DEFAULT_ANIMATION_SPEED);
+
     aliceWalkDownAnimation.appendTextureToAnimation(textureBankToUse.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_WALK_CYCLE_ONE));
     aliceWalkDownAnimation.appendTextureToAnimation(textureBankToUse.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_WALK_CYCLE_TWO));
+
+    aliceWalkUpAnimation.appendTextureToAnimation(textureBankToUse.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_ALICE_UP_WALK_CYCLE_ONE));
+    aliceWalkUpAnimation.appendTextureToAnimation(textureBankToUse.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_ALICE_UP_WALK_CYCLE_TWO));
+
+    aliceWalkLeftAnimation.appendTextureToAnimation(textureBankToUse.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_ALICE_LEFT_WALK_CYCLE_ONE));
+    aliceWalkLeftAnimation.appendTextureToAnimation(textureBankToUse.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_ALICE_LEFT_WALK_CYCLE_TWO));
+
+    aliceWalkRightAnimation.appendTextureToAnimation(textureBankToUse.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_ALICE_RIGHT_WALK_CYCLE_ONE));
+    aliceWalkRightAnimation.appendTextureToAnimation(textureBankToUse.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_ALICE_RIGHT_WALK_CYCLE_TWO));
+
     returnValue.saveOAEAnimationWithReferenceNumber(ANIMATION_BANK_REF_NUMBER_ALICE_DOWN_WALK, aliceWalkDownAnimation);
+    returnValue.saveOAEAnimationWithReferenceNumber(ANIMATION_BANK_REF_NUMBER_ALICE_UP_WALK, aliceWalkUpAnimation);
+    returnValue.saveOAEAnimationWithReferenceNumber(ANIMATION_BANK_REF_NUMBER_ALICE_LEFT_WALK, aliceWalkLeftAnimation);
+    returnValue.saveOAEAnimationWithReferenceNumber(ANIMATION_BANK_REF_NUMBER_ALICE_RIGHT_WALK, aliceWalkRightAnimation);
+
     return returnValue;
 }
 

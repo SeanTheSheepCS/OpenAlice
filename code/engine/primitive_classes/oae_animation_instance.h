@@ -10,6 +10,7 @@ class OAEAnimationInstance
         OAEAnimationInstance(const OAEAnimation* animationToUseArg);
         void incrementMillisecondCountByAmount(unsigned int amountToIncrementBy);
         void setMillisecondCountToZero();
+        unsigned int getMillisecondProgressInAnimation() const;
         const sf::Texture* getCurrentFrame();
     protected:
         //

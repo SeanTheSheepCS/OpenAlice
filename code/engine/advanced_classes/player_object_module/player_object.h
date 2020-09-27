@@ -3,20 +3,18 @@
 
 #include "../../primitive_classes/textured_object.h"
 #include "../../primitive_classes/oae_animated_object.h"
+#include "../../primitive_classes/object_with_texture_map.h"
 #include <exception>
 #include <map>
 
-class PlayerObject: public TexturedObject, public OAEAnimatedObject
+class PlayerObject: public DrawableObject, public OAEAnimatedObject, public ObjectWithTextureMap
 {
     public:
-        PlayerObject(int x, int y, unsigned int width, unsigned int height, const sf::Texture* texture);
+        PlayerObject(int x, int y, unsigned int width, unsigned int height);
         void setXMovementAmount(float newXMovementAmount);
         void setYMovementAmount(float newYMovementAmount);
         void changeXMovementAmountByAmount(float amountToChangeXMovementAmountBy);
         void changeYMovementAmountByAmount(float amountToChangeYMovementAmountBy);
-
-        void associateReferenceNumberWithTexturePointer(int referenceNumber, const sf::Texture* texturePointer);
-        void deassociateTexturePointerWithSpecifiedReferenceNumber(int referenceNumber);
 
         float getXMovementAmount();
         float getYMovementAmount();
