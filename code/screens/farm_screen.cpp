@@ -99,6 +99,11 @@ void FarmScreen::associateWithAnimationsInBank(const OAEAnimationBank& animation
     alice.setCurrentAnimationInstanceReferenceNumber(ANIMATION_BANK_REF_NUMBER_ALICE_DOWN_WALK); //SETS DEFAULT TEXTURE FOR ALICE
 }
 
+void intializeWorldObjectsInGroundTileMap()
+{
+    //
+}
+
 void FarmScreen::forceFullDraw(sf::RenderWindow& windowToDrawIn)
 {
     background.draw(windowToDrawIn);

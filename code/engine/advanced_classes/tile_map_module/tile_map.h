@@ -5,12 +5,13 @@
 #include <iostream>
 #include "../../primitive_classes/drawable_object.h"
 #include "../../primitive_classes/textured_object.h"
+#include "../../primitive_classes/world_object.h"
 
 class TileMap: public DrawableObject
 {
     public:
         //CONSTRUCTORS AND DESTRUCTORS
-	    TileMap(int x, int y, unsigned int width, unsigned int height, unsigned int rowCount, unsigned int colCount);
+	TileMap(int x, int y, unsigned int width, unsigned int height, unsigned int rowCount, unsigned int colCount);
         TileMap(const TileMap& other);
         ~TileMap();
 
@@ -18,12 +19,12 @@ class TileMap: public DrawableObject
         TileMap& operator=(const TileMap& rhs);
 
         //FOR ASSOCIATING AND DEASSOCIATING TEXTURES
-	    void associateReferenceNumberWithTexture(int referenceNumber, const sf::Texture* texture);
+	void associateReferenceNumberWithTexture(int referenceNumber, const sf::Texture* texture);
         void deassociateTextureWithSpecificReferenceNumber(int referenceNumber);
 
         //FOR WRITING/READING AT INDICES
-	    void setTileAtIndicesToReferenceNumberAndPartialDraw(unsigned int row, unsigned int col, int referenceNumber, sf::RenderWindow& windowToPartialDrawIn);
-	    int getReferenceNumberAtIndices(unsigned int row, unsigned int col);
+	void setTileAtIndicesToReferenceNumberAndPartialDraw(unsigned int row, unsigned int col, int referenceNumber, sf::RenderWindow& windowToPartialDrawIn);
+	int getReferenceNumberAtIndices(unsigned int row, unsigned int col);
 
         //FOR CHANGING THE VIEW SETTINGS
         void setTileWidth(int tileWidth);
@@ -52,8 +53,10 @@ class TileMap: public DrawableObject
 
         int rowCount;
         int colCount;
-	    int** referenceNumberTwoDimensionArrayRepresentingTileMap;
+	int** referenceNumberTwoDimensionArrayRepresentingTileMap;
         std::map<int, const sf::Texture*> referenceNumberToTexturePointerMap;
+
+	std::vector<WorldObject> objectsInTileMap;
 };
 
 #endif
