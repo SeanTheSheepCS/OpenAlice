@@ -8,10 +8,10 @@ class TexturedObject: public DrawableObject
 {
     public:
 	TexturedObject(int x, int y, unsigned int width, unsigned int height, const sf::Texture* texturePointerArg);
-	//Makes the texture this object is associated to null, this is important in case the texture ever leaves the scope.
-	void decoupleObjectFromItsTexture();
+	void decoupleObjectFromItsTexture(); //Makes the texture this object is associated to null, this is important in case the texture ever leaves the scope.
 	void associateWithNewTexture(const sf::Texture* newTextureToAssociateWith);
-        void draw(sf::RenderWindow& windowToDrawObjectIn);
+	const sf::Texture* getCurrentTexturePointer() const;
+        virtual void draw(sf::RenderWindow& windowToDrawObjectIn) const;
     protected:
         static bool isDefaultTextureInitialized;
         static sf::Texture defaultTexture;

@@ -27,6 +27,7 @@ class WorldObject: public TexturedObject
 	void setVisible(bool visibility);
 	bool getVisibility();
 
+        void draw(sf::RenderWindow& windowToDrawObjectIn);
     protected:
         //
     private:

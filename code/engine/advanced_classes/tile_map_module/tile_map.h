@@ -42,6 +42,7 @@ class TileMap: public DrawableObject
         void deleteTileMap(); //Helper function for ~TileMap() and TileMap& operator=(...)
 
         void drawTileAtRowAndColInWindow(int row, int col, sf::RenderWindow& windowToDrawIn); //Helper function for draw(...) and setTileAtIndicesToReferenceNumberAndPartialDraw(...).
+        void drawWorldObjects(sf::RenderWindow& windowToDrawIn); //Helper function for draw(...)
 
         int offsetToMakeScreenStartCenteredX;
         int offsetToMakeScreenStartCenteredY;
@@ -56,7 +57,7 @@ class TileMap: public DrawableObject
 	int** referenceNumberTwoDimensionArrayRepresentingTileMap;
         std::map<int, const sf::Texture*> referenceNumberToTexturePointerMap;
 
-	std::vector<WorldObject> objectsInTileMap;
+	std::vector<WorldObject> worldObjectsInTileMap;
 };
 
 #endif

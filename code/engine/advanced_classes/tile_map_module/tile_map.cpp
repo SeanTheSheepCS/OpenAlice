@@ -187,3 +187,15 @@ void TileMap::drawTileAtRowAndColInWindow(int row, int col, sf::RenderWindow& wi
         objectToDraw.draw(windowToDrawIn);
     }
 }
+void drawWorldObjects(sf::RenderWindow& windowToDrawIn); //Helper function for draw(...)
+{
+    for(int i = 0; i < worldObjectsInTileMap.size(); i++)
+    {
+        int worldObjectX = x + (worldObjectsInTileMap.at(i).getX()) + ( ( (float) tileWidth) * centreOffsetTileCountX) - this->offsetToMakeScreenStartCenteredX;
+        int worldObjectY = y + (worldObjectsInTileMap.at(i).getY()) + ( ( (float) tileHeight) * centreOffsetTileCountY) - this->offsetToMakeScreenStartCenteredY;
+        if((worldObjectX >= (x- worldObjectsInTileMap.at(i).getWidth())) && (worldObjectX <= (x + ((int)width))) && (worldObjectY >= (y - worldObjectsInTileMap.at(i).getHeight())) && (worldObjectY <= (y + ((int)height))))
+	{
+            WorldObject worldObjectWithFakeCoords = WorldObject(worldObjectX, worldObjectY, worldObjectsInTileMap.getWidth(), worldObjectsInTileMap.getHeight(), worldObjectsInTileMap.at(i).getCurrentTexturePointer());
+	}
+    }
+}

@@ -30,7 +30,7 @@ void TexturedObject::associateWithNewTexture(const sf::Texture* newTextureToAsso
     this->texturePointer = newTextureToAssociateWith;
 }
 
-void TexturedObject::draw(sf::RenderWindow& windowToDrawObjectIn)
+void TexturedObject::draw(sf::RenderWindow& windowToDrawObjectIn) const
 {
     sf::RectangleShape rectangleToTexture(sf::Vector2f(this->width,this->height));
     rectangleToTexture.setPosition(this->x, this->y);
@@ -50,4 +50,9 @@ void TexturedObject::draw(sf::RenderWindow& windowToDrawObjectIn)
         rectangleToTexture.setTexture(&defaultTexture);
     }
     windowToDrawObjectIn.draw(rectangleToTexture);
+}
+
+const sf::Texture* getCurrentTexturePointer() const
+{
+    return texturePointer;
 }
