@@ -3,37 +3,34 @@
 
 #include <SFML/Graphics.hpp>
 #include "textured_object.h"
+#include "trigger_zone.h"
 
 class WorldObject: public TexturedObject
 {
     public:
-        WorldObject(int x, int y, unsigned int width, unsigned int height, sf::Texture* texture);
-	WorldObject(TexturedObject parentObject);
+        WorldObject(int x, int y, unsigned int width, unsigned int height, const sf::Texture* texture);
+	    WorldObject(TexturedObject parentObject);
 
-	void setX(int newX);
-	void setY(int newY);
-	int getX();
-	int getY();
+	    void setX(int newX);
+	    void setY(int newY);
 
-	void setWidth(unsigned int newWidth);
-	void setHeight(unsigned int newHeight);
-	unsigned int getWidth();
-	unsigned int getHeight();
+	    void setWidth(unsigned int newWidth);
+	    void setHeight(unsigned int newHeight);
 
-	void attachTriggerZone(TriggerZone zoneToAttach);
-	void detachTriggerZone();
-	bool isDrawableObjectWithinTriggerZone(DrawableObject objectToCheck);
+	    void attachTriggerZone(TriggerZone zoneToAttach);
+	    void detachTriggerZone();
+	    bool isDrawableObjectWithinTriggerZone(const DrawableObject& objectToCheck);
 
-	void setVisible(bool visibility);
-	bool getVisibility();
+	    void setVisible(bool visibility);
+	    bool getVisibility();
 
         void draw(sf::RenderWindow& windowToDrawObjectIn);
     protected:
         //
     private:
-	bool visibility;
+	    bool visibility;
 
-	TriggerZone triggerZoneForObject;
+	    TriggerZone triggerZoneForObject;
 };
 
 #endif

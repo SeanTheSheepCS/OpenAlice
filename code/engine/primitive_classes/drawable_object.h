@@ -7,6 +7,12 @@ class DrawableObject
 {
     public:
 	    DrawableObject(int x, int y, unsigned int width, unsigned int height);
+
+        int getX() const;
+        int getY() const;
+        unsigned int getWidth() const;
+        unsigned int getHeight() const;
+
         virtual void draw(sf::RenderWindow& windowToDrawObjectIn) = 0;
     protected:
 	    int x;
