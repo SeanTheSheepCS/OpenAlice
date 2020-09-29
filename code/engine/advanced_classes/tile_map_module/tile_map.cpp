@@ -91,6 +91,16 @@ void TileMap::deassociateTextureWithSpecificReferenceNumber(int referenceNumber)
     referenceNumberToTexturePointerMap.erase(referenceNumber);
 }
 
+void TileMap::addWorldObjectWithReferenceNumber(int referenceNumber, WorldObject objectToAdd)
+{
+    referenceNumberToWorldObjectMap.insert(std::pair<int, WorldObject>(referenceNumber, objectToAdd));
+}
+
+void TileMap::removeWorldObjectWithReferenceNumber(int referenceNumber)
+{
+    referenceNumberToWorldObjectMap.erase(referenceNumber);
+}
+
 void TileMap::setTileAtIndicesToReferenceNumberAndPartialDraw(unsigned int row, unsigned int col, int referenceNumber, sf::RenderWindow& windowToPartialDrawIn)
 {
     if((row >= 0) && (row < rowCount) && (col >= 0) && (col <= colCount))
@@ -190,13 +200,13 @@ void TileMap::drawTileAtRowAndColInWindow(int row, int col, sf::RenderWindow& wi
 
 void TileMap::drawWorldObjects(sf::RenderWindow& windowToDrawIn) //Helper function for draw(...)
 {
-    for(int i = 0; i < worldObjectsInTileMap.size(); i++)
+    for(auto const& [refNum, currentObject] : referenceNumberToWorldObjectMap) //This line iterates through the map, you can think of this as for(currentObject in map)
     {
-        int worldObjectX = x + (worldObjectsInTileMap.at(i).getX()) + ( ( (float) tileWidth) * centreOffsetTileCountX) - this->offsetToMakeScreenStartCenteredX;
-        int worldObjectY = y + (worldObjectsInTileMap.at(i).getY()) + ( ( (float) tileHeight) * centreOffsetTileCountY) - this->offsetToMakeScreenStartCenteredY;
-        if((worldObjectX >= (x- worldObjectsInTileMap.at(i).getWidth())) && (worldObjectX <= (x + ((int)width))) && (worldObjectY >= (y - worldObjectsInTileMap.at(i).getHeight())) && (worldObjectY <= (y + ((int)height))))
+        int worldObjectX = x + (currentObject.getX()) + ( ( (float) tileWidth) * centreOffsetTileCountX) - this->offsetToMakeScreenStartCenteredX;
+        int worldObjectY = y + (currentObject.getY()) + ( ( (float) tileHeight) * centreOffsetTileCountY) - this->offsetToMakeScreenStartCenteredY;
+        if((worldObjectX >= (x- currentObject.getWidth())) && (worldObjectX <= (x + ((int)width))) && (worldObjectY >= (y - currentObject.getHeight())) && (worldObjectY <= (y + ((int)height))))
 	    {
-            WorldObject worldObjectWithFakeCoords = WorldObject(worldObjectX, worldObjectY, worldObjectsInTileMap.at(i).getWidth(), worldObjectsInTileMap.at(i).getHeight(), worldObjectsInTileMap.at(i).getCurrentTexturePointer());
+            WorldObject worldObjectWithFakeCoords = WorldObject(worldObjectX, worldObjectY, currentObject.getWidth(), currentObject.getHeight(), currentObject.getCurrentTexturePointer());
 	    }
     }
 }

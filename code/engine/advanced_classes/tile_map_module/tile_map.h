@@ -11,7 +11,7 @@ class TileMap: public DrawableObject
 {
     public:
         //CONSTRUCTORS AND DESTRUCTORS
-	TileMap(int x, int y, unsigned int width, unsigned int height, unsigned int rowCount, unsigned int colCount);
+    	TileMap(int x, int y, unsigned int width, unsigned int height, unsigned int rowCount, unsigned int colCount);
         TileMap(const TileMap& other);
         ~TileMap();
 
@@ -19,12 +19,12 @@ class TileMap: public DrawableObject
         TileMap& operator=(const TileMap& rhs);
 
         //FOR ASSOCIATING AND DEASSOCIATING TEXTURES
-	void associateReferenceNumberWithTexture(int referenceNumber, const sf::Texture* texture);
+       	void associateReferenceNumberWithTexture(int referenceNumber, const sf::Texture* texture);
         void deassociateTextureWithSpecificReferenceNumber(int referenceNumber);
 
         //FOR WRITING/READING AT INDICES
-	void setTileAtIndicesToReferenceNumberAndPartialDraw(unsigned int row, unsigned int col, int referenceNumber, sf::RenderWindow& windowToPartialDrawIn);
-	int getReferenceNumberAtIndices(unsigned int row, unsigned int col);
+        void setTileAtIndicesToReferenceNumberAndPartialDraw(unsigned int row, unsigned int col, int referenceNumber, sf::RenderWindow& windowToPartialDrawIn);
+    	int getReferenceNumberAtIndices(unsigned int row, unsigned int col);
 
         //FOR CHANGING THE VIEW SETTINGS
         void setTileWidth(int tileWidth);
@@ -33,6 +33,10 @@ class TileMap: public DrawableObject
         void setCentreOffsetTileCountY(float newCentreOffsetTileCountY);
         void changeCentreOffsetTileCountXByAmount(float amountToChangeCentreOffsetTileCountXBy);
         void changeCentreOffsetTileCountYByAmount(float amountToChangeCentreOffsetTileCountYBy);
+
+        //FOR ADDING AND REMOVING WORLD OBJECTS
+        void addWorldObjectWithReferenceNumber(int referenceNumber, WorldObject objectToAdd);
+        void removeWorldObjectWithReferenceNumber(int referenceNumber);
 
         //DRAW FUNCTION
         void draw(sf::RenderWindow& windowToDrawIn);
@@ -54,10 +58,10 @@ class TileMap: public DrawableObject
 
         int rowCount;
         int colCount;
-	int** referenceNumberTwoDimensionArrayRepresentingTileMap;
+    	int** referenceNumberTwoDimensionArrayRepresentingTileMap;
         std::map<int, const sf::Texture*> referenceNumberToTexturePointerMap;
 
-	std::vector<WorldObject> worldObjectsInTileMap;
+    	std::map<int, WorldObject> referenceNumberToWorldObjectMap;
 };
 
 #endif

@@ -101,7 +101,9 @@ void FarmScreen::associateWithAnimationsInBank(const OAEAnimationBank& animation
 
 void intializeWorldObjectsInGroundTileMap()
 {
-    //
+    WorldObject hoe = WorldObject(400,400,80,80,nullptr);
+    hoe.setVisibility(true);
+    //groundTileMap.add
 }
 
 void FarmScreen::forceFullDraw(sf::RenderWindow& windowToDrawIn)

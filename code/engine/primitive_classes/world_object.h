@@ -21,7 +21,7 @@ class WorldObject: public TexturedObject
 	    void detachTriggerZone();
 	    bool isDrawableObjectWithinTriggerZone(const DrawableObject& objectToCheck);
 
-	    void setVisible(bool visibility);
+	    void setVisibility(bool visibility);
 	    bool getVisibility();
 
         void draw(sf::RenderWindow& windowToDrawObjectIn);

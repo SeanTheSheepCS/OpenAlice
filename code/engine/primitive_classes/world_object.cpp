@@ -56,7 +56,7 @@ void WorldObject::detachTriggerZone()
     triggerZoneForObject = TriggerZone(0,0,0,0,false);
 }
 
-void WorldObject::setVisible(bool visibilityArg)
+void WorldObject::setVisibility(bool visibilityArg)
 {
     this->visibility = visibilityArg;
 }
