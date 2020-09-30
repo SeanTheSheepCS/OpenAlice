@@ -1,4 +1,5 @@
 #include "texture_bank.h"
+#include <iostream>
 
 TextureBank::TextureBank()
 {
@@ -12,7 +13,15 @@ void TextureBank::saveTextureWithReferenceNumber(int referenceNumber, sf::Textur
 
 const sf::Texture* TextureBank::getTextureAssociatedWithReferenceNumber(int referenceNumber) const
 {
-    return &(referenceNumberToTextureMap.at(referenceNumber));
+    try
+    {
+        return &(referenceNumberToTextureMap.at(referenceNumber));
+    }
+    catch(std::exception& e)
+    {
+        std::cout << "Failed to access texture in texture bank with reference number " << referenceNumber << "." << std::endl;
+        return nullptr;
+    }
 }
 
 void TextureBank::deleteTextureWithReferenceNumber(int referenceNumber)

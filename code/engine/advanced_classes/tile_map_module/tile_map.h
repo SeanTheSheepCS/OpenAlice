@@ -34,9 +34,11 @@ class TileMap: public DrawableObject
         void changeCentreOffsetTileCountXByAmount(float amountToChangeCentreOffsetTileCountXBy);
         void changeCentreOffsetTileCountYByAmount(float amountToChangeCentreOffsetTileCountYBy);
 
-        //FOR ADDING AND REMOVING WORLD OBJECTS
+        //FOR ADDING AND REMOVING AND MANIPULATING WORLD OBJECTS
         void addWorldObjectWithReferenceNumber(int referenceNumber, WorldObject objectToAdd);
         void removeWorldObjectWithReferenceNumber(int referenceNumber);
+        void associateWorldObjectWithReferenceNumberWithTexturePointer(int referenceNumber, const sf::Texture* texturePointer);
+        void deassociateWorldObjectWithReferenceNumberWithItsTexturePointer(int referenceNumber);
 
         //DRAW FUNCTION
         void draw(sf::RenderWindow& windowToDrawIn);

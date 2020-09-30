@@ -101,6 +101,30 @@ void TileMap::removeWorldObjectWithReferenceNumber(int referenceNumber)
     referenceNumberToWorldObjectMap.erase(referenceNumber);
 }
 
+void TileMap::associateWorldObjectWithReferenceNumberWithTexturePointer(int referenceNumber, const sf::Texture* texturePointer)
+{
+    try
+    {
+        referenceNumberToWorldObjectMap.at(referenceNumber).associateWithNewTexture(texturePointer);
+    }
+    catch(std::exception& e)
+    {
+        std::cout << "Failed to access referenceNumber " << referenceNumber << " in TileMap referenceNumberToWorldObjectMap." << std::endl;
+    }
+}
+
+void TileMap::deassociateWorldObjectWithReferenceNumberWithItsTexturePointer(int referenceNumber)
+{
+    try
+    {
+        referenceNumberToWorldObjectMap.at(referenceNumber).decoupleObjectFromItsTexture();
+    }
+    catch(std::exception& e)
+    {
+        std::cout << "Failed to access referenceNumber " << referenceNumber << " in TileMap referenceNumberToWorldObjectMap." << std::endl;
+    }
+}
+
 void TileMap::setTileAtIndicesToReferenceNumberAndPartialDraw(unsigned int row, unsigned int col, int referenceNumber, sf::RenderWindow& windowToPartialDrawIn)
 {
     if((row >= 0) && (row < rowCount) && (col >= 0) && (col <= colCount))
