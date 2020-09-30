@@ -16,6 +16,11 @@
 
 #define DEFAULT_ANIMATION_SPEED 300
 
+enum worldObjectReferenceNumbers
+{
+    WORLD_OBJECT_REF_NUMBER_HOE = 0
+};
+
 enum textureBankReferenceNumbers
 {
     TEXTURE_BANK_REF_NUMBER_OUT_OF_BOUNDS_GRASS = 0,

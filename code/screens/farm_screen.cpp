@@ -14,6 +14,7 @@ FarmScreen::FarmScreen(int x, int y, unsigned int width, unsigned int height):
     shouldSwitchToMarketScreenFlag = false;
     groundTileMap.setTileWidth(100);
     groundTileMap.setTileHeight(100);
+    initializeWorldObjectsInGroundTileMap();
 }
 
 void FarmScreen::handleEvent(sf::Event event, sf::RenderWindow& window)
@@ -99,11 +100,11 @@ void FarmScreen::associateWithAnimationsInBank(const OAEAnimationBank& animation
     alice.setCurrentAnimationInstanceReferenceNumber(ANIMATION_BANK_REF_NUMBER_ALICE_DOWN_WALK); //SETS DEFAULT TEXTURE FOR ALICE
 }
 
-void intializeWorldObjectsInGroundTileMap()
+void FarmScreen::initializeWorldObjectsInGroundTileMap()
 {
     WorldObject hoe = WorldObject(400,400,80,80,nullptr);
     hoe.setVisibility(true);
-    //groundTileMap.add
+    groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_HOE, hoe);
 }
 
 void FarmScreen::forceFullDraw(sf::RenderWindow& windowToDrawIn)

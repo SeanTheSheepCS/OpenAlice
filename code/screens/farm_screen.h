@@ -30,7 +30,7 @@ class FarmScreen: public OAEScreen
 
         void associateWithTexturesInBank(const TextureBank& textureBankToTakeFrom);
         void associateWithAnimationsInBank(const OAEAnimationBank& animationBankToTakeFrom);
-	void initializeWorldObjectsInGroundTileMap();
+    	void initializeWorldObjectsInGroundTileMap();
 
         bool returnIfShouldSwitchToMarketScreen();
         void acknowledgeShouldSwitchToMarketScreen();

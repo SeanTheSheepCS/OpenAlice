@@ -107,6 +107,7 @@ void TileMap::setTileAtIndicesToReferenceNumberAndPartialDraw(unsigned int row, 
     {
         referenceNumberTwoDimensionArrayRepresentingTileMap[row][col] = referenceNumber;
         drawTileAtRowAndColInWindow(row, col, windowToPartialDrawIn);
+        drawWorldObjects(windowToPartialDrawIn);
     }
     else
     {
@@ -162,6 +163,7 @@ void TileMap::draw(sf::RenderWindow& windowToDrawIn)
             drawTileAtRowAndColInWindow(row, col, windowToDrawIn);
         }
     }
+    drawWorldObjects(windowToDrawIn);
 }
 
 void TileMap::deleteTileMap() //Helper function for ~TileMap() and TileMap& operator=(...)
@@ -204,9 +206,10 @@ void TileMap::drawWorldObjects(sf::RenderWindow& windowToDrawIn) //Helper functi
     {
         int worldObjectX = x + (currentObject.getX()) + ( ( (float) tileWidth) * centreOffsetTileCountX) - this->offsetToMakeScreenStartCenteredX;
         int worldObjectY = y + (currentObject.getY()) + ( ( (float) tileHeight) * centreOffsetTileCountY) - this->offsetToMakeScreenStartCenteredY;
-        if((worldObjectX >= (x- currentObject.getWidth())) && (worldObjectX <= (x + ((int)width))) && (worldObjectY >= (y - currentObject.getHeight())) && (worldObjectY <= (y + ((int)height))))
+        if((worldObjectX >= (x- ((int)currentObject.getWidth()))) && (worldObjectX <= (x + ((int)width))) && (worldObjectY >= (y - ((int)currentObject.getHeight()))) && (worldObjectY <= (y + ((int)height))))
 	    {
             WorldObject worldObjectWithFakeCoords = WorldObject(worldObjectX, worldObjectY, currentObject.getWidth(), currentObject.getHeight(), currentObject.getCurrentTexturePointer());
+            worldObjectWithFakeCoords.draw(windowToDrawIn);
 	    }
     }
 }
