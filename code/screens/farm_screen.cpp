@@ -105,6 +105,10 @@ void FarmScreen::initializeWorldObjectsInGroundTileMap()
     WorldObject hoe = WorldObject(400,400,80,80,nullptr);
     hoe.setVisibility(true);
     groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_HOE, hoe);
+
+    WorldObject house = WorldObject(600,200,300,200,nullptr);
+    house.setVisibility(true);
+    groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_HOUSE, house);
 }
 
 void FarmScreen::forceFullDraw(sf::RenderWindow& windowToDrawIn)

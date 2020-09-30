@@ -18,7 +18,8 @@
 
 enum worldObjectReferenceNumbers
 {
-    WORLD_OBJECT_REF_NUMBER_HOE = 0
+    WORLD_OBJECT_REF_NUMBER_HOE = 0,
+    WORLD_OBJECT_REF_NUMBER_HOUSE = 1
 };
 
 enum textureBankReferenceNumbers
