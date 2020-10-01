@@ -4,3 +4,12 @@ Alice::Alice(int x, int y, unsigned int width, unsigned int height): PlayerObjec
 {
     //
 }
+void Alice::pickUpObject(WorldObject& worldObjectPickedUp, TileMap& tileMapYouPickedItUpFrom)
+{
+    //TODO
+}
+
+void Alice::putDownObject(TileMap& tileMapToPutItDownIn)
+{
+    //TODO
+}
