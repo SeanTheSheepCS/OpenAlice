@@ -1,0 +1,9 @@
+#ifndef WORLD_OBJECT_PROPERTIES
+#define WORLD_OBJECT_PROPERTIES
+
+enum WorldObjectProperty
+{
+	WORLD_OBJECT_PROPERTY_PICKUPABLE = 0
+};
+
+#endif

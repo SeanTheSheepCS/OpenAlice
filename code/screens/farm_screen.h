@@ -5,13 +5,15 @@
 #include "oae_screen.h"
 #include "../engine/primitive_classes/textured_object.h"
 #include "../engine/primitive_classes/textured_button_object.h"
+#include "../engine/primitive_classes/world_object.h"
+#include "../engine/primitive_classes/world_object_properties.h"
 #include "../engine/advanced_classes/number_display_module/number_display_module.h"
 #include "../engine/advanced_classes/tile_map_module/tile_map_module.h"
 #include "../engine/advanced_classes/player_object_module/player_object_module.h"
 #include "../actors/alice.h"
 #include "../texture_bank.h"
 #include "../oae_animation_bank.h"
-#include "../main.h"
+#include "../reference_number_enums.h"
 
 enum TileMapReferenceNumbersForGroundEnum
 {
@@ -39,6 +41,7 @@ class FarmScreen: public OAEScreen
         //
     private:
         void associateAliceWithCorrectAnimation(); //HELPER FUNCTION FOR UPDATE
+		void handlePickUpEvent(); //HELPER FUNCTION FOR HANDLEEVENT
         bool shouldSwitchToMarketScreenFlag;
         TexturedObject displaysTheWordDay;
         NumberDisplay dayNumberDisplay;

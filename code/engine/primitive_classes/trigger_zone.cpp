@@ -14,7 +14,7 @@ void TriggerZone::setX(int newX)
     this->x = newX;
 }
 
-int TriggerZone::getX()
+int TriggerZone::getX() const
 {
     return this->x;
 }
@@ -24,7 +24,7 @@ void TriggerZone::setY(int newY)
     this->y = newY;
 }
 
-int TriggerZone::getY()
+int TriggerZone::getY() const
 {
     return this->y;
 }
@@ -34,7 +34,7 @@ void TriggerZone::setWidth(int newWidth)
     this->width = newWidth;
 }
 
-unsigned int TriggerZone::getWidth()
+unsigned int TriggerZone::getWidth() const
 {
     return this->width;
 }
@@ -44,7 +44,7 @@ void TriggerZone::setHeight(int newHeight)
     this->height = newHeight;
 }
 
-unsigned int TriggerZone:: getHeight()
+unsigned int TriggerZone::getHeight() const
 {
     return this->height;
 }
@@ -54,17 +54,20 @@ void TriggerZone::setActive(bool activeStatusArg)
     this->activeStatus = activeStatusArg;
 }
 
-bool TriggerZone::isActive()
+bool TriggerZone::isActive() const
 {
     return activeStatus;
 }
+#include <iostream>
 
-bool TriggerZone::isIntersecting(const DrawableObject& objectToCompareWith)
+bool TriggerZone::isIntersecting(const DrawableObject& objectToCompareWith) const
 {
-    if(((this->x >= objectToCompareWith.getX()) && (this->x <= objectToCompareWith.getX())) ||
-       ((objectToCompareWith.getX() >= this->x) && (objectToCompareWith.getX() <= this->x)) ||
-       ((this->y >= objectToCompareWith.getY()) && (this->y <= objectToCompareWith.getY())) ||
-       ((objectToCompareWith.getY() >= this->y) && (objectToCompareWith.getY() <= this->y)))
+	std::cout << "Object: (" << this->x << "," << this->y << ")" << std::endl;
+	std::cout << "Alice: (" << objectToCompareWith.getX() << "," << objectToCompareWith.getY() << ")" << std::endl;
+    if(((this->x >= objectToCompareWith.getX()) && (this->x <= (objectToCompareWith.getX()+((int)objectToCompareWith.getWidth())))) ||
+       ((objectToCompareWith.getX() >= this->x) && (objectToCompareWith.getX() <= ((this->x)+((int) this->width)))) ||
+       ((this->y >= objectToCompareWith.getY()) && (this->y <= (objectToCompareWith.getY()+((int)objectToCompareWith.getHeight())))) ||
+       ((objectToCompareWith.getY() >= this->y) && (objectToCompareWith.getY() <= ((this->y)+((int) this->height)))))
     {
         return true;
     }

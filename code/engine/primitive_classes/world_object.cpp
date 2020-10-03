@@ -1,5 +1,12 @@
 #include "world_object.h"
 
+WorldObject::WorldObject():
+	TexturedObject(0,0,0,0,nullptr),
+    triggerZoneForObject(0,0,0,0,false)
+{
+    this->visibility = false;
+}
+
 WorldObject::WorldObject(int x, int y, unsigned int width, unsigned int height, const sf::Texture* texture):
     TexturedObject(x,y,width,height,texture),
     triggerZoneForObject(0,0,0,0,false)
@@ -34,7 +41,19 @@ void WorldObject::setHeight(unsigned int newHeight)
     this->height = newHeight;
 }
 
-bool WorldObject::isDrawableObjectWithinTriggerZone(const DrawableObject& objectToCheck)
+bool WorldObject::isInvalid() const
+{
+    if((this->width == 0) || (this->height == 0))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+bool WorldObject::isDrawableObjectWithinTriggerZone(const DrawableObject& objectToCheck) const
 {
     if(triggerZoneForObject.isIntersecting(objectToCheck) && triggerZoneForObject.isActive())
     {
@@ -61,9 +80,19 @@ void WorldObject::setVisibility(bool visibilityArg)
     this->visibility = visibilityArg;
 }
 
-bool WorldObject::getVisibility()
+bool WorldObject::getVisibility() const
 {
     return this->visibility;
+}
+
+void WorldObject::addWorldObjectProperty(WorldObjectProperty property)
+{
+	properties.push_back(property);
+}
+
+std::vector<WorldObjectProperty> WorldObject::getProperties() const
+{
+	return this->properties;
 }
 
 void WorldObject::draw(sf::RenderWindow& windowToDrawObjectIn)

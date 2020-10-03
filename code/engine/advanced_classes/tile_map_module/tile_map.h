@@ -39,9 +39,11 @@ class TileMap: public DrawableObject
         void removeWorldObjectWithReferenceNumber(int referenceNumber);
         void associateWorldObjectWithReferenceNumberWithTexturePointer(int referenceNumber, const sf::Texture* texturePointer);
         void deassociateWorldObjectWithReferenceNumberWithItsTexturePointer(int referenceNumber);
+        WorldObject getWorldObjectWithReferenceNumber(int referenceNumber);
 
-        //DRAW FUNCTION
+		//SPECIAL FUNCTIONS
         void draw(sf::RenderWindow& windowToDrawIn);
+		std::map<int, WorldObject> getAllWorldObjectsWithRefNumbersWhoAreCurrentlyTriggeredByDrawableObject(const DrawableObject& objectToCheck);
     protected:
 	    //
     private:

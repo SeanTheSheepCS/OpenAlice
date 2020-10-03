@@ -109,7 +109,7 @@ void TileMap::associateWorldObjectWithReferenceNumberWithTexturePointer(int refe
     }
     catch(std::exception& e)
     {
-        std::cout << "Failed to access referenceNumber " << referenceNumber << " in TileMap referenceNumberToWorldObjectMap." << std::endl;
+        std::cout << "failed to access referencenumber " << referenceNumber << " in tilemap referencenumbertoworldobjectmap." << std::endl;
     }
 }
 
@@ -122,6 +122,19 @@ void TileMap::deassociateWorldObjectWithReferenceNumberWithItsTexturePointer(int
     catch(std::exception& e)
     {
         std::cout << "Failed to access referenceNumber " << referenceNumber << " in TileMap referenceNumberToWorldObjectMap." << std::endl;
+    }
+}
+
+WorldObject TileMap::getWorldObjectWithReferenceNumber(int referenceNumber)
+{
+    try
+    {
+        return referenceNumberToWorldObjectMap.at(referenceNumber);
+    }
+    catch(std::exception& e)
+    {
+        std::cout << "failed to access referencenumber " << referenceNumber << " in tilemap referencenumbertoworldobjectmap." << std::endl;
+        return WorldObject();
     }
 }
 
@@ -231,9 +244,27 @@ void TileMap::drawWorldObjects(sf::RenderWindow& windowToDrawIn) //Helper functi
         int worldObjectX = x + (currentObject.getX()) + ( ( (float) tileWidth) * centreOffsetTileCountX) - this->offsetToMakeScreenStartCenteredX;
         int worldObjectY = y + (currentObject.getY()) + ( ( (float) tileHeight) * centreOffsetTileCountY) - this->offsetToMakeScreenStartCenteredY;
         if((worldObjectX >= (x- ((int)currentObject.getWidth()))) && (worldObjectX <= (x + ((int)width))) && (worldObjectY >= (y - ((int)currentObject.getHeight()))) && (worldObjectY <= (y + ((int)height))))
-	    {
+		{
             WorldObject worldObjectWithFakeCoords = WorldObject(worldObjectX, worldObjectY, currentObject.getWidth(), currentObject.getHeight(), currentObject.getCurrentTexturePointer());
             worldObjectWithFakeCoords.draw(windowToDrawIn);
-	    }
+		}
     }
+}
+
+std::map<int, WorldObject> TileMap::getAllWorldObjectsWithRefNumbersWhoAreCurrentlyTriggeredByDrawableObject(const DrawableObject& objectToCheck)
+{
+	std::map<int, WorldObject> returnValue;
+    for(auto const& [refNum, currentObject] : referenceNumberToWorldObjectMap) //This line iterates through the map, you can think of this as for(currentObject in map)
+	{
+        int worldObjectX = x + (currentObject.getX()) + ( ( (float) tileWidth) * centreOffsetTileCountX) - this->offsetToMakeScreenStartCenteredX;
+        int worldObjectY = y + (currentObject.getY()) + ( ( (float) tileHeight) * centreOffsetTileCountY) - this->offsetToMakeScreenStartCenteredY;
+		WorldObject worldObjectWithFakeCoords = currentObject;
+		worldObjectWithFakeCoords.setX(worldObjectX);
+		worldObjectWithFakeCoords.setY(worldObjectY);
+		if(worldObjectWithFakeCoords.isDrawableObjectWithinTriggerZone(objectToCheck) == true)
+		{
+			returnValue.insert(std::pair<int, WorldObject>(refNum, currentObject));
+		}
+	}
+	return returnValue;
 }

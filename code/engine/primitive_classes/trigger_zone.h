@@ -9,18 +9,18 @@ class TriggerZone
         TriggerZone(int x, int y, int width, int height, bool activeStatus);
 
 	    void setX(int newX);
-	    int getX();
+	    int getX() const;
 	    void setY(int newY);
-	    int getY();
+	    int getY() const;
 	    void setWidth(int newWidth);
-	    unsigned int getWidth();
+	    unsigned int getWidth() const;
 	    void setHeight(int newHeight);
-	    unsigned int getHeight();
+	    unsigned int getHeight() const;
 
 	    void setActive(bool activeStatus);
-	    bool isActive();
+	    bool isActive() const;
 
-        bool isIntersecting(const DrawableObject& objectToCompareWith);
+        bool isIntersecting(const DrawableObject& objectToCompareWith) const;
 
     protected:
         //

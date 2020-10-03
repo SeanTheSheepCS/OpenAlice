@@ -2,14 +2,40 @@
 
 Alice::Alice(int x, int y, unsigned int width, unsigned int height): PlayerObject(x,y,width,height)
 {
-    //
+    this->referenceNumberOfHeldWorldObject = WORLD_OBJECT_REF_NUMBER_INVALID;
+    this->heldWorldObject = WorldObject();
 }
-void Alice::pickUpObject(WorldObject& worldObjectPickedUp, TileMap& tileMapYouPickedItUpFrom)
+
+void Alice::pickUpObject(int referenceNumberOfObjectToPickUp, TileMap& tileMapYouPickedItUpFrom)
 {
-    //TODO
+    referenceNumberOfHeldWorldObject = referenceNumberOfObjectToPickUp; 
+    WorldObject heldWorldObject = tileMapYouPickedItUpFrom.getWorldObjectWithReferenceNumber(referenceNumberOfObjectToPickUp);
+    tileMapYouPickedItUpFrom.removeWorldObjectWithReferenceNumber(referenceNumberOfObjectToPickUp);
 }
 
 void Alice::putDownObject(TileMap& tileMapToPutItDownIn)
 {
-    //TODO
+    if(!((this->heldWorldObject).isInvalid()))
+    {
+        tileMapToPutItDownIn.addWorldObjectWithReferenceNumber(referenceNumberOfHeldWorldObject, heldWorldObject);
+        this->referenceNumberOfHeldWorldObject = WORLD_OBJECT_REF_NUMBER_INVALID;
+        this->heldWorldObject = WorldObject();
+    }
+}
+
+bool Alice::isHoldingObject()
+{
+    if((this->heldWorldObject).isInvalid())
+    {
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
+
+int Alice::returnReferenceNumberOfHeldObject()
+{
+    return referenceNumberOfHeldWorldObject;
 }

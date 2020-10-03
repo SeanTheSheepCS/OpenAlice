@@ -36,6 +36,9 @@ void FarmScreen::handleEvent(sf::Event event, sf::RenderWindow& window)
                 case sf::Keyboard::S:
                     alice.setYMovementAmount(-1.0);
                     break;
+				case sf::Keyboard::Q:
+					this->handlePickUpEvent();
+					break;
                 default:
                     //
                     break;
@@ -78,6 +81,26 @@ void FarmScreen::handleEvent(sf::Event event, sf::RenderWindow& window)
     }
 }
 
+void FarmScreen::handlePickUpEvent()
+{
+	std::cout << "EVENT PICK UP DETECTED" << std::endl;
+	alice.putDownObject(groundTileMap);
+	std::map<int, WorldObject> worldObjectsAndRefNumbersThatAreIntersectingWithAlice = groundTileMap.getAllWorldObjectsWithRefNumbersWhoAreCurrentlyTriggeredByDrawableObject(alice);
+    for(auto const& [refNum, currentObject] : worldObjectsAndRefNumbersThatAreIntersectingWithAlice) //This line iterates through the map, you can think of this as for(currentObject in map)
+	{
+		std::cout << "OBJECT PICKED UP" << std::endl;
+		std::vector<WorldObjectProperty> worldObjectProperties = currentObject.getProperties();
+		for(int j = 0; j < worldObjectProperties.size(); j++)
+		{
+			if(worldObjectProperties.at(j) == WORLD_OBJECT_PROPERTY_PICKUPABLE)
+			{
+				alice.pickUpObject(refNum, groundTileMap);
+				break;
+			}
+		}
+	}
+}
+
 void FarmScreen::associateWithTexturesInBank(const TextureBank& textureBankToTakeFrom)
 {
     //GROUND TILE MAP TEXTURE ASSOCIATIONS
@@ -114,6 +137,7 @@ void FarmScreen::initializeWorldObjectsInGroundTileMap()
     TriggerZone hoeTriggerZone = TriggerZone(400,400,80,80,true);
     hoe.attachTriggerZone(hoeTriggerZone);
     hoe.setVisibility(true);
+	hoe.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_PICKUPABLE);
     groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_HOE, hoe);
 
     WorldObject well = WorldObject(200,400,100,200,nullptr);
@@ -132,6 +156,7 @@ void FarmScreen::initializeWorldObjectsInGroundTileMap()
     TriggerZone wateringCanTriggerZone = TriggerZone(500,400,80,80,true);
     wateringCan.attachTriggerZone(wateringCanTriggerZone);
     wateringCan.setVisibility(true);
+	wateringCan.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_PICKUPABLE);
     groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_WATERING_CAN, wateringCan);
 }
 

@@ -1,6 +1,7 @@
-#ifndef ALICE_H
-#define ALICE_H
+#ifndef ACTOR_ALICE_H
+#define ACTOR_ALICE_H
 
+#include "../reference_number_enums.h"
 #include "../engine/advanced_classes/player_object_module/player_object_module.h"
 #include "../engine/advanced_classes/tile_map_module/tile_map_module.h"
 #include "../engine/primitive_classes/world_object.h"
@@ -22,12 +23,15 @@ class Alice: public PlayerObject
 {
     public:
         Alice(int x, int y, unsigned int width, unsigned int height);
-        void pickUpObject(WorldObject& worldObjectPickedUp, TileMap& tileMapYouPickedItUpFrom);
+        void pickUpObject(int referenceNumberOfObjectToPickUp, TileMap& tileMapYouPickedItUpFrom);
         void putDownObject(TileMap& tileMapToPutItDownIn);
+        bool isHoldingObject();
+       	int returnReferenceNumberOfHeldObject();
     protected:
         //
     private:
-        WorldObject* pointerToHeldWorldObject;
+        int referenceNumberOfHeldWorldObject;
+        WorldObject heldWorldObject;
 };
 
 #endif
