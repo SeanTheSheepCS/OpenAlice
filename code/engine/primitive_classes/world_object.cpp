@@ -41,6 +41,26 @@ void WorldObject::setHeight(unsigned int newHeight)
     this->height = newHeight;
 }
 
+void WorldObject::setTriggerZoneX(int newX)
+{
+	this->triggerZoneForObject.setX(newX);
+}
+
+void WorldObject::setTriggerZoneY(int newY)
+{
+	this->triggerZoneForObject.setY(newY);
+}
+
+void WorldObject::setTriggerZoneWidth(unsigned int newWidth)
+{
+	this->triggerZoneForObject.setWidth(newWidth);
+}
+
+void WorldObject::setTriggerZoneHeight(unsigned int newHeight)
+{
+	this->triggerZoneForObject.setHeight(newHeight);
+}
+
 bool WorldObject::isInvalid() const
 {
     if((this->width == 0) || (this->height == 0))

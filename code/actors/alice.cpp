@@ -9,7 +9,7 @@ Alice::Alice(int x, int y, unsigned int width, unsigned int height): PlayerObjec
 void Alice::pickUpObject(int referenceNumberOfObjectToPickUp, TileMap& tileMapYouPickedItUpFrom)
 {
     referenceNumberOfHeldWorldObject = referenceNumberOfObjectToPickUp; 
-    WorldObject heldWorldObject = tileMapYouPickedItUpFrom.getWorldObjectWithReferenceNumber(referenceNumberOfObjectToPickUp);
+    heldWorldObject = tileMapYouPickedItUpFrom.getWorldObjectWithReferenceNumber(referenceNumberOfObjectToPickUp);
     tileMapYouPickedItUpFrom.removeWorldObjectWithReferenceNumber(referenceNumberOfObjectToPickUp);
 }
 

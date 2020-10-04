@@ -58,18 +58,27 @@ bool TriggerZone::isActive() const
 {
     return activeStatus;
 }
-#include <iostream>
 
 bool TriggerZone::isIntersecting(const DrawableObject& objectToCompareWith) const
 {
-	std::cout << "Object: (" << this->x << "," << this->y << ")" << std::endl;
-	std::cout << "Alice: (" << objectToCompareWith.getX() << "," << objectToCompareWith.getY() << ")" << std::endl;
-    if(((this->x >= objectToCompareWith.getX()) && (this->x <= (objectToCompareWith.getX()+((int)objectToCompareWith.getWidth())))) ||
-       ((objectToCompareWith.getX() >= this->x) && (objectToCompareWith.getX() <= ((this->x)+((int) this->width)))) ||
-       ((this->y >= objectToCompareWith.getY()) && (this->y <= (objectToCompareWith.getY()+((int)objectToCompareWith.getHeight())))) ||
-       ((objectToCompareWith.getY() >= this->y) && (objectToCompareWith.getY() <= ((this->y)+((int) this->height)))))
-    {
-        return true;
-    }
-    return false;
+	if(((this->x)+((int)this->width)) <= objectToCompareWith.getX())
+	{
+		return false;
+	}
+	else if((this->x) >= (objectToCompareWith.getX()+((int)objectToCompareWith.getWidth())))
+	{
+		return false;
+	}
+	else if(((this->y)+((int)this->height)) <= objectToCompareWith.getY())
+	{
+		return false;
+	}
+	else if((this->y) >= (objectToCompareWith.getY()+((int)objectToCompareWith.getHeight())))
+	{
+		return false;
+	}
+	else
+	{
+    	return true;
+	}
 }

@@ -41,7 +41,7 @@ class FarmScreen: public OAEScreen
         //
     private:
         void associateAliceWithCorrectAnimation(); //HELPER FUNCTION FOR UPDATE
-		void handlePickUpEvent(); //HELPER FUNCTION FOR HANDLEEVENT
+		void handlePickUpEvent(sf::RenderWindow& windowToDrawIn); //HELPER FUNCTION FOR HANDLEEVENT
         bool shouldSwitchToMarketScreenFlag;
         TexturedObject displaysTheWordDay;
         NumberDisplay dayNumberDisplay;

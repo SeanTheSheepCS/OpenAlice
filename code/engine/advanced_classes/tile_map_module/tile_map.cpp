@@ -251,6 +251,8 @@ void TileMap::drawWorldObjects(sf::RenderWindow& windowToDrawIn) //Helper functi
     }
 }
 
+#include <iostream>
+
 std::map<int, WorldObject> TileMap::getAllWorldObjectsWithRefNumbersWhoAreCurrentlyTriggeredByDrawableObject(const DrawableObject& objectToCheck)
 {
 	std::map<int, WorldObject> returnValue;
@@ -260,7 +262,9 @@ std::map<int, WorldObject> TileMap::getAllWorldObjectsWithRefNumbersWhoAreCurren
         int worldObjectY = y + (currentObject.getY()) + ( ( (float) tileHeight) * centreOffsetTileCountY) - this->offsetToMakeScreenStartCenteredY;
 		WorldObject worldObjectWithFakeCoords = currentObject;
 		worldObjectWithFakeCoords.setX(worldObjectX);
+		worldObjectWithFakeCoords.setTriggerZoneX(worldObjectX);
 		worldObjectWithFakeCoords.setY(worldObjectY);
+		worldObjectWithFakeCoords.setTriggerZoneY(worldObjectY);
 		if(worldObjectWithFakeCoords.isDrawableObjectWithinTriggerZone(objectToCheck) == true)
 		{
 			returnValue.insert(std::pair<int, WorldObject>(refNum, currentObject));

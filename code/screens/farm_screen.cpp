@@ -37,7 +37,7 @@ void FarmScreen::handleEvent(sf::Event event, sf::RenderWindow& window)
                     alice.setYMovementAmount(-1.0);
                     break;
 				case sf::Keyboard::Q:
-					this->handlePickUpEvent();
+					this->handlePickUpEvent(window);
 					break;
                 default:
                     //
@@ -81,14 +81,12 @@ void FarmScreen::handleEvent(sf::Event event, sf::RenderWindow& window)
     }
 }
 
-void FarmScreen::handlePickUpEvent()
+void FarmScreen::handlePickUpEvent(sf::RenderWindow& windowToDrawIn)
 {
-	std::cout << "EVENT PICK UP DETECTED" << std::endl;
 	alice.putDownObject(groundTileMap);
 	std::map<int, WorldObject> worldObjectsAndRefNumbersThatAreIntersectingWithAlice = groundTileMap.getAllWorldObjectsWithRefNumbersWhoAreCurrentlyTriggeredByDrawableObject(alice);
     for(auto const& [refNum, currentObject] : worldObjectsAndRefNumbersThatAreIntersectingWithAlice) //This line iterates through the map, you can think of this as for(currentObject in map)
 	{
-		std::cout << "OBJECT PICKED UP" << std::endl;
 		std::vector<WorldObjectProperty> worldObjectProperties = currentObject.getProperties();
 		for(int j = 0; j < worldObjectProperties.size(); j++)
 		{
@@ -99,6 +97,7 @@ void FarmScreen::handlePickUpEvent()
 			}
 		}
 	}
+	this->forceFullDraw(windowToDrawIn);
 }
 
 void FarmScreen::associateWithTexturesInBank(const TextureBank& textureBankToTakeFrom)

@@ -18,6 +18,11 @@ class WorldObject: public TexturedObject
 	    void setWidth(unsigned int newWidth);
 	    void setHeight(unsigned int newHeight);
 
+	    void setTriggerZoneX(int newX);
+	    void setTriggerZoneY(int newY);
+	    void setTriggerZoneWidth(unsigned int newWidth);
+	    void setTriggerZoneHeight(unsigned int newHeight);
+
 	    void attachTriggerZone(TriggerZone zoneToAttach);
 	    void detachTriggerZone();
 	    bool isDrawableObjectWithinTriggerZone(const DrawableObject& objectToCheck) const;
