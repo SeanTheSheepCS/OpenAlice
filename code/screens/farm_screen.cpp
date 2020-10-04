@@ -93,8 +93,11 @@ void FarmScreen::handlePickUpEvent(sf::RenderWindow& windowToDrawIn)
 			if(worldObjectProperties.at(j) == WORLD_OBJECT_PROPERTY_PICKUPABLE)
 			{
 				alice.pickUpObject(refNum, groundTileMap);
-				break;
 			}
+		}
+		if(alice.isHoldingObject())
+		{
+			break;
 		}
 	}
 	this->forceFullDraw(windowToDrawIn);

@@ -15,7 +15,12 @@ void Alice::pickUpObject(int referenceNumberOfObjectToPickUp, TileMap& tileMapYo
 
 void Alice::putDownObject(TileMap& tileMapToPutItDownIn)
 {
-    if(!((this->heldWorldObject).isInvalid()))
+
+	if(((this->heldWorldObject).isInvalid()) || (this->referenceNumberOfHeldWorldObject == WORLD_OBJECT_REF_NUMBER_INVALID))
+	{
+		return;
+	}
+    else
     {
         tileMapToPutItDownIn.addWorldObjectWithReferenceNumber(referenceNumberOfHeldWorldObject, heldWorldObject);
         this->referenceNumberOfHeldWorldObject = WORLD_OBJECT_REF_NUMBER_INVALID;
@@ -25,7 +30,7 @@ void Alice::putDownObject(TileMap& tileMapToPutItDownIn)
 
 bool Alice::isHoldingObject()
 {
-    if((this->heldWorldObject).isInvalid())
+    if(((this->heldWorldObject).isInvalid()) || (referenceNumberOfHeldWorldObject == WORLD_OBJECT_REF_NUMBER_INVALID))
     {
         return false;
     }
