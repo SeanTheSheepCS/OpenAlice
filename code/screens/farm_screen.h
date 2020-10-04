@@ -12,6 +12,7 @@
 #include "../engine/advanced_classes/player_object_module/player_object_module.h"
 #include "../actors/alice.h"
 #include "../texture_bank.h"
+#include "../save_file.h"
 #include "../oae_animation_bank.h"
 #include "../reference_number_enums.h"
 
@@ -27,6 +28,7 @@ class FarmScreen: public OAEScreen
 {
     public:
         FarmScreen(int x, int y, unsigned int width, unsigned int height);
+
         void handleEvent(sf::Event event, sf::RenderWindow& window); 
         void forceFullDraw(sf::RenderWindow& windowToDrawIn);
         void update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::RenderWindow& windowToDrawIn);
@@ -35,6 +37,8 @@ class FarmScreen: public OAEScreen
         void associateWithAnimationsInBank(const OAEAnimationBank& animationBankToTakeFrom);
     	void initializeWorldObjectsInGroundTileMap();
 
+		void loadSaveFile(const SaveFile& saveFileToLoad);
+
         bool returnIfShouldSwitchToMarketScreen();
         void acknowledgeShouldSwitchToMarketScreen();
     protected:
@@ -42,6 +46,7 @@ class FarmScreen: public OAEScreen
     private:
         void associateAliceWithCorrectAnimation(); //HELPER FUNCTION FOR UPDATE
 		void handlePickUpEvent(sf::RenderWindow& windowToDrawIn); //HELPER FUNCTION FOR HANDLEEVENT
+		void handleItemUseEvent(sf::RenderWindow& windowToDrawIn); //HELPER FUNCTION FOR HANDLEEVENT
         bool shouldSwitchToMarketScreenFlag;
         TexturedObject displaysTheWordDay;
         NumberDisplay dayNumberDisplay;

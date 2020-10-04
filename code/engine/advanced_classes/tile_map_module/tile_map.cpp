@@ -18,6 +18,18 @@ TileMap::TileMap(int x, int y, unsigned int width, unsigned int height, unsigned
     } 
 }
 
+TileMap::TileMap(int x, int y, unsigned int width, unsigned int height, unsigned int rowCountArg, unsigned int colCountArg, int** twoDArrayRepresentingTileMapArg):
+	TileMap(x,y,width,height,rowCountArg,colCountArg)
+{
+	for(unsigned int i = 0; i < rowCountArg; i++)
+	{
+		for(unsigned int j = 0; j < colCountArg; j++)
+		{
+			referenceNumberTwoDimensionArrayRepresentingTileMap[i][j] = twoDArrayRepresentingTileMapArg[i][j];
+		}
+	}
+}
+
 TileMap::TileMap(const TileMap& other): DrawableObject(other.x, other.y, other.width, other.height)
 {
     this->setTileWidth(other.tileWidth);
@@ -152,6 +164,18 @@ void TileMap::setTileAtIndicesToReferenceNumberAndPartialDraw(unsigned int row, 
     }
 }
 
+void TileMap::setReferenceNumberAtIndicesAndDoNotPartialDraw(unsigned int row, unsigned int col, int referenceNumber)
+{
+	if((row >= 0) && (row < rowCount) && (col >= 0) && (col <= colCount))
+    {
+        referenceNumberTwoDimensionArrayRepresentingTileMap[row][col] = referenceNumber;
+	}
+    else
+    {
+        std::cout << "Bad request: writing to row " << row << " and col " << col << " in an array with " << rowCount << " rows and " << colCount << " columns." << std::endl;
+    }
+}
+
 int TileMap::getReferenceNumberAtIndices(unsigned int row, unsigned int col)
 {
     return referenceNumberTwoDimensionArrayRepresentingTileMap[row][col];
@@ -250,8 +274,6 @@ void TileMap::drawWorldObjects(sf::RenderWindow& windowToDrawIn) //Helper functi
 		}
     }
 }
-
-#include <iostream>
 
 std::map<int, WorldObject> TileMap::getAllWorldObjectsWithRefNumbersWhoAreCurrentlyTriggeredByDrawableObject(const DrawableObject& objectToCheck)
 {

@@ -120,6 +120,7 @@ int main()
                 {
                     SaveFile fileToLoad = SaveGameHelper::loadSaveFile(mainMenuScreenVar.returnSavegameThatShouldBeLoadedReturnsZeroIfNoSavegameIsChosenYet());
                     mainMenuScreenVar.acknowledgeSavegameChoice();
+					farmScreenVar.loadSaveFile(fileToLoad);
                     pointerToCurrentlyActiveScreen = &farmScreenVar;
                     currentScreenToDisplay = FARM_SCREEN;
                 }

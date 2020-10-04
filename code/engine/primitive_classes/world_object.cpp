@@ -21,26 +21,6 @@ WorldObject::WorldObject(TexturedObject parentObject):
     this->visibility = true;
 }
 
-void WorldObject::setX(int newX)
-{
-    this->x = newX;
-}
-
-void WorldObject::setY(int newY)
-{
-    this->y = newY;
-}
-
-void WorldObject::setWidth(unsigned int newWidth)
-{
-    this->width = newWidth;
-}
-
-void WorldObject::setHeight(unsigned int newHeight)
-{
-    this->height = newHeight;
-}
-
 void WorldObject::setTriggerZoneX(int newX)
 {
 	this->triggerZoneForObject.setX(newX);
@@ -59,6 +39,41 @@ void WorldObject::setTriggerZoneWidth(unsigned int newWidth)
 void WorldObject::setTriggerZoneHeight(unsigned int newHeight)
 {
 	this->triggerZoneForObject.setHeight(newHeight);
+}
+
+void WorldObject::setCollisionBoxX(int newX)
+{
+
+}
+
+void WorldObject::setCollisionBoxY(int newY)
+{
+
+}
+
+void WorldObject::setCollisionBoxWidth(int newWidth)
+{
+
+}
+
+void WorldObject::setCollisionBoxHeight(int newHeight)
+{
+
+}
+
+void WorldObject::attachCollisionBox(CollisionBox collisionBoxToAttach)
+{
+
+}
+
+void WorldObject::detachCollisionBox()
+{
+
+}
+
+void WorldObject::pushDrawableObjectOutOfCollisionZoneIfItIntersects(DrawableObject& objectToPush)
+{
+
 }
 
 bool WorldObject::isInvalid() const

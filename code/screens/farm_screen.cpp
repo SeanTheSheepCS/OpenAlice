@@ -8,7 +8,7 @@ FarmScreen::FarmScreen(int x, int y, unsigned int width, unsigned int height):
     displaysAMoneySign(x+(width*0.6), y, (width*0.1), height*0.1, nullptr),
     moneyDisplay(x+(width*0.7), y, width*0.3, (height*0.1), 8),
     marketButton(x+(width*0.7), y+(height*0.9), width*0.3, height*0.1, nullptr),
-    groundTileMap(x, y+(height*0.1), width, (height*0.9), 10, 10),
+    groundTileMap(x, y+(height*0.1), width, (height*0.9), 40, 40),
     alice(x+(width*0.45), y+(height*0.4), width*0.1, height*0.2)
 {
     shouldSwitchToMarketScreenFlag = false;
@@ -38,6 +38,9 @@ void FarmScreen::handleEvent(sf::Event event, sf::RenderWindow& window)
                     break;
 				case sf::Keyboard::Q:
 					this->handlePickUpEvent(window);
+					break;
+				case sf::Keyboard::E:
+					this->handleItemUseEvent(window);
 					break;
                 default:
                     //
@@ -103,6 +106,11 @@ void FarmScreen::handlePickUpEvent(sf::RenderWindow& windowToDrawIn)
 	this->forceFullDraw(windowToDrawIn);
 }
 
+void FarmScreen::handleItemUseEvent(sf::RenderWindow& windowToDrawIn)
+{
+	//
+}
+
 void FarmScreen::associateWithTexturesInBank(const TextureBank& textureBankToTakeFrom)
 {
     //GROUND TILE MAP TEXTURE ASSOCIATIONS
@@ -135,27 +143,27 @@ void FarmScreen::associateWithAnimationsInBank(const OAEAnimationBank& animation
 
 void FarmScreen::initializeWorldObjectsInGroundTileMap()
 {
-    WorldObject hoe = WorldObject(400,400,80,80,nullptr);
-    TriggerZone hoeTriggerZone = TriggerZone(400,400,80,80,true);
+    WorldObject hoe = WorldObject(1800,2100,80,80,nullptr);
+    TriggerZone hoeTriggerZone = TriggerZone(1800,2100,80,80,true);
     hoe.attachTriggerZone(hoeTriggerZone);
     hoe.setVisibility(true);
 	hoe.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_PICKUPABLE);
     groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_HOE, hoe);
 
-    WorldObject well = WorldObject(200,400,100,200,nullptr);
-    TriggerZone wellTriggerZone = TriggerZone(200,400,100,200,true);
+    WorldObject well = WorldObject(1800,1800,100,200,nullptr);
+    TriggerZone wellTriggerZone = TriggerZone(1800,1800,100,200,true);
     well.attachTriggerZone(wellTriggerZone);
     well.setVisibility(true);
     groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_WELL, well);
 
-    WorldObject house = WorldObject(600,200,300,200,nullptr);
-    TriggerZone houseTriggerZone = TriggerZone(600,200,300,200,true);
+    WorldObject house = WorldObject(2000,1800,300,200,nullptr);
+    TriggerZone houseTriggerZone = TriggerZone(2000,1800,300,200,true);
     house.attachTriggerZone(houseTriggerZone);
     house.setVisibility(true);
     groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_HOUSE, house);
 
-    WorldObject wateringCan = WorldObject(500,400,80,80,nullptr);
-    TriggerZone wateringCanTriggerZone = TriggerZone(500,400,80,80,true);
+    WorldObject wateringCan = WorldObject(1900,2100,80,80,nullptr);
+    TriggerZone wateringCanTriggerZone = TriggerZone(1900,2100,80,80,true);
     wateringCan.attachTriggerZone(wateringCanTriggerZone);
     wateringCan.setVisibility(true);
 	wateringCan.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_PICKUPABLE);
@@ -240,4 +248,22 @@ void FarmScreen::associateAliceWithCorrectAnimation() //HELPER FUNCTION FOR UPDA
         alice.setCurrentAnimationInstanceReferenceNumber(ANIMATION_BANK_REF_NUMBER_ALICE_DOWN_WALK);
         alice.setCurrentTextureReferenceNumber(TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_BASE);
     }
+}
+
+void FarmScreen::loadSaveFile(const SaveFile& saveFileToLoad)
+{
+	if(saveFileToLoad.isEmpty())
+	{
+		for(unsigned int i = 0; i < saveFileToLoad.getReferenceNumberTwoDArrayRowCount(); i++)
+		{
+			for(unsigned int j = 0; j < saveFileToLoad.getReferenceNumberTwoDArrayColCount(); j++)
+			{
+    			groundTileMap.setReferenceNumberAtIndicesAndDoNotPartialDraw(i,j, saveFileToLoad.getReferenceNumberAtRowAndCol(i,j));
+			}
+		}
+	}
+	else
+	{
+		//TODO
+	}
 }

@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "textured_object.h"
 #include "trigger_zone.h"
+#include "collision_box.h"
 #include "world_object_properties.h"
 
 class WorldObject: public TexturedObject
@@ -13,15 +14,19 @@ class WorldObject: public TexturedObject
         WorldObject(int x, int y, unsigned int width, unsigned int height, const sf::Texture* texture);
 	    WorldObject(TexturedObject parentObject);
 
-	    void setX(int newX);
-	    void setY(int newY);
-	    void setWidth(unsigned int newWidth);
-	    void setHeight(unsigned int newHeight);
-
 	    void setTriggerZoneX(int newX);
 	    void setTriggerZoneY(int newY);
 	    void setTriggerZoneWidth(unsigned int newWidth);
 	    void setTriggerZoneHeight(unsigned int newHeight);
+
+		void setCollisionBoxX(int newX);
+		void setCollisionBoxY(int newY);
+		void setCollisionBoxWidth(int newWidth);
+		void setCollisionBoxHeight(int newHeight);
+
+		void attachCollisionBox(CollisionBox collisionBoxToAttach);
+		void detachCollisionBox();
+		void pushDrawableObjectOutOfCollisionZoneIfItIntersects(DrawableObject& objectToPush);
 
 	    void attachTriggerZone(TriggerZone zoneToAttach);
 	    void detachTriggerZone();
@@ -41,6 +46,7 @@ class WorldObject: public TexturedObject
 	    bool visibility;
 
 	    TriggerZone triggerZoneForObject;
+		CollisionBox collisionBoxForObject;
 		std::vector<WorldObjectProperty> properties;
 };
 

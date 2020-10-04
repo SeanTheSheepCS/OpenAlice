@@ -13,6 +13,11 @@ class DrawableObject
         unsigned int getWidth() const;
         unsigned int getHeight() const;
 
+	    void setX(int newX);
+	    void setY(int newY);
+	    void setWidth(unsigned int newWidth);
+	    void setHeight(unsigned int newHeight);
+
         virtual void draw(sf::RenderWindow& windowToDrawObjectIn) = 0;
     protected:
 	    int x;

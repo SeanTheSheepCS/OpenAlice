@@ -12,6 +12,7 @@ class TileMap: public DrawableObject
     public:
         //CONSTRUCTORS AND DESTRUCTORS
     	TileMap(int x, int y, unsigned int width, unsigned int height, unsigned int rowCount, unsigned int colCount);
+    	TileMap(int x, int y, unsigned int width, unsigned int height, unsigned int rowCount, unsigned int colCount, int** twoDArrayRepresentingTileMapArg);
         TileMap(const TileMap& other);
         ~TileMap();
 
@@ -25,6 +26,7 @@ class TileMap: public DrawableObject
         //FOR WRITING/READING AT INDICES
         void setTileAtIndicesToReferenceNumberAndPartialDraw(unsigned int row, unsigned int col, int referenceNumber, sf::RenderWindow& windowToPartialDrawIn);
     	int getReferenceNumberAtIndices(unsigned int row, unsigned int col);
+		void setReferenceNumberAtIndicesAndDoNotPartialDraw(unsigned int row, unsigned int col, int referenceNumber);
 
         //FOR CHANGING THE VIEW SETTINGS
         void setTileWidth(int tileWidth);

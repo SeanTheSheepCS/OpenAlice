@@ -27,3 +27,23 @@ unsigned int DrawableObject::getHeight() const
 {
     return height;
 }
+
+void DrawableObject::setX(int newX)
+{
+    this->x = newX;
+}
+
+void DrawableObject::setY(int newY)
+{
+    this->y = newY;
+}
+
+void DrawableObject::setWidth(unsigned int newWidth)
+{
+    this->width = newWidth;
+}
+
+void DrawableObject::setHeight(unsigned int newHeight)
+{
+    this->height = newHeight;
+}
