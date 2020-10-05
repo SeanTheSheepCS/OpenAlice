@@ -5,11 +5,11 @@ CollisionBox::CollisionBox(int x, int y, int width, int height, bool activeStatu
 
 }
 
-void pushDrawableObjectOutsideCollisionBoxIfItIsIntersecting(DrawableObject& objectToPush) const
+void CollisionBox::pushDrawableObjectOutsideCollisionBoxIfItIsIntersecting(DrawableObject& objectToPush) const
 {
 	int xAmountToCorrectLeftCollision = ((this->x)+((int)this->width) - objectToPush.getX());
-	int xAmountToCorrectRightCollision = ((objectToPush.getX()+((int)objectToPush.getWidth()))-(this->x);
-	int yAmountToCorrectTopCollision = ((this->y)+((int)this->height)) - objectToPush.getY());
+	int xAmountToCorrectRightCollision = ((objectToPush.getX()+((int)objectToPush.getWidth()))-(this->x));
+	int yAmountToCorrectTopCollision = (((this->y)+((int)this->height)) - objectToPush.getY());
 	int yAmountToCorrectBottomCollision = ((objectToPush.getY()+((int)objectToPush.getHeight()))-(this->y));
 
 	//Amount to corrects will be negative if there is no correction to be done and will be the positive amount to correct by if there is correction to be done.
@@ -39,7 +39,7 @@ void pushDrawableObjectOutsideCollisionBoxIfItIsIntersecting(DrawableObject& obj
 		objectToPush.setX(objectToPush.getX() + xAmountToCorrectRightCollision);
 	}
 
-	if(yAmountToCorrectLeftCollision < yAmountToCorrectRightCollision)
+	if(yAmountToCorrectTopCollision < yAmountToCorrectBottomCollision)
 	{
 		objectToPush.setY(objectToPush.getY() - yAmountToCorrectTopCollision);
 	}

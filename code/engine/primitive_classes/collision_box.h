@@ -1,6 +1,9 @@
 #ifndef COLLISION_BOX_H
 #define COLLISION_BOX_H
 
+#include "trigger_zone.h"
+#include "drawable_object.h"
+
 class CollisionBox: public TriggerZone
 {
 	public:

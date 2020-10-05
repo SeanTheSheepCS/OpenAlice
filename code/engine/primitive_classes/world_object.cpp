@@ -2,21 +2,24 @@
 
 WorldObject::WorldObject():
 	TexturedObject(0,0,0,0,nullptr),
-    triggerZoneForObject(0,0,0,0,false)
+    triggerZoneForObject(0,0,0,0,false),
+	collisionBoxForObject(0,0,0,0,false)
 {
     this->visibility = false;
 }
 
 WorldObject::WorldObject(int x, int y, unsigned int width, unsigned int height, const sf::Texture* texture):
     TexturedObject(x,y,width,height,texture),
-    triggerZoneForObject(0,0,0,0,false)
+    triggerZoneForObject(0,0,0,0,false),
+	collisionBoxForObject(0,0,0,0,false)
 {
     this->visibility = true;
 }
 
 WorldObject::WorldObject(TexturedObject parentObject):
     TexturedObject(parentObject),
-    triggerZoneForObject(0,0,0,0,false)
+    triggerZoneForObject(0,0,0,0,false),
+	collisionBoxForObject(0,0,0,0,false)
 {
     this->visibility = true;
 }
@@ -43,37 +46,40 @@ void WorldObject::setTriggerZoneHeight(unsigned int newHeight)
 
 void WorldObject::setCollisionBoxX(int newX)
 {
-
+	this->collisionBoxForObject.setX(newX);
 }
 
 void WorldObject::setCollisionBoxY(int newY)
 {
-
+	this->collisionBoxForObject.setY(newY);
 }
 
 void WorldObject::setCollisionBoxWidth(int newWidth)
 {
-
+	this->collisionBoxForObject.setWidth(newWidth);
 }
 
 void WorldObject::setCollisionBoxHeight(int newHeight)
 {
-
+	this->collisionBoxForObject.setHeight(newHeight);
 }
 
 void WorldObject::attachCollisionBox(CollisionBox collisionBoxToAttach)
 {
-
+	this->collisionBoxForObject = collisionBoxToAttach;
 }
 
 void WorldObject::detachCollisionBox()
 {
-
+	this->collisionBoxForObject = CollisionBox(0,0,0,0,false);
 }
 
 void WorldObject::pushDrawableObjectOutOfCollisionZoneIfItIntersects(DrawableObject& objectToPush)
 {
-
+	if((this->collisionBoxForObject).isActive())
+	{
+		(this->collisionBoxForObject).pushDrawableObjectOutsideCollisionBoxIfItIsIntersecting(objectToPush);
+	}
 }
 
 bool WorldObject::isInvalid() const

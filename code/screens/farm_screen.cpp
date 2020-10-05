@@ -152,13 +152,17 @@ void FarmScreen::initializeWorldObjectsInGroundTileMap()
 
     WorldObject well = WorldObject(1800,1800,100,200,nullptr);
     TriggerZone wellTriggerZone = TriggerZone(1800,1800,100,200,true);
+	CollisionBox wellCollisionBox = CollisionBox(1800,1800,100,200,true);
     well.attachTriggerZone(wellTriggerZone);
+	well.attachCollisionBox(wellCollisionBox);
     well.setVisibility(true);
     groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_WELL, well);
 
     WorldObject house = WorldObject(2000,1800,300,200,nullptr);
     TriggerZone houseTriggerZone = TriggerZone(2000,1800,300,200,true);
+	CollisionBox houseCollisionBox = CollisionBox(2000,1800,300,200,true);
     house.attachTriggerZone(houseTriggerZone);
+	house.attachCollisionBox(houseCollisionBox);
     house.setVisibility(true);
     groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_HOUSE, house);
 

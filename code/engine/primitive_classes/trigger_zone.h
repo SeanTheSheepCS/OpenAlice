@@ -23,14 +23,12 @@ class TriggerZone
         bool isIntersecting(const DrawableObject& objectToCompareWith) const;
 
     protected:
-        //
-    private:
 	    int x;
 	    int y;
 	    unsigned int width;
 	    unsigned int height;
-
         bool activeStatus;
+    private:
 };
 
 #endif

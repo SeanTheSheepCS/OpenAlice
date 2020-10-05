@@ -6,6 +6,7 @@
 #include "../engine/primitive_classes/textured_object.h"
 #include "../engine/primitive_classes/textured_button_object.h"
 #include "../engine/primitive_classes/world_object.h"
+#include "../engine/primitive_classes/collision_box.h"
 #include "../engine/primitive_classes/world_object_properties.h"
 #include "../engine/advanced_classes/number_display_module/number_display_module.h"
 #include "../engine/advanced_classes/tile_map_module/tile_map_module.h"
