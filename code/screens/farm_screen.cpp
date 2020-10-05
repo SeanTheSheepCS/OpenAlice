@@ -152,15 +152,15 @@ void FarmScreen::initializeWorldObjectsInGroundTileMap()
 
     WorldObject well = WorldObject(1800,1800,100,200,nullptr);
     TriggerZone wellTriggerZone = TriggerZone(1800,1800,100,200,true);
-	CollisionBox wellCollisionBox = CollisionBox(1800,1800,100,200,true);
+	CollisionBox wellCollisionBox = CollisionBox(1800,1800,100,100,true);
     well.attachTriggerZone(wellTriggerZone);
 	well.attachCollisionBox(wellCollisionBox);
     well.setVisibility(true);
     groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_WELL, well);
 
-    WorldObject house = WorldObject(2000,1800,300,200,nullptr);
-    TriggerZone houseTriggerZone = TriggerZone(2000,1800,300,200,true);
-	CollisionBox houseCollisionBox = CollisionBox(2000,1800,300,200,true);
+    WorldObject house = WorldObject(2100,1800,300,200,nullptr);
+    TriggerZone houseTriggerZone = TriggerZone(2100,1800,300,200,true);
+	CollisionBox houseCollisionBox = CollisionBox(2100,1800,300,100,true);
     house.attachTriggerZone(houseTriggerZone);
 	house.attachCollisionBox(houseCollisionBox);
     house.setVisibility(true);
@@ -172,6 +172,30 @@ void FarmScreen::initializeWorldObjectsInGroundTileMap()
     wateringCan.setVisibility(true);
 	wateringCan.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_PICKUPABLE);
     groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_WATERING_CAN, wateringCan);
+
+	WorldObject topBorder = WorldObject(0,0,4000,500,nullptr);
+	CollisionBox topBorderCollisionBox = CollisionBox(0,0,4000,500,true);
+	topBorder.attachCollisionBox(topBorderCollisionBox);
+	topBorder.setVisibility(false);
+	groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_TOP_BORDER_COLLISION_BOX, topBorder);
+
+	WorldObject leftBorder = WorldObject(0,0,600,4000,nullptr);
+	CollisionBox leftBorderCollisionBox = CollisionBox(0,0,600,4000,true);
+	leftBorder.attachCollisionBox(leftBorderCollisionBox);
+	leftBorder.setVisibility(false);
+	groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_LEFT_BORDER_COLLISION_BOX, leftBorder);
+
+	WorldObject rightBorder = WorldObject(3500,0,500,4000,nullptr);
+	CollisionBox rightBorderCollisionBox = CollisionBox(3500,0,500,4000,true);
+	rightBorder.attachCollisionBox(rightBorderCollisionBox);
+	rightBorder.setVisibility(false);
+	groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_RIGHT_BORDER_COLLISION_BOX, rightBorder);
+
+	WorldObject bottomBorder = WorldObject(0,3500,4000,500,nullptr);
+	CollisionBox bottomBorderCollisionBox = CollisionBox(0,3500,4000,500,true);
+	bottomBorder.attachCollisionBox(bottomBorderCollisionBox);
+	bottomBorder.setVisibility(false);
+	groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_BOTTOM_BORDER_COLLISION_BOX, bottomBorder);
 }
 
 void FarmScreen::forceFullDraw(sf::RenderWindow& windowToDrawIn)
@@ -198,6 +222,11 @@ void FarmScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::Render
         float tilesTravelledSinceLastUpdateY = numberOfSecondsSinceLastUpdate * (alice.getYMovementAmount()) * aliceSpeedInTilesPerSecond;
         groundTileMap.changeCentreOffsetTileCountXByAmount(tilesTravelledSinceLastUpdateX);
         groundTileMap.changeCentreOffsetTileCountYByAmount(tilesTravelledSinceLastUpdateY);
+		if(groundTileMap.returnTrueIfDrawableObjectIntersectsWithAnyCollisionBoxes(alice))
+		{
+        	groundTileMap.changeCentreOffsetTileCountXByAmount(-tilesTravelledSinceLastUpdateX);
+        	groundTileMap.changeCentreOffsetTileCountYByAmount(-tilesTravelledSinceLastUpdateY);
+		}
         groundTileMap.draw(windowToDrawIn);
         associateAliceWithCorrectAnimation(); 
         alice.drawAndUpdateSprite(windowToDrawIn, numberOfMillisecondsSinceLastUpdate);

@@ -265,12 +265,15 @@ void TileMap::drawWorldObjects(sf::RenderWindow& windowToDrawIn) //Helper functi
 {
     for(auto const& [refNum, currentObject] : referenceNumberToWorldObjectMap) //This line iterates through the map, you can think of this as for(currentObject in map)
     {
-        int worldObjectX = x + (currentObject.getX()) + ( ( (float) tileWidth) * centreOffsetTileCountX) - this->offsetToMakeScreenStartCenteredX;
-        int worldObjectY = y + (currentObject.getY()) + ( ( (float) tileHeight) * centreOffsetTileCountY) - this->offsetToMakeScreenStartCenteredY;
-        if((worldObjectX >= (x- ((int)currentObject.getWidth()))) && (worldObjectX <= (x + ((int)width))) && (worldObjectY >= (y - ((int)currentObject.getHeight()))) && (worldObjectY <= (y + ((int)height))))
+		if(currentObject.getVisibility() == true)
 		{
-            WorldObject worldObjectWithFakeCoords = WorldObject(worldObjectX, worldObjectY, currentObject.getWidth(), currentObject.getHeight(), currentObject.getCurrentTexturePointer());
-            worldObjectWithFakeCoords.draw(windowToDrawIn);
+        	int worldObjectX = x + (currentObject.getX()) + ( ( (float) tileWidth) * centreOffsetTileCountX) - this->offsetToMakeScreenStartCenteredX;
+        	int worldObjectY = y + (currentObject.getY()) + ( ( (float) tileHeight) * centreOffsetTileCountY) - this->offsetToMakeScreenStartCenteredY;
+        	if((worldObjectX >= (x- ((int)currentObject.getWidth()))) && (worldObjectX <= (x + ((int)width))) && (worldObjectY >= (y - ((int)currentObject.getHeight()))) && (worldObjectY <= (y + ((int)height))))
+			{
+        	    WorldObject worldObjectWithFakeCoords = WorldObject(worldObjectX, worldObjectY, currentObject.getWidth(), currentObject.getHeight(), currentObject.getCurrentTexturePointer());
+        	    worldObjectWithFakeCoords.draw(windowToDrawIn);
+			}
 		}
     }
 }
@@ -293,4 +296,23 @@ std::map<int, WorldObject> TileMap::getAllWorldObjectsWithRefNumbersWhoAreCurren
 		}
 	}
 	return returnValue;
+}
+
+bool TileMap::returnTrueIfDrawableObjectIntersectsWithAnyCollisionBoxes(const DrawableObject& objectToCheck)
+{
+    for(auto const& [refNum, currentObject] : referenceNumberToWorldObjectMap) //This line iterates through the map, you can think of this as for(currentObject in map)
+	{
+        int worldObjectX = x + (currentObject.getX()) + ( ( (float) tileWidth) * centreOffsetTileCountX) - this->offsetToMakeScreenStartCenteredX;
+        int worldObjectY = y + (currentObject.getY()) + ( ( (float) tileHeight) * centreOffsetTileCountY) - this->offsetToMakeScreenStartCenteredY;
+		WorldObject worldObjectWithFakeCoords = currentObject;
+		worldObjectWithFakeCoords.setX(worldObjectX);
+		worldObjectWithFakeCoords.setCollisionBoxX(worldObjectX);
+		worldObjectWithFakeCoords.setY(worldObjectY);
+		worldObjectWithFakeCoords.setCollisionBoxY(worldObjectY);
+		if(worldObjectWithFakeCoords.isDrawableObjectWithinCollisionBox(objectToCheck) == true)
+		{
+			return true;
+		}
+	}
+	return false;
 }

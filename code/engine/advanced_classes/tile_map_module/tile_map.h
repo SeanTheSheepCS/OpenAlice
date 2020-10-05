@@ -46,6 +46,7 @@ class TileMap: public DrawableObject
 		//SPECIAL FUNCTIONS
         void draw(sf::RenderWindow& windowToDrawIn);
 		std::map<int, WorldObject> getAllWorldObjectsWithRefNumbersWhoAreCurrentlyTriggeredByDrawableObject(const DrawableObject& objectToCheck);
+		bool returnTrueIfDrawableObjectIntersectsWithAnyCollisionBoxes(const DrawableObject& objectTocheck);
     protected:
 	    //
     private:

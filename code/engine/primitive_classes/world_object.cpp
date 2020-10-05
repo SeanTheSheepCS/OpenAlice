@@ -82,6 +82,18 @@ void WorldObject::pushDrawableObjectOutOfCollisionZoneIfItIntersects(DrawableObj
 	}
 }
 
+bool WorldObject::isDrawableObjectWithinCollisionBox(const DrawableObject& objectToCheck)
+{
+	if(collisionBoxForObject.isActive() && collisionBoxForObject.isIntersecting(objectToCheck))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
 bool WorldObject::isInvalid() const
 {
     if((this->width == 0) || (this->height == 0))

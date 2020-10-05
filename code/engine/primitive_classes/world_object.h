@@ -27,6 +27,7 @@ class WorldObject: public TexturedObject
 		void attachCollisionBox(CollisionBox collisionBoxToAttach);
 		void detachCollisionBox();
 		void pushDrawableObjectOutOfCollisionZoneIfItIntersects(DrawableObject& objectToPush);
+		bool isDrawableObjectWithinCollisionBox(const DrawableObject& objectToCheck);
 
 	    void attachTriggerZone(TriggerZone zoneToAttach);
 	    void detachTriggerZone();
