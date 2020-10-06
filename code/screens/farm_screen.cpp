@@ -86,8 +86,8 @@ void FarmScreen::handleEvent(sf::Event event, sf::RenderWindow& window)
 
 void FarmScreen::handlePickUpEvent(sf::RenderWindow& windowToDrawIn)
 {
-	alice.putDownObject(groundTileMap);
 	std::map<int, WorldObject> worldObjectsAndRefNumbersThatAreIntersectingWithAlice = groundTileMap.getAllWorldObjectsWithRefNumbersWhoAreCurrentlyTriggeredByDrawableObject(alice);
+	bool hasPickedUpObjectThisTime = false;
     for(auto const& [refNum, currentObject] : worldObjectsAndRefNumbersThatAreIntersectingWithAlice) //This line iterates through the map, you can think of this as for(currentObject in map)
 	{
 		std::vector<WorldObjectProperty> worldObjectProperties = currentObject.getProperties();
@@ -95,6 +95,8 @@ void FarmScreen::handlePickUpEvent(sf::RenderWindow& windowToDrawIn)
 		{
 			if(worldObjectProperties.at(j) == WORLD_OBJECT_PROPERTY_PICKUPABLE)
 			{
+				hasPickedUpObjectThisTime = true;
+				alice.putDownObject(groundTileMap);
 				alice.pickUpObject(refNum, groundTileMap);
 			}
 		}
@@ -102,6 +104,10 @@ void FarmScreen::handlePickUpEvent(sf::RenderWindow& windowToDrawIn)
 		{
 			break;
 		}
+	}
+	if(hasPickedUpObjectThisTime == false)
+	{
+		alice.putDownObject(groundTileMap);
 	}
 	this->forceFullDraw(windowToDrawIn);
 }
@@ -179,14 +185,14 @@ void FarmScreen::initializeWorldObjectsInGroundTileMap()
 	topBorder.setVisibility(false);
 	groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_TOP_BORDER_COLLISION_BOX, topBorder);
 
-	WorldObject leftBorder = WorldObject(0,0,600,4000,nullptr);
-	CollisionBox leftBorderCollisionBox = CollisionBox(0,0,600,4000,true);
+	WorldObject leftBorder = WorldObject(0,500,600,3000,nullptr);
+	CollisionBox leftBorderCollisionBox = CollisionBox(0,500,600,3000,true);
 	leftBorder.attachCollisionBox(leftBorderCollisionBox);
 	leftBorder.setVisibility(false);
 	groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_LEFT_BORDER_COLLISION_BOX, leftBorder);
 
-	WorldObject rightBorder = WorldObject(3500,0,500,4000,nullptr);
-	CollisionBox rightBorderCollisionBox = CollisionBox(3500,0,500,4000,true);
+	WorldObject rightBorder = WorldObject(3500,500,500,3000,nullptr);
+	CollisionBox rightBorderCollisionBox = CollisionBox(3500,500,500,3000,true);
 	rightBorder.attachCollisionBox(rightBorderCollisionBox);
 	rightBorder.setVisibility(false);
 	groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_RIGHT_BORDER_COLLISION_BOX, rightBorder);

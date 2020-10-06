@@ -38,6 +38,7 @@ class TileMap: public DrawableObject
 
         //FOR ADDING AND REMOVING AND MANIPULATING WORLD OBJECTS
         void addWorldObjectWithReferenceNumber(int referenceNumber, WorldObject objectToAdd);
+        void addWorldObjectWithReferenceNumber(int referenceNumber, WorldObject objectToAdd, int screenX, int screenY);
         void removeWorldObjectWithReferenceNumber(int referenceNumber);
         void associateWorldObjectWithReferenceNumberWithTexturePointer(int referenceNumber, const sf::Texture* texturePointer);
         void deassociateWorldObjectWithReferenceNumberWithItsTexturePointer(int referenceNumber);

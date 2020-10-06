@@ -22,7 +22,7 @@ void Alice::putDownObject(TileMap& tileMapToPutItDownIn)
 	}
     else
     {
-        tileMapToPutItDownIn.addWorldObjectWithReferenceNumber(referenceNumberOfHeldWorldObject, heldWorldObject);
+        tileMapToPutItDownIn.addWorldObjectWithReferenceNumber(referenceNumberOfHeldWorldObject, heldWorldObject, this->x, this->y);
         this->referenceNumberOfHeldWorldObject = WORLD_OBJECT_REF_NUMBER_INVALID;
         this->heldWorldObject = WorldObject();
     }

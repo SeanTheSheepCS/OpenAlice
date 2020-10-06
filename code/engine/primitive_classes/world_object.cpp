@@ -74,7 +74,7 @@ void WorldObject::detachCollisionBox()
 	this->collisionBoxForObject = CollisionBox(0,0,0,0,false);
 }
 
-void WorldObject::pushDrawableObjectOutOfCollisionZoneIfItIntersects(DrawableObject& objectToPush)
+void WorldObject::pushDrawableObjectOutOfCollisionZoneIfItIntersects(DrawableObject& objectToPush) const
 {
 	if((this->collisionBoxForObject).isActive())
 	{
@@ -82,7 +82,7 @@ void WorldObject::pushDrawableObjectOutOfCollisionZoneIfItIntersects(DrawableObj
 	}
 }
 
-bool WorldObject::isDrawableObjectWithinCollisionBox(const DrawableObject& objectToCheck)
+bool WorldObject::isDrawableObjectWithinCollisionBox(const DrawableObject& objectToCheck) const
 {
 	if(collisionBoxForObject.isActive() && collisionBoxForObject.isIntersecting(objectToCheck))
 	{

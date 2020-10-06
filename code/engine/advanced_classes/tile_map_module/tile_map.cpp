@@ -105,7 +105,23 @@ void TileMap::deassociateTextureWithSpecificReferenceNumber(int referenceNumber)
 
 void TileMap::addWorldObjectWithReferenceNumber(int referenceNumber, WorldObject objectToAdd)
 {
+	/* HIGHLY EXPERIMENTAL, UNCOMMENT FOR WEIRDNESS 
+
+    for(auto const& [refNum, currentObject] : referenceNumberToWorldObjectMap) //This line iterates through the map, you can think of this as for(currentObject in map)
+	{
+		currentObject.pushDrawableObjectOutOfCollisionZoneIfItIntersects(objectToAdd);
+	}
+	*/
     referenceNumberToWorldObjectMap.insert(std::pair<int, WorldObject>(referenceNumber, objectToAdd));
+}
+
+void TileMap::addWorldObjectWithReferenceNumber(int referenceNumber, WorldObject objectToAdd, int screenX, int screenY)
+{
+    int worldX = - (x - screenX + ( ( (float) tileWidth) * centreOffsetTileCountX) - this->offsetToMakeScreenStartCenteredX);
+    int worldY = - ( y - screenY +  ( ( (float) tileHeight) * centreOffsetTileCountY) - this->offsetToMakeScreenStartCenteredY );
+	objectToAdd.setX(worldX);
+	objectToAdd.setY(worldY);
+	this->addWorldObjectWithReferenceNumber(referenceNumber, objectToAdd);
 }
 
 void TileMap::removeWorldObjectWithReferenceNumber(int referenceNumber)
