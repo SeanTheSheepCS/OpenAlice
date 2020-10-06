@@ -333,6 +333,17 @@ bool TileMap::returnTrueIfDrawableObjectIntersectsWithAnyCollisionBoxes(const Dr
 	return false;
 }
 
+std::pair<int, int> TileMap::getRowAndColOfTileNearestToDrawableObject(const DrawableObject& objectToCheckProximityOf)
+{
+	std::pair<int, int> returnValue;
+	int chosenRow = 0;
+	int chosenCol = 0;
+	//TODO
+	returnValue.first = chosenRow;
+	returnValue.second = chosenCol;
+	return returnValue;
+}
+
 int TileMap::screenXToWorldX(int screenX)
 {
     return -x + screenX - (((float) tileWidth)*centreOffsetTileCountX) + this->offsetToMakeScreenStartCenteredX;

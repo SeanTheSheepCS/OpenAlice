@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <utility>
 #include "../../primitive_classes/drawable_object.h"
 #include "../../primitive_classes/textured_object.h"
 #include "../../primitive_classes/world_object.h"
@@ -54,6 +55,7 @@ class TileMap: public DrawableObject
         void draw(sf::RenderWindow& windowToDrawIn);
 		std::map<int, WorldObject> getAllWorldObjectsWithRefNumbersWhoAreCurrentlyTriggeredByDrawableObject(const DrawableObject& objectToCheck);
 		bool returnTrueIfDrawableObjectIntersectsWithAnyCollisionBoxes(const DrawableObject& objectTocheck);
+		std::pair<int, int> getRowAndColOfTileNearestToDrawableObject(const DrawableObject& objectToCheckProximityOf);
 
     protected:
 	    //

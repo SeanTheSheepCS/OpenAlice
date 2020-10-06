@@ -6,7 +6,8 @@
 #include "../engine/primitive_classes/textured_object.h"
 #include "../engine/primitive_classes/textured_button_object.h"
 #include "../engine/advanced_classes/number_display_module/number_display_module.h"
-#include "../engine/advanced_classes/selectable_object_list_module/selectable_object_list_module.h"
+#include "../actors/market_offer.h"
+#include "../actors/market_offer_list.h"
 
 class MarketScreen: public OAEScreen
 {
@@ -38,9 +39,9 @@ class MarketScreen: public OAEScreen
 
         //Buy/Sell UI
         TexturedObject sellWord;
-        SelectableObjectList itemsForSale;
+        MarketOfferList itemsForSale;
         TexturedObject buyWord;
-        SelectableObjectList itemsToBuy;
+        MarketOfferList itemsToBuy;
 
         //Misc stuff
         TexturedObject background;
