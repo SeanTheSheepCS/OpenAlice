@@ -117,8 +117,8 @@ void TileMap::addWorldObjectWithReferenceNumber(int referenceNumber, WorldObject
 
 void TileMap::addWorldObjectWithReferenceNumber(int referenceNumber, WorldObject objectToAdd, int screenX, int screenY)
 {
-    int worldX = - (x - screenX + ( ( (float) tileWidth) * centreOffsetTileCountX) - this->offsetToMakeScreenStartCenteredX);
-    int worldY = - ( y - screenY +  ( ( (float) tileHeight) * centreOffsetTileCountY) - this->offsetToMakeScreenStartCenteredY );
+    int worldX = screenXToWorldX(screenX);
+    int worldY = screenYToWorldY(screenY);
 	objectToAdd.setX(worldX);
 	objectToAdd.setY(worldY);
 	this->addWorldObjectWithReferenceNumber(referenceNumber, objectToAdd);
@@ -267,8 +267,8 @@ void TileMap::deleteTileMap() //Helper function for ~TileMap() and TileMap& oper
 
 void TileMap::drawTileAtRowAndColInWindow(int row, int col, sf::RenderWindow& windowToDrawIn)
 {
-    int tileX = x + (tileWidth*row) + ( ( (float) tileWidth) * centreOffsetTileCountX) - this->offsetToMakeScreenStartCenteredX;
-    int tileY = y + (tileHeight*col) + ( ( (float) tileHeight) * centreOffsetTileCountY) - this->offsetToMakeScreenStartCenteredY;
+    int tileX = worldXToScreenX(tileWidth*row);
+    int tileY = worldYToScreenY(tileHeight*col);
     if( (tileX >= (x-(tileWidth))) && (tileX <= (x + ((int)width))) && (tileY >= (y-tileHeight)) && (tileY <= (y + ((int)height))))
     {
         const sf::Texture* textureToUse = referenceNumberToTexturePointerMap[getReferenceNumberAtIndices(row, col)];
@@ -283,11 +283,11 @@ void TileMap::drawWorldObjects(sf::RenderWindow& windowToDrawIn) //Helper functi
     {
 		if(currentObject.getVisibility() == true)
 		{
-        	int worldObjectX = x + (currentObject.getX()) + ( ( (float) tileWidth) * centreOffsetTileCountX) - this->offsetToMakeScreenStartCenteredX;
-        	int worldObjectY = y + (currentObject.getY()) + ( ( (float) tileHeight) * centreOffsetTileCountY) - this->offsetToMakeScreenStartCenteredY;
-        	if((worldObjectX >= (x- ((int)currentObject.getWidth()))) && (worldObjectX <= (x + ((int)width))) && (worldObjectY >= (y - ((int)currentObject.getHeight()))) && (worldObjectY <= (y + ((int)height))))
+        	int screenX = worldXToScreenX(currentObject.getX());
+        	int screenY = worldYToScreenY(currentObject.getY());
+        	if((screenX >= (x- ((int)currentObject.getWidth()))) && (screenX <= (x + ((int)width))) && (screenY >= (y - ((int)currentObject.getHeight()))) && (screenY <= (y + ((int)height))))
 			{
-        	    WorldObject worldObjectWithFakeCoords = WorldObject(worldObjectX, worldObjectY, currentObject.getWidth(), currentObject.getHeight(), currentObject.getCurrentTexturePointer());
+        	    WorldObject worldObjectWithFakeCoords = WorldObject(screenX, screenY, currentObject.getWidth(), currentObject.getHeight(), currentObject.getCurrentTexturePointer());
         	    worldObjectWithFakeCoords.draw(windowToDrawIn);
 			}
 		}
@@ -299,13 +299,13 @@ std::map<int, WorldObject> TileMap::getAllWorldObjectsWithRefNumbersWhoAreCurren
 	std::map<int, WorldObject> returnValue;
     for(auto const& [refNum, currentObject] : referenceNumberToWorldObjectMap) //This line iterates through the map, you can think of this as for(currentObject in map)
 	{
-        int worldObjectX = x + (currentObject.getX()) + ( ( (float) tileWidth) * centreOffsetTileCountX) - this->offsetToMakeScreenStartCenteredX;
-        int worldObjectY = y + (currentObject.getY()) + ( ( (float) tileHeight) * centreOffsetTileCountY) - this->offsetToMakeScreenStartCenteredY;
+        int screenX = worldXToScreenX(currentObject.getX());
+        int screenY = worldYToScreenY(currentObject.getY());
 		WorldObject worldObjectWithFakeCoords = currentObject;
-		worldObjectWithFakeCoords.setX(worldObjectX);
-		worldObjectWithFakeCoords.setTriggerZoneX(worldObjectX);
-		worldObjectWithFakeCoords.setY(worldObjectY);
-		worldObjectWithFakeCoords.setTriggerZoneY(worldObjectY);
+		worldObjectWithFakeCoords.setX(screenX);
+		worldObjectWithFakeCoords.setTriggerZoneX(screenX);
+		worldObjectWithFakeCoords.setY(screenY);
+		worldObjectWithFakeCoords.setTriggerZoneY(screenY);
 		if(worldObjectWithFakeCoords.isDrawableObjectWithinTriggerZone(objectToCheck) == true)
 		{
 			returnValue.insert(std::pair<int, WorldObject>(refNum, currentObject));
@@ -318,17 +318,36 @@ bool TileMap::returnTrueIfDrawableObjectIntersectsWithAnyCollisionBoxes(const Dr
 {
     for(auto const& [refNum, currentObject] : referenceNumberToWorldObjectMap) //This line iterates through the map, you can think of this as for(currentObject in map)
 	{
-        int worldObjectX = x + (currentObject.getX()) + ( ( (float) tileWidth) * centreOffsetTileCountX) - this->offsetToMakeScreenStartCenteredX;
-        int worldObjectY = y + (currentObject.getY()) + ( ( (float) tileHeight) * centreOffsetTileCountY) - this->offsetToMakeScreenStartCenteredY;
+        int screenX = worldXToScreenX(currentObject.getX());
+        int screenY = worldYToScreenY(currentObject.getY());
 		WorldObject worldObjectWithFakeCoords = currentObject;
-		worldObjectWithFakeCoords.setX(worldObjectX);
-		worldObjectWithFakeCoords.setCollisionBoxX(worldObjectX);
-		worldObjectWithFakeCoords.setY(worldObjectY);
-		worldObjectWithFakeCoords.setCollisionBoxY(worldObjectY);
+		worldObjectWithFakeCoords.setX(screenX);
+		worldObjectWithFakeCoords.setCollisionBoxX(screenX);
+		worldObjectWithFakeCoords.setY(screenY);
+		worldObjectWithFakeCoords.setCollisionBoxY(screenY);
 		if(worldObjectWithFakeCoords.isDrawableObjectWithinCollisionBox(objectToCheck) == true)
 		{
 			return true;
 		}
 	}
 	return false;
+}
+
+int TileMap::screenXToWorldX(int screenX)
+{
+    return -x + screenX - (((float) tileWidth)*centreOffsetTileCountX) + this->offsetToMakeScreenStartCenteredX;
+}
+int TileMap::worldXToScreenX(int worldX)
+{
+    return x + worldX + (((float) tileWidth)*centreOffsetTileCountX) - this->offsetToMakeScreenStartCenteredX;
+}
+
+int TileMap::screenYToWorldY(int screenY)
+{
+    return -y + screenY - (((float) tileHeight)*centreOffsetTileCountY) + this->offsetToMakeScreenStartCenteredY;
+}
+
+int TileMap::worldYToScreenY(int worldY)
+{
+    return y + worldY + (((float) tileHeight)*centreOffsetTileCountY) - this->offsetToMakeScreenStartCenteredY;
 }

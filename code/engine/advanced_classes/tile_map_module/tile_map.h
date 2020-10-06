@@ -44,10 +44,17 @@ class TileMap: public DrawableObject
         void deassociateWorldObjectWithReferenceNumberWithItsTexturePointer(int referenceNumber);
         WorldObject getWorldObjectWithReferenceNumber(int referenceNumber);
 
+		//FUNCTIONS FOR COORDINATE CONVERSIONS
+		int screenXToWorldX(int screenX);
+		int worldXToScreenX(int worldX);
+		int screenYToWorldY(int screenY);
+		int worldYToScreenY(int worldY);
+
 		//SPECIAL FUNCTIONS
         void draw(sf::RenderWindow& windowToDrawIn);
 		std::map<int, WorldObject> getAllWorldObjectsWithRefNumbersWhoAreCurrentlyTriggeredByDrawableObject(const DrawableObject& objectToCheck);
 		bool returnTrueIfDrawableObjectIntersectsWithAnyCollisionBoxes(const DrawableObject& objectTocheck);
+
     protected:
 	    //
     private:
