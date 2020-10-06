@@ -10,6 +10,10 @@ class MarketOffer: public DrawableObject
 {
     public:
         MarketOffer(int x, int y, unsigned int width, unsigned int height);
+		void setXRecursiveWithinComponents(int newX);
+		void setYRecursiveWithinComponents(int newY);
+		void setWidthRecursiveWithinComponents(unsigned int newWidth);
+		void setHeightRecursiveWithinComponents(unsigned int newHeight);
         void draw(sf::RenderWindow& windowToDrawObjectIn);
     protected:
         //
