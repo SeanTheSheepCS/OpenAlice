@@ -7,10 +7,12 @@ FarmScreen::FarmScreen(int x, int y, unsigned int width, unsigned int height):
     dayNumberDisplay(x+(width*0.2), y, (width*0.4), height*0.1, 4),
     displaysAMoneySign(x+(width*0.6), y, (width*0.1), height*0.1, nullptr),
     moneyDisplay(x+(width*0.7), y, width*0.3, (height*0.1), 8),
+    mainMenuButton(x, y+(height*0.9), width*0.3, height*0.1, nullptr), 
     marketButton(x+(width*0.7), y+(height*0.9), width*0.3, height*0.1, nullptr),
     groundTileMap(x, y+(height*0.1), width, (height*0.9), 40, 40),
     alice(x+(width*0.45), y+(height*0.4), width*0.1, height*0.2)
 {
+    shouldSwitchToMainMenuScreenFlag = false;
     shouldSwitchToMarketScreenFlag = false;
     groundTileMap.setTileWidth(100);
     groundTileMap.setTileHeight(100);
@@ -76,6 +78,10 @@ void FarmScreen::handleEvent(sf::Event event, sf::RenderWindow& window)
                 {
                     this->shouldSwitchToMarketScreenFlag = true;
                 }
+        		if(mainMenuButton.theMouseHasBeenClickedAtTheSpecifiedCoordinatesHasTheButtonBeenClicked(mouseX, mouseY))
+				{
+					this->shouldSwitchToMainMenuScreenFlag = true;
+				}
             }
             break;
         default:
@@ -214,6 +220,7 @@ void FarmScreen::forceFullDraw(sf::RenderWindow& windowToDrawIn)
     displaysAMoneySign.draw(windowToDrawIn);
     moneyDisplay.draw(windowToDrawIn);
     marketButton.draw(windowToDrawIn);
+    mainMenuButton.draw(windowToDrawIn);
 }
 
 void FarmScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::RenderWindow& windowToDrawIn)
@@ -242,6 +249,7 @@ void FarmScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::Render
         displaysAMoneySign.draw(windowToDrawIn);
         moneyDisplay.draw(windowToDrawIn);
         marketButton.draw(windowToDrawIn);
+    	mainMenuButton.draw(windowToDrawIn);
     }
     else if(wasAliceDrawnMovingLastFrame == true)
     {
@@ -258,6 +266,16 @@ bool FarmScreen::returnIfShouldSwitchToMarketScreen()
 void FarmScreen::acknowledgeShouldSwitchToMarketScreen()
 {
     shouldSwitchToMarketScreenFlag = false;
+}
+
+bool FarmScreen::returnIfShouldSwitchToMainMenuScreen()
+{
+	return shouldSwitchToMainMenuScreenFlag;
+}
+
+void FarmScreen::acknowledgeShouldSwitchToMainMenuScreen()
+{
+	shouldSwitchToMainMenuScreenFlag = false;
 }
 
 void FarmScreen::associateAliceWithCorrectAnimation() //HELPER FUNCTION FOR UPDATE

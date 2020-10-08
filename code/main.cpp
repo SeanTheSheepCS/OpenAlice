@@ -134,6 +134,12 @@ int main()
                     currentScreenToDisplay = MARKET_SCREEN;
                     farmScreenVar.acknowledgeShouldSwitchToMarketScreen();
                 }
+				else if(farmScreenVar.returnIfShouldSwitchToMainMenuScreen())
+				{
+					pointerToCurrentlyActiveScreen = &mainMenuScreenVar;
+					currentScreenToDisplay = MAIN_MENU_SCREEN;
+					farmScreenVar.acknowledgeShouldSwitchToMainMenuScreen();
+				}
                 break;
             case MARKET_SCREEN:
                 pointerToCurrentlyActiveScreen = &marketScreenVar;
