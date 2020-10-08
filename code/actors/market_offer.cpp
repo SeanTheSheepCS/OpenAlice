@@ -1,5 +1,11 @@
 #include "market_offer.h"
 
+MarketOffer::MarketOffer():
+	MarketOffer(0,0,0,0)
+{
+
+}
+
 MarketOffer::MarketOffer(int x, int y, unsigned int width, unsigned int height):
     DrawableObject(x, y, width, height),
     background(x, y, width, height, nullptr),
@@ -19,7 +25,7 @@ void MarketOffer::setXRecursiveWithinComponents(int newX)
 	commodityOneIcon.setX(newX+(width*0.04));
 	commodityOneCountDisplay.setXRecursiveWithinComponents(newX+(width*0.26));
 	commodityTwoIcon.setX(newX+(width*0.04));
-	commodityTwoCountDisplay.setXRecursiveWithinComponents(newX+(width*0.26);
+	commodityTwoCountDisplay.setXRecursiveWithinComponents(newX+(width*0.26));
 	selectButton.setX(newX+(width*0.7));
 }
 
@@ -31,7 +37,7 @@ void MarketOffer::setYRecursiveWithinComponents(int newY)
 	commodityOneCountDisplay.setYRecursiveWithinComponents(newY+(height*0.05));
 	commodityTwoIcon.setY(newY+(height*0.55));
 	commodityTwoCountDisplay.setYRecursiveWithinComponents(newY+(height*0.55));
-	selectButton.setY(newY);
+	selectButton.setY(newY+(height*0.3));
 }
 
 void MarketOffer::setWidthRecursiveWithinComponents(unsigned int newWidth)
@@ -67,7 +73,24 @@ void MarketOffer::setHeightRecursiveWithinComponents(unsigned int newHeight)
 	commodityOneCountDisplay.setYRecursiveWithinComponents(y+(height*0.05));
 	commodityTwoIcon.setY(y+(height*0.55));
 	commodityTwoCountDisplay.setYRecursiveWithinComponents(y+(height*0.55));
-	//selectButton.setY(y);
+	selectButton.setY(y+(height*0.3));
+}
+
+bool MarketOffer::isInvalid()
+{
+	if((this->height == 0) || (this->width == 0))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+bool MarketOffer::isSelectButtonPressedBasedOnMouseXAndMouseY(int mouseX, int mouseY)
+{
+	return selectButton.theMouseHasBeenClickedAtTheSpecifiedCoordinatesHasTheButtonBeenClicked(mouseX, mouseY);
 }
 
 void MarketOffer::draw(sf::RenderWindow& windowToDrawObjectIn)

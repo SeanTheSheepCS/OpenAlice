@@ -120,6 +120,54 @@ void NumberDisplay::setNumberDisplayAmount(unsigned int amount)
     }
 }
 
+void NumberDisplay::setXRecursiveWithinComponents(int newX)
+{
+	this->x = newX;
+    this->background.setX(newX);
+    int incrementAmountX = (width / digitCount);
+    for(unsigned int i = 0; i < digitCount; i++)
+    {
+        digits[i] = TexturedObject(newX+(i*incrementAmountX),y,incrementAmountX,height,nullptr);
+    }
+	this->setNumberDisplayAmount(digitAsInteger);
+}
+
+void NumberDisplay::setYRecursiveWithinComponents(int newY)
+{
+	this->y = newY;
+    this->background.setY(newY);
+    int incrementAmountX = (width / digitCount);
+    for(unsigned int i = 0; i < digitCount; i++)
+    {
+        digits[i] = TexturedObject(x+(i*incrementAmountX),newY,incrementAmountX,height,nullptr);
+    }
+	this->setNumberDisplayAmount(digitAsInteger);
+}
+
+void NumberDisplay::setWidthRecursiveWithinComponents(unsigned int newWidth)
+{
+	this->width = newWidth;
+    this->background.setWidth(newWidth);
+    int incrementAmountX = (newWidth / digitCount);
+    for(unsigned int i = 0; i < digitCount; i++)
+    {
+        digits[i] = TexturedObject(x+(i*incrementAmountX),y,incrementAmountX,height,nullptr);
+    }
+	this->setNumberDisplayAmount(digitAsInteger);
+}
+
+void NumberDisplay::setHeightRecursiveWithinComponents(unsigned int newHeight)
+{
+	this->height = newHeight;
+    this->background.setHeight(newHeight);
+    int incrementAmountX = (width / digitCount);
+    for(unsigned int i = 0; i < digitCount; i++)
+    {
+        digits[i] = TexturedObject(x+(i*incrementAmountX),y,incrementAmountX,newHeight,nullptr);
+    }
+	this->setNumberDisplayAmount(digitAsInteger);
+}
+
 /* private */ unsigned int NumberDisplay::getDigitIntegerFormAtIndex(unsigned int index)
 {
     unsigned int powerOfTenPlace = digitCount - index;

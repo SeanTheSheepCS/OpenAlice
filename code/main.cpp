@@ -100,6 +100,7 @@ int main()
     farmScreenVar.associateWithAnimationsInBank(animationBankForApplication);
 
     MarketScreen marketScreenVar(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+	marketScreenVar.populateMarketWithGarbageData();
     OAEScreen* pointerToCurrentlyActiveScreen = nullptr;
 
     //VARS FOR SFML

@@ -9,11 +9,18 @@
 class MarketOffer: public DrawableObject
 {
     public:
+        MarketOffer();
         MarketOffer(int x, int y, unsigned int width, unsigned int height);
+
 		void setXRecursiveWithinComponents(int newX);
 		void setYRecursiveWithinComponents(int newY);
 		void setWidthRecursiveWithinComponents(unsigned int newWidth);
 		void setHeightRecursiveWithinComponents(unsigned int newHeight);
+
+		bool isSelectButtonPressedBasedOnMouseXAndMouseY(int mouseX, int mouseY);
+
+		bool isInvalid();
+
         void draw(sf::RenderWindow& windowToDrawObjectIn);
     protected:
         //

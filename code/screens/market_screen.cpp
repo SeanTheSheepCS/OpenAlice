@@ -35,6 +35,22 @@ void MarketScreen::handleEvent(sf::Event event, sf::RenderWindow& window)
                 {
                     this->shouldSwitchToFarmScreenFlag = true;
                 }
+
+				//Check for events with itemsForSale and itemsToBuy
+				int indexOfSaleOffer = itemsForSale.returnIndexOfSelectedMarketOfferIfOneHasBeenSelectedElseReturnMinusOne(mouseX, mouseY);
+				if(indexOfSaleOffer != -1)
+				{
+					itemsForSale.eraseOfferAtIndex(indexOfSaleOffer);
+					itemsForSale.draw(window);
+				}
+
+				int indexOfBuyOffer = itemsToBuy.returnIndexOfSelectedMarketOfferIfOneHasBeenSelectedElseReturnMinusOne(mouseX, mouseY);
+				if(indexOfBuyOffer != -1)
+				{
+					itemsToBuy.eraseOfferAtIndex(indexOfBuyOffer);
+					itemsToBuy.draw(window);
+				}
+
             }
             break;
         default:
@@ -66,6 +82,26 @@ void MarketScreen::forceFullDraw(sf::RenderWindow& windowToDrawIn)
     itemsToBuy.draw(windowToDrawIn);
 }
 
+void MarketScreen::populateMarketWithSellOffer(MarketOffer sellOffer)
+{
+	itemsForSale.appendMarketOffer(sellOffer);
+}
+
+void MarketScreen::populateMarketWithBuyOffer(MarketOffer buyOffer)
+{
+	itemsToBuy.appendMarketOffer(buyOffer);
+}
+
+void MarketScreen::populateMarketWithGarbageData()
+{
+	populateMarketWithSellOffer(MarketOffer(0,0,0,0));
+	populateMarketWithSellOffer(MarketOffer(0,0,0,0));
+	populateMarketWithSellOffer(MarketOffer(0,0,0,0));
+	populateMarketWithBuyOffer(MarketOffer(0,0,0,0));
+	populateMarketWithBuyOffer(MarketOffer(0,0,0,0));
+	populateMarketWithBuyOffer(MarketOffer(0,0,0,0));
+}
+
 bool MarketScreen::returnIfShouldSwitchToFarmScreen()
 {
     return shouldSwitchToFarmScreenFlag;
@@ -78,5 +114,4 @@ void MarketScreen::acknowledgeShouldSwitchToFarmScreen()
 
 void MarketScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::RenderWindow& window)
 {
-
 }
