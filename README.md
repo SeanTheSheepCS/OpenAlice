@@ -32,8 +32,8 @@ An open source game heavily inspired by the 2007 game Alice Greenfingers.
  </ul> 
 <h4> Sprites + Animation </h4>
  <ul>
-  <li> Sprite for Alice (2/4) </li>
-  <li> Animation for alice walking (3/4) </li>
+  <li> Sprite for Alice (3/4) </li>
+  <li> Animation for Alice walking (3/4) </li>
   <li> <s> Sprite for cucumber at each stage of growth </s> </li>
   <li> <s> Sprite for house </s> </li>
   <li> <s> Sprite for well </s> </li>
