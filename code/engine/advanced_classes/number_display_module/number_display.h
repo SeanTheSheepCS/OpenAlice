@@ -25,6 +25,11 @@ class NumberDisplay: public DrawableObject
         void decrementNumberDisplayByAmount(unsigned int amount);
         void setNumberDisplayAmount(unsigned int amount);
 
+		void setXRecursiveWithinComponents(int newX);
+		void setYRecursiveWithinComponents(int newY);
+		void setWidthRecursiveWithinComponents(unsigned int newWidth);
+		void setHeightRecursiveWithinComponents(unsigned int newHeight);
+
         void draw(sf::RenderWindow& windowToDrawObjectIn);
     protected:
         //

@@ -100,6 +100,7 @@ int main()
     farmScreenVar.associateWithAnimationsInBank(animationBankForApplication);
 
     MarketScreen marketScreenVar(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+	marketScreenVar.populateMarketWithGarbageData();
     OAEScreen* pointerToCurrentlyActiveScreen = nullptr;
 
     //VARS FOR SFML
@@ -133,6 +134,12 @@ int main()
                     currentScreenToDisplay = MARKET_SCREEN;
                     farmScreenVar.acknowledgeShouldSwitchToMarketScreen();
                 }
+				else if(farmScreenVar.returnIfShouldSwitchToMainMenuScreen())
+				{
+					pointerToCurrentlyActiveScreen = &mainMenuScreenVar;
+					currentScreenToDisplay = MAIN_MENU_SCREEN;
+					farmScreenVar.acknowledgeShouldSwitchToMainMenuScreen();
+				}
                 break;
             case MARKET_SCREEN:
                 pointerToCurrentlyActiveScreen = &marketScreenVar;

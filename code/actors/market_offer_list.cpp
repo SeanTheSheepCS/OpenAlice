@@ -7,6 +7,11 @@ MarketOfferList::MarketOfferList(int x, int y, unsigned int width, unsigned int 
     this->numberOfMarketOffersPerPage = offersPerPage;
 }
 
+void MarketOfferList::eraseOfferAtIndex(int index)
+{
+	marketOfferVector.erase(marketOfferVector.begin() + index);
+}
+
 void MarketOfferList::appendMarketOffer(MarketOffer marketOfferToAppend)
 {
 	MarketOffer marketOfferToAppendWithDimensionsCorrected = marketOfferToAppend;
@@ -15,6 +20,18 @@ void MarketOfferList::appendMarketOffer(MarketOffer marketOfferToAppend)
 	marketOfferToAppendWithDimensionsCorrected.setWidthRecursiveWithinComponents(width);
 	marketOfferToAppendWithDimensionsCorrected.setHeightRecursiveWithinComponents(height / numberOfMarketOffersPerPage);
 	marketOfferVector.push_back(marketOfferToAppendWithDimensionsCorrected);
+}
+
+int MarketOfferList::returnIndexOfSelectedMarketOfferIfOneHasBeenSelectedElseReturnMinusOne(int mouseX, int mouseY)
+{
+    for(int i = 0; i <  marketOfferVector.size(); i++)
+	{
+		if (marketOfferVector.at(i).isSelectButtonPressedBasedOnMouseXAndMouseY(mouseX, mouseY))
+		{
+			return i;
+		}
+	}
+	return -1;
 }
 
 void MarketOfferList::draw(sf::RenderWindow& windowToDrawObjectIn)

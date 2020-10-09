@@ -42,19 +42,26 @@ class FarmScreen: public OAEScreen
 
         bool returnIfShouldSwitchToMarketScreen();
         void acknowledgeShouldSwitchToMarketScreen();
+
+        bool returnIfShouldSwitchToMainMenuScreen();
+        void acknowledgeShouldSwitchToMainMenuScreen();
     protected:
         //
     private:
         void associateAliceWithCorrectAnimation(); //HELPER FUNCTION FOR UPDATE
 		void handlePickUpEvent(sf::RenderWindow& windowToDrawIn); //HELPER FUNCTION FOR HANDLEEVENT
 		void handleItemUseEvent(sf::RenderWindow& windowToDrawIn); //HELPER FUNCTION FOR HANDLEEVENT
+
         bool shouldSwitchToMarketScreenFlag;
+        bool shouldSwitchToMainMenuScreenFlag;
+
         TexturedObject displaysTheWordDay;
         NumberDisplay dayNumberDisplay;
         TexturedObject displaysAMoneySign;
         NumberDisplay moneyDisplay;
         TexturedObject background;
         TexturedButtonObject marketButton;
+        TexturedButtonObject mainMenuButton;
         TileMap groundTileMap;
         Alice alice;
 };

@@ -27,7 +27,7 @@ An open source game heavily inspired by the 2007 game Alice Greenfingers.
 <h3> October </h3>
 <h4> Engine </h4>
  <ul>
-  <li> Full version of each screen is established </li>
+  <li> <s> Full version of each screen is established </s> </li>
   <li> <s> Animated sprites are handled </s> </li>
  </ul> 
 <h4> Sprites + Animation </h4>
