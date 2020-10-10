@@ -3,6 +3,8 @@
 
 #include <SFML/Graphics.hpp>
 #include "../oae_screen.h"
+#include "../../reference_number_enums.h"
+#include "../../texture_bank.h"
 #include "../../engine/primitive_classes/textured_object.h"
 #include "../../engine/primitive_classes/textured_button_object.h"
 
@@ -13,6 +15,8 @@ class CreditsScreen: public OAEScreen
         void handleEvent(sf::Event event, sf::RenderWindow& window);
         void forceFullDraw(sf::RenderWindow& windowToDrawIn);
         void update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::RenderWindow& window);
+
+        void associateWithTexturesInBank(const TextureBank& textureBankToTakeFrom);
 
         bool hasCloseScreenRequestBeenMade();
         void acknowledgeCloseScreenRequest();

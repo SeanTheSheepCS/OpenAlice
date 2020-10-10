@@ -39,6 +39,11 @@ void CreditsScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::Ren
 
 }
 
+void CreditsScreen::associateWithTexturesInBank(const TextureBank& textureBankToTakeFrom)
+{
+    exitScreenButton.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_WINDOW_X));
+}
+
 bool CreditsScreen::hasCloseScreenRequestBeenMade()
 {
     return closeScreenRequestFlag;

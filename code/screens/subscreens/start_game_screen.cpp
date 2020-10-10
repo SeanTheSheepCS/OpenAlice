@@ -59,6 +59,11 @@ void StartGameScreen::forceFullDraw(sf::RenderWindow& windowToDrawIn)
     deleteFileThreeButton.draw(windowToDrawIn);
 }
 
+void StartGameScreen::associateWithTexturesInBank(const TextureBank& textureBankToTakeFrom)
+{
+    exitScreenButton.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_WINDOW_X));
+}
+
 void StartGameScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::RenderWindow& window)
 {
     //
