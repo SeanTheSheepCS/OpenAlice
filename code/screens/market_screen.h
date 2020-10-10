@@ -39,8 +39,8 @@ class MarketScreen: public OAEScreen
         //Icons for stock
         TexturedObject tomatoIcon;
         NumberDisplay tomatoCount;
-        TexturedObject zucchiniIcon;
-        NumberDisplay zucchiniCount;
+        TexturedObject cucumberIcon;
+        NumberDisplay cucumberCount;
         TexturedObject carrotIcon;
         NumberDisplay carrotCount;
 

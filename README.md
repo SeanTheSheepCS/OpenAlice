@@ -32,16 +32,17 @@ An open source game heavily inspired by the 2007 game Alice Greenfingers.
  </ul> 
 <h4> Sprites + Animation </h4>
  <ul>
-  <li> Sprite for Alice (3/4) </li>
-  <li> Animation for Alice walking (3/4) </li>
+  <li> <s> Sprite for Alice </s> </li>
+  <li> <s> Animation for Alice walking </s> </li>
   <li> <s> Sprite for cucumber at each stage of growth </s> </li>
   <li> <s> Sprite for house </s> </li>
   <li> <s> Sprite for well </s> </li>
  </ul> 
 <h4> Music </h4>
  <ul>
-  <li> Main menu music </li>
+  <li> <s> Main menu music </s> </li>
  </ul> 
+<h5> October milestone completed on October 9th </h5> 
 
 <h3> November </h3>
 <h4> Engine </h4>

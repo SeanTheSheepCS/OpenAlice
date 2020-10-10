@@ -10,8 +10,8 @@ MarketScreen::MarketScreen(int x, int y, unsigned int width, unsigned int height
     returnToFarmButton(x+(width*0.04), y+(height*0.1), width*0.2, height*0.1, nullptr),
     tomatoIcon(x+(width*0.24), y+(height*0.1), (width*0.12), (height*0.1), nullptr),
     tomatoCount(x+(width*0.36), y+(height*0.1), (width*0.12), (height*0.1), 2),
-    zucchiniIcon(x+(width*0.48), y+(height*0.1), (width*0.12), (height*0.1), nullptr),
-    zucchiniCount(x+(width*0.60), y+(height*0.1), (width*0.12), (height*0.1), 2),
+    cucumberIcon(x+(width*0.48), y+(height*0.1), (width*0.12), (height*0.1), nullptr),
+    cucumberCount(x+(width*0.60), y+(height*0.1), (width*0.12), (height*0.1), 2),
     carrotIcon(x+(width*0.72), y+(height*0.1), (width*0.12), (height*0.1), nullptr),
     carrotCount(x+(width*0.84), y+(height*0.1), (width*0.12), (height*0.1), 2),
     sellWord(x+(width*0.02), y+(height*0.3), (width*0.35), (height*0.1), nullptr),
@@ -71,8 +71,8 @@ void MarketScreen::forceFullDraw(sf::RenderWindow& windowToDrawIn)
 
     tomatoIcon.draw(windowToDrawIn);
     tomatoCount.draw(windowToDrawIn);
-    zucchiniIcon.draw(windowToDrawIn);
-    zucchiniCount.draw(windowToDrawIn);
+    cucumberIcon.draw(windowToDrawIn);
+    cucumberCount.draw(windowToDrawIn);
     carrotIcon.draw(windowToDrawIn);
     carrotCount.draw(windowToDrawIn);
 

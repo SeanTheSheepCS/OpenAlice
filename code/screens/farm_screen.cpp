@@ -155,13 +155,6 @@ void FarmScreen::associateWithAnimationsInBank(const OAEAnimationBank& animation
 
 void FarmScreen::initializeWorldObjectsInGroundTileMap()
 {
-    WorldObject hoe = WorldObject(1800,2100,80,80,nullptr);
-    TriggerZone hoeTriggerZone = TriggerZone(1800,2100,80,80,true);
-    hoe.attachTriggerZone(hoeTriggerZone);
-    hoe.setVisibility(true);
-	hoe.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_PICKUPABLE);
-    groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_HOE, hoe);
-
     WorldObject well = WorldObject(1800,1800,100,200,nullptr);
     TriggerZone wellTriggerZone = TriggerZone(1800,1800,100,200,true);
 	CollisionBox wellCollisionBox = CollisionBox(1800,1800,100,100,true);
@@ -177,6 +170,13 @@ void FarmScreen::initializeWorldObjectsInGroundTileMap()
 	house.attachCollisionBox(houseCollisionBox);
     house.setVisibility(true);
     groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_HOUSE, house);
+
+    WorldObject hoe = WorldObject(1800,2100,80,80,nullptr);
+    TriggerZone hoeTriggerZone = TriggerZone(1800,2100,80,80,true);
+    hoe.attachTriggerZone(hoeTriggerZone);
+    hoe.setVisibility(true);
+	hoe.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_PICKUPABLE);
+    groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_HOE, hoe);
 
     WorldObject wateringCan = WorldObject(1900,2100,80,80,nullptr);
     TriggerZone wateringCanTriggerZone = TriggerZone(1900,2100,80,80,true);
@@ -253,7 +253,14 @@ void FarmScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::Render
     }
     else if(wasAliceDrawnMovingLastFrame == true)
     {
+        groundTileMap.draw(windowToDrawIn);
         alice.drawAndUpdateSprite(windowToDrawIn, numberOfMillisecondsSinceLastUpdate);
+        displaysTheWordDay.draw(windowToDrawIn);
+        dayNumberDisplay.draw(windowToDrawIn);
+        displaysAMoneySign.draw(windowToDrawIn);
+        moneyDisplay.draw(windowToDrawIn);
+        marketButton.draw(windowToDrawIn);
+    	mainMenuButton.draw(windowToDrawIn);
         wasAliceDrawnMovingLastFrame = false;
     }
 }

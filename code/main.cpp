@@ -83,12 +83,17 @@ int main()
     OAEAnimationBank animationBankForApplication = initializeOAEAnimationBank(textureBankForApplication);
 
     //MUSIC VARS
-    sf::Music mainMenuMusic;
-    if(!(mainMenuMusic.openFromFile("../music/main_menu_music.wav")))
+    sf::Music mainMenuMusicStart;
+    if(!(mainMenuMusicStart.openFromFile("../music/main_menu_music_start.wav")))
     {
-        std::cout << "Failed to open music music/main_menu_music.wav" << std::endl;
+        std::cout << "Failed to open music music/main_menu_music_start.wav" << std::endl;
     }
-    mainMenuMusic.play();
+    sf::Music mainMenuMusicMain;
+    if(!(mainMenuMusicMain.openFromFile("../music/main_menu_music_main.wav")))
+    {
+        std::cout << "Failed to open music music/main_menu_music_main.wav" << std::endl;
+    }
+    mainMenuMusicStart.play();
 
     //SCREEN STATE MACHINE VARS
     ScreenEnum screenDisplayedOnLastIteration = NULL_SCREEN;
@@ -113,12 +118,18 @@ int main()
         switch(currentScreenToDisplay)
         {
             case MAIN_MENU_SCREEN:
+				if((mainMenuMusicMain.getStatus() == sf::SoundSource::Stopped) && (mainMenuMusicStart.getStatus() == sf::SoundSource::Stopped))
+				{
+					mainMenuMusicMain.play();
+				}
                 if(mainMenuScreenVar.returnSavegameThatShouldBeLoadedReturnsZeroIfNoSavegameIsChosenYet() == 0)
                 {
                     pointerToCurrentlyActiveScreen = &mainMenuScreenVar;
                 }
                 else
                 {
+					mainMenuMusicStart.stop();
+					mainMenuMusicMain.stop();
                     SaveFile fileToLoad = SaveGameHelper::loadSaveFile(mainMenuScreenVar.returnSavegameThatShouldBeLoadedReturnsZeroIfNoSavegameIsChosenYet());
                     mainMenuScreenVar.acknowledgeSavegameChoice();
 					farmScreenVar.loadSaveFile(fileToLoad);
@@ -136,6 +147,7 @@ int main()
                 }
 				else if(farmScreenVar.returnIfShouldSwitchToMainMenuScreen())
 				{
+					mainMenuMusicMain.play();
 					pointerToCurrentlyActiveScreen = &mainMenuScreenVar;
 					currentScreenToDisplay = MAIN_MENU_SCREEN;
 					farmScreenVar.acknowledgeShouldSwitchToMainMenuScreen();
