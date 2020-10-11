@@ -93,6 +93,12 @@ void MainMenuScreen::forceFullDraw(sf::RenderWindow& windowToDrawIn)
     }
 }
 
+void MainMenuScreen::associateWithTexturesInBank(const TextureBank& textureBankToTakeFrom)
+{
+	startGameScreenVar.associateWithTexturesInBank(textureBankToTakeFrom);
+	creditsScreenVar.associateWithTexturesInBank(textureBankToTakeFrom);
+}
+
 void MainMenuScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::RenderWindow& window)
 {
 

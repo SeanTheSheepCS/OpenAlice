@@ -23,6 +23,8 @@ class MainMenuScreen: public OAEScreen
         void forceFullDraw(sf::RenderWindow& windowToDrawIn);
         void update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::RenderWindow& window);
 
+        void associateWithTexturesInBank(const TextureBank& textureBankToTakeFrom);
+
         //Function to signal when savegame should be loaded.
         int returnSavegameThatShouldBeLoadedReturnsZeroIfNoSavegameIsChosenYet();
         void acknowledgeSavegameChoice();

@@ -45,6 +45,7 @@ TextureBank initializeTextureBank()
     addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_WORLD_OBJECT_HOUSE, "house.png", &returnValue);
     addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_WORLD_OBJECT_WELL, "well.png", &returnValue);
     addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_WORLD_OBJECT_WATERING_CAN, "watering_can.png", &returnValue);
+    addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_WINDOW_X, "x_icon.png", &returnValue);
     return returnValue;
 }
 
@@ -98,7 +99,9 @@ int main()
     //SCREEN STATE MACHINE VARS
     ScreenEnum screenDisplayedOnLastIteration = NULL_SCREEN;
     ScreenEnum currentScreenToDisplay = MAIN_MENU_SCREEN;
+
     MainMenuScreen mainMenuScreenVar(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+    mainMenuScreenVar.associateWithTexturesInBank(textureBankForApplication);
 
     FarmScreen farmScreenVar(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
     farmScreenVar.associateWithTexturesInBank(textureBankForApplication);

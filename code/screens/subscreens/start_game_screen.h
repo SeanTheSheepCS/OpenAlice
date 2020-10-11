@@ -3,6 +3,8 @@
 
 #include <SFML/Graphics.hpp>
 #include "../oae_screen.h"
+#include "../../reference_number_enums.h"
+#include "../../texture_bank.h"
 #include "../../engine/primitive_classes/textured_object.h"
 #include "../../engine/primitive_classes/textured_button_object.h"
 
@@ -17,6 +19,8 @@ class StartGameScreen: public OAEScreen
         //Functions for a start game screen specifically
         bool hasCloseScreenRequestBeenMade();
         void acknowledgeCloseScreenRequest();
+
+        void associateWithTexturesInBank(const TextureBank& textureBankToTakeFrom);
 
         int whichSaveGameHasBeenChosenReturnsZeroIfNoSavegameHasBeenChosen();
         void acknowledgeChosenSavegame();
