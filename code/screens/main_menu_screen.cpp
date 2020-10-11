@@ -97,6 +97,9 @@ void MainMenuScreen::associateWithTexturesInBank(const TextureBank& textureBankT
 {
 	startGameScreenVar.associateWithTexturesInBank(textureBankToTakeFrom);
 	creditsScreenVar.associateWithTexturesInBank(textureBankToTakeFrom);
+    startGameButton.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_MAIN_MENU_SCREEN_SELECT_GAME_BUTTON));
+    creditsButton.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_MAIN_MENU_SCREEN_CREDITS_BUTTON));
+    exitGameButton.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_MAIN_MENU_SCREEN_EXIT_BUTTON));
 }
 
 void MainMenuScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::RenderWindow& window)
