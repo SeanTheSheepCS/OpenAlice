@@ -126,8 +126,6 @@ void FarmScreen::handleItemUseEvent(sf::RenderWindow& windowToDrawIn)
 	switch(alice.returnReferenceNumberOfHeldObject())
 	{
 		case WORLD_OBJECT_REF_NUMBER_HOE:
-			std::cout << "ROW: " << rowToUseItemOn << std::endl;
-			std::cout << "COL: " << colToUseItemOn << std::endl;
 			if(groundTileMap.getReferenceNumberAtIndices(rowToUseItemOn, colToUseItemOn) == TEXTURE_BANK_REF_NUMBER_IN_BOUNDS_GRASS)
 			{
 				groundTileMap.setTileAtIndicesToReferenceNumberAndPartialDraw(rowToUseItemOn, colToUseItemOn, TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT, windowToDrawIn);
