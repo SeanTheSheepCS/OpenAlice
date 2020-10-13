@@ -64,6 +64,7 @@ class TileMap: public DrawableObject
 
         void drawTileAtRowAndColInWindow(int row, int col, sf::RenderWindow& windowToDrawIn); //Helper function for draw(...) and setTileAtIndicesToReferenceNumberAndPartialDraw(...).
         void drawWorldObjects(sf::RenderWindow& windowToDrawIn); //Helper function for draw(...)
+		int roundFloat(float floatToRound); //Helper function for getRowAndColOfTileNearestToDrawableObject(...)
 
         int offsetToMakeScreenStartCenteredX;
         int offsetToMakeScreenStartCenteredY;

@@ -13,6 +13,9 @@ class DrawableObject
         unsigned int getWidth() const;
         unsigned int getHeight() const;
 
+		int getCentreX() const;
+		int getCentreY() const;
+
 	    void setX(int newX);
 	    void setY(int newY);
 	    void setWidth(unsigned int newWidth);

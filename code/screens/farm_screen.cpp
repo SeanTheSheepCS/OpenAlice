@@ -120,7 +120,43 @@ void FarmScreen::handlePickUpEvent(sf::RenderWindow& windowToDrawIn)
 
 void FarmScreen::handleItemUseEvent(sf::RenderWindow& windowToDrawIn)
 {
-	//
+	std::pair<int, int> rowAndCol = groundTileMap.getRowAndColOfTileNearestToDrawableObject(alice);
+	int rowToUseItemOn = rowAndCol.first;
+	int colToUseItemOn = rowAndCol.second;
+	switch(alice.returnReferenceNumberOfHeldObject())
+	{
+		case WORLD_OBJECT_REF_NUMBER_HOE:
+			std::cout << "ROW: " << rowToUseItemOn << std::endl;
+			std::cout << "COL: " << colToUseItemOn << std::endl;
+			if(groundTileMap.getReferenceNumberAtIndices(rowToUseItemOn, colToUseItemOn) == TEXTURE_BANK_REF_NUMBER_IN_BOUNDS_GRASS)
+			{
+				groundTileMap.setTileAtIndicesToReferenceNumberAndPartialDraw(rowToUseItemOn, colToUseItemOn, TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT, windowToDrawIn);
+    			alice.draw(windowToDrawIn);
+    			displaysTheWordDay.draw(windowToDrawIn);
+    			dayNumberDisplay.draw(windowToDrawIn);
+    			displaysAMoneySign.draw(windowToDrawIn);
+    			moneyDisplay.draw(windowToDrawIn);
+    			marketButton.draw(windowToDrawIn);
+    			mainMenuButton.draw(windowToDrawIn);
+			}
+			break;
+		case WORLD_OBJECT_REF_NUMBER_WATERING_CAN:
+			if(groundTileMap.getReferenceNumberAtIndices(rowToUseItemOn, colToUseItemOn) == TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT)
+			{
+				groundTileMap.setTileAtIndicesToReferenceNumberAndPartialDraw(rowToUseItemOn, colToUseItemOn, TEXTURE_BANK_REF_NUMBER_WATERED_TILLED_DIRT, windowToDrawIn);
+    			alice.draw(windowToDrawIn);
+    			displaysTheWordDay.draw(windowToDrawIn);
+    			dayNumberDisplay.draw(windowToDrawIn);
+    			displaysAMoneySign.draw(windowToDrawIn);
+    			moneyDisplay.draw(windowToDrawIn);
+    			marketButton.draw(windowToDrawIn);
+    			mainMenuButton.draw(windowToDrawIn);
+			}
+			break;
+		default:
+			//
+			break;
+	}
 }
 
 void FarmScreen::associateWithTexturesInBank(const TextureBank& textureBankToTakeFrom)

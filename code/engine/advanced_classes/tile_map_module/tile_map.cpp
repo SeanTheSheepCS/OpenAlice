@@ -333,14 +333,18 @@ bool TileMap::returnTrueIfDrawableObjectIntersectsWithAnyCollisionBoxes(const Dr
 	return false;
 }
 
-std::pair<int, int> TileMap::getRowAndColOfTileNearestToDrawableObject(const DrawableObject& objectToCheckProximityOf)
+std::pair<int, int> TileMap::getRowAndColOfTileNearestToDrawableObject(const DrawableObject& objectToCheckProximityOfInScreenCoordinates)
 {
 	std::pair<int, int> returnValue;
-	int chosenRow = 0;
-	int chosenCol = 0;
-	//TODO
-	returnValue.first = chosenRow;
-	returnValue.second = chosenCol;
+
+	int objectWorldCentreX = screenXToWorldX(objectToCheckProximityOfInScreenCoordinates.getX());
+	int objectWorldCentreY = screenYToWorldY(objectToCheckProximityOfInScreenCoordinates.getY());
+
+	float exactTileRow = ((float)objectWorldCentreX)/((float)tileHeight);
+	float exactTileCol = ((float)objectWorldCentreY)/((float)tileWidth);
+
+	returnValue.first = roundFloat(exactTileRow);
+	returnValue.second = roundFloat(exactTileCol);
 	return returnValue;
 }
 
@@ -361,4 +365,18 @@ int TileMap::screenYToWorldY(int screenY)
 int TileMap::worldYToScreenY(int worldY)
 {
     return y + worldY + (((float) tileHeight)*centreOffsetTileCountY) - this->offsetToMakeScreenStartCenteredY;
+}
+
+int TileMap::roundFloat(float floatToRound) //Helper function for getRowAndColOfTileNearestToDrawableObject(...)
+{
+	int bottomRoundingNumber = (int)floatToRound;
+	int topRoundingNumber = ((int)floatToRound)+1;
+	if((floatToRound - 0.5) < bottomRoundingNumber)
+	{
+		return bottomRoundingNumber;
+	}
+	else
+	{
+		return topRoundingNumber;
+	}
 }

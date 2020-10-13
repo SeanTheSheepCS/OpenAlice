@@ -28,6 +28,16 @@ unsigned int DrawableObject::getHeight() const
     return height;
 }
 
+int DrawableObject::getCentreX() const
+{
+	return (x+(width/2));
+}
+
+int DrawableObject::getCentreY() const
+{
+	return (y+(height/2));
+}
+
 void DrawableObject::setX(int newX)
 {
     this->x = newX;
