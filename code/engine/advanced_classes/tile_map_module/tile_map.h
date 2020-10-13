@@ -37,7 +37,7 @@ class TileMap: public DrawableObject
         void changeCentreOffsetTileCountXByAmount(float amountToChangeCentreOffsetTileCountXBy);
         void changeCentreOffsetTileCountYByAmount(float amountToChangeCentreOffsetTileCountYBy);
 
-        //FOR ADDING AND REMOVING AND MANIPULATING WORLD OBJECTS
+        //FOR ADDING AND REMOVING AND MANIPULATING WORLD OBJECTS USING THE MAP
         void addWorldObjectWithReferenceNumber(int referenceNumber, WorldObject objectToAdd);
         void addWorldObjectWithReferenceNumber(int referenceNumber, WorldObject objectToAdd, int screenX, int screenY);
         void removeWorldObjectWithReferenceNumber(int referenceNumber);

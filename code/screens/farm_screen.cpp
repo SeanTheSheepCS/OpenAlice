@@ -151,6 +151,25 @@ void FarmScreen::handleItemUseEvent(sf::RenderWindow& windowToDrawIn)
     			mainMenuButton.draw(windowToDrawIn);
 			}
 			break;
+		case WORLD_OBJECT_REF_NUMBER_TOMATO_SEED_PACKET_ONE:
+			if((groundTileMap.getReferenceNumberAtIndices(rowToUseItemOn, colToUseItemOn) == TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT) || (groundTileMap.getReferenceNumberAtIndices(rowToUseItemOn, colToUseItemOn) == TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT))
+			{
+				//
+    			alice.draw(windowToDrawIn);
+    			displaysTheWordDay.draw(windowToDrawIn);
+    			dayNumberDisplay.draw(windowToDrawIn);
+    			displaysAMoneySign.draw(windowToDrawIn);
+    			moneyDisplay.draw(windowToDrawIn);
+    			marketButton.draw(windowToDrawIn);
+    			mainMenuButton.draw(windowToDrawIn);
+			}
+			break;
+		case WORLD_OBJECT_REF_NUMBER_CUCUMBER_SEED_PACKET_ONE:
+			//
+			break;
+		case WORLD_OBJECT_REF_NUMBER_CARROT_SEED_PACKET_ONE:
+			//
+			break;
 		default:
 			//
 			break;
@@ -219,6 +238,9 @@ void FarmScreen::initializeWorldObjectsInGroundTileMap()
 	wateringCan.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_PICKUPABLE);
     groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_WATERING_CAN, wateringCan);
 
+	WorldObject initialTomatoSeeds = WorldObject(1800,2000,40,40,nullptr);
+	TriggerZone initialTomatoSeedsTriggerZone = TriggerZone(1800,2000,40,40,true);
+
 	WorldObject topBorder = WorldObject(0,0,4000,500,nullptr);
 	CollisionBox topBorderCollisionBox = CollisionBox(0,0,4000,500,true);
 	topBorder.attachCollisionBox(topBorderCollisionBox);
@@ -242,6 +264,7 @@ void FarmScreen::initializeWorldObjectsInGroundTileMap()
 	bottomBorder.attachCollisionBox(bottomBorderCollisionBox);
 	bottomBorder.setVisibility(false);
 	groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_BOTTOM_BORDER_COLLISION_BOX, bottomBorder);
+
 }
 
 void FarmScreen::forceFullDraw(sf::RenderWindow& windowToDrawIn)
