@@ -51,7 +51,7 @@ An open source game heavily inspired by the 2007 game Alice Greenfingers.
  </ul> 
 <h4> Sprites + Animation </h4>
  <ul>
-  <li> Sprites for main menu</li>
+  <li> <s> Sprites for main menu </s> </li>
   <li> Sprites for game select </li>
   <li> Sprite for carrots at each stage of growth </li>
  </ul> 
