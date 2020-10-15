@@ -15,7 +15,6 @@ void Alice::pickUpObject(int referenceNumberOfObjectToPickUp, TileMap& tileMapYo
 
 void Alice::putDownObject(TileMap& tileMapToPutItDownIn)
 {
-
 	if(((this->heldWorldObject).isInvalid()) || (this->referenceNumberOfHeldWorldObject == WORLD_OBJECT_REF_NUMBER_INVALID))
 	{
 		return;
@@ -28,7 +27,7 @@ void Alice::putDownObject(TileMap& tileMapToPutItDownIn)
     }
 }
 
-bool Alice::isHoldingObject()
+bool Alice::isHoldingObject() const
 {
     if(((this->heldWorldObject).isInvalid()) || (referenceNumberOfHeldWorldObject == WORLD_OBJECT_REF_NUMBER_INVALID))
     {
@@ -40,7 +39,12 @@ bool Alice::isHoldingObject()
     }
 }
 
-int Alice::returnReferenceNumberOfHeldObject()
+int Alice::returnReferenceNumberOfHeldObject() const
 {
     return referenceNumberOfHeldWorldObject;
+}
+
+const std::vector<WorldObjectProperty> Alice::returnPropertiesOfHeldWorldObject() const
+{
+	return heldWorldObject.getProperties();
 }

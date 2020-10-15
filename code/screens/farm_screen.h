@@ -64,6 +64,7 @@ class FarmScreen: public OAEScreen
         TexturedButtonObject marketButton;
         TexturedButtonObject mainMenuButton;
         TileMap groundTileMap;
+		TileMap plantTileMap;
         Alice alice;
 };
 

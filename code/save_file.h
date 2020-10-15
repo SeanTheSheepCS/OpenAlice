@@ -18,17 +18,17 @@ class SaveFile
 		~SaveFile();
 		SaveFile& operator=(const SaveFile& rhs);
 		bool isEmpty() const;
-		int getReferenceNumberAtRowAndCol(unsigned int row, unsigned int col) const;
-		unsigned int getReferenceNumberTwoDArrayRowCount() const;
-		unsigned int getReferenceNumberTwoDArrayColCount() const;
+		int getReferenceNumberAtRowAndColGroundTileMap(unsigned int row, unsigned int col) const;
+		unsigned int getReferenceNumberTwoDArrayRowCountGroundTileMap() const;
+		unsigned int getReferenceNumberTwoDArrayColCountGroundTileMap() const;
     protected:
         //
     private:
 		void deleteSaveFile(); //Helper function for ~SaveFile and operator=
         bool isEmptySaveFileFlag;
-		int** referenceNumberTwoDArray;
-		unsigned int referenceNumberTwoDArrayRowCount;
-		unsigned int referenceNumberTwoDArrayColCount;
+		int** referenceNumberTwoDArrayGroundTileMap;
+		unsigned int referenceNumberTwoDArrayRowCountGroundTileMap;
+		unsigned int referenceNumberTwoDArrayColCountGroundTileMap;
 };
 
 #endif

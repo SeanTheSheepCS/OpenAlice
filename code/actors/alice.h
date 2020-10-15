@@ -25,8 +25,9 @@ class Alice: public PlayerObject
         Alice(int x, int y, unsigned int width, unsigned int height);
         void pickUpObject(int referenceNumberOfObjectToPickUp, TileMap& tileMapYouPickedItUpFrom);
         void putDownObject(TileMap& tileMapToPutItDownIn);
-        bool isHoldingObject();
-       	int returnReferenceNumberOfHeldObject();
+        bool isHoldingObject() const;
+       	int returnReferenceNumberOfHeldObject() const;
+		const std::vector<WorldObjectProperty> returnPropertiesOfHeldWorldObject() const;
     protected:
         //
     private:

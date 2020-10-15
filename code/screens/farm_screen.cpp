@@ -10,10 +10,13 @@ FarmScreen::FarmScreen(int x, int y, unsigned int width, unsigned int height):
     mainMenuButton(x, y+(height*0.9), width*0.3, height*0.1, nullptr), 
     marketButton(x+(width*0.7), y+(height*0.9), width*0.3, height*0.1, nullptr),
     groundTileMap(x, y+(height*0.1), width, (height*0.9), 40, 40),
+	plantTileMap(x, y+(height*0.1), width, (height*0.9), 40, 40),
     alice(x+(width*0.45), y+(height*0.4), width*0.1, height*0.2)
 {
     shouldSwitchToMainMenuScreenFlag = false;
     shouldSwitchToMarketScreenFlag = false;
+	plantTileMap.setTileWidth(100);
+	plantTileMap.setTileHeight(100);
     groundTileMap.setTileWidth(100);
     groundTileMap.setTileHeight(100);
     initializeWorldObjectsInGroundTileMap();
@@ -123,56 +126,57 @@ void FarmScreen::handleItemUseEvent(sf::RenderWindow& windowToDrawIn)
 	std::pair<int, int> rowAndCol = groundTileMap.getRowAndColOfTileNearestToDrawableObject(alice);
 	int rowToUseItemOn = rowAndCol.first;
 	int colToUseItemOn = rowAndCol.second;
-	switch(alice.returnReferenceNumberOfHeldObject())
+	std::vector<WorldObjectProperty> worldObjectPropertiesOfTheObjectAliceIsHolding = alice.returnPropertiesOfHeldWorldObject();
+	for(int i = 0; i < worldObjectPropertiesOfTheObjectAliceIsHolding.size(); i++)
 	{
-		case WORLD_OBJECT_REF_NUMBER_HOE:
-			if(groundTileMap.getReferenceNumberAtIndices(rowToUseItemOn, colToUseItemOn) == TEXTURE_BANK_REF_NUMBER_IN_BOUNDS_GRASS)
-			{
-				groundTileMap.setTileAtIndicesToReferenceNumberAndPartialDraw(rowToUseItemOn, colToUseItemOn, TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT, windowToDrawIn);
-    			alice.draw(windowToDrawIn);
-    			displaysTheWordDay.draw(windowToDrawIn);
-    			dayNumberDisplay.draw(windowToDrawIn);
-    			displaysAMoneySign.draw(windowToDrawIn);
-    			moneyDisplay.draw(windowToDrawIn);
-    			marketButton.draw(windowToDrawIn);
-    			mainMenuButton.draw(windowToDrawIn);
-			}
-			break;
-		case WORLD_OBJECT_REF_NUMBER_WATERING_CAN:
-			if(groundTileMap.getReferenceNumberAtIndices(rowToUseItemOn, colToUseItemOn) == TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT)
-			{
-				groundTileMap.setTileAtIndicesToReferenceNumberAndPartialDraw(rowToUseItemOn, colToUseItemOn, TEXTURE_BANK_REF_NUMBER_WATERED_TILLED_DIRT, windowToDrawIn);
-    			alice.draw(windowToDrawIn);
-    			displaysTheWordDay.draw(windowToDrawIn);
-    			dayNumberDisplay.draw(windowToDrawIn);
-    			displaysAMoneySign.draw(windowToDrawIn);
-    			moneyDisplay.draw(windowToDrawIn);
-    			marketButton.draw(windowToDrawIn);
-    			mainMenuButton.draw(windowToDrawIn);
-			}
-			break;
-		case WORLD_OBJECT_REF_NUMBER_TOMATO_SEED_PACKET_ONE:
-			if((groundTileMap.getReferenceNumberAtIndices(rowToUseItemOn, colToUseItemOn) == TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT) || (groundTileMap.getReferenceNumberAtIndices(rowToUseItemOn, colToUseItemOn) == TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT))
-			{
+		switch(worldObjectPropertiesOfTheObjectAliceIsHolding.at(i))
+		{
+			case WORLD_OBJECT_PROPERTY_ACTION_TILL:
+				if(groundTileMap.getReferenceNumberAtIndices(rowToUseItemOn, colToUseItemOn) == TEXTURE_BANK_REF_NUMBER_IN_BOUNDS_GRASS)
+				{
+					groundTileMap.setTileAtIndicesToReferenceNumberAndPartialDraw(rowToUseItemOn, colToUseItemOn, TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT, windowToDrawIn);
+    				alice.draw(windowToDrawIn);
+    				displaysTheWordDay.draw(windowToDrawIn);
+    				dayNumberDisplay.draw(windowToDrawIn);
+    				displaysAMoneySign.draw(windowToDrawIn);
+    				moneyDisplay.draw(windowToDrawIn);
+    				marketButton.draw(windowToDrawIn);
+    				mainMenuButton.draw(windowToDrawIn);
+					i = worldObjectPropertiesOfTheObjectAliceIsHolding.size(); //Break out of the outer loop too.
+				}
+				break;
+			case WORLD_OBJECT_PROPERTY_ACTION_WATERCROP:
+				if(groundTileMap.getReferenceNumberAtIndices(rowToUseItemOn, colToUseItemOn) == TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT)
+				{
+					groundTileMap.setTileAtIndicesToReferenceNumberAndPartialDraw(rowToUseItemOn, colToUseItemOn, TEXTURE_BANK_REF_NUMBER_WATERED_TILLED_DIRT, windowToDrawIn);
+    				alice.draw(windowToDrawIn);
+    				displaysTheWordDay.draw(windowToDrawIn);
+    				dayNumberDisplay.draw(windowToDrawIn);
+    				displaysAMoneySign.draw(windowToDrawIn);
+    				moneyDisplay.draw(windowToDrawIn);
+    				marketButton.draw(windowToDrawIn);
+    				mainMenuButton.draw(windowToDrawIn);
+					i = worldObjectPropertiesOfTheObjectAliceIsHolding.size(); //Break out of the outer loop too.
+				}
+				break;
+			case WORLD_OBJECT_PROPERTY_ACTION_PLANT_SEEDS_TOMATO:
 				//
-    			alice.draw(windowToDrawIn);
-    			displaysTheWordDay.draw(windowToDrawIn);
-    			dayNumberDisplay.draw(windowToDrawIn);
-    			displaysAMoneySign.draw(windowToDrawIn);
-    			moneyDisplay.draw(windowToDrawIn);
-    			marketButton.draw(windowToDrawIn);
-    			mainMenuButton.draw(windowToDrawIn);
-			}
-			break;
-		case WORLD_OBJECT_REF_NUMBER_CUCUMBER_SEED_PACKET_ONE:
-			//
-			break;
-		case WORLD_OBJECT_REF_NUMBER_CARROT_SEED_PACKET_ONE:
-			//
-			break;
-		default:
-			//
-			break;
+				if((groundTileMap.getReferenceNumberAtIndices(rowToUseItemOn, colToUseItemOn) == TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT) || (groundTileMap.getReferenceNumberAtIndices(rowToUseItemOn, colToUseItemOn) == TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT))
+				{
+					
+    				alice.draw(windowToDrawIn);
+    				displaysTheWordDay.draw(windowToDrawIn);
+    				dayNumberDisplay.draw(windowToDrawIn);
+    				displaysAMoneySign.draw(windowToDrawIn);
+    				moneyDisplay.draw(windowToDrawIn);
+    				marketButton.draw(windowToDrawIn);
+    				mainMenuButton.draw(windowToDrawIn);
+					i = worldObjectPropertiesOfTheObjectAliceIsHolding.size(); //Break out of the outer loop too.
+				}
+				break;
+			default:
+				break;
+		}
 	}
 }
 
@@ -200,9 +204,13 @@ void FarmScreen::associateWithAnimationsInBank(const OAEAnimationBank& animation
 {
     //ALICE TEXTURE ASSOCIATIONS
     alice.associateReferenceNumberWithAnimationInstance(ANIMATION_BANK_REF_NUMBER_ALICE_DOWN_WALK, OAEAnimationInstance(animationBankToTakeFrom.getAnimationAssociatedWithReferenceNumber(ANIMATION_BANK_REF_NUMBER_ALICE_DOWN_WALK)));
+    alice.associateReferenceNumberWithAnimationInstance(ANIMATION_BANK_REF_NUMBER_ALICE_DOWN_WALK_HOE, OAEAnimationInstance(animationBankToTakeFrom.getAnimationAssociatedWithReferenceNumber(ANIMATION_BANK_REF_NUMBER_ALICE_DOWN_WALK_HOE)));
     alice.associateReferenceNumberWithAnimationInstance(ANIMATION_BANK_REF_NUMBER_ALICE_UP_WALK, OAEAnimationInstance(animationBankToTakeFrom.getAnimationAssociatedWithReferenceNumber(ANIMATION_BANK_REF_NUMBER_ALICE_UP_WALK)));
+    alice.associateReferenceNumberWithAnimationInstance(ANIMATION_BANK_REF_NUMBER_ALICE_UP_WALK_HOE, OAEAnimationInstance(animationBankToTakeFrom.getAnimationAssociatedWithReferenceNumber(ANIMATION_BANK_REF_NUMBER_ALICE_UP_WALK_HOE)));
     alice.associateReferenceNumberWithAnimationInstance(ANIMATION_BANK_REF_NUMBER_ALICE_LEFT_WALK, OAEAnimationInstance(animationBankToTakeFrom.getAnimationAssociatedWithReferenceNumber(ANIMATION_BANK_REF_NUMBER_ALICE_LEFT_WALK)));
+    alice.associateReferenceNumberWithAnimationInstance(ANIMATION_BANK_REF_NUMBER_ALICE_LEFT_WALK_HOE, OAEAnimationInstance(animationBankToTakeFrom.getAnimationAssociatedWithReferenceNumber(ANIMATION_BANK_REF_NUMBER_ALICE_LEFT_WALK_HOE)));
     alice.associateReferenceNumberWithAnimationInstance(ANIMATION_BANK_REF_NUMBER_ALICE_RIGHT_WALK, OAEAnimationInstance(animationBankToTakeFrom.getAnimationAssociatedWithReferenceNumber(ANIMATION_BANK_REF_NUMBER_ALICE_RIGHT_WALK)));
+    alice.associateReferenceNumberWithAnimationInstance(ANIMATION_BANK_REF_NUMBER_ALICE_RIGHT_WALK_HOE, OAEAnimationInstance(animationBankToTakeFrom.getAnimationAssociatedWithReferenceNumber(ANIMATION_BANK_REF_NUMBER_ALICE_RIGHT_WALK_HOE)));
     alice.setCurrentAnimationInstanceReferenceNumber(ANIMATION_BANK_REF_NUMBER_ALICE_DOWN_WALK); //SETS DEFAULT TEXTURE FOR ALICE
 }
 
@@ -214,6 +222,7 @@ void FarmScreen::initializeWorldObjectsInGroundTileMap()
     well.attachTriggerZone(wellTriggerZone);
 	well.attachCollisionBox(wellCollisionBox);
     well.setVisibility(true);
+	well.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_ACTION_FILL_WATER_CONTAINER);
     groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_WELL, well);
 
     WorldObject house = WorldObject(2100,1800,300,200,nullptr);
@@ -222,6 +231,7 @@ void FarmScreen::initializeWorldObjectsInGroundTileMap()
     house.attachTriggerZone(houseTriggerZone);
 	house.attachCollisionBox(houseCollisionBox);
     house.setVisibility(true);
+	house.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_ACTION_SLEEP);
     groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_HOUSE, house);
 
     WorldObject hoe = WorldObject(1800,2100,80,80,nullptr);
@@ -229,6 +239,7 @@ void FarmScreen::initializeWorldObjectsInGroundTileMap()
     hoe.attachTriggerZone(hoeTriggerZone);
     hoe.setVisibility(true);
 	hoe.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_PICKUPABLE);
+	hoe.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_ACTION_TILL);
     groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_HOE, hoe);
 
     WorldObject wateringCan = WorldObject(1900,2100,80,80,nullptr);
@@ -236,10 +247,20 @@ void FarmScreen::initializeWorldObjectsInGroundTileMap()
     wateringCan.attachTriggerZone(wateringCanTriggerZone);
     wateringCan.setVisibility(true);
 	wateringCan.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_PICKUPABLE);
+	wateringCan.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_ACTION_WATERCROP);
+	wateringCan.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_CAPACITY_10);
+	wateringCan.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_CURRENT_USES_LEFT_10);
     groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_WATERING_CAN, wateringCan);
 
 	WorldObject initialTomatoSeeds = WorldObject(1800,2000,40,40,nullptr);
 	TriggerZone initialTomatoSeedsTriggerZone = TriggerZone(1800,2000,40,40,true);
+    initialTomatoSeeds.attachTriggerZone(initialTomatoSeedsTriggerZone);
+    initialTomatoSeeds.setVisibility(true);
+	initialTomatoSeeds.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_PICKUPABLE);
+	initialTomatoSeeds.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_ACTION_PLANT_SEEDS_TOMATO);
+	initialTomatoSeeds.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_CAPACITY_10);
+	initialTomatoSeeds.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_CURRENT_USES_LEFT_10);
+    groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_TOMATO_SEED_PACKET_ONE, initialTomatoSeeds);
 
 	WorldObject topBorder = WorldObject(0,0,4000,500,nullptr);
 	CollisionBox topBorderCollisionBox = CollisionBox(0,0,4000,500,true);
@@ -409,11 +430,11 @@ void FarmScreen::loadSaveFile(const SaveFile& saveFileToLoad)
 {
 	if(saveFileToLoad.isEmpty())
 	{
-		for(unsigned int i = 0; i < saveFileToLoad.getReferenceNumberTwoDArrayRowCount(); i++)
+		for(unsigned int i = 0; i < saveFileToLoad.getReferenceNumberTwoDArrayRowCountGroundTileMap(); i++)
 		{
-			for(unsigned int j = 0; j < saveFileToLoad.getReferenceNumberTwoDArrayColCount(); j++)
+			for(unsigned int j = 0; j < saveFileToLoad.getReferenceNumberTwoDArrayColCountGroundTileMap(); j++)
 			{
-    			groundTileMap.setReferenceNumberAtIndicesAndDoNotPartialDraw(i,j, saveFileToLoad.getReferenceNumberAtRowAndCol(i,j));
+    			groundTileMap.setReferenceNumberAtIndicesAndDoNotPartialDraw(i,j, saveFileToLoad.getReferenceNumberAtRowAndColGroundTileMap(i,j));
 			}
 		}
 	}
