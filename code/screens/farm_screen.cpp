@@ -344,31 +344,65 @@ void FarmScreen::acknowledgeShouldSwitchToMainMenuScreen()
 
 void FarmScreen::associateAliceWithCorrectAnimation() //HELPER FUNCTION FOR UPDATE
 {
-    if(alice.getXMovementAmount() < 0)
-    {
-        alice.setCurrentAnimationInstanceReferenceNumber(ANIMATION_BANK_REF_NUMBER_ALICE_RIGHT_WALK);
-        alice.setCurrentTextureReferenceNumber(TEXTURE_BANK_REF_NUMBER_ALICE_RIGHT_BASE);
-    }
-    else if(alice.getXMovementAmount() > 0)
-    {
-        alice.setCurrentAnimationInstanceReferenceNumber(ANIMATION_BANK_REF_NUMBER_ALICE_LEFT_WALK);
-        alice.setCurrentTextureReferenceNumber(TEXTURE_BANK_REF_NUMBER_ALICE_LEFT_BASE);
-    }
-    else if(alice.getYMovementAmount() < 0)
-    {
-        alice.setCurrentAnimationInstanceReferenceNumber(ANIMATION_BANK_REF_NUMBER_ALICE_DOWN_WALK);
-        alice.setCurrentTextureReferenceNumber(TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_BASE);
-    }
-    else if(alice.getYMovementAmount() > 0)
-    {
-        alice.setCurrentAnimationInstanceReferenceNumber(ANIMATION_BANK_REF_NUMBER_ALICE_UP_WALK);
-        alice.setCurrentTextureReferenceNumber(TEXTURE_BANK_REF_NUMBER_ALICE_UP_BASE);
-    }
-    else
-    {
-        alice.setCurrentAnimationInstanceReferenceNumber(ANIMATION_BANK_REF_NUMBER_ALICE_DOWN_WALK);
-        alice.setCurrentTextureReferenceNumber(TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_BASE);
-    }
+	switch(alice.returnReferenceNumberOfHeldObject())
+	{
+		case WORLD_OBJECT_REF_NUMBER_HOE:
+    		if(alice.getXMovementAmount() < 0)
+    		{
+    		    alice.setCurrentAnimationInstanceReferenceNumber(ANIMATION_BANK_REF_NUMBER_ALICE_RIGHT_WALK_HOE);
+    		    alice.setCurrentTextureReferenceNumber(TEXTURE_BANK_REF_NUMBER_ALICE_RIGHT_BASE_HOE);
+    		}
+    		else if(alice.getXMovementAmount() > 0)
+    		{
+    		    alice.setCurrentAnimationInstanceReferenceNumber(ANIMATION_BANK_REF_NUMBER_ALICE_LEFT_WALK_HOE);
+    		    alice.setCurrentTextureReferenceNumber(TEXTURE_BANK_REF_NUMBER_ALICE_LEFT_BASE_HOE);
+    		}
+    		else if(alice.getYMovementAmount() < 0)
+    		{
+    		    alice.setCurrentAnimationInstanceReferenceNumber(ANIMATION_BANK_REF_NUMBER_ALICE_DOWN_WALK_HOE);
+    		    alice.setCurrentTextureReferenceNumber(TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_BASE_HOE);
+    		}
+    		else if(alice.getYMovementAmount() > 0)
+    		{
+    		    alice.setCurrentAnimationInstanceReferenceNumber(ANIMATION_BANK_REF_NUMBER_ALICE_UP_WALK_HOE);
+    		    alice.setCurrentTextureReferenceNumber(TEXTURE_BANK_REF_NUMBER_ALICE_UP_BASE_HOE);
+    		}
+    		else
+    		{
+    		    alice.setCurrentAnimationInstanceReferenceNumber(ANIMATION_BANK_REF_NUMBER_ALICE_DOWN_WALK_HOE);
+    		    alice.setCurrentTextureReferenceNumber(TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_BASE_HOE);
+    		}
+			break;
+		case WORLD_OBJECT_REF_NUMBER_INVALID:
+    		if(alice.getXMovementAmount() < 0)
+    		{
+    		    alice.setCurrentAnimationInstanceReferenceNumber(ANIMATION_BANK_REF_NUMBER_ALICE_RIGHT_WALK);
+    		    alice.setCurrentTextureReferenceNumber(TEXTURE_BANK_REF_NUMBER_ALICE_RIGHT_BASE);
+    		}
+    		else if(alice.getXMovementAmount() > 0)
+    		{
+    		    alice.setCurrentAnimationInstanceReferenceNumber(ANIMATION_BANK_REF_NUMBER_ALICE_LEFT_WALK);
+    		    alice.setCurrentTextureReferenceNumber(TEXTURE_BANK_REF_NUMBER_ALICE_LEFT_BASE);
+    		}
+    		else if(alice.getYMovementAmount() < 0)
+    		{
+    		    alice.setCurrentAnimationInstanceReferenceNumber(ANIMATION_BANK_REF_NUMBER_ALICE_DOWN_WALK);
+    		    alice.setCurrentTextureReferenceNumber(TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_BASE);
+    		}
+    		else if(alice.getYMovementAmount() > 0)
+    		{
+    		    alice.setCurrentAnimationInstanceReferenceNumber(ANIMATION_BANK_REF_NUMBER_ALICE_UP_WALK);
+    		    alice.setCurrentTextureReferenceNumber(TEXTURE_BANK_REF_NUMBER_ALICE_UP_BASE);
+    		}
+    		else
+    		{
+    		    alice.setCurrentAnimationInstanceReferenceNumber(ANIMATION_BANK_REF_NUMBER_ALICE_DOWN_WALK);
+    		    alice.setCurrentTextureReferenceNumber(TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_BASE);
+    		}
+			break;
+		default:
+			break;
+	}
 }
 
 void FarmScreen::loadSaveFile(const SaveFile& saveFileToLoad)

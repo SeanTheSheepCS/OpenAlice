@@ -17,7 +17,6 @@
 
 #define DEFAULT_ANIMATION_SPEED 300
 
-TextureBank initializeTextureBank();
 OAEAnimationBank initializeOAEAnimationBank();
 
 #endif
