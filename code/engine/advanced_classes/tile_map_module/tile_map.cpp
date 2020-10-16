@@ -267,14 +267,17 @@ void TileMap::deleteTileMap() //Helper function for ~TileMap() and TileMap& oper
 
 void TileMap::drawTileAtRowAndColInWindow(int row, int col, sf::RenderWindow& windowToDrawIn)
 {
-    int tileX = worldXToScreenX(tileWidth*row);
-    int tileY = worldYToScreenY(tileHeight*col);
-    if( (tileX >= (x-(tileWidth))) && (tileX <= (x + ((int)width))) && (tileY >= (y-tileHeight)) && (tileY <= (y + ((int)height))))
-    {
-        const sf::Texture* textureToUse = referenceNumberToTexturePointerMap[getReferenceNumberAtIndices(row, col)];
-        TexturedObject objectToDraw = TexturedObject(tileX, tileY, tileWidth, tileHeight, textureToUse);
-        objectToDraw.draw(windowToDrawIn);
-    }
+	if(getReferenceNumberAtIndices(row, col) != 0)
+	{
+    	int tileX = worldXToScreenX(tileWidth*row);
+    	int tileY = worldYToScreenY(tileHeight*col);
+    	if( (tileX >= (x-(tileWidth))) && (tileX <= (x + ((int)width))) && (tileY >= (y-tileHeight)) && (tileY <= (y + ((int)height))))
+    	{
+    	    const sf::Texture* textureToUse = referenceNumberToTexturePointerMap[getReferenceNumberAtIndices(row, col)];
+    	    TexturedObject objectToDraw = TexturedObject(tileX, tileY, tileWidth, tileHeight, textureToUse);
+    	    objectToDraw.draw(windowToDrawIn);
+    	}
+	}
 }
 
 void TileMap::drawWorldObjects(sf::RenderWindow& windowToDrawIn) //Helper function for draw(...)

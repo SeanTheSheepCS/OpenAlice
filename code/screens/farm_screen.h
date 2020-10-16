@@ -52,6 +52,8 @@ class FarmScreen: public OAEScreen
         void associateAliceWithCorrectAnimation(); //HELPER FUNCTION FOR UPDATE
 		void handlePickUpEvent(sf::RenderWindow& windowToDrawIn); //HELPER FUNCTION FOR HANDLEEVENT
 		void handleItemUseEvent(sf::RenderWindow& windowToDrawIn); //HELPER FUNCTION FOR HANDLEEVENT
+		void drawAllObjectsALayerBelowAlice(sf::RenderWindow& windowToDrawIn); //HELPER FUNCTION FOR A LOT OF FUNCTIONS
+		void drawAllObjectsALayerAboveAlice(sf::RenderWindow& windowToDrawIn); //HELPER FUNCTION FOR A LOT OF FUNCTIONS
 
         bool shouldSwitchToMarketScreenFlag;
         bool shouldSwitchToMainMenuScreenFlag;

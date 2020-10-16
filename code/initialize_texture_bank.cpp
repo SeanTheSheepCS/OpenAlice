@@ -1,9 +1,24 @@
 #include "initialize_texture_bank.h"
 
+void addTextureToTextureBank(int referenceNumber, std::string path, TextureBank* bankToWriteTo)
+{
+    sf::Texture textureToAdd;
+    std::string fullPath = std::string("../sprites/").append(path);
+    if(!(textureToAdd.loadFromFile(fullPath)))
+    {
+        std::cout << "Failed to load texture: " << fullPath << std::endl;
+        std::string invalidTexturePath = std::string("../sprites/").append("invalid_texture.png");
+        if(!(textureToAdd.loadFromFile(invalidTexturePath)))
+        {
+            std::cout << "Failed to load texture: " << invalidTexturePath << std::endl;
+        }
+    }
+    bankToWriteTo->saveTextureWithReferenceNumber(referenceNumber, textureToAdd);
+}
+
 TextureBank initializeTextureBank()
 {
     TextureBank returnValue;    
-	initializeTextureBankWithTileTextures(returnValue);
     addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_OUT_OF_BOUNDS_GRASS, "grass_out_of_bounds.png", &returnValue);
     addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_IN_BOUNDS_GRASS, "grass.png", &returnValue);
     addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT, "dirt_tilled_unwatered.png", &returnValue);
@@ -38,5 +53,25 @@ TextureBank initializeTextureBank()
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_MAIN_MENU_SCREEN_SAVE_GAME_THREE_BACKGROUND_TEXTURE, "save_three_background.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_MAIN_MENU_SCREEN_DELETE_SAVE_GAME_ICON_TEXTURE, "delete_save_button.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_MAIN_MENU_SCREEN_SELECT_GAME_BACKGROUND, "select_game_screen_picture_frame_background.png", &returnValue);
+
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_ONE_TEXTURE, "tomato_1_raw.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_TWO_TEXTURE, "tomato_2_raw.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_THREE_TEXTURE, "tomato_3_raw.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_FOUR_TEXTURE, "tomato_4_raw.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_FIVE_TEXTURE, "tomato_5_raw.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_SIX_TEXTURE, "tomato_6_raw.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_ONE_TEXTURE, "cucumber_1_raw.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_TWO_TEXTURE, "cucumber_2_raw.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_THREE_TEXTURE, "cucumber_3_raw.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_FOUR_TEXTURE, "cucumber_4_raw.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_FIVE_TEXTURE, "cucumber_5_raw.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_SIX_TEXTURE, "cucumber_6_raw.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_SEVEN_TEXTURE, "cucumber_7_raw.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_EIGHT_TEXTURE, "cucumber_8_raw.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_NINE_TEXTURE, "cucumber_9_raw.png", &returnValue);
+
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_TOMATO_SEED_PACKET_TEXTURE, "tomato_seed_packet.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CUCUMBER_SEED_PACKET_TEXTURE, "cucumber_seed_packet.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CARROT_SEED_PACKET_TEXTURE, "carrot_seed_packet.png", &returnValue);
     return returnValue;
 }

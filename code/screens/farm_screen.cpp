@@ -107,6 +107,10 @@ void FarmScreen::handlePickUpEvent(sf::RenderWindow& windowToDrawIn)
 				hasPickedUpObjectThisTime = true;
 				alice.putDownObject(groundTileMap);
 				alice.pickUpObject(refNum, groundTileMap);
+
+        		associateAliceWithCorrectAnimation(); 
+
+				drawAllObjectsALayerAboveAlice(windowToDrawIn);
 			}
 		}
 		if(alice.isHoldingObject())
@@ -117,6 +121,11 @@ void FarmScreen::handlePickUpEvent(sf::RenderWindow& windowToDrawIn)
 	if(hasPickedUpObjectThisTime == false)
 	{
 		alice.putDownObject(groundTileMap);
+
+       	associateAliceWithCorrectAnimation(); 
+    	alice.draw(windowToDrawIn);
+
+		drawAllObjectsALayerAboveAlice(windowToDrawIn);
 	}
 	this->forceFullDraw(windowToDrawIn);
 }
@@ -135,13 +144,9 @@ void FarmScreen::handleItemUseEvent(sf::RenderWindow& windowToDrawIn)
 				if(groundTileMap.getReferenceNumberAtIndices(rowToUseItemOn, colToUseItemOn) == TEXTURE_BANK_REF_NUMBER_IN_BOUNDS_GRASS)
 				{
 					groundTileMap.setTileAtIndicesToReferenceNumberAndPartialDraw(rowToUseItemOn, colToUseItemOn, TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT, windowToDrawIn);
+        			associateAliceWithCorrectAnimation(); 
     				alice.draw(windowToDrawIn);
-    				displaysTheWordDay.draw(windowToDrawIn);
-    				dayNumberDisplay.draw(windowToDrawIn);
-    				displaysAMoneySign.draw(windowToDrawIn);
-    				moneyDisplay.draw(windowToDrawIn);
-    				marketButton.draw(windowToDrawIn);
-    				mainMenuButton.draw(windowToDrawIn);
+					drawAllObjectsALayerAboveAlice(windowToDrawIn);
 					i = worldObjectPropertiesOfTheObjectAliceIsHolding.size(); //Break out of the outer loop too.
 				}
 				break;
@@ -149,13 +154,9 @@ void FarmScreen::handleItemUseEvent(sf::RenderWindow& windowToDrawIn)
 				if(groundTileMap.getReferenceNumberAtIndices(rowToUseItemOn, colToUseItemOn) == TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT)
 				{
 					groundTileMap.setTileAtIndicesToReferenceNumberAndPartialDraw(rowToUseItemOn, colToUseItemOn, TEXTURE_BANK_REF_NUMBER_WATERED_TILLED_DIRT, windowToDrawIn);
+        			associateAliceWithCorrectAnimation(); 
     				alice.draw(windowToDrawIn);
-    				displaysTheWordDay.draw(windowToDrawIn);
-    				dayNumberDisplay.draw(windowToDrawIn);
-    				displaysAMoneySign.draw(windowToDrawIn);
-    				moneyDisplay.draw(windowToDrawIn);
-    				marketButton.draw(windowToDrawIn);
-    				mainMenuButton.draw(windowToDrawIn);
+					drawAllObjectsALayerAboveAlice(windowToDrawIn);
 					i = worldObjectPropertiesOfTheObjectAliceIsHolding.size(); //Break out of the outer loop too.
 				}
 				break;
@@ -163,14 +164,10 @@ void FarmScreen::handleItemUseEvent(sf::RenderWindow& windowToDrawIn)
 				//
 				if((groundTileMap.getReferenceNumberAtIndices(rowToUseItemOn, colToUseItemOn) == TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT) || (groundTileMap.getReferenceNumberAtIndices(rowToUseItemOn, colToUseItemOn) == TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT))
 				{
-					
+					plantTileMap.setTileAtIndicesToReferenceNumberAndPartialDraw(rowToUseItemOn, colToUseItemOn, TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_ONE_TEXTURE, windowToDrawIn);
+        			associateAliceWithCorrectAnimation(); 
     				alice.draw(windowToDrawIn);
-    				displaysTheWordDay.draw(windowToDrawIn);
-    				dayNumberDisplay.draw(windowToDrawIn);
-    				displaysAMoneySign.draw(windowToDrawIn);
-    				moneyDisplay.draw(windowToDrawIn);
-    				marketButton.draw(windowToDrawIn);
-    				mainMenuButton.draw(windowToDrawIn);
+					drawAllObjectsALayerAboveAlice(windowToDrawIn);
 					i = worldObjectPropertiesOfTheObjectAliceIsHolding.size(); //Break out of the outer loop too.
 				}
 				break;
@@ -191,12 +188,47 @@ void FarmScreen::associateWithTexturesInBank(const TextureBank& textureBankToTak
     groundTileMap.associateWorldObjectWithReferenceNumberWithTexturePointer(WORLD_OBJECT_REF_NUMBER_HOUSE, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber((int)TEXTURE_BANK_REF_NUMBER_WORLD_OBJECT_HOUSE));
     groundTileMap.associateWorldObjectWithReferenceNumberWithTexturePointer(WORLD_OBJECT_REF_NUMBER_WELL, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber((int)TEXTURE_BANK_REF_NUMBER_WORLD_OBJECT_WELL));
     groundTileMap.associateWorldObjectWithReferenceNumberWithTexturePointer(WORLD_OBJECT_REF_NUMBER_WATERING_CAN, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber((int)TEXTURE_BANK_REF_NUMBER_WORLD_OBJECT_WATERING_CAN));
+
+    groundTileMap.associateWorldObjectWithReferenceNumberWithTexturePointer(WORLD_OBJECT_REF_NUMBER_TOMATO_SEED_PACKET_ONE, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber((int)TEXTURE_BANK_REF_NUMBER_TOMATO_SEED_PACKET_TEXTURE));
+    groundTileMap.associateWorldObjectWithReferenceNumberWithTexturePointer(WORLD_OBJECT_REF_NUMBER_TOMATO_SEED_PACKET_TWO, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber((int)TEXTURE_BANK_REF_NUMBER_TOMATO_SEED_PACKET_TEXTURE));
+    groundTileMap.associateWorldObjectWithReferenceNumberWithTexturePointer(WORLD_OBJECT_REF_NUMBER_TOMATO_SEED_PACKET_THREE, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber((int)TEXTURE_BANK_REF_NUMBER_TOMATO_SEED_PACKET_TEXTURE));
+
+    groundTileMap.associateWorldObjectWithReferenceNumberWithTexturePointer(WORLD_OBJECT_REF_NUMBER_CUCUMBER_SEED_PACKET_ONE, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber((int)TEXTURE_BANK_REF_NUMBER_CUCUMBER_SEED_PACKET_TEXTURE));
+    groundTileMap.associateWorldObjectWithReferenceNumberWithTexturePointer(WORLD_OBJECT_REF_NUMBER_CUCUMBER_SEED_PACKET_TWO, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber((int)TEXTURE_BANK_REF_NUMBER_CUCUMBER_SEED_PACKET_TEXTURE));
+    groundTileMap.associateWorldObjectWithReferenceNumberWithTexturePointer(WORLD_OBJECT_REF_NUMBER_CUCUMBER_SEED_PACKET_THREE, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber((int)TEXTURE_BANK_REF_NUMBER_CUCUMBER_SEED_PACKET_TEXTURE));
+	
+    groundTileMap.associateWorldObjectWithReferenceNumberWithTexturePointer(WORLD_OBJECT_REF_NUMBER_CARROT_SEED_PACKET_ONE, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber((int)TEXTURE_BANK_REF_NUMBER_CARROT_SEED_PACKET_TEXTURE));
+    groundTileMap.associateWorldObjectWithReferenceNumberWithTexturePointer(WORLD_OBJECT_REF_NUMBER_CARROT_SEED_PACKET_TWO, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber((int)TEXTURE_BANK_REF_NUMBER_CARROT_SEED_PACKET_TEXTURE));
+    groundTileMap.associateWorldObjectWithReferenceNumberWithTexturePointer(WORLD_OBJECT_REF_NUMBER_CARROT_SEED_PACKET_THREE, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber((int)TEXTURE_BANK_REF_NUMBER_CARROT_SEED_PACKET_TEXTURE));
+
+
+	//PLANT TILE MAP TEXTURE ASSOCIATIONS
+	plantTileMap.associateReferenceNumberWithTexture(TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_ONE_TEXTURE, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_ONE_TEXTURE));
+	plantTileMap.associateReferenceNumberWithTexture(TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_TWO_TEXTURE, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_TWO_TEXTURE));
+	plantTileMap.associateReferenceNumberWithTexture(TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_THREE_TEXTURE, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_THREE_TEXTURE));
+	plantTileMap.associateReferenceNumberWithTexture(TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_FOUR_TEXTURE, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_FOUR_TEXTURE));
+	plantTileMap.associateReferenceNumberWithTexture(TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_FIVE_TEXTURE, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_FIVE_TEXTURE));
+	plantTileMap.associateReferenceNumberWithTexture(TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_SIX_TEXTURE, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_SIX_TEXTURE));
+
+	plantTileMap.associateReferenceNumberWithTexture(TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_ONE_TEXTURE, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_ONE_TEXTURE));
+	plantTileMap.associateReferenceNumberWithTexture(TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_TWO_TEXTURE, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_TWO_TEXTURE));
+	plantTileMap.associateReferenceNumberWithTexture(TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_THREE_TEXTURE, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_THREE_TEXTURE));
+	plantTileMap.associateReferenceNumberWithTexture(TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_FOUR_TEXTURE, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_FOUR_TEXTURE));
+	plantTileMap.associateReferenceNumberWithTexture(TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_FIVE_TEXTURE, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_FIVE_TEXTURE));
+	plantTileMap.associateReferenceNumberWithTexture(TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_SIX_TEXTURE, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_SIX_TEXTURE));
+	plantTileMap.associateReferenceNumberWithTexture(TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_SEVEN_TEXTURE, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_SEVEN_TEXTURE));
+	plantTileMap.associateReferenceNumberWithTexture(TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_EIGHT_TEXTURE, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_EIGHT_TEXTURE));
+	plantTileMap.associateReferenceNumberWithTexture(TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_NINE_TEXTURE, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_NINE_TEXTURE));
     
     //ALICE TEXTURE ASSOCIATIONS
     alice.associateReferenceNumberWithTexturePointer(TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_BASE, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber((int)TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_BASE));
+    alice.associateReferenceNumberWithTexturePointer(TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_BASE_HOE, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber((int)TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_BASE_HOE));
     alice.associateReferenceNumberWithTexturePointer(TEXTURE_BANK_REF_NUMBER_ALICE_UP_BASE, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber((int)TEXTURE_BANK_REF_NUMBER_ALICE_UP_BASE));
+    alice.associateReferenceNumberWithTexturePointer(TEXTURE_BANK_REF_NUMBER_ALICE_UP_BASE_HOE, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber((int)TEXTURE_BANK_REF_NUMBER_ALICE_UP_BASE_HOE));
     alice.associateReferenceNumberWithTexturePointer(TEXTURE_BANK_REF_NUMBER_ALICE_LEFT_BASE, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber((int)TEXTURE_BANK_REF_NUMBER_ALICE_LEFT_BASE));
+    alice.associateReferenceNumberWithTexturePointer(TEXTURE_BANK_REF_NUMBER_ALICE_LEFT_BASE_HOE, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber((int)TEXTURE_BANK_REF_NUMBER_ALICE_LEFT_BASE_HOE));
     alice.associateReferenceNumberWithTexturePointer(TEXTURE_BANK_REF_NUMBER_ALICE_RIGHT_BASE, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber((int)TEXTURE_BANK_REF_NUMBER_ALICE_RIGHT_BASE));
+    alice.associateReferenceNumberWithTexturePointer(TEXTURE_BANK_REF_NUMBER_ALICE_RIGHT_BASE_HOE, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber((int)TEXTURE_BANK_REF_NUMBER_ALICE_RIGHT_BASE_HOE));
     alice.setCurrentTextureReferenceNumber(TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_BASE); //SETS DEFAULT TEXTURE FOR ALICE
 }
 
@@ -290,15 +322,9 @@ void FarmScreen::initializeWorldObjectsInGroundTileMap()
 
 void FarmScreen::forceFullDraw(sf::RenderWindow& windowToDrawIn)
 {
-    background.draw(windowToDrawIn);
-    groundTileMap.draw(windowToDrawIn);
+	drawAllObjectsALayerBelowAlice(windowToDrawIn);
     alice.draw(windowToDrawIn);
-    displaysTheWordDay.draw(windowToDrawIn);
-    dayNumberDisplay.draw(windowToDrawIn);
-    displaysAMoneySign.draw(windowToDrawIn);
-    moneyDisplay.draw(windowToDrawIn);
-    marketButton.draw(windowToDrawIn);
-    mainMenuButton.draw(windowToDrawIn);
+	drawAllObjectsALayerAboveAlice(windowToDrawIn);
 }
 
 void FarmScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::RenderWindow& windowToDrawIn)
@@ -312,33 +338,28 @@ void FarmScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::Render
         float tilesTravelledSinceLastUpdateX = numberOfSecondsSinceLastUpdate * (alice.getXMovementAmount()) * aliceSpeedInTilesPerSecond;
         float tilesTravelledSinceLastUpdateY = numberOfSecondsSinceLastUpdate * (alice.getYMovementAmount()) * aliceSpeedInTilesPerSecond;
         groundTileMap.changeCentreOffsetTileCountXByAmount(tilesTravelledSinceLastUpdateX);
+        plantTileMap.changeCentreOffsetTileCountXByAmount(tilesTravelledSinceLastUpdateX);
         groundTileMap.changeCentreOffsetTileCountYByAmount(tilesTravelledSinceLastUpdateY);
+        plantTileMap.changeCentreOffsetTileCountYByAmount(tilesTravelledSinceLastUpdateY);
 		if(groundTileMap.returnTrueIfDrawableObjectIntersectsWithAnyCollisionBoxes(alice))
 		{
         	groundTileMap.changeCentreOffsetTileCountXByAmount(-tilesTravelledSinceLastUpdateX);
+        	plantTileMap.changeCentreOffsetTileCountXByAmount(-tilesTravelledSinceLastUpdateX);
         	groundTileMap.changeCentreOffsetTileCountYByAmount(-tilesTravelledSinceLastUpdateY);
+        	plantTileMap.changeCentreOffsetTileCountYByAmount(-tilesTravelledSinceLastUpdateY);
 		}
-        groundTileMap.draw(windowToDrawIn);
+		drawAllObjectsALayerBelowAlice(windowToDrawIn);
         associateAliceWithCorrectAnimation(); 
         alice.drawAndUpdateSprite(windowToDrawIn, numberOfMillisecondsSinceLastUpdate);
+		drawAllObjectsALayerAboveAlice(windowToDrawIn);
         wasAliceDrawnMovingLastFrame = true;
-        displaysTheWordDay.draw(windowToDrawIn);
-        dayNumberDisplay.draw(windowToDrawIn);
-        displaysAMoneySign.draw(windowToDrawIn);
-        moneyDisplay.draw(windowToDrawIn);
-        marketButton.draw(windowToDrawIn);
-    	mainMenuButton.draw(windowToDrawIn);
     }
     else if(wasAliceDrawnMovingLastFrame == true)
     {
-        groundTileMap.draw(windowToDrawIn);
+		drawAllObjectsALayerBelowAlice(windowToDrawIn);
+        associateAliceWithCorrectAnimation(); 
         alice.drawAndUpdateSprite(windowToDrawIn, numberOfMillisecondsSinceLastUpdate);
-        displaysTheWordDay.draw(windowToDrawIn);
-        dayNumberDisplay.draw(windowToDrawIn);
-        displaysAMoneySign.draw(windowToDrawIn);
-        moneyDisplay.draw(windowToDrawIn);
-        marketButton.draw(windowToDrawIn);
-    	mainMenuButton.draw(windowToDrawIn);
+		drawAllObjectsALayerAboveAlice(windowToDrawIn);
         wasAliceDrawnMovingLastFrame = false;
     }
 }
@@ -430,11 +451,12 @@ void FarmScreen::loadSaveFile(const SaveFile& saveFileToLoad)
 {
 	if(saveFileToLoad.isEmpty())
 	{
-		for(unsigned int i = 0; i < saveFileToLoad.getReferenceNumberTwoDArrayRowCountGroundTileMap(); i++)
+		for(unsigned int i = 0; i < saveFileToLoad.getReferenceNumberTwoDArrayRowCountGroundAndPlantTileMap(); i++)
 		{
-			for(unsigned int j = 0; j < saveFileToLoad.getReferenceNumberTwoDArrayColCountGroundTileMap(); j++)
+			for(unsigned int j = 0; j < saveFileToLoad.getReferenceNumberTwoDArrayColCountGroundAndPlantTileMap(); j++)
 			{
     			groundTileMap.setReferenceNumberAtIndicesAndDoNotPartialDraw(i,j, saveFileToLoad.getReferenceNumberAtRowAndColGroundTileMap(i,j));
+    			plantTileMap.setReferenceNumberAtIndicesAndDoNotPartialDraw(i,j, saveFileToLoad.getReferenceNumberAtRowAndColPlantTileMap(i,j));
 			}
 		}
 	}
@@ -442,4 +464,21 @@ void FarmScreen::loadSaveFile(const SaveFile& saveFileToLoad)
 	{
 		//TODO
 	}
+}
+
+void FarmScreen::drawAllObjectsALayerBelowAlice(sf::RenderWindow& windowToDrawIn) //HELPER FUNCTION FOR A LOT OF FUNCTIONS
+{
+    background.draw(windowToDrawIn);
+    groundTileMap.draw(windowToDrawIn);
+    plantTileMap.draw(windowToDrawIn);
+}
+
+void FarmScreen::drawAllObjectsALayerAboveAlice(sf::RenderWindow& windowToDrawIn) //HELPER FUNCTION FOR A LOT OF FUNCTIONS
+{
+    displaysTheWordDay.draw(windowToDrawIn);
+    dayNumberDisplay.draw(windowToDrawIn);
+    displaysAMoneySign.draw(windowToDrawIn);
+    moneyDisplay.draw(windowToDrawIn);
+    marketButton.draw(windowToDrawIn);
+    mainMenuButton.draw(windowToDrawIn);
 }

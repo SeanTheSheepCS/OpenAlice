@@ -4,9 +4,11 @@ SaveFile::SaveFile()
 {
     isEmptySaveFileFlag = true;
 	referenceNumberTwoDArrayGroundTileMap = new int*[DEFAULT_SAVE_FILE_NUMBER_OF_ROWS];
+	referenceNumberTwoDArrayPlantTileMap = new int*[DEFAULT_SAVE_FILE_NUMBER_OF_ROWS];
     for(unsigned int i = 0; i < DEFAULT_SAVE_FILE_NUMBER_OF_ROWS; i++)
     {
         referenceNumberTwoDArrayGroundTileMap[i] = new int[DEFAULT_SAVE_FILE_NUMBER_OF_COLS];
+        referenceNumberTwoDArrayPlantTileMap[i] = new int[DEFAULT_SAVE_FILE_NUMBER_OF_COLS];
     }
 
     for(unsigned int i = 0; i < DEFAULT_SAVE_FILE_NUMBER_OF_ROWS; i++)
@@ -16,6 +18,7 @@ SaveFile::SaveFile()
             for(unsigned int j = 0; j < DEFAULT_SAVE_FILE_NUMBER_OF_COLS; j++)
             {
                 referenceNumberTwoDArrayGroundTileMap[i][j] = TEXTURE_BANK_REF_NUMBER_OUT_OF_BOUNDS_GRASS;
+                referenceNumberTwoDArrayPlantTileMap[i][j] = TEXTURE_BANK_REF_NUMBER_INVISIBLE;
             }
         }
         else
@@ -30,28 +33,32 @@ SaveFile::SaveFile()
                 {
                     referenceNumberTwoDArrayGroundTileMap[i][j] = TEXTURE_BANK_REF_NUMBER_IN_BOUNDS_GRASS;
                 } 
+                referenceNumberTwoDArrayPlantTileMap[i][j] = TEXTURE_BANK_REF_NUMBER_INVISIBLE;
             }
         }
     }
 
-    this->referenceNumberTwoDArrayRowCountGroundTileMap = DEFAULT_SAVE_FILE_NUMBER_OF_ROWS;
-    this->referenceNumberTwoDArrayColCountGroundTileMap = DEFAULT_SAVE_FILE_NUMBER_OF_COLS;
+    this->referenceNumberTwoDArrayRowCountGroundAndPlantTileMap = DEFAULT_SAVE_FILE_NUMBER_OF_ROWS;
+    this->referenceNumberTwoDArrayColCountGroundAndPlantTileMap = DEFAULT_SAVE_FILE_NUMBER_OF_COLS;
 }
 
 SaveFile::SaveFile(const SaveFile& other)
 {
     isEmptySaveFileFlag = other.isEmptySaveFileFlag;
-    referenceNumberTwoDArrayGroundTileMap = new int*[other.getReferenceNumberTwoDArrayRowCountGroundTileMap()];
-    for(unsigned int i = 0; i < other.getReferenceNumberTwoDArrayRowCountGroundTileMap(); i++)
+    referenceNumberTwoDArrayGroundTileMap = new int*[other.getReferenceNumberTwoDArrayRowCountGroundAndPlantTileMap()];
+    referenceNumberTwoDArrayPlantTileMap = new int*[other.getReferenceNumberTwoDArrayRowCountGroundAndPlantTileMap()];
+    for(unsigned int i = 0; i < other.getReferenceNumberTwoDArrayRowCountGroundAndPlantTileMap(); i++)
     {
-        referenceNumberTwoDArrayGroundTileMap[i] = new int[other.getReferenceNumberTwoDArrayColCountGroundTileMap()];
-        for(unsigned int j = 0; j < other.getReferenceNumberTwoDArrayColCountGroundTileMap(); j++)
+        referenceNumberTwoDArrayGroundTileMap[i] = new int[other.getReferenceNumberTwoDArrayColCountGroundAndPlantTileMap()];
+        referenceNumberTwoDArrayPlantTileMap[i] = new int[other.getReferenceNumberTwoDArrayColCountGroundAndPlantTileMap()];
+        for(unsigned int j = 0; j < other.getReferenceNumberTwoDArrayColCountGroundAndPlantTileMap(); j++)
         {
             referenceNumberTwoDArrayGroundTileMap[i][j] = other.getReferenceNumberAtRowAndColGroundTileMap(i,j);
+            referenceNumberTwoDArrayPlantTileMap[i][j] = other.getReferenceNumberAtRowAndColPlantTileMap(i,j);
         }
     }
-    this->referenceNumberTwoDArrayRowCountGroundTileMap = other.referenceNumberTwoDArrayRowCountGroundTileMap;
-    this->referenceNumberTwoDArrayColCountGroundTileMap = other.referenceNumberTwoDArrayColCountGroundTileMap;
+    this->referenceNumberTwoDArrayRowCountGroundAndPlantTileMap = other.referenceNumberTwoDArrayRowCountGroundAndPlantTileMap;
+    this->referenceNumberTwoDArrayColCountGroundAndPlantTileMap = other.referenceNumberTwoDArrayColCountGroundAndPlantTileMap;
 }
 
 SaveFile::~SaveFile()
@@ -63,17 +70,20 @@ SaveFile& SaveFile::operator=(const SaveFile& rhs)
 {
     deleteSaveFile();
     isEmptySaveFileFlag = rhs.isEmptySaveFileFlag;
-    referenceNumberTwoDArrayGroundTileMap = new int*[rhs.getReferenceNumberTwoDArrayRowCountGroundTileMap()];
-    for(unsigned int i = 0; i < rhs.getReferenceNumberTwoDArrayRowCountGroundTileMap(); i++)
+    referenceNumberTwoDArrayGroundTileMap = new int*[rhs.getReferenceNumberTwoDArrayRowCountGroundAndPlantTileMap()];
+    referenceNumberTwoDArrayPlantTileMap = new int*[rhs.getReferenceNumberTwoDArrayRowCountGroundAndPlantTileMap()];
+    for(unsigned int i = 0; i < rhs.getReferenceNumberTwoDArrayRowCountGroundAndPlantTileMap(); i++)
     {
-        referenceNumberTwoDArrayGroundTileMap[i] = new int[rhs.getReferenceNumberTwoDArrayColCountGroundTileMap()];
-        for(unsigned int j = 0; j < rhs.getReferenceNumberTwoDArrayColCountGroundTileMap(); j++)
+        referenceNumberTwoDArrayGroundTileMap[i] = new int[rhs.getReferenceNumberTwoDArrayColCountGroundAndPlantTileMap()];
+        referenceNumberTwoDArrayPlantTileMap[i] = new int[rhs.getReferenceNumberTwoDArrayColCountGroundAndPlantTileMap()];
+        for(unsigned int j = 0; j < rhs.getReferenceNumberTwoDArrayColCountGroundAndPlantTileMap(); j++)
         {
             referenceNumberTwoDArrayGroundTileMap[i][j] = rhs.getReferenceNumberAtRowAndColGroundTileMap(i,j);
+            referenceNumberTwoDArrayPlantTileMap[i][j] = rhs.getReferenceNumberAtRowAndColPlantTileMap(i,j);
         }
     }
-    this->referenceNumberTwoDArrayRowCountGroundTileMap = rhs.referenceNumberTwoDArrayRowCountGroundTileMap;
-    this->referenceNumberTwoDArrayColCountGroundTileMap = rhs.referenceNumberTwoDArrayColCountGroundTileMap;
+    this->referenceNumberTwoDArrayRowCountGroundAndPlantTileMap = rhs.referenceNumberTwoDArrayRowCountGroundAndPlantTileMap;
+    this->referenceNumberTwoDArrayColCountGroundAndPlantTileMap = rhs.referenceNumberTwoDArrayColCountGroundAndPlantTileMap;
     return *this;
 }
 
@@ -87,14 +97,19 @@ int SaveFile::getReferenceNumberAtRowAndColGroundTileMap(unsigned int row, unsig
     return referenceNumberTwoDArrayGroundTileMap[row][col];
 }
 
-unsigned int SaveFile::getReferenceNumberTwoDArrayRowCountGroundTileMap() const
+int SaveFile::getReferenceNumberAtRowAndColPlantTileMap(unsigned int row, unsigned int col) const
 {
-    return referenceNumberTwoDArrayRowCountGroundTileMap;
+    return referenceNumberTwoDArrayPlantTileMap[row][col];
 }
 
-unsigned int SaveFile::getReferenceNumberTwoDArrayColCountGroundTileMap() const
+unsigned int SaveFile::getReferenceNumberTwoDArrayRowCountGroundAndPlantTileMap() const
 {
-    return referenceNumberTwoDArrayColCountGroundTileMap;
+    return referenceNumberTwoDArrayRowCountGroundAndPlantTileMap;
+}
+
+unsigned int SaveFile::getReferenceNumberTwoDArrayColCountGroundAndPlantTileMap() const
+{
+    return referenceNumberTwoDArrayColCountGroundAndPlantTileMap;
 }
 
 void SaveFile::deleteSaveFile()
@@ -103,6 +118,8 @@ void SaveFile::deleteSaveFile()
     for(unsigned int i = 0; i < DEFAULT_SAVE_FILE_NUMBER_OF_ROWS; i++)
     {
         delete[] referenceNumberTwoDArrayGroundTileMap[i];
+        delete[] referenceNumberTwoDArrayPlantTileMap[i];
     }
     delete[] referenceNumberTwoDArrayGroundTileMap;
+    delete[] referenceNumberTwoDArrayPlantTileMap;
 }
