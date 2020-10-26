@@ -57,7 +57,7 @@ An open source game heavily inspired by the 2007 game Alice Greenfingers.
  </ul> 
 <h4> Music </h4>
  <ul>
-  <li> Market music is completed </li>
+  <li> <s> Market music is completed </s> </li>
  </ul> 
 
 <h3> December </h3>
