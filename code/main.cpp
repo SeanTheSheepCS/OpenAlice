@@ -11,7 +11,7 @@ OAEAnimationBank initializeOAEAnimationBank(const TextureBank& textureBankToUse)
 
     OAEAnimation aliceWalkDownAnimation = OAEAnimation(DEFAULT_ANIMATION_SPEED);
 	OAEAnimation aliceWalkDownAnimationHoe = OAEAnimation(DEFAULT_ANIMATION_SPEED);
-	OAEAnimation aliceWalkDownAnimationWateringCan = oaeanimation(default_animation_speed);
+	OAEAnimation aliceWalkDownAnimationWateringCan = OAEAnimation(DEFAULT_ANIMATION_SPEED);
 	OAEAnimation aliceWalkDownAnimationWateringCanEmpty = OAEAnimation(DEFAULT_ANIMATION_SPEED);
 	OAEAnimation aliceWalkDownAnimationTomatoSeeds = OAEAnimation(DEFAULT_ANIMATION_SPEED);
 	OAEAnimation aliceWalkDownAnimationCucumberSeeds = OAEAnimation(DEFAULT_ANIMATION_SPEED);
@@ -25,7 +25,7 @@ OAEAnimationBank initializeOAEAnimationBank(const TextureBank& textureBankToUse)
 
     OAEAnimation aliceWalkUpAnimation = OAEAnimation(DEFAULT_ANIMATION_SPEED);
 	OAEAnimation aliceWalkUpAnimationHoe = OAEAnimation(DEFAULT_ANIMATION_SPEED);
-	OAEAnimation aliceWalkUpAnimationWateringCan = oaeanimation(default_animation_speed);
+	OAEAnimation aliceWalkUpAnimationWateringCan = OAEAnimation(DEFAULT_ANIMATION_SPEED);
 	OAEAnimation aliceWalkUpAnimationWateringCanEmpty = OAEAnimation(DEFAULT_ANIMATION_SPEED);
 	OAEAnimation aliceWalkUpAnimationTomatoSeeds = OAEAnimation(DEFAULT_ANIMATION_SPEED);
 	OAEAnimation aliceWalkUpAnimationCucumberSeeds = OAEAnimation(DEFAULT_ANIMATION_SPEED);
@@ -39,7 +39,7 @@ OAEAnimationBank initializeOAEAnimationBank(const TextureBank& textureBankToUse)
 
     OAEAnimation aliceWalkLeftAnimation = OAEAnimation(DEFAULT_ANIMATION_SPEED);
 	OAEAnimation aliceWalkLeftAnimationHoe = OAEAnimation(DEFAULT_ANIMATION_SPEED);
-	OAEAnimation aliceWalkLeftAnimationWateringCan = oaeanimation(default_animation_speed);
+	OAEAnimation aliceWalkLeftAnimationWateringCan = OAEAnimation(DEFAULT_ANIMATION_SPEED);
 	OAEAnimation aliceWalkLeftAnimationWateringCanEmpty = OAEAnimation(DEFAULT_ANIMATION_SPEED);
 	OAEAnimation aliceWalkLeftAnimationTomatoSeeds = OAEAnimation(DEFAULT_ANIMATION_SPEED);
 	OAEAnimation aliceWalkLeftAnimationCucumberSeeds = OAEAnimation(DEFAULT_ANIMATION_SPEED);
@@ -53,7 +53,7 @@ OAEAnimationBank initializeOAEAnimationBank(const TextureBank& textureBankToUse)
 
     OAEAnimation aliceWalkRightAnimation = OAEAnimation(DEFAULT_ANIMATION_SPEED);
 	OAEAnimation aliceWalkRightAnimationHoe = OAEAnimation(DEFAULT_ANIMATION_SPEED);
-	OAEAnimation aliceWalkRightAnimationWateringCan = oaeanimation(default_animation_speed);
+	OAEAnimation aliceWalkRightAnimationWateringCan = OAEAnimation(DEFAULT_ANIMATION_SPEED);
 	OAEAnimation aliceWalkRightAnimationWateringCanEmpty = OAEAnimation(DEFAULT_ANIMATION_SPEED);
 	OAEAnimation aliceWalkRightAnimationTomatoSeeds = OAEAnimation(DEFAULT_ANIMATION_SPEED);
 	OAEAnimation aliceWalkRightAnimationCucumberSeeds = OAEAnimation(DEFAULT_ANIMATION_SPEED);
