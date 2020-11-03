@@ -201,12 +201,12 @@ void FarmScreen::handleItemUseEvent(sf::RenderWindow& windowToDrawIn)
 
 void FarmScreen::runSleepSequence()
 {
-	printf("TODO: Sleep Sequence");
+	std::cout << "TODO: Sleep Sequence" << std::endl;
 }
 
 void FarmScreen::runFillWaterContainerSequence()
 {
-	printf("TODO: FillWater Sequence");
+	std::cout << "TODO: FillWater Sequence" << std::endl;
 }
 
 void FarmScreen::associateWithTexturesInBank(const TextureBank& textureBankToTakeFrom)
