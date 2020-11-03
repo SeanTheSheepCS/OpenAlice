@@ -39,6 +39,9 @@ class FarmScreen: public OAEScreen
         void associateWithAnimationsInBank(const OAEAnimationBank& animationBankToTakeFrom);
     	void initializeWorldObjectsInGroundTileMap();
 
+		void runSleepSequence();
+		void runFillWaterContainerSequence();
+
 		void loadSaveFile(const SaveFile& saveFileToLoad);
 
         bool returnIfShouldSwitchToMarketScreen();

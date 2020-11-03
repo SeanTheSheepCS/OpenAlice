@@ -132,49 +132,81 @@ void FarmScreen::handlePickUpEvent(sf::RenderWindow& windowToDrawIn)
 
 void FarmScreen::handleItemUseEvent(sf::RenderWindow& windowToDrawIn)
 {
-	std::pair<int, int> rowAndCol = groundTileMap.getRowAndColOfTileNearestToDrawableObject(alice);
-	int rowToUseItemOn = rowAndCol.first;
-	int colToUseItemOn = rowAndCol.second;
-	std::vector<WorldObjectProperty> worldObjectPropertiesOfTheObjectAliceIsHolding = alice.returnPropertiesOfHeldWorldObject();
-	for(int i = 0; i < worldObjectPropertiesOfTheObjectAliceIsHolding.size(); i++)
+	if(alice.isHoldingObject())
 	{
-		switch(worldObjectPropertiesOfTheObjectAliceIsHolding.at(i))
+		std::pair<int, int> rowAndCol = groundTileMap.getRowAndColOfTileNearestToDrawableObject(alice);
+		int rowToUseItemOn = rowAndCol.first;
+		int colToUseItemOn = rowAndCol.second;
+		std::vector<WorldObjectProperty> worldObjectPropertiesOfTheObjectAliceIsHolding = alice.returnPropertiesOfHeldWorldObject();
+		for(int i = 0; i < worldObjectPropertiesOfTheObjectAliceIsHolding.size(); i++)
 		{
-			case WORLD_OBJECT_PROPERTY_ACTION_TILL:
-				if(groundTileMap.getReferenceNumberAtIndices(rowToUseItemOn, colToUseItemOn) == TEXTURE_BANK_REF_NUMBER_IN_BOUNDS_GRASS)
-				{
-					groundTileMap.setTileAtIndicesToReferenceNumberAndPartialDraw(rowToUseItemOn, colToUseItemOn, TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT, windowToDrawIn);
-        			associateAliceWithCorrectAnimation(); 
-    				alice.draw(windowToDrawIn);
-					drawAllObjectsALayerAboveAlice(windowToDrawIn);
-					i = worldObjectPropertiesOfTheObjectAliceIsHolding.size(); //Break out of the outer loop too.
-				}
-				break;
-			case WORLD_OBJECT_PROPERTY_ACTION_WATERCROP:
-				if(groundTileMap.getReferenceNumberAtIndices(rowToUseItemOn, colToUseItemOn) == TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT)
-				{
-					groundTileMap.setTileAtIndicesToReferenceNumberAndPartialDraw(rowToUseItemOn, colToUseItemOn, TEXTURE_BANK_REF_NUMBER_WATERED_TILLED_DIRT, windowToDrawIn);
-        			associateAliceWithCorrectAnimation(); 
-    				alice.draw(windowToDrawIn);
-					drawAllObjectsALayerAboveAlice(windowToDrawIn);
-					i = worldObjectPropertiesOfTheObjectAliceIsHolding.size(); //Break out of the outer loop too.
-				}
-				break;
-			case WORLD_OBJECT_PROPERTY_ACTION_PLANT_SEEDS_TOMATO:
-				//
-				if((groundTileMap.getReferenceNumberAtIndices(rowToUseItemOn, colToUseItemOn) == TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT) || (groundTileMap.getReferenceNumberAtIndices(rowToUseItemOn, colToUseItemOn) == TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT))
-				{
-					plantTileMap.setTileAtIndicesToReferenceNumberAndPartialDraw(rowToUseItemOn, colToUseItemOn, TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_ONE_TEXTURE, windowToDrawIn);
-        			associateAliceWithCorrectAnimation(); 
-    				alice.draw(windowToDrawIn);
-					drawAllObjectsALayerAboveAlice(windowToDrawIn);
-					i = worldObjectPropertiesOfTheObjectAliceIsHolding.size(); //Break out of the outer loop too.
-				}
-				break;
-			default:
-				break;
+			switch(worldObjectPropertiesOfTheObjectAliceIsHolding.at(i))
+			{
+				case WORLD_OBJECT_PROPERTY_ACTION_TILL:
+					if(groundTileMap.getReferenceNumberAtIndices(rowToUseItemOn, colToUseItemOn) == TEXTURE_BANK_REF_NUMBER_IN_BOUNDS_GRASS)
+					{
+						groundTileMap.setTileAtIndicesToReferenceNumberAndPartialDraw(rowToUseItemOn, colToUseItemOn, TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT, windowToDrawIn);
+    	    			associateAliceWithCorrectAnimation(); 
+    					alice.draw(windowToDrawIn);
+						drawAllObjectsALayerAboveAlice(windowToDrawIn);
+						i = worldObjectPropertiesOfTheObjectAliceIsHolding.size(); //Break out of the outer loop too.
+					}
+					break;
+				case WORLD_OBJECT_PROPERTY_ACTION_WATERCROP:
+					if(groundTileMap.getReferenceNumberAtIndices(rowToUseItemOn, colToUseItemOn) == TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT)
+					{
+						groundTileMap.setTileAtIndicesToReferenceNumberAndPartialDraw(rowToUseItemOn, colToUseItemOn, TEXTURE_BANK_REF_NUMBER_WATERED_TILLED_DIRT, windowToDrawIn);
+    	    			associateAliceWithCorrectAnimation(); 
+    					alice.draw(windowToDrawIn);
+						drawAllObjectsALayerAboveAlice(windowToDrawIn);
+						i = worldObjectPropertiesOfTheObjectAliceIsHolding.size(); //Break out of the outer loop too.
+					}
+					break;
+				case WORLD_OBJECT_PROPERTY_ACTION_PLANT_SEEDS_TOMATO:
+					if((groundTileMap.getReferenceNumberAtIndices(rowToUseItemOn, colToUseItemOn) == TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT) || (groundTileMap.getReferenceNumberAtIndices(rowToUseItemOn, colToUseItemOn) == TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT))
+					{
+						plantTileMap.setTileAtIndicesToReferenceNumberAndPartialDraw(rowToUseItemOn, colToUseItemOn, TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_ONE_TEXTURE, windowToDrawIn);
+    	    			associateAliceWithCorrectAnimation(); 
+    					alice.draw(windowToDrawIn);
+						drawAllObjectsALayerAboveAlice(windowToDrawIn);
+						i = worldObjectPropertiesOfTheObjectAliceIsHolding.size(); //Break out of the outer loop too.
+					}
+					break;
+				default:
+					break;
+			}
 		}
 	}
+	else
+	{
+		std::map<int, WorldObject> worldObjectsAndRefNumbersThatAreIntersectingWithAlice = groundTileMap.getAllWorldObjectsWithRefNumbersWhoAreCurrentlyTriggeredByDrawableObject(alice);
+    	for(auto const& [refNum, currentObject] : worldObjectsAndRefNumbersThatAreIntersectingWithAlice) //This line iterates through the map, you can think of this as for(currentObject in map)
+		{
+			std::vector<WorldObjectProperty> worldObjectProperties = currentObject.getProperties();
+			for(int j = 0; j < worldObjectProperties.size(); j++)
+			{
+				switch(worldObjectProperties.at(j))
+				{
+					case WORLD_OBJECT_PROPERTY_ACTION_SLEEP:
+						runSleepSequence();
+						break;
+					case WORLD_OBJECT_PROPERTY_ACTION_FILL_WATER_CONTAINER:
+						runFillWaterContainerSequence();
+						break;
+				}
+			}
+		}
+	}
+}
+
+void FarmScreen::runSleepSequence()
+{
+	printf("TODO: Sleep Sequence");
+}
+
+void FarmScreen::runFillWaterContainerSequence()
+{
+	printf("TODO: FillWater Sequence");
 }
 
 void FarmScreen::associateWithTexturesInBank(const TextureBank& textureBankToTakeFrom)
