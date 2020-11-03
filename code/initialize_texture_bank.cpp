@@ -51,6 +51,7 @@ TextureBank initializeTextureBank()
     addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_WALK_CYCLE_ONE_CUCUMBER_CRATE_FILLED, "alice_down_walk_cycle_1_cucumber_crate_filled.png", &returnValue);
     addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_WALK_CYCLE_ONE_CARROT_CRATE, "alice_down_walk_cycle_1_carrot_crate.png", &returnValue);
     addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_WALK_CYCLE_ONE_CARROT_CRATE_FILLED, "alice_down_walk_cycle_1_carrot_crate_filled.png", &returnValue);
+    addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_WALK_CYCLE_TWO, "alice_down_walk_cycle_2_.png", &returnValue);
     addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_WALK_CYCLE_TWO_HOE, "alice_down_walk_cycle_2_hoe.png", &returnValue);
     addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_WALK_CYCLE_TWO_WATERING_CAN, "alice_down_walk_cycle_2_watering_can.png", &returnValue);
     addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_WALK_CYCLE_TWO_WATERING_CAN_EMPTY, "alice_down_walk_cycle_2_watering_can_empty.png", &returnValue);
