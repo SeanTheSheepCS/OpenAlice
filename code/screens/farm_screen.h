@@ -58,6 +58,8 @@ class FarmScreen: public OAEScreen
 		void drawAllObjectsALayerBelowAlice(sf::RenderWindow& windowToDrawIn); //HELPER FUNCTION FOR A LOT OF FUNCTIONS
 		void drawAllObjectsALayerAboveAlice(sf::RenderWindow& windowToDrawIn); //HELPER FUNCTION FOR A LOT OF FUNCTIONS
 
+		bool isInSleepState;
+
         bool shouldSwitchToMarketScreenFlag;
         bool shouldSwitchToMainMenuScreenFlag;
 

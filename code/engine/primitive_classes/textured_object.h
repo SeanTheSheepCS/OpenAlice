@@ -17,13 +17,17 @@ class TexturedObject: public DrawableObject
 	    void associateWithNewTexture(const sf::Texture* newTextureToAssociateWith);
 	    const sf::Texture* getCurrentTexturePointer() const;
 		void rotateAroundCentreThisManyDegrees(float degrees);
+		void setRotationAroundCentre(float degrees);
+		void addPeriodicRotation(int numberOfMillisecondsToCompleteOneRotation);
         void draw(sf::RenderWindow& windowToDrawObjectIn);
+		void draw(sf::RenderWindow& windowToDrawObjectIn, unsigned int numberOfMillisecondsSinceLastDraw);
     protected:
         static bool isDefaultTextureInitialized;
         static sf::Texture defaultTexture;
 	    const sf::Texture* texturePointer;
     private:
         float rotationFactor;
+		int rotationPeriod;
 };
 
 

@@ -8,6 +8,7 @@ TexturedObject::TexturedObject(int xArg, int yArg, unsigned int widthArg, unsign
 {
     this->texturePointer = texturePointerArg;
 	this->rotationFactor = 0.0f;
+	this->rotationPeriod = -1;
     if(isDefaultTextureInitialized == false)
     {
         if(defaultTexture.loadFromFile("../sprites/invalid_texture.png"))
@@ -62,6 +63,15 @@ void TexturedObject::draw(sf::RenderWindow& windowToDrawObjectIn)
     windowToDrawObjectIn.draw(rectangleToTexture);
 }
 
+void TexturedObject::draw(sf::RenderWindow& windowToDrawObjectIn, unsigned int numberOfMillisecondsSinceLastDraw)
+{
+	if(rotationPeriod > 0)
+	{
+		rotateAroundCentreThisManyDegrees(numberOfMillisecondsSinceLastDraw*(360.0/((float)rotationPeriod)));
+	}
+	this->draw(windowToDrawObjectIn);
+}
+
 const sf::Texture* TexturedObject::getCurrentTexturePointer() const
 {
     return texturePointer;
@@ -78,4 +88,14 @@ void TexturedObject::rotateAroundCentreThisManyDegrees(float degrees)
 	{
 		this->rotationFactor = this->rotationFactor + 360;
 	}
+}
+
+void setRotationAroundCentre(float degrees)
+{
+	this->rotationFactor = degrees;
+}
+
+void TexturedObject::addPeriodicRotation(int numberOfMillisecondsToCompleteOneRotation)
+{
+	this->rotationPeriod = numberOfMillisecondsToCompleteOneRotation;
 }

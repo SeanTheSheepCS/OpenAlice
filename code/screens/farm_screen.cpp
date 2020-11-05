@@ -14,13 +14,15 @@ FarmScreen::FarmScreen(int x, int y, unsigned int width, unsigned int height):
     alice(x+(width*0.45), y+(height*0.4), width*0.1, height*0.2),
 	dayNightCircle(x-(width*0.75),y-(height*0.25),width*2.5,height*2.5, nullptr)
 {
-    shouldSwitchToMainMenuScreenFlag = false;
-    shouldSwitchToMarketScreenFlag = false;
-	plantTileMap.setTileWidth(100);
-	plantTileMap.setTileHeight(100);
-    groundTileMap.setTileWidth(100);
-    groundTileMap.setTileHeight(100);
-    initializeWorldObjectsInGroundTileMap();
+	this->isInSleepState = false;
+	this->dayNightCircle.addPeriodicRotation(8000);
+    this->shouldSwitchToMainMenuScreenFlag = false;
+    this->shouldSwitchToMarketScreenFlag = false;
+	this->plantTileMap.setTileWidth(100);
+	this->plantTileMap.setTileHeight(100);
+    this->groundTileMap.setTileWidth(100);
+    this->groundTileMap.setTileHeight(100);
+    this->initializeWorldObjectsInGroundTileMap();
 }
 
 void FarmScreen::handleEvent(sf::Event event, sf::RenderWindow& window)
@@ -202,10 +204,7 @@ void FarmScreen::handleItemUseEvent(sf::RenderWindow& windowToDrawIn)
 
 void FarmScreen::runSleepSequence(sf::RenderWindow& windowToDrawIn)
 {
-	dayNightCircle.rotateAroundCentreThisManyDegrees(10);
-	dayNightCircle.draw(windowToDrawIn);
-
-	std::cout << "TODO: Sleep Sequence" << std::endl;
+	this->isInSleepState = true;
 }
 
 void FarmScreen::runFillWaterContainerSequence(sf::RenderWindow& windowToDrawIn)
@@ -409,46 +408,61 @@ void FarmScreen::initializeWorldObjectsInGroundTileMap()
 
 void FarmScreen::forceFullDraw(sf::RenderWindow& windowToDrawIn)
 {
-	drawAllObjectsALayerBelowAlice(windowToDrawIn);
-    alice.draw(windowToDrawIn);
-	drawAllObjectsALayerAboveAlice(windowToDrawIn);
+	if(this->isInSleepState)
+	{
+		dayNightCircle.draw(windowToDrawIn);
+	}
+	else
+	{
+		drawAllObjectsALayerBelowAlice(windowToDrawIn);
+    	alice.draw(windowToDrawIn);
+		drawAllObjectsALayerAboveAlice(windowToDrawIn);
+	}
 }
 
 void FarmScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::RenderWindow& windowToDrawIn)
 {
-    static bool wasAliceDrawnMovingLastFrame = false;
-    float aliceSpeedInTilesPerSecond = 1;
-    int numberOfMillisecondsSinceLastUpdate = millisecondsElapsedSinceLastUpdate;
-    if((alice.getXMovementAmount() != 0) || (alice.getYMovementAmount() != 0))
-    {
-        float numberOfSecondsSinceLastUpdate = ((float)numberOfMillisecondsSinceLastUpdate) / 1000.0;
-        float tilesTravelledSinceLastUpdateX = numberOfSecondsSinceLastUpdate * (alice.getXMovementAmount()) * aliceSpeedInTilesPerSecond;
-        float tilesTravelledSinceLastUpdateY = numberOfSecondsSinceLastUpdate * (alice.getYMovementAmount()) * aliceSpeedInTilesPerSecond;
-        groundTileMap.changeCentreOffsetTileCountXByAmount(tilesTravelledSinceLastUpdateX);
-        plantTileMap.changeCentreOffsetTileCountXByAmount(tilesTravelledSinceLastUpdateX);
-        groundTileMap.changeCentreOffsetTileCountYByAmount(tilesTravelledSinceLastUpdateY);
-        plantTileMap.changeCentreOffsetTileCountYByAmount(tilesTravelledSinceLastUpdateY);
-		if(groundTileMap.returnTrueIfDrawableObjectIntersectsWithAnyCollisionBoxes(alice))
-		{
-        	groundTileMap.changeCentreOffsetTileCountXByAmount(-tilesTravelledSinceLastUpdateX);
-        	plantTileMap.changeCentreOffsetTileCountXByAmount(-tilesTravelledSinceLastUpdateX);
-        	groundTileMap.changeCentreOffsetTileCountYByAmount(-tilesTravelledSinceLastUpdateY);
-        	plantTileMap.changeCentreOffsetTileCountYByAmount(-tilesTravelledSinceLastUpdateY);
-		}
-		drawAllObjectsALayerBelowAlice(windowToDrawIn);
-        associateAliceWithCorrectAnimation(); 
-        alice.drawAndUpdateSprite(windowToDrawIn, numberOfMillisecondsSinceLastUpdate);
-		drawAllObjectsALayerAboveAlice(windowToDrawIn);
-        wasAliceDrawnMovingLastFrame = true;
-    }
-    else if(wasAliceDrawnMovingLastFrame == true)
-    {
-		drawAllObjectsALayerBelowAlice(windowToDrawIn);
-        associateAliceWithCorrectAnimation(); 
-        alice.drawAndUpdateSprite(windowToDrawIn, numberOfMillisecondsSinceLastUpdate);
-		drawAllObjectsALayerAboveAlice(windowToDrawIn);
-        wasAliceDrawnMovingLastFrame = false;
-    }
+	if(this->isInSleepState)
+	{
+    	int numberOfMillisecondsSinceLastUpdate = millisecondsElapsedSinceLastUpdate;
+		dayNightCircle.draw(windowToDrawIn, numberOfMillisecondsSinceLastUpdate);
+	}
+	else
+	{
+    	static bool wasAliceDrawnMovingLastFrame = false;
+    	float aliceSpeedInTilesPerSecond = 1;
+    	int numberOfMillisecondsSinceLastUpdate = millisecondsElapsedSinceLastUpdate;
+    	if((alice.getXMovementAmount() != 0) || (alice.getYMovementAmount() != 0))
+    	{
+    	    float numberOfSecondsSinceLastUpdate = ((float)numberOfMillisecondsSinceLastUpdate) / 1000.0;
+    	    float tilesTravelledSinceLastUpdateX = numberOfSecondsSinceLastUpdate * (alice.getXMovementAmount()) * aliceSpeedInTilesPerSecond;
+    	    float tilesTravelledSinceLastUpdateY = numberOfSecondsSinceLastUpdate * (alice.getYMovementAmount()) * aliceSpeedInTilesPerSecond;
+    	    groundTileMap.changeCentreOffsetTileCountXByAmount(tilesTravelledSinceLastUpdateX);
+    	    plantTileMap.changeCentreOffsetTileCountXByAmount(tilesTravelledSinceLastUpdateX);
+    	    groundTileMap.changeCentreOffsetTileCountYByAmount(tilesTravelledSinceLastUpdateY);
+    	    plantTileMap.changeCentreOffsetTileCountYByAmount(tilesTravelledSinceLastUpdateY);
+			if(groundTileMap.returnTrueIfDrawableObjectIntersectsWithAnyCollisionBoxes(alice))
+			{
+    	    	groundTileMap.changeCentreOffsetTileCountXByAmount(-tilesTravelledSinceLastUpdateX);
+    	    	plantTileMap.changeCentreOffsetTileCountXByAmount(-tilesTravelledSinceLastUpdateX);
+    	    	groundTileMap.changeCentreOffsetTileCountYByAmount(-tilesTravelledSinceLastUpdateY);
+    	    	plantTileMap.changeCentreOffsetTileCountYByAmount(-tilesTravelledSinceLastUpdateY);
+			}
+			drawAllObjectsALayerBelowAlice(windowToDrawIn);
+    	    associateAliceWithCorrectAnimation(); 
+    	    alice.drawAndUpdateSprite(windowToDrawIn, numberOfMillisecondsSinceLastUpdate);
+			drawAllObjectsALayerAboveAlice(windowToDrawIn);
+    	    wasAliceDrawnMovingLastFrame = true;
+    	}
+    	else if(wasAliceDrawnMovingLastFrame == true)
+    	{
+			drawAllObjectsALayerBelowAlice(windowToDrawIn);
+    	    associateAliceWithCorrectAnimation(); 
+    	    alice.drawAndUpdateSprite(windowToDrawIn, numberOfMillisecondsSinceLastUpdate);
+			drawAllObjectsALayerAboveAlice(windowToDrawIn);
+    	    wasAliceDrawnMovingLastFrame = false;
+    	}
+	}
 }
 
 bool FarmScreen::returnIfShouldSwitchToMarketScreen()
