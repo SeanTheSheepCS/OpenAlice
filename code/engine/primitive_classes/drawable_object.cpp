@@ -57,3 +57,4 @@ void DrawableObject::setHeight(unsigned int newHeight)
 {
     this->height = newHeight;
 }
+

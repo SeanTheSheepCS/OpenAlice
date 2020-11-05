@@ -7,6 +7,7 @@ sf::Texture TexturedObject::defaultTexture;
 TexturedObject::TexturedObject(int xArg, int yArg, unsigned int widthArg, unsigned int heightArg, const sf::Texture* texturePointerArg): DrawableObject(xArg,yArg,widthArg,heightArg)
 {
     this->texturePointer = texturePointerArg;
+	this->rotationFactor = 0.0f;
     if(isDefaultTextureInitialized == false)
     {
         if(defaultTexture.loadFromFile("../sprites/invalid_texture.png"))
@@ -33,7 +34,16 @@ void TexturedObject::associateWithNewTexture(const sf::Texture* newTextureToAsso
 void TexturedObject::draw(sf::RenderWindow& windowToDrawObjectIn)
 {
     sf::RectangleShape rectangleToTexture(sf::Vector2f(this->width,this->height));
-    rectangleToTexture.setPosition(this->x, this->y);
+	if(rotationFactor != 0)
+	{
+		rectangleToTexture.setOrigin(((this->width)/2),((this->height)/2));
+		rectangleToTexture.setRotation(this->rotationFactor);
+		rectangleToTexture.setPosition(this->x+(((int)this->width)/2), this->y+(((int)this->height)/2));
+	}
+	else
+	{
+		rectangleToTexture.setPosition(this->x, this->y);
+	}
     try
     {
         if((this->texturePointer)!= nullptr) 
@@ -55,4 +65,17 @@ void TexturedObject::draw(sf::RenderWindow& windowToDrawObjectIn)
 const sf::Texture* TexturedObject::getCurrentTexturePointer() const
 {
     return texturePointer;
+}
+
+void TexturedObject::rotateAroundCentreThisManyDegrees(float degrees)
+{
+	this->rotationFactor += degrees;
+	if((this->rotationFactor) >= 360)
+	{
+		this->rotationFactor = this->rotationFactor - 360;
+	}
+	if((this->rotationFactor) <= -360)
+	{
+		this->rotationFactor = this->rotationFactor + 360;
+	}
 }

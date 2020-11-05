@@ -39,8 +39,8 @@ class FarmScreen: public OAEScreen
         void associateWithAnimationsInBank(const OAEAnimationBank& animationBankToTakeFrom);
     	void initializeWorldObjectsInGroundTileMap();
 
-		void runSleepSequence();
-		void runFillWaterContainerSequence();
+		void runSleepSequence(sf::RenderWindow& windowToDrawIn);
+		void runFillWaterContainerSequence(sf::RenderWindow& windowToDrawIn);
 
 		void loadSaveFile(const SaveFile& saveFileToLoad);
 
@@ -71,6 +71,9 @@ class FarmScreen: public OAEScreen
         TileMap groundTileMap;
 		TileMap plantTileMap;
         Alice alice;
+
+		//SLEEP SCREEN
+		TexturedObject dayNightCircle;
 };
 
 #endif

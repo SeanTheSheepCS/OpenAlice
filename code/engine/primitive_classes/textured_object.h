@@ -2,7 +2,12 @@
 #define TEXTURED_OBJECT
 
 #include <SFML/Graphics.hpp>
+#include <math.h>
 #include "drawable_object.h"
+
+#ifndef PI
+#define PI 3.14159265
+#endif
 
 class TexturedObject: public DrawableObject
 {
@@ -11,13 +16,14 @@ class TexturedObject: public DrawableObject
 	    void decoupleObjectFromItsTexture(); //Makes the texture this object is associated to null, this is important in case the texture ever leaves the scope.
 	    void associateWithNewTexture(const sf::Texture* newTextureToAssociateWith);
 	    const sf::Texture* getCurrentTexturePointer() const;
+		void rotateAroundCentreThisManyDegrees(float degrees);
         void draw(sf::RenderWindow& windowToDrawObjectIn);
     protected:
         static bool isDefaultTextureInitialized;
         static sf::Texture defaultTexture;
 	    const sf::Texture* texturePointer;
     private:
-        //
+        float rotationFactor;
 };
 
 

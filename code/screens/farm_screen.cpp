@@ -11,7 +11,8 @@ FarmScreen::FarmScreen(int x, int y, unsigned int width, unsigned int height):
     marketButton(x+(width*0.7), y+(height*0.9), width*0.3, height*0.1, nullptr),
     groundTileMap(x, y+(height*0.1), width, (height*0.9), 40, 40),
 	plantTileMap(x, y+(height*0.1), width, (height*0.9), 40, 40),
-    alice(x+(width*0.45), y+(height*0.4), width*0.1, height*0.2)
+    alice(x+(width*0.45), y+(height*0.4), width*0.1, height*0.2),
+	dayNightCircle(x-(width*0.75),y-(height*0.25),width*2.5,height*2.5, nullptr)
 {
     shouldSwitchToMainMenuScreenFlag = false;
     shouldSwitchToMarketScreenFlag = false;
@@ -188,10 +189,10 @@ void FarmScreen::handleItemUseEvent(sf::RenderWindow& windowToDrawIn)
 				switch(worldObjectProperties.at(j))
 				{
 					case WORLD_OBJECT_PROPERTY_ACTION_SLEEP:
-						runSleepSequence();
+						runSleepSequence(windowToDrawIn);
 						break;
 					case WORLD_OBJECT_PROPERTY_ACTION_FILL_WATER_CONTAINER:
-						runFillWaterContainerSequence();
+						runFillWaterContainerSequence(windowToDrawIn);
 						break;
 				}
 			}
@@ -199,12 +200,15 @@ void FarmScreen::handleItemUseEvent(sf::RenderWindow& windowToDrawIn)
 	}
 }
 
-void FarmScreen::runSleepSequence()
+void FarmScreen::runSleepSequence(sf::RenderWindow& windowToDrawIn)
 {
+	dayNightCircle.rotateAroundCentreThisManyDegrees(10);
+	dayNightCircle.draw(windowToDrawIn);
+
 	std::cout << "TODO: Sleep Sequence" << std::endl;
 }
 
-void FarmScreen::runFillWaterContainerSequence()
+void FarmScreen::runFillWaterContainerSequence(sf::RenderWindow& windowToDrawIn)
 {
 	std::cout << "TODO: FillWater Sequence" << std::endl;
 }
@@ -311,6 +315,8 @@ void FarmScreen::associateWithTexturesInBank(const TextureBank& textureBankToTak
     alice.associateReferenceNumberWithTexturePointer(TEXTURE_BANK_REF_NUMBER_ALICE_RIGHT_BASE_CARROT_CRATE_FILLED, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber((int)TEXTURE_BANK_REF_NUMBER_ALICE_RIGHT_BASE_CARROT_CRATE_FILLED));
 
     alice.setCurrentTextureReferenceNumber(TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_BASE); //SETS DEFAULT TEXTURE FOR ALICE
+
+	dayNightCircle.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_DAY_NIGHT_CIRCLE_TEXTURE));
 }
 
 void FarmScreen::associateWithAnimationsInBank(const OAEAnimationBank& animationBankToTakeFrom)
