@@ -90,7 +90,7 @@ void TexturedObject::rotateAroundCentreThisManyDegrees(float degrees)
 	}
 }
 
-void setRotationAroundCentre(float degrees)
+void TexturedObject::setRotationAroundCentre(float degrees)
 {
 	this->rotationFactor = degrees;
 }

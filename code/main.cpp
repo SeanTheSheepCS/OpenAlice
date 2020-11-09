@@ -1,6 +1,5 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
-#include <X11/Xlib.h>
 #include <iostream>
 #include <string>
 #include "main.h"
@@ -376,10 +375,10 @@ int main()
         switch(currentScreenToDisplay)
         {
             case MAIN_MENU_SCREEN:
-				if((mainMenuMusicMain.getStatus() == sf::SoundSource::Stopped) && (mainMenuMusicStart.getStatus() == sf::SoundSource::Stopped))
-				{
+		if((mainMenuMusicMain.getStatus() == sf::SoundSource::Stopped) && (mainMenuMusicStart.getStatus() == sf::SoundSource::Stopped))
+		{
 					mainMenuMusicMain.play();
-				}
+		}
                 if(mainMenuScreenVar.returnSavegameThatShouldBeLoadedReturnsZeroIfNoSavegameIsChosenYet() == 0)
                 {
                     pointerToCurrentlyActiveScreen = &mainMenuScreenVar;
@@ -450,10 +449,13 @@ int main()
             }
         }
 
-
         sf::Time timeElapsed = clockForApplication.restart();
         pointerToCurrentlyActiveScreen->update(timeElapsed.asMilliseconds(), window);
 
+	#ifdef STABLE_DRAW_MODE
+	window.clear();
+        pointerToCurrentlyActiveScreen->forceFullDraw(window);
+	#endif
         window.display();
     }
 }
