@@ -1,28 +1,28 @@
 #include "farm_screen.h"
 
 FarmScreen::FarmScreen(int x, int y, unsigned int width, unsigned int height): 
-    OAEScreen(x, y, width, height),
-    background(x, y, width, height, nullptr),
-    displaysTheWordDay(x, y, (width*0.2), height*0.1, nullptr),
-    dayNumberDisplay(x+(width*0.2), y, (width*0.4), height*0.1, 4),
-    displaysAMoneySign(x+(width*0.6), y, (width*0.1), height*0.1, nullptr),
-    moneyDisplay(x+(width*0.7), y, width*0.3, (height*0.1), 8),
-    mainMenuButton(x, y+(height*0.9), width*0.3, height*0.1, nullptr), 
-    marketButton(x+(width*0.7), y+(height*0.9), width*0.3, height*0.1, nullptr),
-    groundTileMap(x, y+(height*0.1), width, (height*0.9), 40, 40),
+	OAEScreen(x, y, width, height),
+	background(x, y, width, height, nullptr),
+	displaysTheWordDay(x, y, (width*0.2), height*0.1, nullptr),
+	dayNumberDisplay(x+(width*0.2), y, (width*0.4), height*0.1, 4),
+	displaysAMoneySign(x+(width*0.6), y, (width*0.1), height*0.1, nullptr),
+	moneyDisplay(x+(width*0.7), y, width*0.3, (height*0.1), 8),
+	mainMenuButton(x, y+(height*0.9), width*0.3, height*0.1, nullptr), 
+	marketButton(x+(width*0.7), y+(height*0.9), width*0.3, height*0.1, nullptr),
+	groundTileMap(x, y+(height*0.1), width, (height*0.9), 40, 40),
 	plantTileMap(x, y+(height*0.1), width, (height*0.9), 40, 40),
-    alice(x+(width*0.45), y+(height*0.4), width*0.1, height*0.2),
+	alice(x+(width*0.45), y+(height*0.4), width*0.1, height*0.2),
 	dayNightCircle(x-(width*0.75),y-(height*0.25),width*2.5,height*2.5, nullptr)
 {
 	this->isInSleepState = false;
 	this->dayNightCircle.addPeriodicRotation(8000);
-    this->shouldSwitchToMainMenuScreenFlag = false;
-    this->shouldSwitchToMarketScreenFlag = false;
+	this->shouldSwitchToMainMenuScreenFlag = false;
+	this->shouldSwitchToMarketScreenFlag = false;
 	this->plantTileMap.setTileWidth(100);
 	this->plantTileMap.setTileHeight(100);
-    this->groundTileMap.setTileWidth(100);
-    this->groundTileMap.setTileHeight(100);
-    this->initializeWorldObjectsInGroundTileMap();
+	this->groundTileMap.setTileWidth(100);
+	this->groundTileMap.setTileHeight(100);
+	this->initializeWorldObjectsInGroundTileMap();
 }
 
 void FarmScreen::handleEvent(sf::Event event, sf::RenderWindow& window)
@@ -321,6 +321,8 @@ void FarmScreen::associateWithTexturesInBank(const TextureBank& textureBankToTak
 	//DAY NUMBER DISPLAY AND MONEY NUMBER DISPLAY
 	dayNumberDisplay.associateWithTexturesInBank(textureBankToTakeFrom);
 	moneyDisplay.associateWithTexturesInBank(textureBankToTakeFrom);
+	displaysTheWordDay.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_DISPLAYS_THE_WORD_DAY_TEXTURE));
+	displaysAMoneySign.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_MONEY_SIGN_DISPLAY_TEXTURE));
 }
 
 void FarmScreen::associateWithAnimationsInBank(const OAEAnimationBank& animationBankToTakeFrom)

@@ -54,11 +54,12 @@ void NumberDisplay::associateWithTexturesInBank(const TextureBank& textureBankTo
 	this->texturePack.numberDisplaySevenTexture = textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_NUMBER_DISPLAY_SEVEN_TEXTURE);
 	this->texturePack.numberDisplayEightTexture = textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_NUMBER_DISPLAY_EIGHT_TEXTURE);
 	this->texturePack.numberDisplayNineTexture = textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_NUMBER_DISPLAY_NINE_TEXTURE);
+	updateDigitTextures();
 }
 
 void NumberDisplay::draw(sf::RenderWindow& windowToDrawObjectIn)
 {
-    background.draw(windowToDrawObjectIn);
+    //background.draw(windowToDrawObjectIn);
     for(unsigned int i = 0; i < digitCount; i++)
     {
         digits[i].draw(windowToDrawObjectIn);

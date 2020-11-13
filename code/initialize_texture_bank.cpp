@@ -192,7 +192,7 @@ TextureBank initializeTextureBank()
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_MAIN_MENU_SCREEN_SELECT_GAME_BUTTON, "start_game_button.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_MAIN_MENU_SCREEN_CREDITS_BUTTON, "credits_button.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_MAIN_MENU_SCREEN_EXIT_BUTTON, "exit_button.png", &returnValue);
-    addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_WINDOW_X, "x_icon.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_WINDOW_X, "x_icon.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_MAIN_MENU_SCREEN_BACKGROUND, "main_menu_background.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_MAIN_MENU_SCREEN_SAVE_GAME_ONE_BACKGROUND_TEXTURE, "save_one_background.png", &returnValue); 
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_MAIN_MENU_SCREEN_SAVE_GAME_TWO_BACKGROUND_TEXTURE, "save_two_background.png", &returnValue);
@@ -232,5 +232,8 @@ TextureBank initializeTextureBank()
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_NUMBER_DISPLAY_SEVEN_TEXTURE, "number_display_7.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_NUMBER_DISPLAY_EIGHT_TEXTURE, "number_display_8.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_NUMBER_DISPLAY_NINE_TEXTURE, "number_display_9.png", &returnValue);
-    return returnValue;
+
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_DISPLAYS_THE_WORD_DAY_TEXTURE, "displays_the_word_day.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_MONEY_SIGN_DISPLAY_TEXTURE, "money_sign_display.png", &returnValue);
+	return returnValue;
 }
