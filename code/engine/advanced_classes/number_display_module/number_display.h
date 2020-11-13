@@ -6,6 +6,8 @@
 #include <exception>
 #include "../../primitive_classes/drawable_object.h"
 #include "../../primitive_classes/textured_object.h"
+#include "../../../texture_bank.h"
+#include "../../../reference_number_enums.h"
 #include "number_display_texture_pack.h"
 
 //SPECIAL NOTE: VERY IMPORTANT DO NOT DISREGARD
@@ -18,17 +20,18 @@ class NumberDisplay: public DrawableObject
     public:
         NumberDisplay(int x, int y, unsigned int width, unsigned int height, unsigned int digitCountArg);
 
-	    void decoupleNumberDisplayTexturePack();
-	    void coupleWithNumberDisplayTexturePack(NumberDisplayTexturePack* texturePackPointerArg);
+        void associateWithTexturesInBank(const TextureBank& textureBankToTakeFrom);
 
         void incrementNumberDisplayByAmount(unsigned int amount);
         void decrementNumberDisplayByAmount(unsigned int amount);
         void setNumberDisplayAmount(unsigned int amount);
 
-		void setXRecursiveWithinComponents(int newX);
-		void setYRecursiveWithinComponents(int newY);
-		void setWidthRecursiveWithinComponents(unsigned int newWidth);
-		void setHeightRecursiveWithinComponents(unsigned int newHeight);
+	void setXRecursiveWithinComponents(int newX);
+	void setYRecursiveWithinComponents(int newY);
+	void setWidthRecursiveWithinComponents(unsigned int newWidth);
+	void setHeightRecursiveWithinComponents(unsigned int newHeight);
+
+	void updateDigitTextures();
 
         void draw(sf::RenderWindow& windowToDrawObjectIn);
     protected:
@@ -42,7 +45,7 @@ class NumberDisplay: public DrawableObject
         unsigned int digitAsInteger;
         TexturedObject background;
         TexturedObject digits[NUMBER_DISPLAY_MAXIMUM_DIGITS_COUNT];
-        NumberDisplayTexturePack* texturePackPointer;
+        struct NumberDisplayTexturePack texturePack;
 };
 
 #endif

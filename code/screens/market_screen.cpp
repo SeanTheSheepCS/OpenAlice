@@ -1,4 +1,5 @@
 #include "market_screen.h"
+#include <iostream>
 
 MarketScreen::MarketScreen(int x, int y, unsigned int width, unsigned int height):
     OAEScreen(x, y, width, height),
@@ -84,6 +85,7 @@ void MarketScreen::forceFullDraw(sf::RenderWindow& windowToDrawIn)
 
 void MarketScreen::populateMarketWithSellOffer(MarketOffer sellOffer)
 {
+	std::cout << "GETS HERE" << std::endl;
 	itemsForSale.appendMarketOffer(sellOffer);
 }
 
@@ -94,11 +96,17 @@ void MarketScreen::populateMarketWithBuyOffer(MarketOffer buyOffer)
 
 void MarketScreen::populateMarketWithGarbageData()
 {
+	std::cout << "1" << std::endl;
 	populateMarketWithSellOffer(MarketOffer(0,0,0,0));
+	std::cout << "2" << std::endl;
 	populateMarketWithSellOffer(MarketOffer(0,0,0,0));
+	std::cout << "3" << std::endl;
 	populateMarketWithSellOffer(MarketOffer(0,0,0,0));
+	std::cout << "4" << std::endl;
 	populateMarketWithBuyOffer(MarketOffer(0,0,0,0));
+	std::cout << "5" << std::endl;
 	populateMarketWithBuyOffer(MarketOffer(0,0,0,0));
+	std::cout << "6" << std::endl;
 	populateMarketWithBuyOffer(MarketOffer(0,0,0,0));
 }
 

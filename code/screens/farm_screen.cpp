@@ -315,7 +315,12 @@ void FarmScreen::associateWithTexturesInBank(const TextureBank& textureBankToTak
 
     alice.setCurrentTextureReferenceNumber(TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_BASE); //SETS DEFAULT TEXTURE FOR ALICE
 
+	//DAY NIGHT CIRCLE
 	dayNightCircle.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_DAY_NIGHT_CIRCLE_TEXTURE));
+
+	//DAY NUMBER DISPLAY AND MONEY NUMBER DISPLAY
+	dayNumberDisplay.associateWithTexturesInBank(textureBankToTakeFrom);
+	moneyDisplay.associateWithTexturesInBank(textureBankToTakeFrom);
 }
 
 void FarmScreen::associateWithAnimationsInBank(const OAEAnimationBank& animationBankToTakeFrom)

@@ -362,7 +362,9 @@ int main()
     farmScreenVar.associateWithAnimationsInBank(animationBankForApplication);
 
     MarketScreen marketScreenVar(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
+    std::cout << "HI" << std::endl;
 	marketScreenVar.populateMarketWithGarbageData();
+    std::cout << "HI2" << std::endl;
     OAEScreen* pointerToCurrentlyActiveScreen = nullptr;
 
     //VARS FOR SFML

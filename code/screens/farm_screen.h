@@ -39,10 +39,10 @@ class FarmScreen: public OAEScreen
         void associateWithAnimationsInBank(const OAEAnimationBank& animationBankToTakeFrom);
     	void initializeWorldObjectsInGroundTileMap();
 
-		void runSleepSequence(sf::RenderWindow& windowToDrawIn);
-		void runFillWaterContainerSequence(sf::RenderWindow& windowToDrawIn);
+	void runSleepSequence(sf::RenderWindow& windowToDrawIn);
+	void runFillWaterContainerSequence(sf::RenderWindow& windowToDrawIn);
 
-		void loadSaveFile(const SaveFile& saveFileToLoad);
+	void loadSaveFile(const SaveFile& saveFileToLoad);
 
         bool returnIfShouldSwitchToMarketScreen();
         void acknowledgeShouldSwitchToMarketScreen();
@@ -53,12 +53,12 @@ class FarmScreen: public OAEScreen
         //
     private:
         void associateAliceWithCorrectAnimation(); //HELPER FUNCTION FOR UPDATE
-		void handlePickUpEvent(sf::RenderWindow& windowToDrawIn); //HELPER FUNCTION FOR HANDLEEVENT
-		void handleItemUseEvent(sf::RenderWindow& windowToDrawIn); //HELPER FUNCTION FOR HANDLEEVENT
-		void drawAllObjectsALayerBelowAlice(sf::RenderWindow& windowToDrawIn); //HELPER FUNCTION FOR A LOT OF FUNCTIONS
-		void drawAllObjectsALayerAboveAlice(sf::RenderWindow& windowToDrawIn); //HELPER FUNCTION FOR A LOT OF FUNCTIONS
+	void handlePickUpEvent(sf::RenderWindow& windowToDrawIn); //HELPER FUNCTION FOR HANDLEEVENT
+	void handleItemUseEvent(sf::RenderWindow& windowToDrawIn); //HELPER FUNCTION FOR HANDLEEVENT
+	void drawAllObjectsALayerBelowAlice(sf::RenderWindow& windowToDrawIn); //HELPER FUNCTION FOR A LOT OF FUNCTIONS
+	void drawAllObjectsALayerAboveAlice(sf::RenderWindow& windowToDrawIn); //HELPER FUNCTION FOR A LOT OF FUNCTIONS
 
-		bool isInSleepState;
+	bool isInSleepState;
 
         bool shouldSwitchToMarketScreenFlag;
         bool shouldSwitchToMainMenuScreenFlag;
@@ -71,11 +71,13 @@ class FarmScreen: public OAEScreen
         TexturedButtonObject marketButton;
         TexturedButtonObject mainMenuButton;
         TileMap groundTileMap;
-		TileMap plantTileMap;
+	
+	TileMap plantTileMap;
+
         Alice alice;
 
-		//SLEEP SCREEN
-		TexturedObject dayNightCircle;
+	//SLEEP SCREEN
+	TexturedObject dayNightCircle;
 };
 
 #endif

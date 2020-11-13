@@ -12,13 +12,13 @@
 class TexturedObject: public DrawableObject
 {
     public:
-	    TexturedObject(int x, int y, unsigned int width, unsigned int height, const sf::Texture* texturePointerArg);
-	    void decoupleObjectFromItsTexture(); //Makes the texture this object is associated to null, this is important in case the texture ever leaves the scope.
-	    void associateWithNewTexture(const sf::Texture* newTextureToAssociateWith);
-	    const sf::Texture* getCurrentTexturePointer() const;
-		void rotateAroundCentreThisManyDegrees(float degrees);
-		void setRotationAroundCentre(float degrees);
-		void addPeriodicRotation(int numberOfMillisecondsToCompleteOneRotation);
+	TexturedObject(int x, int y, unsigned int width, unsigned int height, const sf::Texture* texturePointerArg);
+	void decoupleObjectFromItsTexture(); //Makes the texture this object is associated to null, this is important in case the texture ever leaves the scope.
+	void associateWithNewTexture(const sf::Texture* newTextureToAssociateWith);
+	const sf::Texture* getCurrentTexturePointer() const;
+	void rotateAroundCentreThisManyDegrees(float degrees);
+	void setRotationAroundCentre(float degrees);
+	void addPeriodicRotation(int numberOfMillisecondsToCompleteOneRotation);
         void draw(sf::RenderWindow& windowToDrawObjectIn);
 		void draw(sf::RenderWindow& windowToDrawObjectIn, unsigned int numberOfMillisecondsSinceLastDraw);
     protected:

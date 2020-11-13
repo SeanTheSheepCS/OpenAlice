@@ -3,24 +3,18 @@
 
 #include <SFML/Graphics.hpp>
 
-class NumberDisplayTexturePack
+struct NumberDisplayTexturePack
 {
-    public:
-        NumberDisplayTexturePack();
-
-	    void decoupleBackgroundTexture();
-	    void coupleWithBackgroundTexture(sf::Texture* backgroundTexture);
-
-        void decoupleNumberTextureArray();
-        void coupleWithNumberTextureArray(sf::Texture** numberTextureArray);
-
-        sf::Texture* getTexturePointerForBackground();
-        sf::Texture* getTexturePointerForSpecifiedTexture(int number);
-    protected:
-        //
-    private:
-        sf::Texture* numberDisplayBackgroundTexturePointer;
-        sf::Texture** arrayOfTexturePointersEachIndexStoresAPointerToTheNumberTheTextureRepresents;
+	const sf::Texture* numberDisplayZeroTexture;
+	const sf::Texture* numberDisplayOneTexture;
+	const sf::Texture* numberDisplayTwoTexture;
+	const sf::Texture* numberDisplayThreeTexture;
+	const sf::Texture* numberDisplayFourTexture;
+	const sf::Texture* numberDisplayFiveTexture;
+	const sf::Texture* numberDisplaySixTexture;
+	const sf::Texture* numberDisplaySevenTexture;
+	const sf::Texture* numberDisplayEightTexture;
+	const sf::Texture* numberDisplayNineTexture;
 };
 
 #endif
