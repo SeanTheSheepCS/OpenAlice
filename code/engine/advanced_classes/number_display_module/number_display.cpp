@@ -1,5 +1,5 @@
 #include "number_display.h"
-#include <iostream>
+#include <math.h>
 
 NumberDisplay::NumberDisplay(int x, int y, unsigned int width, unsigned int height, unsigned int digitCountArg):
     DrawableObject(x, y, width, height),
@@ -89,14 +89,11 @@ void NumberDisplay::updateDigitTextures()
 	{
 		try
 		{
-			std::cout << "Digit as integer:" << digitAsInteger << std::endl;
-			unsigned int digitAsIntegerTemp = digitAsInteger / (i*10);
+			unsigned int digitAsIntegerTemp = (this->digitAsInteger / pow(10, i));
 			switch(digitAsIntegerTemp % 10)
 			{
 				case 0:
-					std::cout << "YO" << std::endl;
 					digits[i].associateWithNewTexture(texturePack.numberDisplayZeroTexture);
-					std::cout << "YO2" << std::endl;
 					break;
 				case 1:
 					digits[i].associateWithNewTexture(texturePack.numberDisplayOneTexture);
@@ -129,14 +126,13 @@ void NumberDisplay::updateDigitTextures()
 		}
 		catch(std::exception& e)
 		{
-
+			//
 		}
 	}
 }
 
 void NumberDisplay::setXRecursiveWithinComponents(int newX)
 {
-	std::cout << "ENTERS SET RECURSIVE X" << std::endl;
 	this->x = newX;
 	this->background.setX(newX);
 	int incrementAmountX = (width / digitCount);
@@ -144,9 +140,7 @@ void NumberDisplay::setXRecursiveWithinComponents(int newX)
 	{
 	    digits[i] = TexturedObject(newX+(i*incrementAmountX),y,incrementAmountX,height,nullptr);
 	}
-	std::cout << "ABC" << std::endl;
 	this->setNumberDisplayAmount(digitAsInteger);
-	std::cout << "EXITS SET RECURSIVE X" << std::endl;
 }
 
 void NumberDisplay::setYRecursiveWithinComponents(int newY)
@@ -182,8 +176,8 @@ void NumberDisplay::setHeightRecursiveWithinComponents(unsigned int newHeight)
 	{
 	    digits[i] = TexturedObject(x+(i*incrementAmountX),y,incrementAmountX,newHeight,nullptr);
 	}
-		this->setNumberDisplayAmount(digitAsInteger);
-	}
+	this->setNumberDisplayAmount(digitAsInteger);
+}
 
 /* private */ unsigned int NumberDisplay::getDigitIntegerFormAtIndex(unsigned int index)
 {

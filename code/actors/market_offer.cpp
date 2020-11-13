@@ -7,13 +7,13 @@ MarketOffer::MarketOffer():
 }
 
 MarketOffer::MarketOffer(int x, int y, unsigned int width, unsigned int height):
-    DrawableObject(x, y, width, height),
-    background(x, y, width, height, nullptr),
-    commodityOneIcon(x+(width*0.04), y+(height*0.05), width*0.2, height*0.4, nullptr),
-    commodityOneCountDisplay(x+(width*0.26), y+(height*0.05), width*0.4, height, 2),
-    commodityTwoIcon(x+(width*0.04), y+(height*0.55), width*0.2, height*0.4, nullptr),
-    commodityTwoCountDisplay(x+(width*0.26), y+(height*0.55), width*0.4, height, 2),
-    selectButton(x+(width*0.7), y+(height*0.3), width*0.25, height*0.4, nullptr)
+	DrawableObject(x, y, width, height),
+	background(x, y, width, height, nullptr),
+	commodityOneIcon(x+(width*0.04), y+(height*0.05), width*0.2, height*0.4, nullptr),
+	commodityOneCountDisplay(x+(width*0.26), y+(height*0.05), width*0.4, height, 2),
+	commodityTwoIcon(x+(width*0.04), y+(height*0.55), width*0.2, height*0.4, nullptr),
+	commodityTwoCountDisplay(x+(width*0.26), y+(height*0.55), width*0.4, height, 2),
+	selectButton(x+(width*0.7), y+(height*0.3), width*0.25, height*0.4, nullptr)
 {
 
 }
@@ -95,10 +95,10 @@ bool MarketOffer::isSelectButtonPressedBasedOnMouseXAndMouseY(int mouseX, int mo
 
 void MarketOffer::draw(sf::RenderWindow& windowToDrawObjectIn)
 {
-    background.draw(windowToDrawObjectIn);
-    commodityOneIcon.draw(windowToDrawObjectIn);
-    commodityOneCountDisplay.draw(windowToDrawObjectIn);
-    commodityTwoIcon.draw(windowToDrawObjectIn);
-    commodityTwoCountDisplay.draw(windowToDrawObjectIn);
-    selectButton.draw(windowToDrawObjectIn);
+	background.draw(windowToDrawObjectIn);
+	commodityOneIcon.draw(windowToDrawObjectIn);
+	commodityOneCountDisplay.draw(windowToDrawObjectIn);
+	commodityTwoIcon.draw(windowToDrawObjectIn);
+	commodityTwoCountDisplay.draw(windowToDrawObjectIn);
+	selectButton.draw(windowToDrawObjectIn);
 }

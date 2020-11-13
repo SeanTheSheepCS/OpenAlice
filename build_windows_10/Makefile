@@ -2,6 +2,8 @@ IPATH=D:/SFML-2.5.1-64/include
 _INCLUDES=SFML/Graphics.hpp SFML/Window.hpp SFML/Audio.hpp 
 INCLUDES=$(patsubst %,$(IPATH)/%,$(_INCLUDES))
 
+IPATH_TWO=:../code:../code/screens:../code/screens/subscreens:../code/engine/primitive_classes:../code/engine/advanced_classes/number_display_module:../code/engine/advanced_classes/player_object_module:../code/engine/advanced_classes/tile_map_module:../code/actors
+
 LPATH=D:/SFML-2.5.1-64/lib
 
 CXX=C:/mingw64-gcc-7.3.0/bin/g++.exe

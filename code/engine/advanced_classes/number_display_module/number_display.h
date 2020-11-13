@@ -45,7 +45,7 @@ class NumberDisplay: public DrawableObject
         unsigned int digitAsInteger;
         TexturedObject background;
         TexturedObject digits[NUMBER_DISPLAY_MAXIMUM_DIGITS_COUNT];
-        struct NumberDisplayTexturePack texturePack;
+        NumberDisplayTexturePackStruct texturePack;
 };
 
 #endif

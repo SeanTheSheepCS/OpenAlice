@@ -1,9 +1,9 @@
-#ifndef NUMBER_DISPLAY_TEXTURE_PACK
-#define NUMBER_DISPLAY_TEXTURE_PACK
+#ifndef NUMBER_DISPLAY_TEXTURE_PACK_H
+#define NUMBER_DISPLAY_TEXTURE_PACK_H
 
 #include <SFML/Graphics.hpp>
 
-struct NumberDisplayTexturePack
+struct NumberDisplayTexturePackStruct
 {
 	const sf::Texture* numberDisplayZeroTexture;
 	const sf::Texture* numberDisplayOneTexture;
