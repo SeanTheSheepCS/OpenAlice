@@ -353,21 +353,31 @@ std::pair<int, int> TileMap::getRowAndColOfTileNearestToDrawableObject(const Dra
 
 int TileMap::screenXToWorldX(int screenX)
 {
-    return -x + screenX - (((float) tileWidth)*centreOffsetTileCountX) + this->offsetToMakeScreenStartCenteredX;
+	return -x + screenX - (((float) tileWidth)*centreOffsetTileCountX) + this->offsetToMakeScreenStartCenteredX;
 }
 int TileMap::worldXToScreenX(int worldX)
 {
-    return x + worldX + (((float) tileWidth)*centreOffsetTileCountX) - this->offsetToMakeScreenStartCenteredX;
+	return x + worldX + (((float) tileWidth)*centreOffsetTileCountX) - this->offsetToMakeScreenStartCenteredX;
 }
 
 int TileMap::screenYToWorldY(int screenY)
 {
-    return -y + screenY - (((float) tileHeight)*centreOffsetTileCountY) + this->offsetToMakeScreenStartCenteredY;
+	return -y + screenY - (((float) tileHeight)*centreOffsetTileCountY) + this->offsetToMakeScreenStartCenteredY;
 }
 
 int TileMap::worldYToScreenY(int worldY)
 {
-    return y + worldY + (((float) tileHeight)*centreOffsetTileCountY) - this->offsetToMakeScreenStartCenteredY;
+	return y + worldY + (((float) tileHeight)*centreOffsetTileCountY) - this->offsetToMakeScreenStartCenteredY;
+}
+
+unsigned int TileMap::getRowCount()
+{
+	return rowCount;
+}
+
+unsigned int TileMap::getColCount()
+{
+	return colCount;
 }
 
 int TileMap::roundFloat(float floatToRound) //Helper function for getRowAndColOfTileNearestToDrawableObject(...)

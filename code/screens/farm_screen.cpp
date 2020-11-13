@@ -15,7 +15,8 @@ FarmScreen::FarmScreen(int x, int y, unsigned int width, unsigned int height):
 	dayNightCircle(x-(width*0.75),y-(height*0.25),width*2.5,height*2.5, nullptr)
 {
 	this->isInSleepState = false;
-	this->dayNightCircle.addPeriodicRotation(8000);
+	this->dayNightCircle.addPeriodicRotation(NUMBER_OF_MILLISECONDS_TO_SLEEP_FOR);
+	this->dayNightCircle.setDegreeInterval(45.0);
 	this->shouldSwitchToMainMenuScreenFlag = false;
 	this->shouldSwitchToMarketScreenFlag = false;
 	this->plantTileMap.setTileWidth(100);
@@ -204,6 +205,7 @@ void FarmScreen::handleItemUseEvent(sf::RenderWindow& windowToDrawIn)
 
 void FarmScreen::runSleepSequence(sf::RenderWindow& windowToDrawIn)
 {
+	this->dayNightCircle.setRotationAroundCentre(180.0);
 	this->isInSleepState = true;
 }
 
@@ -341,51 +343,51 @@ void FarmScreen::associateWithAnimationsInBank(const OAEAnimationBank& animation
 
 void FarmScreen::initializeWorldObjectsInGroundTileMap()
 {
-    WorldObject well = WorldObject(1800,1800,100,200,nullptr);
-    TriggerZone wellTriggerZone = TriggerZone(1800,1800,100,200,true);
+	WorldObject well = WorldObject(1800,1800,100,200,nullptr);
+	TriggerZone wellTriggerZone = TriggerZone(1800,1800,100,200,true);
 	CollisionBox wellCollisionBox = CollisionBox(1800,1800,100,100,true);
-    well.attachTriggerZone(wellTriggerZone);
+	well.attachTriggerZone(wellTriggerZone);
 	well.attachCollisionBox(wellCollisionBox);
-    well.setVisibility(true);
+	well.setVisibility(true);
 	well.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_ACTION_FILL_WATER_CONTAINER);
-    groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_WELL, well);
+	groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_WELL, well);
 
-    WorldObject house = WorldObject(2100,1800,300,200,nullptr);
-    TriggerZone houseTriggerZone = TriggerZone(2100,1800,300,200,true);
+	WorldObject house = WorldObject(2100,1800,300,200,nullptr);
+	TriggerZone houseTriggerZone = TriggerZone(2100,1800,300,200,true);
 	CollisionBox houseCollisionBox = CollisionBox(2100,1800,300,100,true);
-    house.attachTriggerZone(houseTriggerZone);
+	house.attachTriggerZone(houseTriggerZone);
 	house.attachCollisionBox(houseCollisionBox);
-    house.setVisibility(true);
+	house.setVisibility(true);
 	house.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_ACTION_SLEEP);
-    groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_HOUSE, house);
+	groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_HOUSE, house);
 
-    WorldObject hoe = WorldObject(1800,2100,80,80,nullptr);
-    TriggerZone hoeTriggerZone = TriggerZone(1800,2100,80,80,true);
-    hoe.attachTriggerZone(hoeTriggerZone);
-    hoe.setVisibility(true);
+	WorldObject hoe = WorldObject(1800,2100,80,80,nullptr);
+	TriggerZone hoeTriggerZone = TriggerZone(1800,2100,80,80,true);
+	hoe.attachTriggerZone(hoeTriggerZone);
+	hoe.setVisibility(true);
 	hoe.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_PICKUPABLE);
 	hoe.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_ACTION_TILL);
-    groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_HOE, hoe);
+	groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_HOE, hoe);
 
-    WorldObject wateringCan = WorldObject(1900,2100,80,80,nullptr);
-    TriggerZone wateringCanTriggerZone = TriggerZone(1900,2100,80,80,true);
-    wateringCan.attachTriggerZone(wateringCanTriggerZone);
-    wateringCan.setVisibility(true);
+	WorldObject wateringCan = WorldObject(1900,2100,80,80,nullptr);
+	TriggerZone wateringCanTriggerZone = TriggerZone(1900,2100,80,80,true);
+	wateringCan.attachTriggerZone(wateringCanTriggerZone);
+	wateringCan.setVisibility(true);
 	wateringCan.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_PICKUPABLE);
 	wateringCan.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_ACTION_WATERCROP);
 	wateringCan.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_CAPACITY_10);
 	wateringCan.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_CURRENT_USES_LEFT_10);
-    groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_WATERING_CAN, wateringCan);
+	groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_WATERING_CAN, wateringCan);
 
 	WorldObject initialTomatoSeeds = WorldObject(1800,2000,40,40,nullptr);
 	TriggerZone initialTomatoSeedsTriggerZone = TriggerZone(1800,2000,40,40,true);
-    initialTomatoSeeds.attachTriggerZone(initialTomatoSeedsTriggerZone);
-    initialTomatoSeeds.setVisibility(true);
+	initialTomatoSeeds.attachTriggerZone(initialTomatoSeedsTriggerZone);
+	initialTomatoSeeds.setVisibility(true);
 	initialTomatoSeeds.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_PICKUPABLE);
 	initialTomatoSeeds.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_ACTION_PLANT_SEEDS_TOMATO);
 	initialTomatoSeeds.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_CAPACITY_10);
 	initialTomatoSeeds.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_CURRENT_USES_LEFT_10);
-    groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_TOMATO_SEED_PACKET_ONE, initialTomatoSeeds);
+	groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_TOMATO_SEED_PACKET_ONE, initialTomatoSeeds);
 
 	WorldObject topBorder = WorldObject(0,0,4000,500,nullptr);
 	CollisionBox topBorderCollisionBox = CollisionBox(0,0,4000,500,true);
@@ -429,10 +431,33 @@ void FarmScreen::forceFullDraw(sf::RenderWindow& windowToDrawIn)
 
 void FarmScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::RenderWindow& windowToDrawIn)
 {
+	static unsigned int numberOfMillisecondsPassedInSleepStateSinceLastWakeUp = 0;
+	static unsigned int lastRowOfPlantTileMapUpdatedInSleepCycle = -1;
 	if(this->isInSleepState)
 	{
-    	int numberOfMillisecondsSinceLastUpdate = millisecondsElapsedSinceLastUpdate;
+    		unsigned int numberOfMillisecondsSinceLastUpdate = millisecondsElapsedSinceLastUpdate;
+		unsigned int numberOfMillisecondsPassedInSleepStateSinceLastWakeUpLastIteration = numberOfMillisecondsPassedInSleepStateSinceLastWakeUp;
+		numberOfMillisecondsPassedInSleepStateSinceLastWakeUp += numberOfMillisecondsSinceLastUpdate;
 		dayNightCircle.draw(windowToDrawIn, numberOfMillisecondsSinceLastUpdate);
+		//Change the plant tile map while Alice sleeps, row by row...
+		unsigned int startRowToChangeThisFrame = lastRowOfPlantTileMapUpdatedInSleepCycle+1;
+		unsigned int endRowToChangeThisFrame = startRowToChangeThisFrame + ((unsigned int)(((float)numberOfMillisecondsSinceLastUpdate) / ((float)NUMBER_OF_MILLISECONDS_TO_SLEEP_FOR)) * ((float)plantTileMap.getRowCount()));
+		if(endRowToChangeThisFrame >= plantTileMap.getRowCount())
+		{
+			endRowToChangeThisFrame = plantTileMap.getRowCount()-1;
+		}
+		lastRowOfPlantTileMapUpdatedInSleepCycle = endRowToChangeThisFrame;
+		if(numberOfMillisecondsPassedInSleepStateSinceLastWakeUp > NUMBER_OF_MILLISECONDS_TO_SLEEP_FOR)
+		{
+			if(endRowToChangeThisFrame != (plantTileMap.getRowCount() - 1))
+			{
+				//Clean up the rows if this is the last iteration, this is our last chance!
+				this->updateTheFollowingRowsInThePlantTileMapBothBoundsInclusive(endRowToChangeThisFrame+1, plantTileMap.getRowCount() - 1);
+			}
+			this->isInSleepState = false;
+			numberOfMillisecondsPassedInSleepStateSinceLastWakeUp = 0;
+			lastRowOfPlantTileMapUpdatedInSleepCycle = -1;
+		}
 	}
 	else
 	{
@@ -470,6 +495,11 @@ void FarmScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::Render
     	    wasAliceDrawnMovingLastFrame = false;
     	}
 	}
+}
+
+void FarmScreen::updateTheFollowingRowsInThePlantTileMapBothBoundsInclusive(unsigned int lowerBound, unsigned int upperBound)
+{
+	//TODO
 }
 
 bool FarmScreen::returnIfShouldSwitchToMarketScreen()

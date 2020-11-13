@@ -20,47 +20,49 @@ TexturedObject::TexturedObject(int xArg, int yArg, unsigned int widthArg, unsign
             std::cout << "Failed to load texture: ../sprites/invalid_texture.png" << std::endl;
         }
     }
+    this->degreeInterval = 1.0;
 }
 
 void TexturedObject::decoupleObjectFromItsTexture()
 {
-    this->texturePointer = nullptr;
+    	this->texturePointer = nullptr;
 }
 
 void TexturedObject::associateWithNewTexture(const sf::Texture* newTextureToAssociateWith)
 {
-    this->texturePointer = newTextureToAssociateWith;
+    	this->texturePointer = newTextureToAssociateWith;
 }
 
 void TexturedObject::draw(sf::RenderWindow& windowToDrawObjectIn)
 {
-    sf::RectangleShape rectangleToTexture(sf::Vector2f(this->width,this->height));
+    	sf::RectangleShape rectangleToTexture(sf::Vector2f(this->width,this->height));
 	if(rotationFactor != 0)
 	{
 		rectangleToTexture.setOrigin(((this->width)/2),((this->height)/2));
-		rectangleToTexture.setRotation(this->rotationFactor);
+		float rotationFactorButWithIntervalTakenIntoAccount = ((int)(rotationFactor / degreeInterval))*degreeInterval;
+		rectangleToTexture.setRotation(rotationFactorButWithIntervalTakenIntoAccount);
 		rectangleToTexture.setPosition(this->x+(((int)this->width)/2), this->y+(((int)this->height)/2));
 	}
 	else
 	{
 		rectangleToTexture.setPosition(this->x, this->y);
 	}
-    try
-    {
-        if((this->texturePointer)!= nullptr) 
-        {
-            rectangleToTexture.setTexture(this->texturePointer);
-        }
-        else
-        {
-            rectangleToTexture.setTexture(&defaultTexture);
-        }
-    }
-    catch(const std::exception& e)
-    {
-        rectangleToTexture.setTexture(&defaultTexture);
-    }
-    windowToDrawObjectIn.draw(rectangleToTexture);
+    	try
+    	{
+    	    	if((this->texturePointer)!= nullptr) 
+    	    	{
+    	    		rectangleToTexture.setTexture(this->texturePointer);
+    	    	}
+    	    	else
+    	    	{
+    	    		rectangleToTexture.setTexture(&defaultTexture);
+    	    	}
+    	}
+    	catch(const std::exception& e)
+    	{
+    		rectangleToTexture.setTexture(&defaultTexture);
+    	}
+    	windowToDrawObjectIn.draw(rectangleToTexture);
 }
 
 void TexturedObject::draw(sf::RenderWindow& windowToDrawObjectIn, unsigned int numberOfMillisecondsSinceLastDraw)
@@ -98,4 +100,9 @@ void TexturedObject::setRotationAroundCentre(float degrees)
 void TexturedObject::addPeriodicRotation(int numberOfMillisecondsToCompleteOneRotation)
 {
 	this->rotationPeriod = numberOfMillisecondsToCompleteOneRotation;
+}
+
+void TexturedObject::setDegreeInterval(float degreeIntervalToAdd)
+{
+	this->degreeInterval = degreeIntervalToAdd;
 }
