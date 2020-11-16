@@ -2,15 +2,15 @@
 
 Alice::Alice(int x, int y, unsigned int width, unsigned int height): PlayerObject(x,y,width,height)
 {
-    this->referenceNumberOfHeldWorldObject = WORLD_OBJECT_REF_NUMBER_INVALID;
-    this->heldWorldObject = WorldObject();
+	this->referenceNumberOfHeldWorldObject = WORLD_OBJECT_REF_NUMBER_INVALID;
+	this->heldWorldObject = WorldObject();
 }
 
 void Alice::pickUpObject(int referenceNumberOfObjectToPickUp, TileMap& tileMapYouPickedItUpFrom)
 {
-    referenceNumberOfHeldWorldObject = referenceNumberOfObjectToPickUp; 
-    heldWorldObject = tileMapYouPickedItUpFrom.getWorldObjectWithReferenceNumber(referenceNumberOfObjectToPickUp);
-    tileMapYouPickedItUpFrom.removeWorldObjectWithReferenceNumber(referenceNumberOfObjectToPickUp);
+	referenceNumberOfHeldWorldObject = referenceNumberOfObjectToPickUp; 
+	heldWorldObject = tileMapYouPickedItUpFrom.getWorldObjectWithReferenceNumber(referenceNumberOfObjectToPickUp);
+	tileMapYouPickedItUpFrom.removeWorldObjectWithReferenceNumber(referenceNumberOfObjectToPickUp);
 }
 
 void Alice::putDownObject(TileMap& tileMapToPutItDownIn)
@@ -19,29 +19,29 @@ void Alice::putDownObject(TileMap& tileMapToPutItDownIn)
 	{
 		return;
 	}
-    else
-    {
-        tileMapToPutItDownIn.addWorldObjectWithReferenceNumber(referenceNumberOfHeldWorldObject, heldWorldObject, this->x, this->y);
-        this->referenceNumberOfHeldWorldObject = WORLD_OBJECT_REF_NUMBER_INVALID;
-        this->heldWorldObject = WorldObject();
-    }
+	else
+	{
+		tileMapToPutItDownIn.addWorldObjectWithReferenceNumber(referenceNumberOfHeldWorldObject, heldWorldObject, this->x, this->y);
+		this->referenceNumberOfHeldWorldObject = WORLD_OBJECT_REF_NUMBER_INVALID;
+		this->heldWorldObject = WorldObject();
+	}
 }
 
 bool Alice::isHoldingObject() const
 {
-    if(((this->heldWorldObject).isInvalid()) || (referenceNumberOfHeldWorldObject == WORLD_OBJECT_REF_NUMBER_INVALID))
-    {
-        return false;
-    }
-    else
-    {
-        return true;
-    }
+	if(((this->heldWorldObject).isInvalid()) || (referenceNumberOfHeldWorldObject == WORLD_OBJECT_REF_NUMBER_INVALID))
+	{
+		return false;
+	}
+	else
+	{
+		return true;
+	}
 }
 
 int Alice::returnReferenceNumberOfHeldObject() const
 {
-    return referenceNumberOfHeldWorldObject;
+	return referenceNumberOfHeldWorldObject;
 }
 
 const std::vector<WorldObjectProperty> Alice::returnPropertiesOfHeldWorldObject() const

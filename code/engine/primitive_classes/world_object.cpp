@@ -2,26 +2,26 @@
 
 WorldObject::WorldObject():
 	TexturedObject(0,0,0,0,nullptr),
-    triggerZoneForObject(0,0,0,0,false),
+	triggerZoneForObject(0,0,0,0,false),
 	collisionBoxForObject(0,0,0,0,false)
 {
-    this->visibility = false;
+	this->visibility = false;
 }
 
 WorldObject::WorldObject(int x, int y, unsigned int width, unsigned int height, const sf::Texture* texture):
-    TexturedObject(x,y,width,height,texture),
-    triggerZoneForObject(0,0,0,0,false),
+	TexturedObject(x,y,width,height,texture),
+	triggerZoneForObject(0,0,0,0,false),
 	collisionBoxForObject(0,0,0,0,false)
 {
-    this->visibility = true;
+	this->visibility = true;
 }
 
 WorldObject::WorldObject(TexturedObject parentObject):
-    TexturedObject(parentObject),
-    triggerZoneForObject(0,0,0,0,false),
+	TexturedObject(parentObject),
+	triggerZoneForObject(0,0,0,0,false),
 	collisionBoxForObject(0,0,0,0,false)
 {
-    this->visibility = true;
+	this->visibility = true;
 }
 
 void WorldObject::setTriggerZoneX(int newX)
@@ -96,46 +96,46 @@ bool WorldObject::isDrawableObjectWithinCollisionBox(const DrawableObject& objec
 
 bool WorldObject::isInvalid() const
 {
-    if((this->width == 0) || (this->height == 0))
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+	if((this->width == 0) || (this->height == 0))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 bool WorldObject::isDrawableObjectWithinTriggerZone(const DrawableObject& objectToCheck) const
 {
-    if(triggerZoneForObject.isIntersecting(objectToCheck) && triggerZoneForObject.isActive())
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+	if(triggerZoneForObject.isIntersecting(objectToCheck) && triggerZoneForObject.isActive())
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 void WorldObject::attachTriggerZone(TriggerZone zoneToAttach)
 {
-    triggerZoneForObject = zoneToAttach;
+	triggerZoneForObject = zoneToAttach;
 }
 
 void WorldObject::detachTriggerZone()
 {
-    triggerZoneForObject = TriggerZone(0,0,0,0,false);
+	triggerZoneForObject = TriggerZone(0,0,0,0,false);
 }
 
 void WorldObject::setVisibility(bool visibilityArg)
 {
-    this->visibility = visibilityArg;
+	this->visibility = visibilityArg;
 }
 
 bool WorldObject::getVisibility() const
 {
-    return this->visibility;
+	return this->visibility;
 }
 
 void WorldObject::addWorldObjectProperty(WorldObjectProperty property)
@@ -150,8 +150,8 @@ std::vector<WorldObjectProperty> WorldObject::getProperties() const
 
 void WorldObject::draw(sf::RenderWindow& windowToDrawObjectIn)
 {
-    if((this->visibility) == true)
-    {
-        TexturedObject::draw(windowToDrawObjectIn);
-    }
+	if((this->visibility) == true)
+	{
+		TexturedObject::draw(windowToDrawObjectIn);
+	}
 }

@@ -20,14 +20,14 @@ class TexturedObject: public DrawableObject
 		void setRotationAroundCentre(float degrees);
 		void addPeriodicRotation(int numberOfMillisecondsToCompleteOneRotation);
 		void setDegreeInterval(float degreeIntervalToAdd);
-	        void draw(sf::RenderWindow& windowToDrawObjectIn);
+		void draw(sf::RenderWindow& windowToDrawObjectIn);
 		void draw(sf::RenderWindow& windowToDrawObjectIn, unsigned int numberOfMillisecondsSinceLastDraw);
 	protected:
 		static bool isDefaultTextureInitialized;
 		static sf::Texture defaultTexture;
 		const sf::Texture* texturePointer;
 	private:
-	        float rotationFactor;
+		float rotationFactor;
 		float degreeInterval;
 		int rotationPeriod;
 };

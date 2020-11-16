@@ -3,10 +3,10 @@
 
 enum ScreenEnum
 {
-    NULL_SCREEN = 0,
-    MAIN_MENU_SCREEN = 1,
-    FARM_SCREEN = 2,
-    MARKET_SCREEN = 3
+	NULL_SCREEN = 0,
+	MAIN_MENU_SCREEN = 1,
+	FARM_SCREEN = 2,
+	MARKET_SCREEN = 3
 };
 
 #endif

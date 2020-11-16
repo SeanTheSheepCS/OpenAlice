@@ -17,35 +17,35 @@
 
 class NumberDisplay: public DrawableObject
 {
-    public:
-        NumberDisplay(int x, int y, unsigned int width, unsigned int height, unsigned int digitCountArg);
+	public:
+		NumberDisplay(int x, int y, unsigned int width, unsigned int height, unsigned int digitCountArg);
 
-        void associateWithTexturesInBank(const TextureBank& textureBankToTakeFrom);
+		void associateWithTexturesInBank(const TextureBank& textureBankToTakeFrom);
 
-        void incrementNumberDisplayByAmount(unsigned int amount);
-        void decrementNumberDisplayByAmount(unsigned int amount);
-        void setNumberDisplayAmount(unsigned int amount);
+		void incrementNumberDisplayByAmount(unsigned int amount);
+		void decrementNumberDisplayByAmount(unsigned int amount);
+		void setNumberDisplayAmount(unsigned int amount);
 
-	void setXRecursiveWithinComponents(int newX);
-	void setYRecursiveWithinComponents(int newY);
-	void setWidthRecursiveWithinComponents(unsigned int newWidth);
-	void setHeightRecursiveWithinComponents(unsigned int newHeight);
+		void setXRecursiveWithinComponents(int newX);
+		void setYRecursiveWithinComponents(int newY);
+		void setWidthRecursiveWithinComponents(unsigned int newWidth);
+		void setHeightRecursiveWithinComponents(unsigned int newHeight);
 
-	void updateDigitTextures();
+		void updateDigitTextures();
 
-        void draw(sf::RenderWindow& windowToDrawObjectIn);
-    protected:
-        //
-    private:
-        //helper function
-        unsigned int getDigitIntegerFormAtIndex(unsigned int index);
+		void draw(sf::RenderWindow& windowToDrawObjectIn);
+	protected:
+		//
+	private:
+		//helper function
+		unsigned int getDigitIntegerFormAtIndex(unsigned int index);
 
-        //member variables
-        unsigned int digitCount;
-        unsigned int digitAsInteger;
-        TexturedObject background;
-        TexturedObject digits[NUMBER_DISPLAY_MAXIMUM_DIGITS_COUNT];
-        NumberDisplayTexturePackStruct texturePack;
+		//member variables
+		unsigned int digitCount;
+		unsigned int digitAsInteger;
+		TexturedObject background;
+		TexturedObject digits[NUMBER_DISPLAY_MAXIMUM_DIGITS_COUNT];
+		NumberDisplayTexturePackStruct texturePack;
 };
 
 #endif

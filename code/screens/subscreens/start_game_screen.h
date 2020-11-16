@@ -10,35 +10,35 @@
 
 class StartGameScreen: public OAEScreen
 {
-    public:
-        StartGameScreen(int x, int y, unsigned int width, unsigned int height);
-        void handleEvent(sf::Event event, sf::RenderWindow& window);
-        void forceFullDraw(sf::RenderWindow& windowToDrawIn);
-        void update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::RenderWindow& window);
+	public:
+		StartGameScreen(int x, int y, unsigned int width, unsigned int height);
+		void handleEvent(sf::Event event, sf::RenderWindow& window);
+		void forceFullDraw(sf::RenderWindow& windowToDrawIn);
+		void update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::RenderWindow& window);
 
-        //Functions for a start game screen specifically
-        bool hasCloseScreenRequestBeenMade();
-        void acknowledgeCloseScreenRequest();
+		//Functions for a start game screen specifically
+		bool hasCloseScreenRequestBeenMade();
+		void acknowledgeCloseScreenRequest();
 
-        void associateWithTexturesInBank(const TextureBank& textureBankToTakeFrom);
+		void associateWithTexturesInBank(const TextureBank& textureBankToTakeFrom);
 
-        int whichSaveGameHasBeenChosenReturnsZeroIfNoSavegameHasBeenChosen();
-        void acknowledgeChosenSavegame();
+		int whichSaveGameHasBeenChosenReturnsZeroIfNoSavegameHasBeenChosen();
+		void acknowledgeChosenSavegame();
 
-    protected:
-        //
-    private:
-        TexturedObject background;
-        TexturedButtonObject exitScreenButton;
-        TexturedButtonObject selectFileOneButton;
-        TexturedButtonObject deleteFileOneButton;
-        TexturedButtonObject selectFileTwoButton;
-        TexturedButtonObject deleteFileTwoButton;
-        TexturedButtonObject selectFileThreeButton;
-        TexturedButtonObject deleteFileThreeButton;
+	protected:
+		//
+	private:
+		TexturedObject background;
+		TexturedButtonObject exitScreenButton;
+		TexturedButtonObject selectFileOneButton;
+		TexturedButtonObject deleteFileOneButton;
+		TexturedButtonObject selectFileTwoButton;
+		TexturedButtonObject deleteFileTwoButton;
+		TexturedButtonObject selectFileThreeButton;
+		TexturedButtonObject deleteFileThreeButton;
 
-        bool closeScreenRequestFlag;
-        int chosenSavegameIsZeroIfNoSavegameHasBeenChosen;
+		bool closeScreenRequestFlag;
+		int chosenSavegameIsZeroIfNoSavegameHasBeenChosen;
 };
 
 #endif

@@ -9,15 +9,15 @@
 
 class WorldObject: public TexturedObject
 {
-    public:
-        WorldObject();
-        WorldObject(int x, int y, unsigned int width, unsigned int height, const sf::Texture* texture);
-	    WorldObject(TexturedObject parentObject);
+	public:
+		WorldObject();
+		WorldObject(int x, int y, unsigned int width, unsigned int height, const sf::Texture* texture);
+		WorldObject(TexturedObject parentObject);
 
-	    void setTriggerZoneX(int newX);
-	    void setTriggerZoneY(int newY);
-	    void setTriggerZoneWidth(unsigned int newWidth);
-	    void setTriggerZoneHeight(unsigned int newHeight);
+		void setTriggerZoneX(int newX);
+		void setTriggerZoneY(int newY);
+		void setTriggerZoneWidth(unsigned int newWidth);
+		void setTriggerZoneHeight(unsigned int newHeight);
 
 		void setCollisionBoxX(int newX);
 		void setCollisionBoxY(int newY);
@@ -29,24 +29,24 @@ class WorldObject: public TexturedObject
 		void pushDrawableObjectOutOfCollisionZoneIfItIntersects(DrawableObject& objectToPush) const;
 		bool isDrawableObjectWithinCollisionBox(const DrawableObject& objectToCheck) const;
 
-	    void attachTriggerZone(TriggerZone zoneToAttach);
-	    void detachTriggerZone();
-	    bool isDrawableObjectWithinTriggerZone(const DrawableObject& objectToCheck) const;
+		void attachTriggerZone(TriggerZone zoneToAttach);
+		void detachTriggerZone();
+		bool isDrawableObjectWithinTriggerZone(const DrawableObject& objectToCheck) const;
 
-	    void setVisibility(bool visibility);
-	    bool getVisibility() const;
-        bool isInvalid() const;
+		void setVisibility(bool visibility);
+		bool getVisibility() const;
+		bool isInvalid() const;
 
 		void addWorldObjectProperty(WorldObjectProperty property);
 		std::vector<WorldObjectProperty> getProperties() const;
 
-        void draw(sf::RenderWindow& windowToDrawObjectIn);
-    protected:
-        //
-    private:
-	    bool visibility;
+		void draw(sf::RenderWindow& windowToDrawObjectIn);
+	protected:
+		//
+	private:
+		bool visibility;
 
-	    TriggerZone triggerZoneForObject;
+		TriggerZone triggerZoneForObject;
 		CollisionBox collisionBoxForObject;
 		std::vector<WorldObjectProperty> properties;
 };

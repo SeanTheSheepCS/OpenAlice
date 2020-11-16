@@ -10,23 +10,23 @@
 
 class CreditsScreen: public OAEScreen
 {
-    public:
-        CreditsScreen(int x, int y, unsigned int width, unsigned int height);
-        void handleEvent(sf::Event event, sf::RenderWindow& window);
-        void forceFullDraw(sf::RenderWindow& windowToDrawIn);
-        void update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::RenderWindow& window);
+	public:
+		CreditsScreen(int x, int y, unsigned int width, unsigned int height);
+		void handleEvent(sf::Event event, sf::RenderWindow& window);
+		void forceFullDraw(sf::RenderWindow& windowToDrawIn);
+		void update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::RenderWindow& window);
 
-        void associateWithTexturesInBank(const TextureBank& textureBankToTakeFrom);
+		void associateWithTexturesInBank(const TextureBank& textureBankToTakeFrom);
 
-        bool hasCloseScreenRequestBeenMade();
-        void acknowledgeCloseScreenRequest();
-    protected:
-        //
-    private:
-        TexturedObject background;
-        TexturedButtonObject exitScreenButton;
+		bool hasCloseScreenRequestBeenMade();
+		void acknowledgeCloseScreenRequest();
+	protected:
+		//
+	private:
+		TexturedObject background;
+		TexturedButtonObject exitScreenButton;
 
-        bool closeScreenRequestFlag;
+		bool closeScreenRequestFlag;
 };
 
 #endif

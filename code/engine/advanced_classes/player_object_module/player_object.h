@@ -9,26 +9,26 @@
 
 class PlayerObject: public DrawableObject, public OAEAnimatedObject, public ObjectWithTextureMap
 {
-    public:
-        PlayerObject(int x, int y, unsigned int width, unsigned int height);
-        void setXMovementAmount(float newXMovementAmount);
-        void setYMovementAmount(float newYMovementAmount);
-        void changeXMovementAmountByAmount(float amountToChangeXMovementAmountBy);
-        void changeYMovementAmountByAmount(float amountToChangeYMovementAmountBy);
+	public:
+		PlayerObject(int x, int y, unsigned int width, unsigned int height);
+		void setXMovementAmount(float newXMovementAmount);
+		void setYMovementAmount(float newYMovementAmount);
+		void changeXMovementAmountByAmount(float amountToChangeXMovementAmountBy);
+		void changeYMovementAmountByAmount(float amountToChangeYMovementAmountBy);
 
-        float getXMovementAmount();
-        float getYMovementAmount();
+		float getXMovementAmount();
+		float getYMovementAmount();
 
-        void updateSprite(unsigned int millisecondsPassedSinceLastDraw);
-        void draw(sf::RenderWindow& windowToDrawObjectIn);
-        void drawAndUpdateSprite(sf::RenderWindow& windowToDrawObjectIn, unsigned int millisecondsPassedSinceLastDraw);
-    protected:
-        //
-    private:
-        float xMovementAmount;
-        float yMovementAmount;
-        float xMovementCap;
-        float yMovementCap;
+		void updateSprite(unsigned int millisecondsPassedSinceLastDraw);
+		void draw(sf::RenderWindow& windowToDrawObjectIn);
+		void drawAndUpdateSprite(sf::RenderWindow& windowToDrawObjectIn, unsigned int millisecondsPassedSinceLastDraw);
+	protected:
+		//
+	private:
+		float xMovementAmount;
+		float yMovementAmount;
+		float xMovementCap;
+		float yMovementCap;
 };
 
 #endif

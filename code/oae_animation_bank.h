@@ -7,15 +7,15 @@
 
 class OAEAnimationBank
 {
-    public:
-        OAEAnimationBank();
-        void saveOAEAnimationWithReferenceNumber(int referenceNumber, const OAEAnimation animationToSave);
-        const OAEAnimation* getAnimationAssociatedWithReferenceNumber(int referenceNumber) const;
-        void deleteAnimationWithReferenceNumber(int referenceNumber);
-    protected:
-        //
-    private:
-        std::map<int, const OAEAnimation> referenceNumberToAnimationMap;
+	public:
+		OAEAnimationBank();
+		void saveOAEAnimationWithReferenceNumber(int referenceNumber, const OAEAnimation animationToSave);
+		const OAEAnimation* getAnimationAssociatedWithReferenceNumber(int referenceNumber) const;
+		void deleteAnimationWithReferenceNumber(int referenceNumber);
+	protected:
+		//
+	private:
+		std::map<int, const OAEAnimation> referenceNumberToAnimationMap;
 };
 
 #endif

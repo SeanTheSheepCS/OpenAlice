@@ -2,30 +2,30 @@
 
 DrawableObject::DrawableObject(int xArg, int yArg, unsigned int widthArg, unsigned int heightArg)
 {
-    this->x = xArg;
-    this->y = yArg;
-    this->width = widthArg;
-    this->height = heightArg;
+	this->x = xArg;
+	this->y = yArg;
+	this->width = widthArg;
+	this->height = heightArg;
 }
 
 int DrawableObject::getX() const
 {
-    return x;
+	return x;
 }
 
 int DrawableObject::getY() const
 {
-    return y;
+	return y;
 }
 
 unsigned int DrawableObject::getWidth() const
 {
-    return width;
+	return width;
 }
 
 unsigned int DrawableObject::getHeight() const
 {
-    return height;
+	return height;
 }
 
 int DrawableObject::getCentreX() const
@@ -40,21 +40,21 @@ int DrawableObject::getCentreY() const
 
 void DrawableObject::setX(int newX)
 {
-    this->x = newX;
+	this->x = newX;
 }
 
 void DrawableObject::setY(int newY)
 {
-    this->y = newY;
+	this->y = newY;
 }
 
 void DrawableObject::setWidth(unsigned int newWidth)
 {
-    this->width = newWidth;
+	this->width = newWidth;
 }
 
 void DrawableObject::setHeight(unsigned int newHeight)
 {
-    this->height = newHeight;
+	this->height = newHeight;
 }
 

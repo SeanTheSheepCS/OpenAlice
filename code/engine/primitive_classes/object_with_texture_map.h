@@ -6,19 +6,19 @@
 
 class ObjectWithTextureMap
 {
-    public:
-        ObjectWithTextureMap();
+	public:
+		ObjectWithTextureMap();
 
-        void associateReferenceNumberWithTexturePointer(int referenceNumber, const sf::Texture* texturePointer);
-        void deassociateTexturePointerWithSpecifiedReferenceNumber(int referenceNumber);
+		void associateReferenceNumberWithTexturePointer(int referenceNumber, const sf::Texture* texturePointer);
+		void deassociateTexturePointerWithSpecifiedReferenceNumber(int referenceNumber);
 
-        void setCurrentTextureReferenceNumber(int newReferenceNumber);
-        const sf::Texture* getCurrentTexture() const;
-    protected:
-        const sf::Texture* getTextureWithSpecificReferenceNumber(int referenceNumber) const;
-    private:
-        int currentTextureReferenceNumber;
-        std::map<int, const sf::Texture*> refNumberToTexturePointerMap;
+		void setCurrentTextureReferenceNumber(int newReferenceNumber);
+		const sf::Texture* getCurrentTexture() const;
+	protected:
+		const sf::Texture* getTextureWithSpecificReferenceNumber(int referenceNumber) const;
+	private:
+		int currentTextureReferenceNumber;
+		std::map<int, const sf::Texture*> refNumberToTexturePointerMap;
 };
 
 #endif

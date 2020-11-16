@@ -7,20 +7,20 @@
 class MarketOfferList: public DrawableObject
 {
 	public:
-        MarketOfferList(int x, int y, unsigned int width, unsigned int height, unsigned int objectsPerPage);
+		MarketOfferList(int x, int y, unsigned int width, unsigned int height, unsigned int objectsPerPage);
 
 		void appendMarketOffer(MarketOffer marketOfferToAppend);
 		void eraseOfferAtIndex(int index);
 
 		int returnIndexOfSelectedMarketOfferIfOneHasBeenSelectedElseReturnMinusOne(int mouseX, int mouseY);
 
-        void draw(sf::RenderWindow& windowToDrawObjectIn);
-    protected:
-        //
-    private:
-        std::vector<MarketOffer> marketOfferVector;
-        unsigned int numberOfMarketOffersPerPage;
-        TexturedObject background;
+		void draw(sf::RenderWindow& windowToDrawObjectIn);
+	protected:
+		//
+	private:
+		std::vector<MarketOffer> marketOfferVector;
+		unsigned int numberOfMarketOffersPerPage;
+		TexturedObject background;
 };
 
 #endif

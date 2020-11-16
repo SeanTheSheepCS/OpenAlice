@@ -24,65 +24,65 @@
 
 enum TileMapReferenceNumbersForGroundEnum
 {
-    TILE_REF_NUM_OUT_OF_BOUNDS_GRASS = 0,
-    TILE_REF_NUM_IN_BOUNDS_GRASS = 1,
-    TILE_REF_NUM_UNWATERED_TILLED_DIRT = 2,
-    TILE_REF_NUM_WATERED_TILLED_DIRT = 3,
+	TILE_REF_NUM_OUT_OF_BOUNDS_GRASS = 0,
+	TILE_REF_NUM_IN_BOUNDS_GRASS = 1,
+	TILE_REF_NUM_UNWATERED_TILLED_DIRT = 2,
+	TILE_REF_NUM_WATERED_TILLED_DIRT = 3,
 };
 
 class FarmScreen: public OAEScreen
 {
-    public:
-        FarmScreen(int x, int y, unsigned int width, unsigned int height);
+	public:
+		FarmScreen(int x, int y, unsigned int width, unsigned int height);
 
-        void handleEvent(sf::Event event, sf::RenderWindow& window); 
-        void forceFullDraw(sf::RenderWindow& windowToDrawIn);
-        void update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::RenderWindow& windowToDrawIn);
+		void handleEvent(sf::Event event, sf::RenderWindow& window); 
+		void forceFullDraw(sf::RenderWindow& windowToDrawIn);
+		void update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::RenderWindow& windowToDrawIn);
 
-        void associateWithTexturesInBank(const TextureBank& textureBankToTakeFrom);
-        void associateWithAnimationsInBank(const OAEAnimationBank& animationBankToTakeFrom);
-    	void initializeWorldObjectsInGroundTileMap();
+		void associateWithTexturesInBank(const TextureBank& textureBankToTakeFrom);
+		void associateWithAnimationsInBank(const OAEAnimationBank& animationBankToTakeFrom);
+		void initializeWorldObjectsInGroundTileMap();
 
-	void runSleepSequence(sf::RenderWindow& windowToDrawIn);
-	void runFillWaterContainerSequence(sf::RenderWindow& windowToDrawIn);
+		void runSleepSequence(sf::RenderWindow& windowToDrawIn);
+		void runFillWaterContainerSequence(sf::RenderWindow& windowToDrawIn);
 
-	void loadSaveFile(const SaveFile& saveFileToLoad);
+		void loadSaveFile(const SaveFile& saveFileToLoad);
 
-        bool returnIfShouldSwitchToMarketScreen();
-        void acknowledgeShouldSwitchToMarketScreen();
+		bool returnIfShouldSwitchToMarketScreen();
+		void acknowledgeShouldSwitchToMarketScreen();
 
-        bool returnIfShouldSwitchToMainMenuScreen();
-        void acknowledgeShouldSwitchToMainMenuScreen();
-    protected:
-        //
-    private:
-        void associateAliceWithCorrectAnimation(); //HELPER FUNCTION FOR UPDATE
-	void handlePickUpEvent(sf::RenderWindow& windowToDrawIn); //HELPER FUNCTION FOR HANDLEEVENT
-	void handleItemUseEvent(sf::RenderWindow& windowToDrawIn); //HELPER FUNCTION FOR HANDLEEVENT
-	void updateTheFollowingRowsInThePlantTileMapBothBoundsInclusive(unsigned int lowerBound, unsigned int upperBound); //HELPER FUNCTION FOR UPDATE WHEN IN THE SLEEP STATE.
-	void drawAllObjectsALayerBelowAlice(sf::RenderWindow& windowToDrawIn); //HELPER FUNCTION FOR A LOT OF FUNCTIONS
-	void drawAllObjectsALayerAboveAlice(sf::RenderWindow& windowToDrawIn); //HELPER FUNCTION FOR A LOT OF FUNCTIONS
+		bool returnIfShouldSwitchToMainMenuScreen();
+		void acknowledgeShouldSwitchToMainMenuScreen();
+	protected:
+		//
+	private:
+		void associateAliceWithCorrectAnimation(); //HELPER FUNCTION FOR UPDATE
+		void handlePickUpEvent(sf::RenderWindow& windowToDrawIn); //HELPER FUNCTION FOR HANDLEEVENT
+		void handleItemUseEvent(sf::RenderWindow& windowToDrawIn); //HELPER FUNCTION FOR HANDLEEVENT
+		void updateTheFollowingRowsInThePlantTileMapBothBoundsInclusive(unsigned int lowerBound, unsigned int upperBound); //HELPER FUNCTION FOR UPDATE WHEN IN THE SLEEP STATE.
+		void drawAllObjectsALayerBelowAlice(sf::RenderWindow& windowToDrawIn); //HELPER FUNCTION FOR A LOT OF FUNCTIONS
+		void drawAllObjectsALayerAboveAlice(sf::RenderWindow& windowToDrawIn); //HELPER FUNCTION FOR A LOT OF FUNCTIONS
 
-	bool isInSleepState;
+		bool isInSleepState;
 
-        bool shouldSwitchToMarketScreenFlag;
-        bool shouldSwitchToMainMenuScreenFlag;
+		bool shouldSwitchToMarketScreenFlag;
+		bool shouldSwitchToMainMenuScreenFlag;
 
-        TexturedObject displaysTheWordDay;
-        NumberDisplay dayNumberDisplay;
-        TexturedObject displaysAMoneySign;
-        NumberDisplay moneyDisplay;
-        TexturedObject background;
-        TexturedButtonObject marketButton;
-        TexturedButtonObject mainMenuButton;
-        TileMap groundTileMap;
-	
-	TileMap plantTileMap;
+		TexturedObject displaysTheWordDay;
+		NumberDisplay dayNumberDisplay;
+		TexturedObject displaysAMoneySign;
+		NumberDisplay moneyDisplay;
+		TexturedObject background;
+		TexturedButtonObject marketButton;
+		TexturedButtonObject mainMenuButton;
+		TileMap groundTileMap;
 
-        Alice alice;
+		TileMap plantTileMap;
 
-	//SLEEP SCREEN
-	TexturedObject dayNightCircle;
+		Alice alice;
+
+		//SLEEP SCREEN
+		TexturedObject dayNightCircle;
 };
 
 #endif

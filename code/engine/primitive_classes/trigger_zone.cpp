@@ -2,61 +2,61 @@
 
 TriggerZone::TriggerZone(int xArg, int yArg, int widthArg, int heightArg, bool activeStatusArg)
 {
-    this->x = xArg;
-    this->y = yArg;
-    this->width = widthArg;
-    this->height = heightArg;
-    this->activeStatus = activeStatusArg;
+	this->x = xArg;
+	this->y = yArg;
+	this->width = widthArg;
+	this->height = heightArg;
+	this->activeStatus = activeStatusArg;
 }
 
 void TriggerZone::setX(int newX)
 {
-    this->x = newX;
+	this->x = newX;
 }
 
 int TriggerZone::getX() const
 {
-    return this->x;
+	return this->x;
 }
 
 void TriggerZone::setY(int newY)
 {
-    this->y = newY;
+	this->y = newY;
 }
 
 int TriggerZone::getY() const
 {
-    return this->y;
+	return this->y;
 }
 
 void TriggerZone::setWidth(int newWidth)
 {
-    this->width = newWidth;
+	this->width = newWidth;
 }
 
 unsigned int TriggerZone::getWidth() const
 {
-    return this->width;
+	return this->width;
 }
 
 void TriggerZone::setHeight(int newHeight)
 {
-    this->height = newHeight;
+	this->height = newHeight;
 }
 
 unsigned int TriggerZone::getHeight() const
 {
-    return this->height;
+	return this->height;
 }
 
 void TriggerZone::setActive(bool activeStatusArg)
 {
-    this->activeStatus = activeStatusArg;
+	this->activeStatus = activeStatusArg;
 }
 
 bool TriggerZone::isActive() const
 {
-    return activeStatus;
+	return activeStatus;
 }
 
 bool TriggerZone::isIntersecting(const DrawableObject& objectToCompareWith) const
@@ -79,6 +79,6 @@ bool TriggerZone::isIntersecting(const DrawableObject& objectToCompareWith) cons
 	}
 	else
 	{
-    	return true;
+		return true;
 	}
 }

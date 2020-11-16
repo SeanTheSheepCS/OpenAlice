@@ -2,7 +2,7 @@
 
 /*static*/ SaveFile SaveGameHelper::loadSaveFile(int saveFileNumberToLoad)
 {
-    SaveFile returnValue;
-    //TODO implement loading save feature.
-    return returnValue;
+	SaveFile returnValue;
+	//TODO implement loading save feature.
+	return returnValue;
 }

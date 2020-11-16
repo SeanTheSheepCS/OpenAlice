@@ -3,33 +3,33 @@
 
 OAEAnimationInstance::OAEAnimationInstance(const OAEAnimation* animationToUseArg)
 {
-    animationToUse = animationToUseArg;
-    millisecondsProgressInAnimation = 0;
+	animationToUse = animationToUseArg;
+	millisecondsProgressInAnimation = 0;
 }
 
 void OAEAnimationInstance::incrementMillisecondCountByAmount(unsigned int amountToIncrementBy)
 {
-    millisecondsProgressInAnimation = ((millisecondsProgressInAnimation + amountToIncrementBy) % (animationToUse->getTotalMillisecondCountForAnimation()));
+	millisecondsProgressInAnimation = ((millisecondsProgressInAnimation + amountToIncrementBy) % (animationToUse->getTotalMillisecondCountForAnimation()));
 }
 
 void OAEAnimationInstance::setMillisecondCountToZero()
 {
-    millisecondsProgressInAnimation = 0;
+	millisecondsProgressInAnimation = 0;
 }
 
 unsigned int OAEAnimationInstance::getMillisecondProgressInAnimation() const
 {
-    return millisecondsProgressInAnimation;
+	return millisecondsProgressInAnimation;
 }
 
 const sf::Texture* OAEAnimationInstance::getCurrentFrame()
 {
-    if(animationToUse != nullptr)
-    {
-        return animationToUse->getFrameAtSpecifiedMilliseconds(millisecondsProgressInAnimation);
-    }
-    else
-    {
-        return nullptr;
-    }
+	if(animationToUse != nullptr)
+	{
+		return animationToUse->getFrameAtSpecifiedMilliseconds(millisecondsProgressInAnimation);
+	}
+	else
+	{
+		return nullptr;
+	}
 }

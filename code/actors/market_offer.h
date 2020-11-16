@@ -8,9 +8,9 @@
 
 class MarketOffer: public DrawableObject
 {
-    public:
-        MarketOffer();
-        MarketOffer(int x, int y, unsigned int width, unsigned int height);
+	public:
+		MarketOffer();
+		MarketOffer(int x, int y, unsigned int width, unsigned int height);
 
 		void setXRecursiveWithinComponents(int newX);
 		void setYRecursiveWithinComponents(int newY);
@@ -21,16 +21,16 @@ class MarketOffer: public DrawableObject
 
 		bool isInvalid();
 
-        void draw(sf::RenderWindow& windowToDrawObjectIn);
-    protected:
-        //
-    private:
-        TexturedObject background;
+		void draw(sf::RenderWindow& windowToDrawObjectIn);
+	protected:
+		//
+	private:
+		TexturedObject background;
 		TexturedObject commodityOneIcon;
 		NumberDisplay commodityOneCountDisplay;
 		TexturedObject commodityTwoIcon;
 		NumberDisplay commodityTwoCountDisplay;
-        TexturedButtonObject selectButton;
+		TexturedButtonObject selectButton;
 };
 
 #endif

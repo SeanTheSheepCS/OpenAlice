@@ -2,95 +2,95 @@
 #include <iostream>
 
 MainMenuScreen::MainMenuScreen(int x, int y, unsigned int width, unsigned int height): 
-    OAEScreen(x, y, width, height),
-    backgroundWithTitle(x,y,width,height,nullptr),
-    startGameButton(x+(width*0.1),y+(height*0.55), (width*0.8), (height*0.15), nullptr),
-    creditsButton(x+(width*0.1),y+(height*0.70), (width*0.8), (height*0.15), nullptr),
-    exitGameButton(x+(width*0.1),y+(height*0.85), (width*0.8), (height*0.15), nullptr),
-    startGameScreenVar(x+(width*0.1),y+(height*0.1),(width*0.8),(height*0.8)),
-    creditsScreenVar(x+(width*0.1),y+(height*0.1),(width*0.8),(height*0.8))
+	OAEScreen(x, y, width, height),
+	backgroundWithTitle(x,y,width,height,nullptr),
+	startGameButton(x+(width*0.1),y+(height*0.55), (width*0.8), (height*0.15), nullptr),
+	creditsButton(x+(width*0.1),y+(height*0.70), (width*0.8), (height*0.15), nullptr),
+	exitGameButton(x+(width*0.1),y+(height*0.85), (width*0.8), (height*0.15), nullptr),
+	startGameScreenVar(x+(width*0.1),y+(height*0.1),(width*0.8),(height*0.8)),
+	creditsScreenVar(x+(width*0.1),y+(height*0.1),(width*0.8),(height*0.8))
 {
-    subscreenState = NO_SUBSCREEN_ACTIVE;
-    savegameToLoadSetToZeroWhenNoSavegameHasBeenChosen = 0;
+	subscreenState = NO_SUBSCREEN_ACTIVE;
+	savegameToLoadSetToZeroWhenNoSavegameHasBeenChosen = 0;
 }
 
 void MainMenuScreen::handleEvent(sf::Event event, sf::RenderWindow& window)
 {
-    switch(subscreenState)
-    {
-        case NO_SUBSCREEN_ACTIVE:
-            switch(event.type)
-            {
-                case sf::Event::MouseButtonPressed:
-                    {
-                        sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
-                        int mouseX = mousePosition.x;
-                        int mouseY = mousePosition.y;
-                        if(startGameButton.theMouseHasBeenClickedAtTheSpecifiedCoordinatesHasTheButtonBeenClicked(mouseX, mouseY))
-                        {
-                            subscreenState = START_GAME_SUBSCREEN_ACTIVE;
-                            startGameScreenVar.forceFullDraw(window);
-                        }
-                        else if(creditsButton.theMouseHasBeenClickedAtTheSpecifiedCoordinatesHasTheButtonBeenClicked(mouseX, mouseY))
-                        {
-                            subscreenState = CREDITS_SUBSCREEN_ACTIVE;
-                            creditsScreenVar.forceFullDraw(window);
-                        }
-                        else if(exitGameButton.theMouseHasBeenClickedAtTheSpecifiedCoordinatesHasTheButtonBeenClicked(mouseX, mouseY))
-                        {
-                            window.close();
-                        }
-                    }
-                    break;
-                default:
-                    break;
-            }
-            break;
-        case START_GAME_SUBSCREEN_ACTIVE:
-            startGameScreenVar.handleEvent(event, window);
-            if(startGameScreenVar.hasCloseScreenRequestBeenMade())
-            {
-                startGameScreenVar.acknowledgeCloseScreenRequest();
-                subscreenState = NO_SUBSCREEN_ACTIVE;
-                forceFullDraw(window);
-            }
-            else if(startGameScreenVar.whichSaveGameHasBeenChosenReturnsZeroIfNoSavegameHasBeenChosen() != 0)
-            {
-                savegameToLoadSetToZeroWhenNoSavegameHasBeenChosen = startGameScreenVar.whichSaveGameHasBeenChosenReturnsZeroIfNoSavegameHasBeenChosen();
-                startGameScreenVar.acknowledgeChosenSavegame();
-            }
-            break;
-        case CREDITS_SUBSCREEN_ACTIVE:
-            creditsScreenVar.handleEvent(event, window);
-            if(creditsScreenVar.hasCloseScreenRequestBeenMade())
-            {
-                creditsScreenVar.acknowledgeCloseScreenRequest();
-                subscreenState = NO_SUBSCREEN_ACTIVE;
-                forceFullDraw(window);
-            }
-            break;
-        default:
-            break;
-    }
+	switch(subscreenState)
+	{
+		case NO_SUBSCREEN_ACTIVE:
+			switch(event.type)
+			{
+				case sf::Event::MouseButtonPressed:
+					{
+						sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
+						int mouseX = mousePosition.x;
+						int mouseY = mousePosition.y;
+						if(startGameButton.theMouseHasBeenClickedAtTheSpecifiedCoordinatesHasTheButtonBeenClicked(mouseX, mouseY))
+						{
+							subscreenState = START_GAME_SUBSCREEN_ACTIVE;
+							startGameScreenVar.forceFullDraw(window);
+						}
+						else if(creditsButton.theMouseHasBeenClickedAtTheSpecifiedCoordinatesHasTheButtonBeenClicked(mouseX, mouseY))
+						{
+							subscreenState = CREDITS_SUBSCREEN_ACTIVE;
+							creditsScreenVar.forceFullDraw(window);
+						}
+						else if(exitGameButton.theMouseHasBeenClickedAtTheSpecifiedCoordinatesHasTheButtonBeenClicked(mouseX, mouseY))
+						{
+							window.close();
+						}
+					}
+					break;
+				default:
+					break;
+			}
+			break;
+		case START_GAME_SUBSCREEN_ACTIVE:
+			startGameScreenVar.handleEvent(event, window);
+			if(startGameScreenVar.hasCloseScreenRequestBeenMade())
+			{
+				startGameScreenVar.acknowledgeCloseScreenRequest();
+				subscreenState = NO_SUBSCREEN_ACTIVE;
+				forceFullDraw(window);
+			}
+			else if(startGameScreenVar.whichSaveGameHasBeenChosenReturnsZeroIfNoSavegameHasBeenChosen() != 0)
+			{
+				savegameToLoadSetToZeroWhenNoSavegameHasBeenChosen = startGameScreenVar.whichSaveGameHasBeenChosenReturnsZeroIfNoSavegameHasBeenChosen();
+				startGameScreenVar.acknowledgeChosenSavegame();
+			}
+			break;
+		case CREDITS_SUBSCREEN_ACTIVE:
+			creditsScreenVar.handleEvent(event, window);
+			if(creditsScreenVar.hasCloseScreenRequestBeenMade())
+			{
+				creditsScreenVar.acknowledgeCloseScreenRequest();
+				subscreenState = NO_SUBSCREEN_ACTIVE;
+				forceFullDraw(window);
+			}
+			break;
+		default:
+			break;
+	}
 }
 
 void MainMenuScreen::forceFullDraw(sf::RenderWindow& windowToDrawIn)
 {
-    backgroundWithTitle.draw(windowToDrawIn);
-    startGameButton.draw(windowToDrawIn);
-    creditsButton.draw(windowToDrawIn);
-    exitGameButton.draw(windowToDrawIn);
-    switch (subscreenState)
-    {
-        case START_GAME_SUBSCREEN_ACTIVE:
-            startGameScreenVar.forceFullDraw(windowToDrawIn);
-            break;
-        case CREDITS_SUBSCREEN_ACTIVE:
-            creditsScreenVar.forceFullDraw(windowToDrawIn);
-            break;
-        default:
-            break;
-    }
+	backgroundWithTitle.draw(windowToDrawIn);
+	startGameButton.draw(windowToDrawIn);
+	creditsButton.draw(windowToDrawIn);
+	exitGameButton.draw(windowToDrawIn);
+	switch (subscreenState)
+	{
+		case START_GAME_SUBSCREEN_ACTIVE:
+			startGameScreenVar.forceFullDraw(windowToDrawIn);
+			break;
+		case CREDITS_SUBSCREEN_ACTIVE:
+			creditsScreenVar.forceFullDraw(windowToDrawIn);
+			break;
+		default:
+			break;
+	}
 }
 
 void MainMenuScreen::associateWithTexturesInBank(const TextureBank& textureBankToTakeFrom)
@@ -98,9 +98,9 @@ void MainMenuScreen::associateWithTexturesInBank(const TextureBank& textureBankT
 	startGameScreenVar.associateWithTexturesInBank(textureBankToTakeFrom);
 	creditsScreenVar.associateWithTexturesInBank(textureBankToTakeFrom);
 	backgroundWithTitle.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_MAIN_MENU_SCREEN_BACKGROUND));
-    startGameButton.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_MAIN_MENU_SCREEN_SELECT_GAME_BUTTON));
-    creditsButton.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_MAIN_MENU_SCREEN_CREDITS_BUTTON));
-    exitGameButton.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_MAIN_MENU_SCREEN_EXIT_BUTTON));
+	startGameButton.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_MAIN_MENU_SCREEN_SELECT_GAME_BUTTON));
+	creditsButton.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_MAIN_MENU_SCREEN_CREDITS_BUTTON));
+	exitGameButton.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_MAIN_MENU_SCREEN_EXIT_BUTTON));
 }
 
 void MainMenuScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::RenderWindow& window)
@@ -110,10 +110,10 @@ void MainMenuScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::Re
 
 int MainMenuScreen::returnSavegameThatShouldBeLoadedReturnsZeroIfNoSavegameIsChosenYet()
 {
-    return savegameToLoadSetToZeroWhenNoSavegameHasBeenChosen;
+	return savegameToLoadSetToZeroWhenNoSavegameHasBeenChosen;
 }
 
 void MainMenuScreen::acknowledgeSavegameChoice()
 {
-    savegameToLoadSetToZeroWhenNoSavegameHasBeenChosen = 0;    
+	savegameToLoadSetToZeroWhenNoSavegameHasBeenChosen = 0;    
 }

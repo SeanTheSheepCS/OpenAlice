@@ -5,12 +5,12 @@
 
 class SaveGameHelper
 {
-    public:
-        static SaveFile loadSaveFile(int saveFileNumberToLoad);
-    protected:
-        //
-    private:
-        //
+	public:
+		static SaveFile loadSaveFile(int saveFileNumberToLoad);
+	protected:
+		//
+	private:
+		//
 };
 
 #endif

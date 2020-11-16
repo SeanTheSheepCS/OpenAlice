@@ -11,48 +11,48 @@
 
 class MarketScreen: public OAEScreen
 {
-    public:
-        MarketScreen(int x, int y, unsigned int width, unsigned int height);
+	public:
+		MarketScreen(int x, int y, unsigned int width, unsigned int height);
 
-        void handleEvent(sf::Event event, sf::RenderWindow& window); 
-        void forceFullDraw(sf::RenderWindow& windowToDrawIn);
-        void update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::RenderWindow& window);
+		void handleEvent(sf::Event event, sf::RenderWindow& window); 
+		void forceFullDraw(sf::RenderWindow& windowToDrawIn);
+		void update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::RenderWindow& window);
 
 		void populateMarketWithSellOffer(MarketOffer sellOffer);
 		void populateMarketWithBuyOffer(MarketOffer buyOffer);
 
 		void populateMarketWithGarbageData();
 
-        bool returnIfShouldSwitchToFarmScreen();
-        void acknowledgeShouldSwitchToFarmScreen();
-    protected:
-        //
-    private:
-        bool shouldSwitchToFarmScreenFlag;
+		bool returnIfShouldSwitchToFarmScreen();
+		void acknowledgeShouldSwitchToFarmScreen();
+	protected:
+		//
+	private:
+		bool shouldSwitchToFarmScreenFlag;
 
-        //Shared with farm screen
-        TexturedObject displaysTheWordDay;
-        NumberDisplay dayNumberDisplay;
-        TexturedObject displaysAMoneySign;
-        NumberDisplay moneyDisplay;
+		//Shared with farm screen
+		TexturedObject displaysTheWordDay;
+		NumberDisplay dayNumberDisplay;
+		TexturedObject displaysAMoneySign;
+		NumberDisplay moneyDisplay;
 
-        //Icons for stock
-        TexturedObject tomatoIcon;
-        NumberDisplay tomatoCount;
-        TexturedObject cucumberIcon;
-        NumberDisplay cucumberCount;
-        TexturedObject carrotIcon;
-        NumberDisplay carrotCount;
+		//Icons for stock
+		TexturedObject tomatoIcon;
+		NumberDisplay tomatoCount;
+		TexturedObject cucumberIcon;
+		NumberDisplay cucumberCount;
+		TexturedObject carrotIcon;
+		NumberDisplay carrotCount;
 
-        //Buy/Sell UI
-        TexturedObject sellWord;
-        MarketOfferList itemsForSale;
-        TexturedObject buyWord;
-        MarketOfferList itemsToBuy;
+		//Buy/Sell UI
+		TexturedObject sellWord;
+		MarketOfferList itemsForSale;
+		TexturedObject buyWord;
+		MarketOfferList itemsToBuy;
 
-        //Misc stuff
-        TexturedObject background;
-        TexturedButtonObject returnToFarmButton;
+		//Misc stuff
+		TexturedObject background;
+		TexturedButtonObject returnToFarmButton;
 };
 
 #endif

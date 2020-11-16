@@ -6,16 +6,16 @@
 
 class OAEAnimatedObject
 {
-    public:
-        OAEAnimatedObject();
-        void associateReferenceNumberWithAnimationInstance(int referenceNumber, const OAEAnimationInstance animationInstance);
-        void deassociateAnimationInstanceWithSpecificReferenceNumber(int referenceNumber);
-        void setCurrentAnimationInstanceReferenceNumber(int currentAnimationInstanceReferenceNumber);
-    protected:
-        int currentAnimationInstanceReferenceNumber;
-        std::map<int, OAEAnimationInstance> referenceNumberToAnimationInstanceMap;
-    private:
-        //
+	public:
+		OAEAnimatedObject();
+		void associateReferenceNumberWithAnimationInstance(int referenceNumber, const OAEAnimationInstance animationInstance);
+		void deassociateAnimationInstanceWithSpecificReferenceNumber(int referenceNumber);
+		void setCurrentAnimationInstanceReferenceNumber(int currentAnimationInstanceReferenceNumber);
+	protected:
+		int currentAnimationInstanceReferenceNumber;
+		std::map<int, OAEAnimationInstance> referenceNumberToAnimationInstanceMap;
+	private:
+		//
 };
 
 #endif

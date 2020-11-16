@@ -1,10 +1,10 @@
 #include "market_offer_list.h"
 
 MarketOfferList::MarketOfferList(int x, int y, unsigned int width, unsigned int height, unsigned int offersPerPage):
-    DrawableObject(x, y, width, height),
-    background(x, y, width, height, nullptr)
+	DrawableObject(x, y, width, height),
+	background(x, y, width, height, nullptr)
 {
-    this->numberOfMarketOffersPerPage = offersPerPage;
+	this->numberOfMarketOffersPerPage = offersPerPage;
 }
 
 void MarketOfferList::eraseOfferAtIndex(int index)
@@ -24,7 +24,7 @@ void MarketOfferList::appendMarketOffer(MarketOffer marketOfferToAppend)
 
 int MarketOfferList::returnIndexOfSelectedMarketOfferIfOneHasBeenSelectedElseReturnMinusOne(int mouseX, int mouseY)
 {
-    for(int i = 0; i <  marketOfferVector.size(); i++)
+	for(int i = 0; i <  marketOfferVector.size(); i++)
 	{
 		if (marketOfferVector.at(i).isSelectButtonPressedBasedOnMouseXAndMouseY(mouseX, mouseY))
 		{
@@ -36,8 +36,8 @@ int MarketOfferList::returnIndexOfSelectedMarketOfferIfOneHasBeenSelectedElseRet
 
 void MarketOfferList::draw(sf::RenderWindow& windowToDrawObjectIn)
 {
-    background.draw(windowToDrawObjectIn);
-    for(int i = 0; i <  marketOfferVector.size(); i++)
+	background.draw(windowToDrawObjectIn);
+	for(int i = 0; i <  marketOfferVector.size(); i++)
 	{
 		marketOfferVector.at(i).draw(windowToDrawObjectIn);
 	}

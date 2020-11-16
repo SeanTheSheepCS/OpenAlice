@@ -12,8 +12,8 @@
 
 class SaveFile
 {
-    public:
-        SaveFile();
+	public:
+		SaveFile();
 		SaveFile(const SaveFile& other);
 		~SaveFile();
 		SaveFile& operator=(const SaveFile& rhs);
@@ -22,11 +22,11 @@ class SaveFile
 		int getReferenceNumberAtRowAndColPlantTileMap(unsigned int row, unsigned int col) const;
 		unsigned int getReferenceNumberTwoDArrayRowCountGroundAndPlantTileMap() const;
 		unsigned int getReferenceNumberTwoDArrayColCountGroundAndPlantTileMap() const;
-    protected:
-        //
-    private:
+	protected:
+		//
+	private:
 		void deleteSaveFile(); //Helper function for ~SaveFile and operator=
-        bool isEmptySaveFileFlag;
+		bool isEmptySaveFileFlag;
 		int** referenceNumberTwoDArrayGroundTileMap;
 		int** referenceNumberTwoDArrayPlantTileMap;
 		unsigned int referenceNumberTwoDArrayRowCountGroundAndPlantTileMap;
