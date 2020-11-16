@@ -183,18 +183,24 @@ void TileMap::setTileAtIndicesToReferenceNumberAndPartialDraw(unsigned int row, 
 void TileMap::setReferenceNumberAtIndicesAndDoNotPartialDraw(unsigned int row, unsigned int col, int referenceNumber)
 {
 	if((row >= 0) && (row < rowCount) && (col >= 0) && (col <= colCount))
-    {
-        referenceNumberTwoDimensionArrayRepresentingTileMap[row][col] = referenceNumber;
+	{
+		referenceNumberTwoDimensionArrayRepresentingTileMap[row][col] = referenceNumber;
 	}
-    else
-    {
-        std::cout << "Bad request: writing to row " << row << " and col " << col << " in an array with " << rowCount << " rows and " << colCount << " columns." << std::endl;
-    }
+	else
+	{
+		std::cout << "Bad request: writing to row " << row << " and col " << col << " in an array with " << rowCount << " rows and " << colCount << " columns." << std::endl;
+	}
 }
 
 int TileMap::getReferenceNumberAtIndices(unsigned int row, unsigned int col)
 {
-    return referenceNumberTwoDimensionArrayRepresentingTileMap[row][col];
+	if((row >= 0) && (row < rowCount) && (col >= 0) && (col <= colCount))
+	{
+		return referenceNumberTwoDimensionArrayRepresentingTileMap[row][col];
+	}
+	{
+		std::cout << "Bad request: reading from row " << row << " and col " << col << " in an array with " << rowCount << " rows and " << colCount << " columns." << std::endl;
+	}
 }
 
 void TileMap::setTileWidth(int tileWidthArg)

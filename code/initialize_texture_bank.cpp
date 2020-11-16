@@ -202,9 +202,12 @@ TextureBank initializeTextureBank()
 
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_ONE_TEXTURE, "tomato_1_raw.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_TWO_TEXTURE, "tomato_2_raw.png", &returnValue);
-	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_THREE_TEXTURE, "tomato_3_raw.png", &returnValue);
-	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_FOUR_TEXTURE, "tomato_4_raw.png", &returnValue);
-	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_FIVE_TEXTURE, "tomato_5_raw.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_THREE_HARVEST_ONE_TEXTURE, "tomato_3_raw.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_FOUR_HARVEST_ONE_TEXTURE, "tomato_4_raw.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_FIVE_HARVEST_ONE_TEXTURE, "tomato_5_raw.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_THREE_HARVEST_TWO_TEXTURE, "tomato_3_raw.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_FOUR_HARVEST_TWO_TEXTURE, "tomato_4_raw.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_FIVE_HARVEST_TWO_TEXTURE, "tomato_5_raw.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_SIX_TEXTURE, "tomato_6_raw.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_ONE_TEXTURE, "cucumber_1_raw.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_TWO_TEXTURE, "cucumber_2_raw.png", &returnValue);
@@ -213,8 +216,20 @@ TextureBank initializeTextureBank()
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_FIVE_TEXTURE, "cucumber_5_raw.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_SIX_TEXTURE, "cucumber_6_raw.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_SEVEN_TEXTURE, "cucumber_7_raw.png", &returnValue);
-	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_EIGHT_TEXTURE, "cucumber_8_raw.png", &returnValue);
-	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_NINE_TEXTURE, "cucumber_9_raw.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_EIGHT_HARVEST_ONE_TEXTURE, "cucumber_8_raw.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_NINE_HARVEST_ONE_TEXTURE, "cucumber_9_raw.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_TEN_HARVEST_ONE_TEXTURE, "cucumber_10_raw.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_EIGHT_HARVEST_TWO_TEXTURE, "cucumber_8_raw.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_NINE_HARVEST_TWO_TEXTURE, "cucumber_9_raw.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_TEN_HARVEST_TWO_TEXTURE, "cucumber_10_raw.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_EIGHT_HARVEST_THREE_TEXTURE, "cucumber_8_raw.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_NINE_HARVEST_THREE_TEXTURE, "cucumber_9_raw.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_TEN_HARVEST_THREE_TEXTURE, "cucumber_10_raw.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_ELEVEN_TEXTURE, "cucumber_11_raw.png", &returnValue);
+
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CARROTS_STAGE_ONE_TEXTURE, "carrots_1_raw.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CARROTS_STAGE_TWO_TEXTURE, "carrots_2_raw.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CARROTS_STAGE_THREE_TEXTURE, "carrots_3_raw.png", &returnValue);
 
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_TOMATO_SEED_PACKET_TEXTURE, "tomato_seed_packet.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CUCUMBER_SEED_PACKET_TEXTURE, "cucumber_seed_packet.png", &returnValue);
