@@ -6,28 +6,22 @@
 #include "../engine/advanced_classes/tile_map_module/tile_map_module.h"
 #include "../engine/primitive_classes/world_object.h"
 
-enum HeldObjectReferenceNumber
-{
-	HELD_OBJECT_REF_NUMBER_NONE = 0,
-	HELD_OBJECT_REF_NUMBER_WATERING_CAN = 1,
-	HELD_OBJECT_REF_NUMBER_HOE = 2,
-	HELD_OBJECT_REF_NUMBER_TOMATO_SEEDS = 3,
-	HELD_OBJECT_REF_NUMBER_TOMATO_CRATE = 4,
-	HELD_OBJECT_REF_NUMBER_ZUCCHINI_SEEDS = 5,
-	HELD_OBJECT_REF_NUMBER_ZUCCHINI_CRATE = 6,
-	HELD_OBJECT_REF_NUMBER_CARROTS_SEEDS = 7,
-	HELD_OBJECT_REF_NUMBER_CARROTS_CRATE = 8
-};
-
 class Alice: public PlayerObject
 {
 	public:
 		Alice(int x, int y, unsigned int width, unsigned int height);
+		//NON-CONST FUNCTIONS
 		void pickUpObject(int referenceNumberOfObjectToPickUp, TileMap& tileMapYouPickedItUpFrom);
 		void putDownObject(TileMap& tileMapToPutItDownIn);
+		void removeWorldObjectPropertyFromHeldWorldObject(const WorldObjectProperty propertyToRemove);
+		void addWorldObjectPropertyToHeldWorldObject(const WorldObjectProperty propertyToAdd);
+		//CONST FUNCTIONS
 		bool isHoldingObject() const;
 		int returnReferenceNumberOfHeldObject() const;
-		const std::vector<WorldObjectProperty> returnPropertiesOfHeldWorldObject() const;
+		const std::vector<const WorldObjectProperty> returnPropertiesOfHeldWorldObject() const;
+		const int returnCapacityOfHeldWorldObject() const; //Returns -1 on failure.
+		const int returnFilledAmountOfHeldWorldObject() const; //Returns -1 on failure.
+		void incrementFilledAmountPropertyOfHeldWorldObject() const;
 	protected:
 		//
 	private:

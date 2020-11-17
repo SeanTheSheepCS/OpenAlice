@@ -59,7 +59,7 @@ class TileMap: public DrawableObject
 		void draw(sf::RenderWindow& windowToDrawIn);
 		std::map<int, WorldObject> getAllWorldObjectsWithRefNumbersWhoAreCurrentlyTriggeredByDrawableObject(const DrawableObject& objectToCheck);
 		bool returnTrueIfDrawableObjectIntersectsWithAnyCollisionBoxes(const DrawableObject& objectTocheck);
-		std::pair<int, int> getRowAndColOfTileNearestToDrawableObject(const DrawableObject& objectToCheckProximityOf);
+		std::pair<unsigned int, unsigned int> getRowAndColOfTileNearestToDrawableObject(const DrawableObject& objectToCheckProximityOf);
 
 	protected:
 		// 

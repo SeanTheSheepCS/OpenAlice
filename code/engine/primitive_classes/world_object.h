@@ -37,8 +37,9 @@ class WorldObject: public TexturedObject
 		bool getVisibility() const;
 		bool isInvalid() const;
 
-		void addWorldObjectProperty(WorldObjectProperty property);
-		std::vector<WorldObjectProperty> getProperties() const;
+		void addWorldObjectProperty(const WorldObjectProperty property);
+		void removeWorldObjectProperty(const WorldObjectProperty property);
+		const std::vector<const WorldObjectProperty> getProperties() const;
 
 		void draw(sf::RenderWindow& windowToDrawObjectIn);
 	protected:
@@ -48,7 +49,7 @@ class WorldObject: public TexturedObject
 
 		TriggerZone triggerZoneForObject;
 		CollisionBox collisionBoxForObject;
-		std::vector<WorldObjectProperty> properties;
+		std::vector<const WorldObjectProperty> properties;
 };
 
 #endif

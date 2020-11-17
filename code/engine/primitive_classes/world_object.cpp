@@ -138,12 +138,23 @@ bool WorldObject::getVisibility() const
 	return this->visibility;
 }
 
-void WorldObject::addWorldObjectProperty(WorldObjectProperty property)
+void WorldObject::addWorldObjectProperty(const WorldObjectProperty property)
 {
 	properties.push_back(property);
 }
 
-std::vector<WorldObjectProperty> WorldObject::getProperties() const
+void WorldObject::removeWorldObjectPropert(const WorldObjectProperty propertyToRemove)
+{
+	for(int i = 0; i < properties.size(); i++)
+	{
+		if(properties.at(i) == propertyToRemove)
+		{
+			properties.erase(i);
+		}
+	}
+}
+
+std::vector<const WorldObjectProperty> WorldObject::getProperties() const
 {
 	return this->properties;
 }

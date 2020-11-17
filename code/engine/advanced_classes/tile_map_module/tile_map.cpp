@@ -342,9 +342,9 @@ bool TileMap::returnTrueIfDrawableObjectIntersectsWithAnyCollisionBoxes(const Dr
 	return false;
 }
 
-std::pair<int, int> TileMap::getRowAndColOfTileNearestToDrawableObject(const DrawableObject& objectToCheckProximityOfInScreenCoordinates)
+std::pair<unsigned int, unsigned int> TileMap::getRowAndColOfTileNearestToDrawableObject(const DrawableObject& objectToCheckProximityOfInScreenCoordinates)
 {
-	std::pair<int, int> returnValue;
+	std::pair<unsigned int, unsigned int> returnValue;
 
 	int objectWorldCentreX = screenXToWorldX(objectToCheckProximityOfInScreenCoordinates.getX());
 	int objectWorldCentreY = screenYToWorldY(objectToCheckProximityOfInScreenCoordinates.getY());

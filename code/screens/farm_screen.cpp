@@ -138,18 +138,21 @@ void FarmScreen::handleItemUseEvent(sf::RenderWindow& windowToDrawIn)
 {
 	if(alice.isHoldingObject())
 	{
-		std::pair<int, int> rowAndCol = groundTileMap.getRowAndColOfTileNearestToDrawableObject(alice);
-		int rowToUseItemOn = rowAndCol.first;
-		int colToUseItemOn = rowAndCol.second;
-		std::vector<WorldObjectProperty> worldObjectPropertiesOfTheObjectAliceIsHolding = alice.returnPropertiesOfHeldWorldObject();
+		std::pair<unsigned int, unsigned int> rowAndColGroundTileMap = groundTileMap.getRowAndColOfTileNearestToDrawableObject(alice);
+		std::pair<unsigned int, unsigned int> rowAndColPlantTileMap = plantTileMap.getRowAndColOfTileNearestToDrawableObject(alice);
+		unsigned int rowToUseItemOnGroundTileMap = rowAndColGroundTileMap.first;
+		unsigned int colToUseItemOnGroundTileMap = rowAndColGroundTileMap.second;
+		unsigned int rowToUseItemOnPlantTileMap = rowAndColPlantTileMap.first;
+		unsigned int colToUseItemOnPlantTileMap = rowAndColPlantTileMap.second;
+		const std::vector<const WorldObjectProperty> worldObjectPropertiesOfTheObjectAliceIsHolding = alice.returnPropertiesOfHeldWorldObject();
 		for(int i = 0; i < worldObjectPropertiesOfTheObjectAliceIsHolding.size(); i++)
 		{
 			switch(worldObjectPropertiesOfTheObjectAliceIsHolding.at(i))
 			{
 				case WORLD_OBJECT_PROPERTY_ACTION_TILL:
-					if(groundTileMap.getReferenceNumberAtIndices(rowToUseItemOn, colToUseItemOn) == TEXTURE_BANK_REF_NUMBER_IN_BOUNDS_GRASS)
+					if(groundTileMap.getReferenceNumberAtIndices(rowToUseItemOnGroundTileMap, colToUseItemOnGroundTileMap) == TEXTURE_BANK_REF_NUMBER_IN_BOUNDS_GRASS)
 					{
-						groundTileMap.setTileAtIndicesToReferenceNumberAndPartialDraw(rowToUseItemOn, colToUseItemOn, TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT, windowToDrawIn);
+						groundTileMap.setTileAtIndicesToReferenceNumberAndPartialDraw(rowToUseItemOnGroundTileMap, colToUseItemOnGroundTileMap, TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT, windowToDrawIn);
 						associateAliceWithCorrectAnimation(); 
 						alice.draw(windowToDrawIn);
 						drawAllObjectsALayerAboveAlice(windowToDrawIn);
@@ -157,9 +160,9 @@ void FarmScreen::handleItemUseEvent(sf::RenderWindow& windowToDrawIn)
 					}
 					break;
 				case WORLD_OBJECT_PROPERTY_ACTION_WATERCROP:
-					if(groundTileMap.getReferenceNumberAtIndices(rowToUseItemOn, colToUseItemOn) == TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT)
+					if(groundTileMap.getReferenceNumberAtIndices(rowToUseItemOnGroundTileMap, colToUseItemOnGroundTileMap) == TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT)
 					{
-						groundTileMap.setTileAtIndicesToReferenceNumberAndPartialDraw(rowToUseItemOn, colToUseItemOn, TEXTURE_BANK_REF_NUMBER_WATERED_TILLED_DIRT, windowToDrawIn);
+						groundTileMap.setTileAtIndicesToReferenceNumberAndPartialDraw(rowToUseItemOnGroundTileMap, colToUseItemOnGroundTileMap, TEXTURE_BANK_REF_NUMBER_WATERED_TILLED_DIRT, windowToDrawIn);
 						associateAliceWithCorrectAnimation(); 
 						alice.draw(windowToDrawIn);
 						drawAllObjectsALayerAboveAlice(windowToDrawIn);
@@ -167,9 +170,9 @@ void FarmScreen::handleItemUseEvent(sf::RenderWindow& windowToDrawIn)
 					}
 					break;
 				case WORLD_OBJECT_PROPERTY_ACTION_PLANT_SEEDS_TOMATO:
-					if((groundTileMap.getReferenceNumberAtIndices(rowToUseItemOn, colToUseItemOn) == TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT) || (groundTileMap.getReferenceNumberAtIndices(rowToUseItemOn, colToUseItemOn) == TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT))
+					if((groundTileMap.getReferenceNumberAtIndices(rowToUseItemOnGroundTileMap, colToUseItemOnGroundTileMap) == TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT) || (groundTileMap.getReferenceNumberAtIndices(rowToUseItemOnGroundTileMap, colToUseItemOnGroundTileMap) == TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT))
 					{
-						plantTileMap.setTileAtIndicesToReferenceNumberAndPartialDraw(rowToUseItemOn, colToUseItemOn, TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_ONE_TEXTURE, windowToDrawIn);
+						plantTileMap.setTileAtIndicesToReferenceNumberAndPartialDraw(rowToUseItemOnPlantTileMap, colToUseItemOnPlantTileMap, TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_ONE_TEXTURE, windowToDrawIn);
 						associateAliceWithCorrectAnimation(); 
 						alice.draw(windowToDrawIn);
 						drawAllObjectsALayerAboveAlice(windowToDrawIn);
@@ -177,9 +180,9 @@ void FarmScreen::handleItemUseEvent(sf::RenderWindow& windowToDrawIn)
 					}
 					break;
 				case WORLD_OBJECT_PROPERTY_ACTION_PLANT_SEEDS_CUCUMBER:
-					if((groundTileMap.getReferenceNumberAtIndices(rowToUseItemOn, colToUseItemOn) == TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT) || (groundTileMap.getReferenceNumberAtIndices(rowToUseItemOn, colToUseItemOn) == TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT))
+					if((groundTileMap.getReferenceNumberAtIndices(rowToUseItemOnGroundTileMap, colToUseItemOnGroundTileMap) == TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT) || (groundTileMap.getReferenceNumberAtIndices(rowToUseItemOnGroundTileMap, colToUseItemOnGroundTileMap) == TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT))
 					{
-						plantTileMap.setTileAtIndicesToReferenceNumberAndPartialDraw(rowToUseItemOn, colToUseItemOn, TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_ONE_TEXTURE, windowToDrawIn);
+						plantTileMap.setTileAtIndicesToReferenceNumberAndPartialDraw(rowToUseItemOnPlantTileMap, colToUseItemOnPlantTileMap, TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_ONE_TEXTURE, windowToDrawIn);
 						associateAliceWithCorrectAnimation(); 
 						alice.draw(windowToDrawIn);
 						drawAllObjectsALayerAboveAlice(windowToDrawIn);
@@ -187,13 +190,36 @@ void FarmScreen::handleItemUseEvent(sf::RenderWindow& windowToDrawIn)
 					}
 					break;
 				case WORLD_OBJECT_PROPERTY_ACTION_PLANT_SEEDS_CARROT:
-					if((groundTileMap.getReferenceNumberAtIndices(rowToUseItemOn, colToUseItemOn) == TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT) || (groundTileMap.getReferenceNumberAtIndices(rowToUseItemOn, colToUseItemOn) == TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT))
+					if((groundTileMap.getReferenceNumberAtIndices(rowToUseItemOnGroundTileMap, colToUseItemOnGroundTileMap) == TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT) || (groundTileMap.getReferenceNumberAtIndices(rowToUseItemOnGroundTileMap, colToUseItemOnGroundTileMap) == TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT))
 					{
-						plantTileMap.setTileAtIndicesToReferenceNumberAndPartialDraw(rowToUseItemOn, colToUseItemOn, TEXTURE_BANK_REF_NUMBER_CARROTS_STAGE_ONE_TEXTURE, windowToDrawIn);
+						plantTileMap.setTileAtIndicesToReferenceNumberAndPartialDraw(rowToUseItemOnPlantTileMap, colToUseItemOnPlantTileMap, TEXTURE_BANK_REF_NUMBER_CARROTS_STAGE_ONE_TEXTURE, windowToDrawIn);
 						associateAliceWithCorrectAnimation(); 
 						alice.draw(windowToDrawIn);
 						drawAllObjectsALayerAboveAlice(windowToDrawIn);
 						i = worldObjectPropertiesOfTheObjectAliceIsHolding.size(); //Break out of the outer loop too.
+					}
+					break;
+				case WORLD_OBJECT_PROPERTY_ACTION_HARVEST_TOMATO:
+					//If the tomato is ready to be harvested...
+					if((plantTileMap.getReferenceNumberAtIndices(rowToUseItemOnPlantTileMap, colToUseItemOnPlantTileMap) == TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_FIVE_HARVEST_ONE_TEXTURE) || (plantTileMap.getReferenceNumberAtIndices(rowToUseItemOnPlantTileMap, colToUseItemOnPlantTileMap) == TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_FIVE_HARVEST_TWO_TEXTURE))
+					{
+						this->runHarvestSequence(rowToUseItemOnPlantTileMap, colToUseItemOnPlantTileMap, windowToDrawIn);
+					}
+
+					break;
+				case WORLD_OBJECT_PROPERTY_ACTION_HARVEST_CUCUMBER:
+
+					//If the cucumber is ready to be harvested...
+					if((plantTileMap.getReferenceNumberAtIndices(rowToUseItemOnPlantTileMap, colToUseItemOnPlantTileMap) == TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_TEN_HARVEST_ONE_TEXTURE) || (plantTileMap.getReferenceNumberAtIndices(rowToUseItemOnPlantTileMap, colToUseItemOnPlantTileMap) == TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_TEN_HARVEST_TWO_TEXTURE) || (plantTileMap.getReferenceNumberAtIndices(rowToUseItemOnPlantTileMap, colToUseItemOnPlantTileMap) == TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_TEN_HARVEST_THREE_TEXTURE))
+					{
+						this->runHarvestSequence(rowToUseItemOnPlantTileMap, colToUseItemOnPlantTileMap, windowToDrawIn);
+					}
+					break;
+				case WORLD_OBJECT_PROPERTY_ACTION_HARVEST_CARROT:
+					//If the carrot is ready to be harvested...
+					if((plantTileMap.getReferenceNumberAtIndices(rowToUseItemOnPlantTileMap, colToUseItemOnPlantTileMap) == TEXTURE_BANK_REF_NUMBER_CARROT_STAGE_THREE_TEXTURE))
+					{
+						this->runHarvestSequence(rowToUseItemOnPlantTileMap, colToUseItemOnPlantTileMap, windowToDrawIn);
 					}
 					break;
 				default:
@@ -221,6 +247,19 @@ void FarmScreen::handleItemUseEvent(sf::RenderWindow& windowToDrawIn)
 			}
 		}
 	}
+}
+
+void FarmScreen::runHarvestSequence(unsigned int plantTileMapRow, unsigned int plantTileMapCol, sf::RenderWindow& windowToDrawIn)
+{
+	//Determine capacity of held object
+	int capacity = alice.returnCapacityOfHeldWorldObject();
+	int filled_amount = alice.returnFilledAmountPropertyOfHeldWorldObject();
+	if(capacity > filled_amount)
+	{
+		alice.incrementFilledAmountPropertyOfHeldWorldObject();
+	}
+	int referenceNumberAtPlantTileMapIndices = plantTileMap.getReferenceNumberAtIndices(rowToUseItemOnPlantTileMap, colToUseItemOnPlantTileMap);
+	plantTileMap.setReferenceNumberAtIndicesAndPartialDraw(rowToUseItemOnPlantTileMap, colToUseItemOnPlantTileMap, ++referenceNumberAtPlantTileMapIndices);
 }
 
 void FarmScreen::runSleepSequence(sf::RenderWindow& windowToDrawIn)
@@ -266,7 +305,6 @@ void FarmScreen::associateWithTexturesInBank(const TextureBank& textureBankToTak
 	groundTileMap.associateWorldObjectWithReferenceNumberWithTexturePointer(WORLD_OBJECT_REF_NUMBER_CARROT_CRATE_ONE, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber((int)TEXTURE_BANK_REF_NUMBER_CARROT_CRATE_TEXTURE));
 	groundTileMap.associateWorldObjectWithReferenceNumberWithTexturePointer(WORLD_OBJECT_REF_NUMBER_CARROT_CRATE_TWO, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber((int)TEXTURE_BANK_REF_NUMBER_CARROT_CRATE_TEXTURE));
 	groundTileMap.associateWorldObjectWithReferenceNumberWithTexturePointer(WORLD_OBJECT_REF_NUMBER_CARROT_CRATE_THREE, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber((int)TEXTURE_BANK_REF_NUMBER_CARROT_CRATE_TEXTURE));
-
 
 	//PLANT TILE MAP TEXTURE ASSOCIATIONS
 	plantTileMap.associateReferenceNumberWithTexture(TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_ONE_TEXTURE, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_ONE_TEXTURE));
