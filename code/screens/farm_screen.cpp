@@ -176,6 +176,26 @@ void FarmScreen::handleItemUseEvent(sf::RenderWindow& windowToDrawIn)
 						i = worldObjectPropertiesOfTheObjectAliceIsHolding.size(); //Break out of the outer loop too.
 					}
 					break;
+				case WORLD_OBJECT_PROPERTY_ACTION_PLANT_SEEDS_CUCUMBER:
+					if((groundTileMap.getReferenceNumberAtIndices(rowToUseItemOn, colToUseItemOn) == TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT) || (groundTileMap.getReferenceNumberAtIndices(rowToUseItemOn, colToUseItemOn) == TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT))
+					{
+						plantTileMap.setTileAtIndicesToReferenceNumberAndPartialDraw(rowToUseItemOn, colToUseItemOn, TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_ONE_TEXTURE, windowToDrawIn);
+						associateAliceWithCorrectAnimation(); 
+						alice.draw(windowToDrawIn);
+						drawAllObjectsALayerAboveAlice(windowToDrawIn);
+						i = worldObjectPropertiesOfTheObjectAliceIsHolding.size(); //Break out of the outer loop too.
+					}
+					break;
+				case WORLD_OBJECT_PROPERTY_ACTION_PLANT_SEEDS_CARROT:
+					if((groundTileMap.getReferenceNumberAtIndices(rowToUseItemOn, colToUseItemOn) == TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT) || (groundTileMap.getReferenceNumberAtIndices(rowToUseItemOn, colToUseItemOn) == TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT))
+					{
+						plantTileMap.setTileAtIndicesToReferenceNumberAndPartialDraw(rowToUseItemOn, colToUseItemOn, TEXTURE_BANK_REF_NUMBER_CARROTS_STAGE_ONE_TEXTURE, windowToDrawIn);
+						associateAliceWithCorrectAnimation(); 
+						alice.draw(windowToDrawIn);
+						drawAllObjectsALayerAboveAlice(windowToDrawIn);
+						i = worldObjectPropertiesOfTheObjectAliceIsHolding.size(); //Break out of the outer loop too.
+					}
+					break;
 				default:
 					break;
 			}
@@ -458,7 +478,7 @@ void FarmScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::Render
 		unsigned int endRowToChangeThisFrame = startRowToChangeThisFrame + ((unsigned int)(((float)numberOfMillisecondsSinceLastUpdate) / ((float)NUMBER_OF_MILLISECONDS_TO_SLEEP_FOR)) * ((float)plantTileMap.getRowCount()));
 		if(endRowToChangeThisFrame >= plantTileMap.getRowCount())
 		{
-			endRowToChangeThisFrame = plantTileMap.getRowCount()-1;
+			endRowToChangeThisFrame = plantTileMap.getRowCount()+1;
 		}
 		lastRowOfPlantTileMapUpdatedInSleepCycle = endRowToChangeThisFrame;
 		if(numberOfMillisecondsPassedInSleepStateSinceLastWakeUp > NUMBER_OF_MILLISECONDS_TO_SLEEP_FOR)
@@ -471,6 +491,10 @@ void FarmScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::Render
 			this->isInSleepState = false;
 			numberOfMillisecondsPassedInSleepStateSinceLastWakeUp = 0;
 			lastRowOfPlantTileMapUpdatedInSleepCycle = -1;
+		}
+		else
+		{
+			this->updateTheFollowingRowsInThePlantTileMapBothBoundsInclusive(startRowToChangeThisFrame, endRowToChangeThisFrame);
 		}
 	}
 	else
@@ -513,20 +537,24 @@ void FarmScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::Render
 
 void FarmScreen::updateTheFollowingRowsInThePlantTileMapBothBoundsInclusive(unsigned int lowerBound, unsigned int upperBound)
 {
+	if((lowerBound <= 0) || (upperBound <= 0) || (lowerBound >= plantTileMap.getRowCount()) || (upperBound >= plantTileMap.getRowCount()))
+	{
+		return;
+	}
 	for(int row = lowerBound; row <= upperBound; row++)
 	{
 		for(int col = 0; col < plantTileMap.getColCount(); col++)
 		{
 			int currentTileReferenceNumber = plantTileMap.getReferenceNumberAtIndices(row, col);
-			if((currentTileReferenceNumber >= TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_ONE_TEXTURE) || (currentTileReferenceNumber < TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_SIX_TEXTURE))
+			if((currentTileReferenceNumber >= TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_ONE_TEXTURE) && (currentTileReferenceNumber < TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_SIX_TEXTURE))
 			{
 				plantTileMap.setReferenceNumberAtIndicesAndDoNotPartialDraw(row, col, ++currentTileReferenceNumber);
 			}
-			else if((currentTileReferenceNumber >= TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_ONE_TEXTURE) || (currentTileReferenceNumber < TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_ELEVEN_TEXTURE))
+			else if((currentTileReferenceNumber >= TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_ONE_TEXTURE) && (currentTileReferenceNumber < TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_ELEVEN_TEXTURE))
 			{
 				plantTileMap.setReferenceNumberAtIndicesAndDoNotPartialDraw(row, col, ++currentTileReferenceNumber);
 			}
-			else if((currentTileReferenceNumber >= TEXTURE_BANK_REF_NUMBER_CARROTS_STAGE_ONE_TEXTURE) || (currentTileReferenceNumber < TEXTURE_BANK_REF_NUMBER_CARROTS_STAGE_THREE_TEXTURE))
+			else if((currentTileReferenceNumber >= TEXTURE_BANK_REF_NUMBER_CARROTS_STAGE_ONE_TEXTURE) && (currentTileReferenceNumber < TEXTURE_BANK_REF_NUMBER_CARROTS_STAGE_THREE_TEXTURE))
 			{
 				plantTileMap.setReferenceNumberAtIndicesAndDoNotPartialDraw(row, col, ++currentTileReferenceNumber);
 			}
