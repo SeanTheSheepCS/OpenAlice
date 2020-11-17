@@ -15,9 +15,6 @@
 #include "oae_animation_bank.h"
 #include "reference_number_enums.h"
 #include "initialize_texture_bank.h"
-
-#define DEFAULT_ANIMATION_SPEED 300
-
-OAEAnimationBank initializeOAEAnimationBank();
+#include "initialize_oae_animation_bank.h"
 
 #endif
