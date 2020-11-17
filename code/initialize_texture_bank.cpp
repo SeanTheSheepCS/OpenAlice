@@ -51,7 +51,7 @@ TextureBank initializeTextureBank()
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_WALK_CYCLE_ONE_CUCUMBER_CRATE_FILLED, "alice_down_walk_cycle_1_cucumber_crate_filled.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_WALK_CYCLE_ONE_CARROT_CRATE, "alice_down_walk_cycle_1_carrot_crate.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_WALK_CYCLE_ONE_CARROT_CRATE_FILLED, "alice_down_walk_cycle_1_carrot_crate_filled.png", &returnValue);
-	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_WALK_CYCLE_TWO, "alice_down_walk_cycle_2_.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_WALK_CYCLE_TWO, "alice_down_walk_cycle_2.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_WALK_CYCLE_TWO_HOE, "alice_down_walk_cycle_2_hoe.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_WALK_CYCLE_TWO_WATERING_CAN, "alice_down_walk_cycle_2_watering_can.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_WALK_CYCLE_TWO_WATERING_CAN_EMPTY, "alice_down_walk_cycle_2_watering_can_empty.png", &returnValue);
@@ -99,20 +99,20 @@ TextureBank initializeTextureBank()
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_UP_WALK_CYCLE_TWO_CUCUMBER_SEEDS, "alice_up_walk_cycle_2_cucumber_seeds.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_UP_WALK_CYCLE_TWO_CARROT_SEEDS, "alice_up_walk_cycle_2_carrot_seeds.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_UP_WALK_CYCLE_TWO_TOMATO_CRATE, "alice_up_walk_cycle_2_tomato_crate.png", &returnValue);
-	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_UP_WALK_CYCLE_TWO_TOMATO_CRATE_FILLED, "alice_up_walk_cycle_2_base_tomato_crate_filled.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_UP_WALK_CYCLE_TWO_TOMATO_CRATE_FILLED, "alice_up_walk_cycle_2_tomato_crate_filled.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_UP_WALK_CYCLE_TWO_CUCUMBER_CRATE, "alice_up_walk_cycle_2_cucumber_crate.png", &returnValue);
-	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_UP_WALK_CYCLE_TWO_CUCUMBER_CRATE_FILLED, "alice_up_cycle_2_base_cucumber_crate_filled.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_UP_WALK_CYCLE_TWO_CUCUMBER_CRATE_FILLED, "alice_up_walk_cycle_2_cucumber_crate_filled.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_UP_WALK_CYCLE_TWO_CARROT_CRATE, "alice_up_walk_cycle_2_carrot_crate.png", &returnValue);
-	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_UP_WALK_CYCLE_TWO_CARROT_CRATE_FILLED, "alice_up_walk_cycle_2_base_carrot_crate_filled.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_UP_WALK_CYCLE_TWO_CARROT_CRATE_FILLED, "alice_up_walk_cycle_2_carrot_crate_filled.png", &returnValue);
 
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_LEFT_BASE, "alice_left_base.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_LEFT_BASE_HOE, "alice_left_base_hoe.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_LEFT_BASE_WATERING_CAN, "alice_left_base_watering_can.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_LEFT_BASE_WATERING_CAN_EMPTY, "alice_left_base_watering_can_empty.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_LEFT_BASE_TOMATO_SEEDS, "alice_left_base_tomato_seeds.png", &returnValue);
-	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_LEFT_BASE_CUCUMBER_SEEDS, "alice_left_cucumber_seeds.png", &returnValue);
-	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_LEFT_BASE_CARROT_SEEDS, "alice_left_carrot_seeds.png", &returnValue);
-	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_LEFT_BASE_TOMATO_CRATE, "alice_left_tomato_crate.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_LEFT_BASE_CUCUMBER_SEEDS, "alice_left_base_cucumber_seeds.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_LEFT_BASE_CARROT_SEEDS, "alice_left_base_carrot_seeds.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_LEFT_BASE_TOMATO_CRATE, "alice_left_base_tomato_crate.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_LEFT_BASE_TOMATO_CRATE_FILLED, "alice_left_base_tomato_crate_filled.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_LEFT_BASE_CUCUMBER_CRATE, "alice_left_base_cucumber_crate.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_LEFT_BASE_CUCUMBER_CRATE_FILLED, "alice_left_base_cucumber_crate_filled.png", &returnValue);
@@ -139,11 +139,11 @@ TextureBank initializeTextureBank()
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_LEFT_WALK_CYCLE_TWO_CUCUMBER_SEEDS, "alice_left_walk_cycle_2_cucumber_seeds.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_LEFT_WALK_CYCLE_TWO_CARROT_SEEDS, "alice_left_walk_cycle_2_carrot_seeds.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_LEFT_WALK_CYCLE_TWO_TOMATO_CRATE, "alice_left_walk_cycle_2_tomato_crate.png", &returnValue);
-	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_LEFT_WALK_CYCLE_TWO_TOMATO_CRATE_FILLED, "alice_left_walk_cycle_2_base_tomato_crate_filled.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_LEFT_WALK_CYCLE_TWO_TOMATO_CRATE_FILLED, "alice_left_walk_cycle_2_tomato_crate_filled.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_LEFT_WALK_CYCLE_TWO_CUCUMBER_CRATE, "alice_left_walk_cycle_2_cucumber_crate.png", &returnValue);
-	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_LEFT_WALK_CYCLE_TWO_CUCUMBER_CRATE_FILLED, "alice_left_cycle_2_base_cucumber_crate_filled.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_LEFT_WALK_CYCLE_TWO_CUCUMBER_CRATE_FILLED, "alice_left_walk_cycle_2_cucumber_crate_filled.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_LEFT_WALK_CYCLE_TWO_CARROT_CRATE, "alice_left_walk_cycle_2_carrot_crate.png", &returnValue);
-	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_LEFT_WALK_CYCLE_TWO_CARROT_CRATE_FILLED, "alice_left_walk_cycle_2_base_carrot_crate_filled.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_LEFT_WALK_CYCLE_TWO_CARROT_CRATE_FILLED, "alice_left_walk_cycle_2_carrot_crate_filled.png", &returnValue);
 
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_RIGHT_BASE, "alice_right_base.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_RIGHT_BASE_HOE, "alice_right_base_hoe.png", &returnValue);
@@ -179,11 +179,11 @@ TextureBank initializeTextureBank()
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_RIGHT_WALK_CYCLE_TWO_CUCUMBER_SEEDS, "alice_right_walk_cycle_2_cucumber_seeds.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_RIGHT_WALK_CYCLE_TWO_CARROT_SEEDS, "alice_right_walk_cycle_2_carrot_seeds.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_RIGHT_WALK_CYCLE_TWO_TOMATO_CRATE, "alice_right_walk_cycle_2_tomato_crate.png", &returnValue);
-	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_RIGHT_WALK_CYCLE_TWO_TOMATO_CRATE_FILLED, "alice_right_walk_cycle_2_base_tomato_crate_filled.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_RIGHT_WALK_CYCLE_TWO_TOMATO_CRATE_FILLED, "alice_right_walk_cycle_2_tomato_crate_filled.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_RIGHT_WALK_CYCLE_TWO_CUCUMBER_CRATE, "alice_right_walk_cycle_2_cucumber_crate.png", &returnValue);
-	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_RIGHT_WALK_CYCLE_TWO_CUCUMBER_CRATE_FILLED, "alice_right_cycle_2_base_cucumber_crate_filled.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_RIGHT_WALK_CYCLE_TWO_CUCUMBER_CRATE_FILLED, "alice_right_walk_cycle_2_cucumber_crate_filled.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_RIGHT_WALK_CYCLE_TWO_CARROT_CRATE, "alice_right_walk_cycle_2_carrot_crate.png", &returnValue);
-	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_RIGHT_WALK_CYCLE_TWO_CARROT_CRATE_FILLED, "alice_right_walk_cycle_2_base_carrot_crate_filled.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_RIGHT_WALK_CYCLE_TWO_CARROT_CRATE_FILLED, "alice_right_walk_cycle_2_carrot_crate_filled.png", &returnValue);
 
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_WORLD_OBJECT_HOE, "hoe.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_WORLD_OBJECT_HOUSE, "house.png", &returnValue);
