@@ -154,7 +154,7 @@ void WorldObject::removeWorldObjectPropert(const WorldObjectProperty propertyToR
 	}
 }
 
-std::vector<const WorldObjectProperty> WorldObject::getProperties() const
+const std::vector<WorldObjectProperty> WorldObject::getProperties() const
 {
 	return this->properties;
 }

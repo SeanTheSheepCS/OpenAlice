@@ -44,7 +44,7 @@ int Alice::returnReferenceNumberOfHeldObject() const
 	return referenceNumberOfHeldWorldObject;
 }
 
-const std::vector<const WorldObjectProperty> Alice::returnPropertiesOfHeldWorldObject() const
+const std::vector<WorldObjectProperty> Alice::returnPropertiesOfHeldWorldObject() const
 {
 	return heldWorldObject.getProperties();
 }
@@ -61,7 +61,7 @@ void Alice::addWorldObjectPropertyToHeldWorldObject(const WorldObjectProperty pr
 
 const int returnCapacityOfHeldWorldObject() const //Returns -1 on failure.
 {
-	const std::vector<const WorldObjectProperty> propertiesOfHeldObject = heldWorldObject.getProperties();
+	const std::vector<WorldObjectProperty> propertiesOfHeldObject = heldWorldObject.getProperties();
 	for(unsigned int i = 0; i < propertiesOfHeldObject.size(); i++)
 	{
 		switch(propertiesOfHeldObject.at(i))
@@ -79,7 +79,7 @@ const int returnCapacityOfHeldWorldObject() const //Returns -1 on failure.
 
 const int returnFilledAmountOfHeldWorldObject() const //Returns -1 on failure.
 {
-	const std::vector<const WorldObjectProperty> propertiesOfHeldObject = heldWorldObject.getProperties();
+	const std::vector<WorldObjectProperty> propertiesOfHeldObject = heldWorldObject.getProperties();
 	for(unsigned int i = 0; i < propertiesOfHeldObject.size(); i++)
 	{
 		switch(propertiesOfHeldObject.at(i))
@@ -127,11 +127,10 @@ const int returnFilledAmountOfHeldWorldObject() const //Returns -1 on failure.
 
 void incrementFilledAmountPropertyOfHeldWorldObject() const
 {
-	
-	const std::vector<const WorldObjectProperty> propertiesOfHeldObject = heldWorldObject.getProperties();
+	const std::vector<WorldObjectProperty> propertiesOfHeldObject = heldWorldObject.getProperties();
 	for(unsigned int i = 0; i < propertiesOfHeldObject.size(); i++)
 	{
-		const WorldObjectProperty currentProperty = propertiesOfHeldObject.at(i);
+		WorldObjectProperty currentProperty = propertiesOfHeldObject.at(i);
 		if((currentProperty >= WORLD_OBJECT_PROPERTY_FILLED_WITH_0) && (currentProperty < WORLD_OBJECT_PROPERTY_FILLED_WITH_10))
 		{
 			heldWorldObject.removeWorldObjectProperty(currentProperty);
@@ -139,5 +138,4 @@ void incrementFilledAmountPropertyOfHeldWorldObject() const
 			break;
 		}
 	}
-	return -1;
 }

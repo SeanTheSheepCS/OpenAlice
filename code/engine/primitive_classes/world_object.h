@@ -39,7 +39,7 @@ class WorldObject: public TexturedObject
 
 		void addWorldObjectProperty(const WorldObjectProperty property);
 		void removeWorldObjectProperty(const WorldObjectProperty property);
-		const std::vector<const WorldObjectProperty> getProperties() const;
+		const std::vector<WorldObjectProperty> getProperties() const;
 
 		void draw(sf::RenderWindow& windowToDrawObjectIn);
 	protected:

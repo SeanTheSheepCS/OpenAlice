@@ -144,7 +144,7 @@ void FarmScreen::handleItemUseEvent(sf::RenderWindow& windowToDrawIn)
 		unsigned int colToUseItemOnGroundTileMap = rowAndColGroundTileMap.second;
 		unsigned int rowToUseItemOnPlantTileMap = rowAndColPlantTileMap.first;
 		unsigned int colToUseItemOnPlantTileMap = rowAndColPlantTileMap.second;
-		const std::vector<const WorldObjectProperty> worldObjectPropertiesOfTheObjectAliceIsHolding = alice.returnPropertiesOfHeldWorldObject();
+		const std::vector<WorldObjectProperty> worldObjectPropertiesOfTheObjectAliceIsHolding = alice.returnPropertiesOfHeldWorldObject();
 		for(int i = 0; i < worldObjectPropertiesOfTheObjectAliceIsHolding.size(); i++)
 		{
 			switch(worldObjectPropertiesOfTheObjectAliceIsHolding.at(i))
