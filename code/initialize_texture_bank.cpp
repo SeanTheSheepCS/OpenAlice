@@ -259,5 +259,8 @@ TextureBank initializeTextureBank()
 
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_DISPLAYS_THE_WORD_DAY_TEXTURE, "displays_the_word_day.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_MONEY_SIGN_DISPLAY_TEXTURE, "money_sign_display.png", &returnValue);
+
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_BACK_TO_MAIN_MENU_BUTTON_TEXTURE, "back_to_main_menu_button.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_GO_TO_MARKET_BUTTON_TEXTURE, "go_to_market_button.png", &returnValue);
 	return returnValue;
 }
