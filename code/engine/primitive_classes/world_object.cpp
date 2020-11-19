@@ -143,13 +143,13 @@ void WorldObject::addWorldObjectProperty(const WorldObjectProperty property)
 	properties.push_back(property);
 }
 
-void WorldObject::removeWorldObjectPropert(const WorldObjectProperty propertyToRemove)
+void WorldObject::removeWorldObjectProperty(const WorldObjectProperty propertyToRemove)
 {
 	for(int i = 0; i < properties.size(); i++)
 	{
 		if(properties.at(i) == propertyToRemove)
 		{
-			properties.erase(i);
+			properties.erase(properties.begin()+i);
 		}
 	}
 }

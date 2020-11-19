@@ -59,7 +59,7 @@ void Alice::addWorldObjectPropertyToHeldWorldObject(const WorldObjectProperty pr
 	heldWorldObject.addWorldObjectProperty(propertyToAdd);
 }
 
-const int returnCapacityOfHeldWorldObject() const //Returns -1 on failure.
+const int Alice::returnCapacityOfHeldWorldObject() const //Returns -1 on failure.
 {
 	const std::vector<WorldObjectProperty> propertiesOfHeldObject = heldWorldObject.getProperties();
 	for(unsigned int i = 0; i < propertiesOfHeldObject.size(); i++)
@@ -69,7 +69,7 @@ const int returnCapacityOfHeldWorldObject() const //Returns -1 on failure.
 			case WORLD_OBJECT_PROPERTY_CAPACITY_10:
 				return 10;
 				break;
-			case default:
+			default:
 				//Continue...
 				break;
 		}
@@ -77,7 +77,7 @@ const int returnCapacityOfHeldWorldObject() const //Returns -1 on failure.
 	return -1;
 }
 
-const int returnFilledAmountOfHeldWorldObject() const //Returns -1 on failure.
+const int Alice::returnFilledAmountPropertyOfHeldWorldObject() const //Returns -1 on failure.
 {
 	const std::vector<WorldObjectProperty> propertiesOfHeldObject = heldWorldObject.getProperties();
 	for(unsigned int i = 0; i < propertiesOfHeldObject.size(); i++)
@@ -117,7 +117,7 @@ const int returnFilledAmountOfHeldWorldObject() const //Returns -1 on failure.
 			case WORLD_OBJECT_PROPERTY_FILLED_WITH_10:
 				return 10;
 				break;
-			case default:
+			default:
 				//Continue...
 				break;
 		}
@@ -125,7 +125,7 @@ const int returnFilledAmountOfHeldWorldObject() const //Returns -1 on failure.
 	return -1;
 }
 
-void incrementFilledAmountPropertyOfHeldWorldObject() const
+void Alice::incrementFilledAmountPropertyOfHeldWorldObject()
 {
 	const std::vector<WorldObjectProperty> propertiesOfHeldObject = heldWorldObject.getProperties();
 	for(unsigned int i = 0; i < propertiesOfHeldObject.size(); i++)
@@ -134,7 +134,41 @@ void incrementFilledAmountPropertyOfHeldWorldObject() const
 		if((currentProperty >= WORLD_OBJECT_PROPERTY_FILLED_WITH_0) && (currentProperty < WORLD_OBJECT_PROPERTY_FILLED_WITH_10))
 		{
 			heldWorldObject.removeWorldObjectProperty(currentProperty);
-			heldWorldObject.addWorldObjectProperty(++currentProperty);
+			WorldObjectProperty propertyToWrite = WORLD_OBJECT_PROPERTY_FILLED_WITH_0; 
+			switch(currentProperty)
+			{
+				case WORLD_OBJECT_PROPERTY_FILLED_WITH_0:
+					propertyToWrite = WORLD_OBJECT_PROPERTY_FILLED_WITH_1;
+					break;
+				case WORLD_OBJECT_PROPERTY_FILLED_WITH_1:
+					propertyToWrite = WORLD_OBJECT_PROPERTY_FILLED_WITH_2;
+					break;
+				case WORLD_OBJECT_PROPERTY_FILLED_WITH_2:
+					propertyToWrite = WORLD_OBJECT_PROPERTY_FILLED_WITH_3;
+					break;
+				case WORLD_OBJECT_PROPERTY_FILLED_WITH_3:
+					propertyToWrite = WORLD_OBJECT_PROPERTY_FILLED_WITH_4;
+					break;
+				case WORLD_OBJECT_PROPERTY_FILLED_WITH_4:
+					propertyToWrite = WORLD_OBJECT_PROPERTY_FILLED_WITH_5;
+					break;
+				case WORLD_OBJECT_PROPERTY_FILLED_WITH_5:
+					propertyToWrite = WORLD_OBJECT_PROPERTY_FILLED_WITH_6;
+					break;
+				case WORLD_OBJECT_PROPERTY_FILLED_WITH_6:
+					propertyToWrite = WORLD_OBJECT_PROPERTY_FILLED_WITH_7;
+					break;
+				case WORLD_OBJECT_PROPERTY_FILLED_WITH_7:
+					propertyToWrite = WORLD_OBJECT_PROPERTY_FILLED_WITH_8;
+					break;
+				case WORLD_OBJECT_PROPERTY_FILLED_WITH_8:
+					propertyToWrite = WORLD_OBJECT_PROPERTY_FILLED_WITH_9;
+					break;
+				case WORLD_OBJECT_PROPERTY_FILLED_WITH_9:
+					propertyToWrite = WORLD_OBJECT_PROPERTY_FILLED_WITH_10;
+					break;
+			}
+			heldWorldObject.addWorldObjectProperty(propertyToWrite);
 			break;
 		}
 	}

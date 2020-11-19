@@ -20,8 +20,8 @@ class Alice: public PlayerObject
 		int returnReferenceNumberOfHeldObject() const;
 		const std::vector<WorldObjectProperty> returnPropertiesOfHeldWorldObject() const;
 		const int returnCapacityOfHeldWorldObject() const; //Returns -1 on failure.
-		const int returnFilledAmountOfHeldWorldObject() const; //Returns -1 on failure.
-		void incrementFilledAmountPropertyOfHeldWorldObject() const;
+		const int returnFilledAmountPropertyOfHeldWorldObject() const; //Returns -1 on failure.
+		void incrementFilledAmountPropertyOfHeldWorldObject();
 	protected:
 		//
 	private:

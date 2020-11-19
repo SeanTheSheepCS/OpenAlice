@@ -49,7 +49,7 @@ class WorldObject: public TexturedObject
 
 		TriggerZone triggerZoneForObject;
 		CollisionBox collisionBoxForObject;
-		std::vector<const WorldObjectProperty> properties;
+		std::vector<WorldObjectProperty> properties;
 };
 
 #endif
