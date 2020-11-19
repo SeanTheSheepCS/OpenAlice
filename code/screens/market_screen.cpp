@@ -82,6 +82,21 @@ void MarketScreen::forceFullDraw(sf::RenderWindow& windowToDrawIn)
 	itemsToBuy.draw(windowToDrawIn);
 }
 
+void MarketScreen::associateWithTexturesInBank(const TextureBank& textureBankToTakeFrom)
+{
+	dayNumberDisplay.associateWithTexturesInBank(textureBankToTakeFrom);
+	moneyDisplay.associateWithTexturesInBank(textureBankToTakeFrom);
+	displaysTheWordDay.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_DISPLAYS_THE_WORD_DAY_TEXTURE));
+	displaysAMoneySign.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_MONEY_SIGN_DISPLAY_TEXTURE));
+	returnToFarmButton.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_BACK_TO_FARM_BUTTON_TEXTURE));
+	tomatoCount.associateWithTexturesInBank(textureBankToTakeFrom);
+	cucumberCount.associateWithTexturesInBank(textureBankToTakeFrom);
+	carrotCount.associateWithTexturesInBank(textureBankToTakeFrom);
+	tomatoIcon.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_TOMATO_CRATE_ICON_TEXTURE));
+	cucumberIcon.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_CUCUMBER_CRATE_ICON_TEXTURE));
+	carrotIcon.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_CARROT_CRATE_ICON_TEXTURE));
+}
+
 void MarketScreen::populateMarketWithSellOffer(MarketOffer sellOffer)
 {
 	itemsForSale.appendMarketOffer(sellOffer);

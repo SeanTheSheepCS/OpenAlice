@@ -18,6 +18,8 @@ class MarketScreen: public OAEScreen
 		void forceFullDraw(sf::RenderWindow& windowToDrawIn);
 		void update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::RenderWindow& window);
 
+		void associateWithTexturesInBank(const TextureBank& textureBankToTakeFrom);
+
 		void populateMarketWithSellOffer(MarketOffer sellOffer);
 		void populateMarketWithBuyOffer(MarketOffer buyOffer);
 

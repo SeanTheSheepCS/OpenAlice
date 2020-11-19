@@ -262,5 +262,9 @@ TextureBank initializeTextureBank()
 
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_BACK_TO_MAIN_MENU_BUTTON_TEXTURE, "back_to_main_menu_button.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_GO_TO_MARKET_BUTTON_TEXTURE, "go_to_market_button.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_BACK_TO_FARM_BUTTON_TEXTURE, "back_to_farm_button.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_TOMATO_CRATE_ICON_TEXTURE, "tomato_crate_icon.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CUCUMBER_CRATE_ICON_TEXTURE, "cucumber_crate_icon.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CARROT_CRATE_ICON_TEXTURE, "carrot_crate_icon.png", &returnValue);
 	return returnValue;
 }
