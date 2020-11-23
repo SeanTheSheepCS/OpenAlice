@@ -88,6 +88,14 @@ bool MarketOffer::isInvalid()
 	}
 }
 
+void MarketOffer::associateWithTexturesInBank(const TextureBank& textureBankToTakeFrom)
+{
+	background.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_MARKET_OFFER_BACKGROUND));
+	commodityOneCountDisplay.associateWithTexturesInBank(textureBankToTakeFrom);
+	commodityTwoCountDisplay.associateWithTexturesInBank(textureBankToTakeFrom);
+	selectButton.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_CHECK_ICON));
+}
+
 bool MarketOffer::isSelectButtonPressedBasedOnMouseXAndMouseY(int mouseX, int mouseY)
 {
 	return selectButton.theMouseHasBeenClickedAtTheSpecifiedCoordinatesHasTheButtonBeenClicked(mouseX, mouseY);

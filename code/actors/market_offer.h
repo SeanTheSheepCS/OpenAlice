@@ -17,6 +17,8 @@ class MarketOffer: public DrawableObject
 		void setWidthRecursiveWithinComponents(unsigned int newWidth);
 		void setHeightRecursiveWithinComponents(unsigned int newHeight);
 
+		void associateWithTexturesInBank(const TextureBank& textureBankToTakeFrom);
+
 		bool isSelectButtonPressedBasedOnMouseXAndMouseY(int mouseX, int mouseY);
 
 		bool isInvalid();

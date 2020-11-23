@@ -23,6 +23,7 @@ class MarketOfferList: public DrawableObject
 		std::vector<MarketOffer> marketOfferVector;
 		unsigned int numberOfMarketOffersPerPage;
 		TexturedObject background;
+		const TextureBank* textureBankToAssociateMarketOffersWithAsTheyComeIn;
 };
 
 #endif

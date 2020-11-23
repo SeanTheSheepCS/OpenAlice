@@ -267,5 +267,7 @@ TextureBank initializeTextureBank()
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CUCUMBER_CRATE_ICON_TEXTURE, "cucumber_crate_icon.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CARROT_CRATE_ICON_TEXTURE, "carrot_crate_icon.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_MARKET_SCREEN_PURCHASE_AND_SALE_TAB_BACKGROUND, "market_screen_purchase_and_sale_tab_background.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_MARKET_OFFER_BACKGROUND, "market_offer_background.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CHECK_ICON, "check_icon.png", &returnValue);
 	return returnValue;
 }
