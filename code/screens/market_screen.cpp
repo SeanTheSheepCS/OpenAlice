@@ -95,6 +95,8 @@ void MarketScreen::associateWithTexturesInBank(const TextureBank& textureBankToT
 	tomatoIcon.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_TOMATO_CRATE_ICON_TEXTURE));
 	cucumberIcon.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_CUCUMBER_CRATE_ICON_TEXTURE));
 	carrotIcon.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_CARROT_CRATE_ICON_TEXTURE));
+	itemsForSale.associateWithTexturesInBank(textureBankToTakeFrom);
+	itemsToBuy.associateWithTexturesInBank(textureBankToTakeFrom);
 }
 
 void MarketScreen::populateMarketWithSellOffer(MarketOffer sellOffer)

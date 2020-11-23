@@ -12,6 +12,8 @@ class MarketOfferList: public DrawableObject
 		void appendMarketOffer(MarketOffer marketOfferToAppend);
 		void eraseOfferAtIndex(int index);
 
+		void associateWithTexturesInBank(const TextureBank& textureBankToTakeFrom);
+
 		int returnIndexOfSelectedMarketOfferIfOneHasBeenSelectedElseReturnMinusOne(int mouseX, int mouseY);
 
 		void draw(sf::RenderWindow& windowToDrawObjectIn);

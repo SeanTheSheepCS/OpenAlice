@@ -22,6 +22,11 @@ void MarketOfferList::appendMarketOffer(MarketOffer marketOfferToAppend)
 	marketOfferVector.push_back(marketOfferToAppendWithDimensionsCorrected);
 }
 
+void MarketOfferList::associateWithTexturesInBank(const TextureBank& textureBankToTakeFrom)
+{
+	background.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_MARKET_SCREEN_PURCHASE_AND_SALE_TAB_BACKGROUND));
+}
+
 int MarketOfferList::returnIndexOfSelectedMarketOfferIfOneHasBeenSelectedElseReturnMinusOne(int mouseX, int mouseY)
 {
 	for(int i = 0; i <  marketOfferVector.size(); i++)
