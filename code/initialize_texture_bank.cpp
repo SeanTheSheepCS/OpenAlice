@@ -273,5 +273,10 @@ TextureBank initializeTextureBank()
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_DISPLAYS_THE_WORD_SELL, "displays_the_word_sell.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_MARKET_SCREEN_BACKGROUND, "market_screen_background.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CREDITS_SCREEN_BACKGROUND_TEXTURE, "credits_screen_background.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_EMPTY_ICON_TEXTURE, "empty_icon.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_MONEY_ICON_TEXTURE, "money_icon.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_TOMATO_ICON_TEXTURE, "tomato_icon.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CUCUMBER_ICON_TEXTURE, "cucumber_icon.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CARROT_ICON_TEXTURE, "carrot_icon.png", &returnValue);
 	return returnValue;
 }

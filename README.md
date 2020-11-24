@@ -68,7 +68,7 @@ An open source game heavily inspired by the 2007 game Alice Greenfingers.
  </ul> 
 <h4> Sprites + Animation </h4>
  <ul>
-  <li> Sprites for market </li>
+  <li> <s>Sprites for market</s> </li>
  </ul> 
 <h4> Music </h4>
  <ul>

@@ -6,6 +6,15 @@
 #include "../engine/primitive_classes/textured_button_object.h"
 #include "../engine/advanced_classes/number_display_module/number_display_module.h"
 
+enum TradeableCommodityEnum
+{
+	TRADEABLE_COMMODITY_ENUM_NOT_SPECIFIED = 0,
+	TRADEABLE_COMMODITY_ENUM_MONEY = 1,
+	TRADEABLE_COMMODITY_ENUM_TOMATO = 2,
+	TRADEABLE_COMMODITY_ENUM_CUCUMBER = 3,
+	TRADEABLE_COMMODITY_ENUM_CARROT = 4
+};
+
 class MarketOffer: public DrawableObject
 {
 	public:
@@ -23,6 +32,9 @@ class MarketOffer: public DrawableObject
 
 		bool isInvalid();
 
+		void setCommodityToBeTraded(TradeableCommodityEnum newCommodityToBeTraded, int newAmountToBeTraded);
+		void setCommodityToBeTradedFor(TradeableCommodityEnum newCommodityToBeTradedFor, int newAmountToBeTradedFor);
+
 		void draw(sf::RenderWindow& windowToDrawObjectIn);
 	protected:
 		//
@@ -30,9 +42,12 @@ class MarketOffer: public DrawableObject
 		TexturedObject background;
 		TexturedObject commodityOneIcon;
 		NumberDisplay commodityOneCountDisplay;
+		TradeableCommodityEnum commodityToBeTraded;
 		TexturedObject commodityTwoIcon;
 		NumberDisplay commodityTwoCountDisplay;
+		TradeableCommodityEnum commodityToBeTradedFor;
 		TexturedButtonObject selectButton;
+		const TextureBank* textureBankToTakeTexturesFrom;
 };
 
 #endif

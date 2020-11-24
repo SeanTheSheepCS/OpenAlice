@@ -15,7 +15,9 @@ MarketOffer::MarketOffer(int x, int y, unsigned int width, unsigned int height):
 	commodityTwoCountDisplay(x+(width*0.26), y+(height*0.55), width*0.4, height, 2),
 	selectButton(x+(width*0.7), y+(height*0.3), width*0.25, height*0.4, nullptr)
 {
-
+	textureBankToTakeTexturesFrom = nullptr;
+	commodityToBeTraded = TRADEABLE_COMMODITY_ENUM_NOT_SPECIFIED;
+	commodityToBeTradedFor = TRADEABLE_COMMODITY_ENUM_NOT_SPECIFIED;
 }
 
 void MarketOffer::setXRecursiveWithinComponents(int newX)
@@ -94,6 +96,43 @@ void MarketOffer::associateWithTexturesInBank(const TextureBank& textureBankToTa
 	commodityOneCountDisplay.associateWithTexturesInBank(textureBankToTakeFrom);
 	commodityTwoCountDisplay.associateWithTexturesInBank(textureBankToTakeFrom);
 	selectButton.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_CHECK_ICON));
+	switch(commodityToBeTraded)
+	{
+		case(TRADEABLE_COMMODITY_ENUM_NOT_SPECIFIED):
+			commodityOneIcon.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_EMPTY_ICON_TEXTURE));
+			break;
+		case(TRADEABLE_COMMODITY_ENUM_MONEY):
+			commodityOneIcon.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_MONEY_ICON_TEXTURE));
+			break;
+		case(TRADEABLE_COMMODITY_ENUM_TOMATO):
+			commodityOneIcon.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_TOMATO_ICON_TEXTURE));
+			break;
+		case(TRADEABLE_COMMODITY_ENUM_CUCUMBER):
+			commodityOneIcon.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_CUCUMBER_ICON_TEXTURE));
+			break;
+		case(TRADEABLE_COMMODITY_ENUM_CARROT):
+			commodityOneIcon.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_CARROT_ICON_TEXTURE));
+			break;
+	}
+	switch(commodityToBeTradedFor)
+	{
+		case(TRADEABLE_COMMODITY_ENUM_NOT_SPECIFIED):
+			commodityTwoIcon.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_EMPTY_ICON_TEXTURE));
+			break;
+		case(TRADEABLE_COMMODITY_ENUM_MONEY):
+			commodityTwoIcon.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_MONEY_ICON_TEXTURE));
+			break;
+		case(TRADEABLE_COMMODITY_ENUM_TOMATO):
+			commodityTwoIcon.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_TOMATO_ICON_TEXTURE));
+			break;
+		case(TRADEABLE_COMMODITY_ENUM_CUCUMBER):
+			commodityTwoIcon.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_CUCUMBER_ICON_TEXTURE));
+			break;
+		case(TRADEABLE_COMMODITY_ENUM_CARROT):
+			commodityTwoIcon.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_CARROT_ICON_TEXTURE));
+			break;
+	}
+	textureBankToTakeTexturesFrom = &textureBankToTakeFrom;
 }
 
 bool MarketOffer::isSelectButtonPressedBasedOnMouseXAndMouseY(int mouseX, int mouseY)
@@ -109,4 +148,56 @@ void MarketOffer::draw(sf::RenderWindow& windowToDrawObjectIn)
 	commodityTwoIcon.draw(windowToDrawObjectIn);
 	commodityTwoCountDisplay.draw(windowToDrawObjectIn);
 	selectButton.draw(windowToDrawObjectIn);
+}
+
+void MarketOffer::setCommodityToBeTraded(TradeableCommodityEnum newCommodityToBeTraded, int newAmountToBeTraded)
+{
+	if(textureBankToTakeTexturesFrom != nullptr)
+	{
+		switch(commodityToBeTraded)
+		{
+			case(TRADEABLE_COMMODITY_ENUM_NOT_SPECIFIED):
+				commodityOneIcon.associateWithNewTexture(textureBankToTakeTexturesFrom->getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_EMPTY_ICON_TEXTURE));
+				break;
+			case(TRADEABLE_COMMODITY_ENUM_MONEY):
+				commodityOneIcon.associateWithNewTexture(textureBankToTakeTexturesFrom->getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_MONEY_ICON_TEXTURE));
+				break;
+			case(TRADEABLE_COMMODITY_ENUM_TOMATO):
+				commodityOneIcon.associateWithNewTexture(textureBankToTakeTexturesFrom->getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_TOMATO_ICON_TEXTURE));
+				break;
+			case(TRADEABLE_COMMODITY_ENUM_CUCUMBER):
+				commodityOneIcon.associateWithNewTexture(textureBankToTakeTexturesFrom->getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_CUCUMBER_ICON_TEXTURE));
+				break;
+			case(TRADEABLE_COMMODITY_ENUM_CARROT):
+				commodityOneIcon.associateWithNewTexture(textureBankToTakeTexturesFrom->getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_CARROT_ICON_TEXTURE));
+				break;
+		}
+	}
+	commodityOneCountDisplay.setNumberDisplayAmount(newAmountToBeTraded);
+}
+
+void MarketOffer::setCommodityToBeTradedFor(TradeableCommodityEnum newCommodityToBeTradedFor, int newAmountToBeTradedFor)
+{
+	if(textureBankToTakeTexturesFrom != nullptr)
+	{
+		switch(commodityToBeTradedFor)
+		{
+			case(TRADEABLE_COMMODITY_ENUM_NOT_SPECIFIED):
+				commodityTwoIcon.associateWithNewTexture(textureBankToTakeTexturesFrom->getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_EMPTY_ICON_TEXTURE));
+				break;
+			case(TRADEABLE_COMMODITY_ENUM_MONEY):
+				commodityTwoIcon.associateWithNewTexture(textureBankToTakeTexturesFrom->getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_MONEY_ICON_TEXTURE));
+				break;
+			case(TRADEABLE_COMMODITY_ENUM_TOMATO):
+				commodityTwoIcon.associateWithNewTexture(textureBankToTakeTexturesFrom->getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_TOMATO_ICON_TEXTURE));
+				break;
+			case(TRADEABLE_COMMODITY_ENUM_CUCUMBER):
+				commodityTwoIcon.associateWithNewTexture(textureBankToTakeTexturesFrom->getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_CUCUMBER_ICON_TEXTURE));
+				break;
+			case(TRADEABLE_COMMODITY_ENUM_CARROT):
+				commodityTwoIcon.associateWithNewTexture(textureBankToTakeTexturesFrom->getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_CARROT_ICON_TEXTURE));
+				break;
+		}
+	}
+	commodityTwoCountDisplay.setNumberDisplayAmount(newAmountToBeTradedFor);
 }
