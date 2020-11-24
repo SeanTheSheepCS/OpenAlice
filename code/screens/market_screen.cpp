@@ -84,6 +84,7 @@ void MarketScreen::forceFullDraw(sf::RenderWindow& windowToDrawIn)
 
 void MarketScreen::associateWithTexturesInBank(const TextureBank& textureBankToTakeFrom)
 {
+	background.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_MARKET_SCREEN_BACKGROUND));
 	dayNumberDisplay.associateWithTexturesInBank(textureBankToTakeFrom);
 	moneyDisplay.associateWithTexturesInBank(textureBankToTakeFrom);
 	displaysTheWordDay.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_DISPLAYS_THE_WORD_DAY_TEXTURE));
@@ -97,6 +98,8 @@ void MarketScreen::associateWithTexturesInBank(const TextureBank& textureBankToT
 	carrotIcon.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_CARROT_CRATE_ICON_TEXTURE));
 	itemsForSale.associateWithTexturesInBank(textureBankToTakeFrom);
 	itemsToBuy.associateWithTexturesInBank(textureBankToTakeFrom);
+	sellWord.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_DISPLAYS_THE_WORD_BUY));
+	buyWord.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_DISPLAYS_THE_WORD_SELL));
 }
 
 void MarketScreen::populateMarketWithSellOffer(MarketOffer sellOffer)

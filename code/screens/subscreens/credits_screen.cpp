@@ -41,6 +41,7 @@ void CreditsScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::Ren
 
 void CreditsScreen::associateWithTexturesInBank(const TextureBank& textureBankToTakeFrom)
 {
+	background.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_CREDITS_SCREEN_BACKGROUND_TEXTURE));
 	exitScreenButton.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_WINDOW_X));
 }
 
