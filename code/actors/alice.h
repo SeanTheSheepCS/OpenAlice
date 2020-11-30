@@ -22,6 +22,10 @@ class Alice: public PlayerObject
 		const int returnCapacityOfHeldWorldObject() const; //Returns -1 on failure.
 		const int returnFilledAmountPropertyOfHeldWorldObject() const; //Returns -1 on failure.
 		void incrementFilledAmountPropertyOfHeldWorldObject();
+		void decrementFilledAmountPropertyOfHeldWorldObject();
+		void fillHeldWorldObjectToCapacity();
+
+		void deleteHeldWorldObject();
 	protected:
 		//
 	private:

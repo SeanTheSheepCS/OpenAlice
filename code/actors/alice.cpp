@@ -2,8 +2,7 @@
 
 Alice::Alice(int x, int y, unsigned int width, unsigned int height): PlayerObject(x,y,width,height)
 {
-	this->referenceNumberOfHeldWorldObject = WORLD_OBJECT_REF_NUMBER_INVALID;
-	this->heldWorldObject = WorldObject();
+	this->deleteHeldWorldObject();
 }
 
 void Alice::pickUpObject(int referenceNumberOfObjectToPickUp, TileMap& tileMapYouPickedItUpFrom)
@@ -22,8 +21,7 @@ void Alice::putDownObject(TileMap& tileMapToPutItDownIn)
 	else
 	{
 		tileMapToPutItDownIn.addWorldObjectWithReferenceNumber(referenceNumberOfHeldWorldObject, heldWorldObject, this->x, this->y);
-		this->referenceNumberOfHeldWorldObject = WORLD_OBJECT_REF_NUMBER_INVALID;
-		this->heldWorldObject = WorldObject();
+		this->deleteHeldWorldObject();
 	}
 }
 
@@ -171,5 +169,104 @@ void Alice::incrementFilledAmountPropertyOfHeldWorldObject()
 			heldWorldObject.addWorldObjectProperty(propertyToWrite);
 			break;
 		}
+	}
+}
+
+void Alice::decrementFilledAmountPropertyOfHeldWorldObject()
+{
+	const std::vector<WorldObjectProperty> propertiesOfHeldObject = heldWorldObject.getProperties();
+	for(unsigned int i = 0; i < propertiesOfHeldObject.size(); i++)
+	{
+		WorldObjectProperty currentProperty = propertiesOfHeldObject.at(i);
+		if((currentProperty >= WORLD_OBJECT_PROPERTY_FILLED_WITH_0) && (currentProperty <= WORLD_OBJECT_PROPERTY_FILLED_WITH_10))
+		{
+			heldWorldObject.removeWorldObjectProperty(currentProperty);
+			WorldObjectProperty propertyToWrite = WORLD_OBJECT_PROPERTY_FILLED_WITH_0; 
+			switch(currentProperty)
+			{
+				case WORLD_OBJECT_PROPERTY_FILLED_WITH_1:
+					{
+					    bool shouldRemoveTheWorldObjectFilledWithZeroProperty = false;
+					    for(unsigned int j = 0; j < propertiesOfHeldObject.size(); j++)
+					    {
+					    	if(propertiesOfHeldObject.at(j) == WORLD_OBJECT_PROPERTY_DELETES_WHEN_FILLED_WITH_0)
+					    	{
+					    		shouldRemoveTheWorldObjectFilledWithZeroProperty = true;
+					    	}
+					    }
+					    if(shouldRemoveTheWorldObjectFilledWithZeroProperty == true)
+					    {
+					    	this->deleteHeldWorldObject();
+					    }
+					    else
+					    {
+					    	propertyToWrite = WORLD_OBJECT_PROPERTY_FILLED_WITH_0;
+					    }
+					}
+					break;
+				case WORLD_OBJECT_PROPERTY_FILLED_WITH_2:
+					propertyToWrite = WORLD_OBJECT_PROPERTY_FILLED_WITH_1;
+					break;
+				case WORLD_OBJECT_PROPERTY_FILLED_WITH_3:
+					propertyToWrite = WORLD_OBJECT_PROPERTY_FILLED_WITH_2;
+					break;
+				case WORLD_OBJECT_PROPERTY_FILLED_WITH_4:
+					propertyToWrite = WORLD_OBJECT_PROPERTY_FILLED_WITH_3;
+					break;
+				case WORLD_OBJECT_PROPERTY_FILLED_WITH_5:
+					propertyToWrite = WORLD_OBJECT_PROPERTY_FILLED_WITH_4;
+					break;
+				case WORLD_OBJECT_PROPERTY_FILLED_WITH_6:
+					propertyToWrite = WORLD_OBJECT_PROPERTY_FILLED_WITH_5;
+					break;
+				case WORLD_OBJECT_PROPERTY_FILLED_WITH_7:
+					propertyToWrite = WORLD_OBJECT_PROPERTY_FILLED_WITH_6;
+					break;
+				case WORLD_OBJECT_PROPERTY_FILLED_WITH_8:
+					propertyToWrite = WORLD_OBJECT_PROPERTY_FILLED_WITH_7;
+					break;
+				case WORLD_OBJECT_PROPERTY_FILLED_WITH_9:
+					propertyToWrite = WORLD_OBJECT_PROPERTY_FILLED_WITH_8;
+					break;
+				case WORLD_OBJECT_PROPERTY_FILLED_WITH_10:
+					propertyToWrite = WORLD_OBJECT_PROPERTY_FILLED_WITH_9;
+					break;
+			}
+			if(!(heldWorldObject.isInvalid()))
+			{
+                heldWorldObject.addWorldObjectProperty(propertyToWrite);
+			}
+			break;
+		}
+	}
+}
+
+void Alice::deleteHeldWorldObject()
+{
+	this->referenceNumberOfHeldWorldObject = WORLD_OBJECT_REF_NUMBER_INVALID;
+	this->heldWorldObject = WorldObject();
+}
+
+void Alice::fillHeldWorldObjectToCapacity()
+{
+    const int capacity = this->returnCapacityOfHeldWorldObject();
+    if(capacity != -1)
+    {
+		const std::vector<WorldObjectProperty> propertiesOfHeldObject = this->returnPropertiesOfHeldWorldObject();
+	    for(unsigned int i = 0; i < propertiesOfHeldObject.size(); i++)
+	    {
+	    	const WorldObjectProperty currentProperty = propertiesOfHeldObject.at(i);
+	    	if((currentProperty >= WORLD_OBJECT_PROPERTY_FILLED_WITH_0) && (currentProperty <= WORLD_OBJECT_PROPERTY_FILLED_WITH_10))
+	    	{
+				const WorldObjectProperty capacityProperty = currentProperty;
+	            switch(capacity)
+	            {
+	            	case 10:
+	            		heldWorldObject.removeWorldObjectProperty(capacityProperty);
+						heldWorldObject.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_FILLED_WITH_10);
+					    break;
+	            }
+			}
+        }
 	}
 }
