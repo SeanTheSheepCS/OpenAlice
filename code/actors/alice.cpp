@@ -270,3 +270,8 @@ void Alice::fillHeldWorldObjectToCapacity()
         }
 	}
 }
+
+void Alice::setReferenceNumberOfHeldWorldObject(int newReferenceNumberOfHeldWorldObject)
+{
+    this->referenceNumberOfHeldWorldObject = newReferenceNumberOfHeldWorldObject;
+}

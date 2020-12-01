@@ -244,6 +244,10 @@ TextureBank initializeTextureBank()
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CUCUMBER_CRATE_TEXTURE, "cucumber_crate.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CARROT_CRATE_TEXTURE, "carrot_crate.png", &returnValue);
 
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_TOMATO_CRATE_FILLED_TEXTURE, "tomato_crate_filled.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CUCUMBER_CRATE_FILLED_TEXTURE, "cucumber_crate_filled.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CARROT_CRATE_FILLED_TEXTURE, "carrot_crate_filled.png", &returnValue);
+
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_DAY_NIGHT_CIRCLE_TEXTURE, "day_night_circle.png", &returnValue);
 
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_NUMBER_DISPLAY_ZERO_TEXTURE, "number_display_0.png", &returnValue);

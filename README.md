@@ -47,7 +47,7 @@ An open source game heavily inspired by the 2007 game Alice Greenfingers.
 <h3> November </h3>
 <h4> Engine </h4>
  <ul>
-  <li> Farm is fully functional </li>
+  <li> <s> Farm is fully functional </s> </li>
  </ul> 
 <h4> Sprites + Animation </h4>
  <ul>
@@ -59,6 +59,7 @@ An open source game heavily inspired by the 2007 game Alice Greenfingers.
  <ul>
   <li> <s> Market music is completed </s> </li>
  </ul> 
+<h5> November milestone completed on November 30th </h5> 
 
 <h3> December </h3>
 <h4> Engine </h4>

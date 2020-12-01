@@ -10,15 +10,15 @@ class Alice: public PlayerObject
 {
 	public:
 		Alice(int x, int y, unsigned int width, unsigned int height);
-		//NON-CONST FUNCTIONS
 		void pickUpObject(int referenceNumberOfObjectToPickUp, TileMap& tileMapYouPickedItUpFrom);
 		void putDownObject(TileMap& tileMapToPutItDownIn);
 		void removeWorldObjectPropertyFromHeldWorldObject(const WorldObjectProperty propertyToRemove);
 		void addWorldObjectPropertyToHeldWorldObject(const WorldObjectProperty propertyToAdd);
-		//CONST FUNCTIONS
+
 		bool isHoldingObject() const;
 		int returnReferenceNumberOfHeldObject() const;
 		const std::vector<WorldObjectProperty> returnPropertiesOfHeldWorldObject() const;
+
 		const int returnCapacityOfHeldWorldObject() const; //Returns -1 on failure.
 		const int returnFilledAmountPropertyOfHeldWorldObject() const; //Returns -1 on failure.
 		void incrementFilledAmountPropertyOfHeldWorldObject();
@@ -26,6 +26,8 @@ class Alice: public PlayerObject
 		void fillHeldWorldObjectToCapacity();
 
 		void deleteHeldWorldObject();
+
+		void setReferenceNumberOfHeldWorldObject(int newReferenceNumberOfHeldWorldObject);
 	protected:
 		//
 	private:
