@@ -26,6 +26,8 @@ class NumberDisplay: public DrawableObject
 		void decrementNumberDisplayByAmount(unsigned int amount);
 		void setNumberDisplayAmount(unsigned int amount);
 
+		unsigned int getNumber() const;
+
 		void setXRecursiveWithinComponents(int newX);
 		void setYRecursiveWithinComponents(int newY);
 		void setWidthRecursiveWithinComponents(unsigned int newWidth);

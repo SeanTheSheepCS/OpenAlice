@@ -84,6 +84,11 @@ void NumberDisplay::setNumberDisplayAmount(unsigned int amount)
 	updateDigitTextures();
 }
 
+unsigned int NumberDisplay::getNumber() const
+{
+	return digitAsInteger;
+}
+
 void NumberDisplay::updateDigitTextures()
 {
 	for(unsigned int i = 0; i < digitCount; i++)

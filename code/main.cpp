@@ -72,6 +72,7 @@ int main()
 				pointerToCurrentlyActiveScreen = &farmScreenVar;
 				if(farmScreenVar.returnIfShouldSwitchToMarketScreen())
 				{
+					syncMarketScreenWithFarmScreen(marketScreenVar, farmScreenVar);
 					pointerToCurrentlyActiveScreen = &marketScreenVar;
 					currentScreenToDisplay = MARKET_SCREEN;
 					farmScreenVar.acknowledgeShouldSwitchToMarketScreen();
@@ -88,6 +89,7 @@ int main()
 				pointerToCurrentlyActiveScreen = &marketScreenVar;
 				if(marketScreenVar.returnIfShouldSwitchToFarmScreen())
 				{
+					syncFarmScreenWithMarketScreen(farmScreenVar, marketScreenVar);
 					pointerToCurrentlyActiveScreen = &farmScreenVar;
 					currentScreenToDisplay = FARM_SCREEN;
 					marketScreenVar.acknowledgeShouldSwitchToFarmScreen();
@@ -132,4 +134,16 @@ int main()
 #endif
 		window.display();
 	}
+}
+
+void syncFarmScreenWithMarketScreen(FarmScreen& farmScreenVar, MarketScreen& marketScreenVar)
+{
+	farmScreenVar.setMoneyDisplayAmount(marketScreenVar.getMoneyAmount());
+	farmScreenVar.setDayDisplayAmount(marketScreenVar.getDay());
+}
+
+void syncMarketScreenWithFarmScreen(MarketScreen& marketScreenVar, FarmScreen& farmScreenVar)
+{
+	marketScreenVar.setMoneyDisplayAmount(farmScreenVar.getMoneyAmount());
+	marketScreenVar.setDayDisplayAmount(farmScreenVar.getDay());
 }

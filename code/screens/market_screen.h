@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "oae_screen.h"
+#include "farm_screen.h"
 #include "../engine/primitive_classes/textured_object.h"
 #include "../engine/primitive_classes/textured_button_object.h"
 #include "../engine/advanced_classes/number_display_module/number_display_module.h"
@@ -30,6 +31,11 @@ class MarketScreen: public OAEScreen
 
 		bool returnIfShouldSwitchToFarmScreen();
 		void acknowledgeShouldSwitchToFarmScreen();
+
+		unsigned int getDay() const;
+		unsigned int getMoneyAmount() const;
+		void setMoneyDisplayAmount(unsigned int moneyDisplayAmount);
+		void setDayDisplayAmount(unsigned int dayDisplayAmount);
 	protected:
 		//
 	private:

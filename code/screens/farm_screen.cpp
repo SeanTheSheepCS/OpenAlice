@@ -331,6 +331,7 @@ void FarmScreen::runHarvestSequence(unsigned int plantTileMapRow, unsigned int p
 
 void FarmScreen::runSleepSequence(sf::RenderWindow& windowToDrawIn)
 {
+	dayNumberDisplay.incrementNumberDisplayByAmount(1);
 	this->dayNightCircle.setRotationAroundCentre(180.0);
 	this->isInSleepState = true;
 }
@@ -728,7 +729,7 @@ void FarmScreen::updateTheFollowingRowsInThePlantTileMapBothBoundsInclusive(unsi
 	}
 }
 
-bool FarmScreen::returnIfShouldSwitchToMarketScreen()
+bool FarmScreen::returnIfShouldSwitchToMarketScreen() const
 {
 	return shouldSwitchToMarketScreenFlag;
 }
@@ -738,7 +739,7 @@ void FarmScreen::acknowledgeShouldSwitchToMarketScreen()
 	shouldSwitchToMarketScreenFlag = false;
 }
 
-bool FarmScreen::returnIfShouldSwitchToMainMenuScreen()
+bool FarmScreen::returnIfShouldSwitchToMainMenuScreen() const
 {
 	return shouldSwitchToMainMenuScreenFlag;
 }
@@ -1586,6 +1587,26 @@ void FarmScreen::loadSaveFile(const SaveFile& saveFileToLoad)
 	}
 }
 
+unsigned int FarmScreen::getDay() const
+{
+	return dayNumberDisplay.getNumber();
+}
+
+unsigned int FarmScreen::getMoneyAmount() const
+{
+	return moneyDisplay.getNumber();
+}
+
+void FarmScreen::setMoneyDisplayAmount(unsigned int moneyDisplayAmount)
+{
+	moneyDisplay.setNumberDisplayAmount(moneyDisplayAmount);
+}
+
+void FarmScreen::setDayDisplayAmount(unsigned int dayDisplayAmount)
+{
+	dayNumberDisplay.setNumberDisplayAmount(dayDisplayAmount);
+}
+
 void FarmScreen::drawAllObjectsALayerBelowAlice(sf::RenderWindow& windowToDrawIn) //HELPER FUNCTION FOR A LOT OF FUNCTIONS
 {
 	background.draw(windowToDrawIn);
@@ -1602,3 +1623,4 @@ void FarmScreen::drawAllObjectsALayerAboveAlice(sf::RenderWindow& windowToDrawIn
 	marketButton.draw(windowToDrawIn);
 	mainMenuButton.draw(windowToDrawIn);
 }
+

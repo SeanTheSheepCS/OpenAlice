@@ -176,6 +176,26 @@ void MarketScreen::acknowledgeShouldSwitchToFarmScreen()
 	shouldSwitchToFarmScreenFlag = false;
 }
 
+unsigned int MarketScreen::getDay() const
+{
+	return dayNumberDisplay.getNumber();
+}
+
+unsigned int MarketScreen::getMoneyAmount() const
+{
+	return moneyDisplay.getNumber();
+}	
+
+void MarketScreen::setMoneyDisplayAmount(unsigned int moneyDisplayAmount)
+{
+	moneyDisplay.setNumberDisplayAmount(moneyDisplayAmount);
+}
+
+void MarketScreen::setDayDisplayAmount(unsigned int dayDisplayAmount)
+{
+	dayNumberDisplay.setNumberDisplayAmount(dayDisplayAmount);
+}
+
 void MarketScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::RenderWindow& window)
 {
 }

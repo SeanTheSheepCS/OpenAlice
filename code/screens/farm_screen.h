@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <utility>
 #include "oae_screen.h"
+#include "market_screen.h"
 #include "../engine/primitive_classes/textured_object.h"
 #include "../engine/primitive_classes/textured_button_object.h"
 #include "../engine/primitive_classes/world_object.h"
@@ -48,11 +49,16 @@ class FarmScreen: public OAEScreen
 
 		void loadSaveFile(const SaveFile& saveFileToLoad);
 
-		bool returnIfShouldSwitchToMarketScreen();
+		bool returnIfShouldSwitchToMarketScreen() const;
 		void acknowledgeShouldSwitchToMarketScreen();
 
-		bool returnIfShouldSwitchToMainMenuScreen();
+		bool returnIfShouldSwitchToMainMenuScreen() const;
 		void acknowledgeShouldSwitchToMainMenuScreen();
+
+		unsigned int getDay() const;
+		unsigned int getMoneyAmount() const;
+		void setMoneyDisplayAmount(unsigned int moneyDisplayAmount);
+		void setDayDisplayAmount(unsigned int dayDisplayAmount);
 	protected:
 		//
 	private:

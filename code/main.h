@@ -17,4 +17,7 @@
 #include "initialize_texture_bank.h"
 #include "initialize_oae_animation_bank.h"
 
+void syncFarmScreenWithMarketScreen(FarmScreen& farmScreenVar, MarketScreen& marketScreenVar);
+void syncMarketScreenWithFarmScreen(MarketScreen& marketScreenVar, FarmScreen& farmScreenVar);
+
 #endif
