@@ -104,14 +104,23 @@ void MarketOffer::associateWithTexturesInBank(const TextureBank& textureBankToTa
 		case(TRADEABLE_COMMODITY_ENUM_MONEY):
 			commodityOneIcon.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_MONEY_ICON_TEXTURE));
 			break;
-		case(TRADEABLE_COMMODITY_ENUM_TOMATO):
+		case(TRADEABLE_COMMODITY_ENUM_TOMATO_CRATE):
 			commodityOneIcon.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_TOMATO_ICON_TEXTURE));
 			break;
-		case(TRADEABLE_COMMODITY_ENUM_CUCUMBER):
+		case(TRADEABLE_COMMODITY_ENUM_CUCUMBER_CRATE):
 			commodityOneIcon.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_CUCUMBER_ICON_TEXTURE));
 			break;
-		case(TRADEABLE_COMMODITY_ENUM_CARROT):
+		case(TRADEABLE_COMMODITY_ENUM_CARROT_CRATE):
 			commodityOneIcon.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_CARROT_ICON_TEXTURE));
+			break;
+		case(TRADEABLE_COMMODITY_ENUM_TOMATO_SEEDS):
+			commodityOneIcon.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_TOMATO_SEEDS_ICON_TEXTURE));
+			break;
+		case(TRADEABLE_COMMODITY_ENUM_CUCUMBER_SEEDS):
+			commodityOneIcon.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_CUCUMBER_SEEDS_ICON_TEXTURE));
+			break;
+		case(TRADEABLE_COMMODITY_ENUM_CARROT_SEEDS):
+			commodityOneIcon.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_CARROT_SEEDS_ICON_TEXTURE));
 			break;
 	}
 	switch(commodityToBeTradedFor)
@@ -122,14 +131,23 @@ void MarketOffer::associateWithTexturesInBank(const TextureBank& textureBankToTa
 		case(TRADEABLE_COMMODITY_ENUM_MONEY):
 			commodityTwoIcon.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_MONEY_ICON_TEXTURE));
 			break;
-		case(TRADEABLE_COMMODITY_ENUM_TOMATO):
+		case(TRADEABLE_COMMODITY_ENUM_TOMATO_CRATE):
 			commodityTwoIcon.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_TOMATO_ICON_TEXTURE));
 			break;
-		case(TRADEABLE_COMMODITY_ENUM_CUCUMBER):
+		case(TRADEABLE_COMMODITY_ENUM_CUCUMBER_CRATE):
 			commodityTwoIcon.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_CUCUMBER_ICON_TEXTURE));
 			break;
-		case(TRADEABLE_COMMODITY_ENUM_CARROT):
+		case(TRADEABLE_COMMODITY_ENUM_CARROT_CRATE):
 			commodityTwoIcon.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_CARROT_ICON_TEXTURE));
+			break;
+		case(TRADEABLE_COMMODITY_ENUM_TOMATO_SEEDS):
+			commodityTwoIcon.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_TOMATO_SEEDS_ICON_TEXTURE));
+			break;
+		case(TRADEABLE_COMMODITY_ENUM_CUCUMBER_SEEDS):
+			commodityTwoIcon.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_CUCUMBER_SEEDS_ICON_TEXTURE));
+			break;
+		case(TRADEABLE_COMMODITY_ENUM_CARROT_SEEDS):
+			commodityTwoIcon.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_CARROT_SEEDS_ICON_TEXTURE));
 			break;
 	}
 	textureBankToTakeTexturesFrom = &textureBankToTakeFrom;
@@ -152,6 +170,7 @@ void MarketOffer::draw(sf::RenderWindow& windowToDrawObjectIn)
 
 void MarketOffer::setCommodityToBeTraded(TradeableCommodityEnum newCommodityToBeTraded, int newAmountToBeTraded)
 {
+	this->commodityToBeTraded = newCommodityToBeTraded;
 	if(textureBankToTakeTexturesFrom != nullptr)
 	{
 		switch(commodityToBeTraded)
@@ -162,14 +181,23 @@ void MarketOffer::setCommodityToBeTraded(TradeableCommodityEnum newCommodityToBe
 			case(TRADEABLE_COMMODITY_ENUM_MONEY):
 				commodityOneIcon.associateWithNewTexture(textureBankToTakeTexturesFrom->getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_MONEY_ICON_TEXTURE));
 				break;
-			case(TRADEABLE_COMMODITY_ENUM_TOMATO):
+			case(TRADEABLE_COMMODITY_ENUM_TOMATO_CRATE):
 				commodityOneIcon.associateWithNewTexture(textureBankToTakeTexturesFrom->getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_TOMATO_ICON_TEXTURE));
 				break;
-			case(TRADEABLE_COMMODITY_ENUM_CUCUMBER):
+			case(TRADEABLE_COMMODITY_ENUM_CUCUMBER_CRATE):
 				commodityOneIcon.associateWithNewTexture(textureBankToTakeTexturesFrom->getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_CUCUMBER_ICON_TEXTURE));
 				break;
-			case(TRADEABLE_COMMODITY_ENUM_CARROT):
+			case(TRADEABLE_COMMODITY_ENUM_CARROT_CRATE):
 				commodityOneIcon.associateWithNewTexture(textureBankToTakeTexturesFrom->getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_CARROT_ICON_TEXTURE));
+				break;
+			case(TRADEABLE_COMMODITY_ENUM_TOMATO_SEEDS):
+				commodityOneIcon.associateWithNewTexture(textureBankToTakeTexturesFrom->getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_TOMATO_SEEDS_ICON_TEXTURE));
+				break;
+			case(TRADEABLE_COMMODITY_ENUM_CUCUMBER_SEEDS):
+				commodityOneIcon.associateWithNewTexture(textureBankToTakeTexturesFrom->getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_CUCUMBER_SEEDS_ICON_TEXTURE));
+				break;
+			case(TRADEABLE_COMMODITY_ENUM_CARROT_SEEDS):
+				commodityOneIcon.associateWithNewTexture(textureBankToTakeTexturesFrom->getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_CARROT_SEEDS_ICON_TEXTURE));
 				break;
 		}
 	}
@@ -178,6 +206,7 @@ void MarketOffer::setCommodityToBeTraded(TradeableCommodityEnum newCommodityToBe
 
 void MarketOffer::setCommodityToBeTradedFor(TradeableCommodityEnum newCommodityToBeTradedFor, int newAmountToBeTradedFor)
 {
+	this->commodityToBeTradedFor = newCommodityToBeTradedFor;
 	if(textureBankToTakeTexturesFrom != nullptr)
 	{
 		switch(commodityToBeTradedFor)
@@ -188,14 +217,23 @@ void MarketOffer::setCommodityToBeTradedFor(TradeableCommodityEnum newCommodityT
 			case(TRADEABLE_COMMODITY_ENUM_MONEY):
 				commodityTwoIcon.associateWithNewTexture(textureBankToTakeTexturesFrom->getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_MONEY_ICON_TEXTURE));
 				break;
-			case(TRADEABLE_COMMODITY_ENUM_TOMATO):
+			case(TRADEABLE_COMMODITY_ENUM_TOMATO_CRATE):
 				commodityTwoIcon.associateWithNewTexture(textureBankToTakeTexturesFrom->getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_TOMATO_ICON_TEXTURE));
 				break;
-			case(TRADEABLE_COMMODITY_ENUM_CUCUMBER):
+			case(TRADEABLE_COMMODITY_ENUM_CUCUMBER_CRATE):
 				commodityTwoIcon.associateWithNewTexture(textureBankToTakeTexturesFrom->getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_CUCUMBER_ICON_TEXTURE));
 				break;
-			case(TRADEABLE_COMMODITY_ENUM_CARROT):
+			case(TRADEABLE_COMMODITY_ENUM_CARROT_CRATE):
 				commodityTwoIcon.associateWithNewTexture(textureBankToTakeTexturesFrom->getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_CARROT_ICON_TEXTURE));
+				break;
+			case(TRADEABLE_COMMODITY_ENUM_TOMATO_SEEDS):
+				commodityOneIcon.associateWithNewTexture(textureBankToTakeTexturesFrom->getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_TOMATO_SEEDS_ICON_TEXTURE));
+				break;
+			case(TRADEABLE_COMMODITY_ENUM_CUCUMBER_SEEDS):
+				commodityOneIcon.associateWithNewTexture(textureBankToTakeTexturesFrom->getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_CUCUMBER_SEEDS_ICON_TEXTURE));
+				break;
+			case(TRADEABLE_COMMODITY_ENUM_CARROT_SEEDS):
+				commodityOneIcon.associateWithNewTexture(textureBankToTakeTexturesFrom->getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_CARROT_SEEDS_ICON_TEXTURE));
 				break;
 		}
 	}

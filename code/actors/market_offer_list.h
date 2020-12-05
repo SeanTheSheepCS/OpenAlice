@@ -11,6 +11,7 @@ class MarketOfferList: public DrawableObject
 
 		void appendMarketOffer(MarketOffer marketOfferToAppend);
 		void eraseOfferAtIndex(int index);
+		void clearMarketOffers();
 
 		void associateWithTexturesInBank(const TextureBank& textureBankToTakeFrom);
 

@@ -122,6 +122,50 @@ void MarketScreen::populateMarketWithGarbageData()
 	populateMarketWithBuyOffer(MarketOffer(0,0,0,0));
 }
 
+void MarketScreen::populateMarketWithRandomOffers()
+{
+	itemsToBuy.clearMarketOffers();
+	itemsForSale.clearMarketOffers();
+
+	srand(time(NULL));
+
+	MarketOffer tomatoCrateForMoney = MarketOffer(0,0,0,0);
+	tomatoCrateForMoney.setCommodityToBeTraded(TRADEABLE_COMMODITY_ENUM_TOMATO_CRATE, 1);
+	unsigned int tomatoCratePrice = (rand() % 20)+40;
+	tomatoCrateForMoney.setCommodityToBeTradedFor(TRADEABLE_COMMODITY_ENUM_MONEY, tomatoCratePrice);
+	itemsToBuy.appendMarketOffer(tomatoCrateForMoney);
+
+	MarketOffer cucumberCrateForMoney = MarketOffer(0,0,0,0);
+	cucumberCrateForMoney.setCommodityToBeTraded(TRADEABLE_COMMODITY_ENUM_CUCUMBER_CRATE, 1);
+	unsigned int cucumberCratePrice = (rand() % 29)+70;
+	cucumberCrateForMoney.setCommodityToBeTradedFor(TRADEABLE_COMMODITY_ENUM_MONEY, cucumberCratePrice);
+	itemsToBuy.appendMarketOffer(cucumberCrateForMoney);
+
+	MarketOffer carrotCrateForMoney = MarketOffer(0,0,0,0);
+	carrotCrateForMoney.setCommodityToBeTraded(TRADEABLE_COMMODITY_ENUM_CARROT_CRATE, 1);
+	unsigned int carrotCratePrice = (rand() % 10)+10;
+	carrotCrateForMoney.setCommodityToBeTradedFor(TRADEABLE_COMMODITY_ENUM_MONEY, carrotCratePrice);
+	itemsToBuy.appendMarketOffer(carrotCrateForMoney);
+
+	MarketOffer moneyForTomatoSeeds = MarketOffer(0,0,0,0);
+	unsigned int tomatoSeedsPrice = (rand() % 20)+20;
+	moneyForTomatoSeeds.setCommodityToBeTraded(TRADEABLE_COMMODITY_ENUM_MONEY, tomatoSeedsPrice);
+	moneyForTomatoSeeds.setCommodityToBeTradedFor(TRADEABLE_COMMODITY_ENUM_TOMATO_SEEDS, 1);
+	itemsForSale.appendMarketOffer(moneyForTomatoSeeds);
+
+	MarketOffer moneyForCucumberSeeds = MarketOffer(0,0,0,0);
+	unsigned int cucumberSeedsPrice = (rand() % 40)+30;
+	moneyForCucumberSeeds.setCommodityToBeTraded(TRADEABLE_COMMODITY_ENUM_MONEY, cucumberSeedsPrice);
+	moneyForCucumberSeeds.setCommodityToBeTradedFor(TRADEABLE_COMMODITY_ENUM_CUCUMBER_SEEDS, 1);
+	itemsForSale.appendMarketOffer(moneyForCucumberSeeds);
+
+	MarketOffer moneyForCarrotSeeds = MarketOffer(0,0,0,0);
+	unsigned int carrotSeedsPrice = (rand() % 5)+5;
+	moneyForCarrotSeeds.setCommodityToBeTraded(TRADEABLE_COMMODITY_ENUM_MONEY, carrotSeedsPrice);
+	moneyForCarrotSeeds.setCommodityToBeTradedFor(TRADEABLE_COMMODITY_ENUM_CARROT_SEEDS, 1);
+	itemsForSale.appendMarketOffer(moneyForCarrotSeeds);
+}
+
 bool MarketScreen::returnIfShouldSwitchToFarmScreen()
 {
 	return shouldSwitchToFarmScreenFlag;

@@ -36,7 +36,7 @@ int main()
 
 	MarketScreen marketScreenVar(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
 	marketScreenVar.associateWithTexturesInBank(textureBankForApplication);
-	marketScreenVar.populateMarketWithGarbageData();
+	marketScreenVar.populateMarketWithRandomOffers();
 	OAEScreen* pointerToCurrentlyActiveScreen = nullptr;
 
 	//VARS FOR SFML

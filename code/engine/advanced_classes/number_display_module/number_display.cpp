@@ -94,34 +94,34 @@ void NumberDisplay::updateDigitTextures()
 			switch(digitAsIntegerTemp % 10)
 			{
 				case 0:
-					digits[i].associateWithNewTexture(texturePack.numberDisplayZeroTexture);
+					digits[digitCount-(i+1)].associateWithNewTexture(texturePack.numberDisplayZeroTexture);
 					break;
 				case 1:
-					digits[i].associateWithNewTexture(texturePack.numberDisplayOneTexture);
+					digits[digitCount-(i+1)].associateWithNewTexture(texturePack.numberDisplayOneTexture);
 					break;
 				case 2:
-					digits[i].associateWithNewTexture(texturePack.numberDisplayTwoTexture);
+					digits[digitCount-(i+1)].associateWithNewTexture(texturePack.numberDisplayTwoTexture);
 					break;
 				case 3:
-					digits[i].associateWithNewTexture(texturePack.numberDisplayThreeTexture);
+					digits[digitCount-(i+1)].associateWithNewTexture(texturePack.numberDisplayThreeTexture);
 					break;
 				case 4:
-					digits[i].associateWithNewTexture(texturePack.numberDisplayFourTexture);
+					digits[digitCount-(i+1)].associateWithNewTexture(texturePack.numberDisplayFourTexture);
 					break;
 				case 5:
-					digits[i].associateWithNewTexture(texturePack.numberDisplayFiveTexture);
+					digits[digitCount-(i+1)].associateWithNewTexture(texturePack.numberDisplayFiveTexture);
 					break;
 				case 6:
-					digits[i].associateWithNewTexture(texturePack.numberDisplaySixTexture);
+					digits[digitCount-(i+1)].associateWithNewTexture(texturePack.numberDisplaySixTexture);
 					break;
 				case 7:
-					digits[i].associateWithNewTexture(texturePack.numberDisplaySevenTexture);
+					digits[digitCount-(i+1)].associateWithNewTexture(texturePack.numberDisplaySevenTexture);
 					break;
 				case 8:
-					digits[i].associateWithNewTexture(texturePack.numberDisplayEightTexture);
+					digits[digitCount-(i+1)].associateWithNewTexture(texturePack.numberDisplayEightTexture);
 					break;
 				case 9:
-					digits[i].associateWithNewTexture(texturePack.numberDisplayNineTexture);
+					digits[digitCount-(i+1)].associateWithNewTexture(texturePack.numberDisplayNineTexture);
 					break;
 			}
 		}

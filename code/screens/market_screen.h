@@ -2,6 +2,8 @@
 #define MARKET_SCREEN_H
 
 #include <SFML/Graphics.hpp>
+#include <stdlib.h>
+#include <time.h>
 #include "oae_screen.h"
 #include "../engine/primitive_classes/textured_object.h"
 #include "../engine/primitive_classes/textured_button_object.h"
@@ -24,6 +26,7 @@ class MarketScreen: public OAEScreen
 		void populateMarketWithBuyOffer(MarketOffer buyOffer);
 
 		void populateMarketWithGarbageData();
+		void populateMarketWithRandomOffers();
 
 		bool returnIfShouldSwitchToFarmScreen();
 		void acknowledgeShouldSwitchToFarmScreen();

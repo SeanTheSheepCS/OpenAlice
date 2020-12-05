@@ -27,6 +27,11 @@ void MarketOfferList::appendMarketOffer(MarketOffer marketOfferToAppend)
 	marketOfferVector.push_back(marketOfferToAppendWithDimensionsCorrected);
 }
 
+void MarketOfferList::clearMarketOffers()
+{
+	marketOfferVector.clear();
+}
+
 void MarketOfferList::associateWithTexturesInBank(const TextureBank& textureBankToTakeFrom)
 {
 	background.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_MARKET_SCREEN_PURCHASE_AND_SALE_TAB_BACKGROUND));
