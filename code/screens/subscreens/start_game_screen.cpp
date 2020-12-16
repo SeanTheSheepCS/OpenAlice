@@ -11,8 +11,8 @@ StartGameScreen::StartGameScreen(int x, int y, unsigned int width, unsigned int 
 	selectFileThreeButton(x+(width*0.1),y+(height*0.625),(width*0.8),(height*0.25),nullptr),
 	deleteFileThreeButton(x+(width*0.75),y+(height*0.7),(width*0.1),(height*0.1),nullptr)
 {
-	bool closeScreenRequestFlag = false;
-	int chosenSavegameIsZeroIfNoSavegameHasBeenChosen = 0;
+	this->closeScreenRequestFlag = false;
+	this->chosenSavegameIsZeroIfNoSavegameHasBeenChosen = 0;
 }
 
 void StartGameScreen::handleEvent(sf::Event event, sf::RenderWindow& window)

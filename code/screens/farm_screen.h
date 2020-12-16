@@ -75,6 +75,8 @@ class FarmScreen: public OAEScreen
 		bool shouldSwitchToMarketScreenFlag;
 		bool shouldSwitchToMainMenuScreenFlag;
 
+		std::string pathToSaveFileUsed;
+
 		TexturedObject displaysTheWordDay;
 		NumberDisplay dayNumberDisplay;
 		TexturedObject displaysAMoneySign;

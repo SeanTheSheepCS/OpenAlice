@@ -1,5 +1,4 @@
 #include "main_menu_screen.h"
-#include <iostream>
 
 MainMenuScreen::MainMenuScreen(int x, int y, unsigned int width, unsigned int height): 
 	OAEScreen(x, y, width, height),
@@ -10,8 +9,8 @@ MainMenuScreen::MainMenuScreen(int x, int y, unsigned int width, unsigned int he
 	startGameScreenVar(x+(width*0.1),y+(height*0.1),(width*0.8),(height*0.8)),
 	creditsScreenVar(x+(width*0.1),y+(height*0.1),(width*0.8),(height*0.8))
 {
-	subscreenState = NO_SUBSCREEN_ACTIVE;
-	savegameToLoadSetToZeroWhenNoSavegameHasBeenChosen = 0;
+	this->subscreenState = NO_SUBSCREEN_ACTIVE;
+	this->savegameToLoadSetToZeroWhenNoSavegameHasBeenChosen = 0;
 }
 
 void MainMenuScreen::handleEvent(sf::Event event, sf::RenderWindow& window)

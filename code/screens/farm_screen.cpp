@@ -14,6 +14,7 @@ FarmScreen::FarmScreen(int x, int y, unsigned int width, unsigned int height):
 	alice(x+(width*0.45), y+(height*0.4), width*0.1, height*0.2),
 	dayNightCircle(x-(width*0.75),y-(height*0.25),width*2.5,height*2.5, nullptr)
 {
+	this->pathToSaveFileUsed = "";
 	this->isInSleepState = false;
 	this->dayNightCircle.addPeriodicRotation(NUMBER_OF_MILLISECONDS_TO_SLEEP_FOR);
 	this->dayNightCircle.setDegreeInterval(45.0);
@@ -1570,6 +1571,7 @@ void FarmScreen::associateAliceWithCorrectAnimation() //HELPER FUNCTION FOR UPDA
 
 void FarmScreen::loadSaveFile(const SaveFile& saveFileToLoad)
 {
+	this->pathToSaveFileUsed = saveFileToLoad.getPath();
 	if(saveFileToLoad.isEmpty())
 	{
 		for(unsigned int i = 0; i < saveFileToLoad.getReferenceNumberTwoDArrayRowCountGroundAndPlantTileMap(); i++)
