@@ -13,6 +13,7 @@ class TexturedObject: public DrawableObject
 {
 	public:
 		TexturedObject(int x, int y, unsigned int width, unsigned int height, const sf::Texture* texturePointerArg);
+		std::vector<unsigned char> toWriteableForm() const;
 		void decoupleObjectFromItsTexture(); //Makes the texture this object is associated to null, this is important in case the texture ever leaves the scope.
 		void associateWithNewTexture(const sf::Texture* newTextureToAssociateWith);
 		const sf::Texture* getCurrentTexturePointer() const;

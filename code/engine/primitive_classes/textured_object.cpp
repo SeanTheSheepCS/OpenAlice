@@ -23,6 +23,20 @@ TexturedObject::TexturedObject(int xArg, int yArg, unsigned int widthArg, unsign
 	this->degreeInterval = 1.0;
 }
 
+std::vector<unsigned char> TexturedObject::toWriteableForm() const
+{
+	std::vector<unsigned char> returnValue;
+
+	std::vector<unsigned char> drawableObjectToWrite = DrawableObject::toWriteableForm();
+	returnValue.insert(returnValue.end(), drawableObjectToWrite.begin(), drawableObjectToWrite.end());
+
+	//NOTE: THIS DOES NOT SAVE THE TEXTURE TO BE USED FOR THE OBJECT, OR EVEN ITS REFERENCE NUMBER!!!!!
+	
+	//NOTE: THIS DOES NOT SAVE THE ROTATION FACTOR, ROTATION PERIOD, OR DEGREE INTERVAL!!!!!!
+	
+	return returnValue;
+}
+
 void TexturedObject::decoupleObjectFromItsTexture()
 {
 	this->texturePointer = nullptr;

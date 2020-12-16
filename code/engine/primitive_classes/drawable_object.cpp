@@ -1,60 +1,16 @@
 #include "drawable_object.h"
 
-DrawableObject::DrawableObject(int xArg, int yArg, unsigned int widthArg, unsigned int heightArg)
+DrawableObject::DrawableObject(int xArg, int yArg, unsigned int widthArg, unsigned int heightArg): CartesianObject(xArg, yArg, widthArg, heightArg)
 {
-	this->x = xArg;
-	this->y = yArg;
-	this->width = widthArg;
-	this->height = heightArg;
+	
 }
 
-int DrawableObject::getX() const
+std::vector<unsigned char> DrawableObject::toWriteableForm() const
 {
-	return x;
-}
+	std::vector<unsigned char> returnValue;
+	
+	std::vector<unsigned char> cartesianObjectToWrite = CartesianObject::toWriteableForm();
+	returnValue.insert(returnValue.end(), cartesianObjectToWrite.begin(), cartesianObjectToWrite.end());
 
-int DrawableObject::getY() const
-{
-	return y;
+	return returnValue;
 }
-
-unsigned int DrawableObject::getWidth() const
-{
-	return width;
-}
-
-unsigned int DrawableObject::getHeight() const
-{
-	return height;
-}
-
-int DrawableObject::getCentreX() const
-{
-	return (x+(width/2));
-}
-
-int DrawableObject::getCentreY() const
-{
-	return (y+(height/2));
-}
-
-void DrawableObject::setX(int newX)
-{
-	this->x = newX;
-}
-
-void DrawableObject::setY(int newY)
-{
-	this->y = newY;
-}
-
-void DrawableObject::setWidth(unsigned int newWidth)
-{
-	this->width = newWidth;
-}
-
-void DrawableObject::setHeight(unsigned int newHeight)
-{
-	this->height = newHeight;
-}
-

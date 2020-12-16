@@ -1,52 +1,19 @@
 #include "trigger_zone.h"
 
-TriggerZone::TriggerZone(int xArg, int yArg, int widthArg, int heightArg, bool activeStatusArg)
+TriggerZone::TriggerZone(int xArg, int yArg, int widthArg, int heightArg, bool activeStatusArg):
+	CartesianObject(xArg, yArg, widthArg, heightArg)
 {
-	this->x = xArg;
-	this->y = yArg;
-	this->width = widthArg;
-	this->height = heightArg;
 	this->activeStatus = activeStatusArg;
 }
 
-void TriggerZone::setX(int newX)
+std::vector<unsigned char> TriggerZone::toWriteableForm() const
 {
-	this->x = newX;
-}
+	std::vector<unsigned char> returnValue;
 
-int TriggerZone::getX() const
-{
-	return this->x;
-}
+	std::vector<unsigned char> cartesianObjectToWrite = CartesianObject::toWriteableForm();
+	returnValue.insert(returnValue.end(), cartesianObjectToWrite.begin(), cartesianObjectToWrite.end());
 
-void TriggerZone::setY(int newY)
-{
-	this->y = newY;
-}
-
-int TriggerZone::getY() const
-{
-	return this->y;
-}
-
-void TriggerZone::setWidth(int newWidth)
-{
-	this->width = newWidth;
-}
-
-unsigned int TriggerZone::getWidth() const
-{
-	return this->width;
-}
-
-void TriggerZone::setHeight(int newHeight)
-{
-	this->height = newHeight;
-}
-
-unsigned int TriggerZone::getHeight() const
-{
-	return this->height;
+	return returnValue;
 }
 
 void TriggerZone::setActive(bool activeStatusArg)
@@ -59,7 +26,7 @@ bool TriggerZone::isActive() const
 	return activeStatus;
 }
 
-bool TriggerZone::isIntersecting(const DrawableObject& objectToCompareWith) const
+bool TriggerZone::isIntersecting(const CartesianObject& objectToCompareWith) const
 {
 	if(((this->x)+((int)this->width)) <= objectToCompareWith.getX())
 	{

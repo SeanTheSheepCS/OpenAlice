@@ -8,6 +8,7 @@ class CollisionBox: public TriggerZone
 {
 	public:
 		CollisionBox(int x, int y, int width, int height, bool activeStatus);
+		std::vector<unsigned char> toWriteableForm() const;
 		void pushDrawableObjectOutsideCollisionBoxIfItIsIntersecting(DrawableObject& objectToPush) const;
 	protected:
 		//

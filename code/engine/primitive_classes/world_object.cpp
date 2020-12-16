@@ -24,6 +24,29 @@ WorldObject::WorldObject(TexturedObject parentObject):
 	this->visibility = true;
 }
 
+std::vector<unsigned char> WorldObject::toWriteableForm() const
+{
+	std::vector<unsigned char> returnValue;
+
+	std::vector<unsigned char> texturedObjectToWrite = TexturedObject::toWriteableForm();
+	returnValue.insert(returnValue.end(), texturedObjectToWrite.begin(), texturedObjectToWrite.end());
+
+	std::vector<unsigned char> triggerZoneToWrite = triggerZoneForObject.toWriteableForm();
+	returnValue.insert(returnValue.end(), triggerZoneToWrite.begin(), triggerZoneToWrite.end());
+
+	std::vector<unsigned char> collisionBoxToWrite = collisionBoxForObject.toWriteableForm();
+	returnValue.insert(returnValue.end(), collisionBoxToWrite.begin(), collisionBoxToWrite.end());
+
+	unsigned char visibilityCharacter = 0;
+	if((this->visibility) == true)
+	{
+		visibilityCharacter = 1;
+	}
+	returnValue.push_back(visibilityCharacter);
+
+	return returnValue;
+}
+
 void WorldObject::setTriggerZoneX(int newX)
 {
 	this->triggerZoneForObject.setX(newX);

@@ -5,6 +5,16 @@ CollisionBox::CollisionBox(int x, int y, int width, int height, bool activeStatu
 
 }
 
+std::vector<unsigned char> CollisionBox::toWriteableForm() const
+{
+	std::vector<unsigned char> returnValue;
+
+	std::vector<unsigned char> triggerZoneToWrite = TriggerZone::toWriteableForm();
+	returnValue.insert(returnValue.end(), triggerZoneToWrite.begin(), triggerZoneToWrite.end());
+
+	return returnValue;
+}
+
 void CollisionBox::pushDrawableObjectOutsideCollisionBoxIfItIsIntersecting(DrawableObject& objectToPush) const
 {
 	int xAmountToCorrectLeftCollision = ((this->x)+((int)this->width) - objectToPush.getX());

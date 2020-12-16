@@ -14,6 +14,8 @@ class WorldObject: public TexturedObject
 		WorldObject(int x, int y, unsigned int width, unsigned int height, const sf::Texture* texture);
 		WorldObject(TexturedObject parentObject);
 
+		std::vector<unsigned char> toWriteableForm() const;
+
 		void setTriggerZoneX(int newX);
 		void setTriggerZoneY(int newY);
 		void setTriggerZoneWidth(unsigned int newWidth);
