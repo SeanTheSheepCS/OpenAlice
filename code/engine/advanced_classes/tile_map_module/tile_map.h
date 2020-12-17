@@ -7,6 +7,13 @@
 #include "../../primitive_classes/drawable_object.h"
 #include "../../primitive_classes/textured_object.h"
 #include "../../primitive_classes/world_object.h"
+#include "../../utilities/utilities.h"
+
+union ufloat 
+{
+	float float_form;
+	unsigned int unsigned_int_form;
+};
 
 class TileMap: public DrawableObject
 {
@@ -19,6 +26,9 @@ class TileMap: public DrawableObject
 
 		//OPERATOR OVERLOADS
 		TileMap& operator=(const TileMap& rhs);
+
+		//FOR READING AND WRITING TILEMAPS TO FILES
+		std::vector<unsigned char> toWriteableForm() const;
 
 		//FOR ASSOCIATING AND DEASSOCIATING TEXTURES
 		void associateReferenceNumberWithTexture(int referenceNumber, const sf::Texture* texture);
@@ -75,8 +85,8 @@ class TileMap: public DrawableObject
 		int tileWidth;
 		int tileHeight;
 
-		float centreOffsetTileCountX;
-		float centreOffsetTileCountY;
+		ufloat centreOffsetTileCountX;
+		ufloat centreOffsetTileCountY;
 
 		unsigned int rowCount;
 		unsigned int colCount;

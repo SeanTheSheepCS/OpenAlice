@@ -6,8 +6,8 @@ TileMap::TileMap(int x, int y, unsigned int width, unsigned int height, unsigned
 	this->colCount = colCountArg;
 	this->setTileWidth(width/rowCount);
 	this->setTileHeight(height/colCount);
-	this->centreOffsetTileCountX = 0.0;
-	this->centreOffsetTileCountY = 0.0;
+	(this->centreOffsetTileCountX).float_form = 0.0f;
+	(this->centreOffsetTileCountY).float_form = 0.0f;
 	this->offsetToMakeScreenStartCenteredX = 0;
 	this->offsetToMakeScreenStartCenteredY = 0;
 
@@ -34,8 +34,8 @@ TileMap::TileMap(const TileMap& other): DrawableObject(other.x, other.y, other.w
 {
 	this->setTileWidth(other.tileWidth);
 	this->setTileHeight(other.tileHeight);
-	this->centreOffsetTileCountX = other.centreOffsetTileCountX;
-	this->centreOffsetTileCountY = other.centreOffsetTileCountY;
+	(this->centreOffsetTileCountX).float_form = other.centreOffsetTileCountX.float_form;
+	(this->centreOffsetTileCountY).float_form = other.centreOffsetTileCountY.float_form;
 	this->offsetToMakeScreenStartCenteredX = other.offsetToMakeScreenStartCenteredX;
 	this->offsetToMakeScreenStartCenteredY = other.offsetToMakeScreenStartCenteredY;
 	referenceNumberTwoDimensionArrayRepresentingTileMap = new int*[other.rowCount];
@@ -68,8 +68,8 @@ TileMap& TileMap::operator=(const TileMap& rhs)
 	DrawableObject::operator=(rhs);
 	this->setTileWidth(rhs.tileWidth);
 	this->setTileHeight(rhs.tileHeight);
-	this->centreOffsetTileCountX = rhs.centreOffsetTileCountX;
-	this->centreOffsetTileCountY = rhs.centreOffsetTileCountY;
+	(this->centreOffsetTileCountX).float_form = rhs.centreOffsetTileCountX.float_form;
+	(this->centreOffsetTileCountY).float_form = rhs.centreOffsetTileCountY.float_form;
 	this->offsetToMakeScreenStartCenteredX = rhs.offsetToMakeScreenStartCenteredX;
 	this->offsetToMakeScreenStartCenteredY = rhs.offsetToMakeScreenStartCenteredY;
 	referenceNumberTwoDimensionArrayRepresentingTileMap = new int*[rhs.rowCount];
@@ -91,6 +91,66 @@ TileMap& TileMap::operator=(const TileMap& rhs)
 	this->colCount = rhs.colCount;
 
 	return (*this);
+}
+
+std::vector<unsigned char> TileMap::toWriteableForm() const
+{
+	std::vector<unsigned char> returnValue;
+
+	std::vector<unsigned char> offsetToMakeScreenStartCenteredXAsUnsignedCharVector = unsignedIntToUnsignedCharVector(offsetToMakeScreenStartCenteredX);
+	returnValue.insert(returnValue.end(), offsetToMakeScreenStartCenteredXAsUnsignedCharVector.begin(), offsetToMakeScreenStartCenteredXAsUnsignedCharVector.end());
+
+	std::vector<unsigned char> offsetToMakeScreenStartCenteredYAsUnsignedCharVector = unsignedIntToUnsignedCharVector(offsetToMakeScreenStartCenteredY);
+	returnValue.insert(returnValue.end(), offsetToMakeScreenStartCenteredYAsUnsignedCharVector.begin(), offsetToMakeScreenStartCenteredYAsUnsignedCharVector.end());
+
+	std::vector<unsigned char> tileWidthAsUnsignedCharVector = unsignedIntToUnsignedCharVector(tileWidth);
+	returnValue.insert(returnValue.end(), tileWidthAsUnsignedCharVector.begin(), tileWidthAsUnsignedCharVector.end());
+
+	std::vector<unsigned char> tileHeightAsUnsignedCharVector = unsignedIntToUnsignedCharVector(tileHeight);
+	returnValue.insert(returnValue.end(), tileHeightAsUnsignedCharVector.begin(), tileHeightAsUnsignedCharVector.end());
+
+	std::vector<unsigned char> centreOffsetTileCountXAsUnsignedCharArray = unsignedIntToUnsignedCharVector(centreOffsetTileCountX.unsigned_int_form);
+	returnValue.insert(returnValue.end(), centreOffsetTileCountXAsUnsignedCharArray.begin(), centreOffsetTileCountXAsUnsignedCharArray.end());
+
+	std::vector<unsigned char> centreOffsetTileCountYAsUnsignedCharArray = unsignedIntToUnsignedCharVector(centreOffsetTileCountY.unsigned_int_form);
+	returnValue.insert(returnValue.end(), centreOffsetTileCountYAsUnsignedCharArray.begin(), centreOffsetTileCountYAsUnsignedCharArray.end());
+
+	std::vector<unsigned char> rowCountAsUnsignedCharArray = unsignedIntToUnsignedCharVector(rowCount);
+	returnValue.insert(returnValue.end(), rowCountAsUnsignedCharArray.begin(), rowCountAsUnsignedCharArray.end());
+
+	std::vector<unsigned char> colCountAsUnsignedCharArray = unsignedIntToUnsignedCharVector(colCount);
+	returnValue.insert(returnValue.end(), colCountAsUnsignedCharArray.begin(), colCountAsUnsignedCharArray.end());
+
+	for(unsigned int row = 0; row < rowCount; row++)
+	{
+		for(unsigned int col = 0; col < colCount; col++)
+		{
+			std::vector<unsigned char> currentReferenceNumberAsUnsignedCharArray = intToUnsignedCharVector(referenceNumberTwoDimensionArrayRepresentingTileMap[row][col]);
+			returnValue.insert(returnValue.end(), currentReferenceNumberAsUnsignedCharArray.begin(), currentReferenceNumberAsUnsignedCharArray.end());
+		}
+	}
+
+	//TEXTURES ARE NOT SAVED...
+	
+	unsigned int numberOfElementsInReferenceNumberToWorldObjectMap = 0;
+	for(auto const& [refNum, currentObject] : referenceNumberToWorldObjectMap) //This line iterates through the map, you can think of this as for(currentObject in map)
+	{
+		numberOfElementsInReferenceNumberToWorldObjectMap++;
+	}
+
+	std::vector<unsigned char> numberOfElementsInReferenceNumberToWorldObjectReferenceMapAsUnsignedCharArray = unsignedIntToUnsignedCharVector(numberOfElementsInReferenceNumberToWorldObjectMap);
+	returnValue.insert(returnValue.end(), numberOfElementsInReferenceNumberToWorldObjectReferenceMapAsUnsignedCharArray.begin(), numberOfElementsInReferenceNumberToWorldObjectReferenceMapAsUnsignedCharArray.end());
+
+	for(auto const& [refNum, currentObject] : referenceNumberToWorldObjectMap) //This line iterates through the map, you can think of this as for(currentObject in map)
+	{
+		std::vector<unsigned char> refNumAsUnsignedCharArray = intToUnsignedCharVector(refNum);
+		returnValue.insert(returnValue.end(), refNumAsUnsignedCharArray.begin(), refNumAsUnsignedCharArray.end());
+
+		std::vector<unsigned char> currentObjectAsUnsignedCharArray = currentObject.toWriteableForm();
+		returnValue.insert(returnValue.end(), currentObjectAsUnsignedCharArray.begin(), currentObjectAsUnsignedCharArray.end());
+	}
+
+	return returnValue;
 }
 
 void TileMap::associateReferenceNumberWithTexture(int referenceNumber, const sf::Texture* texture)
@@ -219,22 +279,22 @@ void TileMap::setTileHeight(int tileHeightArg)
 
 void TileMap::setCentreOffsetTileCountX(float newCentreOffsetTileCountX)
 {
-	this->centreOffsetTileCountX = newCentreOffsetTileCountX;
+	(this->centreOffsetTileCountX).float_form = newCentreOffsetTileCountX;
 }
 
 void TileMap::setCentreOffsetTileCountY(float newCentreOffsetTileCountY)
 {
-	this->centreOffsetTileCountY = newCentreOffsetTileCountY;
+	(this->centreOffsetTileCountY).float_form = newCentreOffsetTileCountY;
 }
 
 void TileMap::changeCentreOffsetTileCountXByAmount(float amountToChangeCentreOffsetTileCountXBy)
 {
-	(this->centreOffsetTileCountX) = (this->centreOffsetTileCountX) + amountToChangeCentreOffsetTileCountXBy;
+	(this->centreOffsetTileCountX).float_form = ((this->centreOffsetTileCountX).float_form) + amountToChangeCentreOffsetTileCountXBy;
 }
 
 void TileMap::changeCentreOffsetTileCountYByAmount(float amountToChangeCentreOffsetTileCountYBy)
 {
-	(this->centreOffsetTileCountY) = (this->centreOffsetTileCountY) + amountToChangeCentreOffsetTileCountYBy;
+	((this->centreOffsetTileCountY).float_form) = ((this->centreOffsetTileCountY).float_form) + amountToChangeCentreOffsetTileCountYBy;
 }
 
 void TileMap::draw(sf::RenderWindow& windowToDrawIn)
@@ -257,8 +317,8 @@ void TileMap::deleteTileMap() //Helper function for ~TileMap() and TileMap& oper
 	this->height = 0;
 	this->tileWidth = 0;
 	this->tileHeight = 0;
-	this->centreOffsetTileCountX = 0.0;
-	this->centreOffsetTileCountY = 0.0;
+	(this->centreOffsetTileCountX).float_form = 0.0f;
+	(this->centreOffsetTileCountY).float_form = 0.0f;
 	this->offsetToMakeScreenStartCenteredX = 0;
 	this->offsetToMakeScreenStartCenteredY = 0;
 	for(unsigned int i = 0; i < rowCount; i++)
@@ -359,21 +419,21 @@ std::pair<unsigned int, unsigned int> TileMap::getRowAndColOfTileNearestToDrawab
 
 int TileMap::screenXToWorldX(int screenX)
 {
-	return -x + screenX - (((float) tileWidth)*centreOffsetTileCountX) + this->offsetToMakeScreenStartCenteredX;
+	return -x + screenX - (((float) tileWidth)*(centreOffsetTileCountX.float_form)) + this->offsetToMakeScreenStartCenteredX;
 }
 int TileMap::worldXToScreenX(int worldX)
 {
-	return x + worldX + (((float) tileWidth)*centreOffsetTileCountX) - this->offsetToMakeScreenStartCenteredX;
+	return x + worldX + (((float) tileWidth)*(centreOffsetTileCountX.float_form)) - this->offsetToMakeScreenStartCenteredX;
 }
 
 int TileMap::screenYToWorldY(int screenY)
 {
-	return -y + screenY - (((float) tileHeight)*centreOffsetTileCountY) + this->offsetToMakeScreenStartCenteredY;
+	return -y + screenY - (((float) tileHeight)*(centreOffsetTileCountY.float_form)) + this->offsetToMakeScreenStartCenteredY;
 }
 
 int TileMap::worldYToScreenY(int worldY)
 {
-	return y + worldY + (((float) tileHeight)*centreOffsetTileCountY) - this->offsetToMakeScreenStartCenteredY;
+	return y + worldY + (((float) tileHeight)*(centreOffsetTileCountY.float_form)) - this->offsetToMakeScreenStartCenteredY;
 }
 
 unsigned int TileMap::getRowCount()

@@ -2,6 +2,7 @@
 #define CARTESIAN_OBJECT_H
 
 #include <vector>
+#include "../utilities/utilities.h"
 
 class CartesianObject
 {
