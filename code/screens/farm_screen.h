@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <utility>
+#include <vector>
 #include "oae_screen.h"
 #include "market_screen.h"
 #include "../engine/primitive_classes/textured_object.h"
@@ -35,6 +36,8 @@ class FarmScreen: public OAEScreen
 {
 	public:
 		FarmScreen(int x, int y, unsigned int width, unsigned int height);
+		
+		std::vector<unsigned char> toWriteableForm();
 
 		void handleEvent(sf::Event event, sf::RenderWindow& window); 
 		void forceFullDraw(sf::RenderWindow& windowToDrawIn);

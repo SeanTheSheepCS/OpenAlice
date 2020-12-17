@@ -27,6 +27,25 @@ FarmScreen::FarmScreen(int x, int y, unsigned int width, unsigned int height):
 	this->initializeWorldObjectsInGroundTileMap();
 }
 
+std::vector<unsigned char> FarmScreen::toWriteableForm()
+{
+	std::vector<unsigned char> returnValue;
+
+	std::vector<unsigned char> moneyAsUnsignedCharArray = unsignedIntToUnsignedCharVector(moneyDisplay.getNumber());
+	returnValue.insert(returnValue.end(), moneyAsUnsignedCharArray.begin(), moneyAsUnsignedCharArray.end());
+
+	std::vector<unsigned char> dayAsUnsignedCharArray = unsignedIntToUnsignedCharVector(dayNumberDisplay.getNumber());
+	returnValue.insert(returnValue.end(), dayAsUnsignedCharArray.begin(), dayAsUnsignedCharArray.end());
+
+	std::vector<unsigned char> groundTileMapAsUnsignedCharArray = groundTileMap.toWriteableForm();
+	returnValue.insert(returnValue.end(), groundTileMapAsUnsignedCharArray.begin(), groundTileMapAsUnsignedCharArray.end());
+
+	std::vector<unsigned char> plantTileMapAsUnsignedCharArray = plantTileMap.toWriteableForm();
+	returnValue.insert(returnValue.end(), plantTileMapAsUnsignedCharArray.begin(), plantTileMapAsUnsignedCharArray.end());
+
+	return returnValue;
+}
+
 void FarmScreen::handleEvent(sf::Event event, sf::RenderWindow& window)
 {
 	switch(event.type)
