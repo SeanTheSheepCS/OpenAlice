@@ -28,3 +28,28 @@ std::vector<unsigned char> intToUnsignedCharVector(int integerToConvert)
 	return returnValue;
 }
 
+unsigned int unsignedCharVectorToUnsignedInt(std::vector<unsigned char>::iterator& vectorToConvertIterator)
+{
+	unsigned int returnValue = 0;
+	for(unsigned int i = 0; i < 4; i++)
+	{
+		unsigned int currentValue = (*vectorToConvertIterator);
+		currentValue = (currentValue << (i * 8));
+		returnValue = (returnValue | currentValue);
+		vectorToConvertIterator++;
+	}
+	return returnValue;
+}
+
+int unsignedCharVectorToInt(std::vector<unsigned char>::iterator& vectorToConvertIterator)
+{
+	int returnValue = 0;
+	for(unsigned int i = 0; i < 4; i++)
+	{
+		int currentValue = (*vectorToConvertIterator);
+		currentValue = (currentValue << (i * 8));
+		returnValue = (returnValue | currentValue);
+		vectorToConvertIterator++;
+	}
+	return returnValue;
+}

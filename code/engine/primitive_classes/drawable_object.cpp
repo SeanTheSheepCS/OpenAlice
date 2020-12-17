@@ -14,3 +14,8 @@ std::vector<unsigned char> DrawableObject::toWriteableForm() const
 
 	return returnValue;
 }
+
+void DrawableObject::fillWithDataFromWriteableForm(std::vector<unsigned char>::iterator& writeableFormIterator)
+{
+	CartesianObject::fillWithDataFromWriteableForm(writeableFormIterator);
+}

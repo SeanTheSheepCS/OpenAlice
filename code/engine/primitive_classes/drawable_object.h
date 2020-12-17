@@ -11,6 +11,7 @@ class DrawableObject: public CartesianObject
 		DrawableObject(int x, int y, unsigned int width, unsigned int height);
 
 		std::vector<unsigned char> toWriteableForm() const;
+		void fillWithDataFromWriteableForm(std::vector<unsigned char>::iterator& writeableFormIterator);
 
 		virtual void draw(sf::RenderWindow& windowToDrawObjectIn) = 0;
 	protected:

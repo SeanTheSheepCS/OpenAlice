@@ -5,5 +5,7 @@
 
 std::vector<unsigned char> unsignedIntToUnsignedCharVector(unsigned int integerToConvert);
 std::vector<unsigned char> intToUnsignedCharVector(int integerToConvert);
+unsigned int unsignedCharVectorToUnsignedInt(std::vector<unsigned char>::iterator& vectorToConvertIterator);
+int unsignedCharVectorToInt(std::vector<unsigned char>::iterator& vectorToConvertIterator);
 
 #endif

@@ -10,6 +10,7 @@ class CartesianObject
 		CartesianObject(int x, int y, unsigned int width, unsigned int height);
 
 		std::vector<unsigned char> toWriteableForm() const;
+		void fillWithDataFromWriteableForm(std::vector<unsigned char>::iterator& writeableFormIterator);
 
 		int getX() const;
 		int getY() const;
