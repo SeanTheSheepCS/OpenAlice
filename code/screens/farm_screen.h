@@ -4,9 +4,11 @@
 #include <SFML/Graphics.hpp>
 #include <utility>
 #include <vector>
+#include <thread>
 #include "oae_screen.h"
 #include "market_screen.h"
 #include "../engine/primitive_classes/textured_object.h"
+#include "../engine/primitive_classes/textured_and_animated_object.h"
 #include "../engine/primitive_classes/textured_button_object.h"
 #include "../engine/primitive_classes/world_object.h"
 #include "../engine/primitive_classes/collision_box.h"
@@ -73,6 +75,9 @@ class FarmScreen: public OAEScreen
 		void drawAllObjectsALayerBelowAlice(sf::RenderWindow& windowToDrawIn); //HELPER FUNCTION FOR A LOT OF FUNCTIONS
 		void drawAllObjectsALayerAboveAlice(sf::RenderWindow& windowToDrawIn); //HELPER FUNCTION FOR A LOT OF FUNCTIONS
 
+		void runSaveProcedure(); 
+		bool isSaving;
+
 		bool isInSleepState;
 
 		bool shouldSwitchToMarketScreenFlag;
@@ -95,6 +100,11 @@ class FarmScreen: public OAEScreen
 
 		//SLEEP SCREEN
 		TexturedObject dayNightCircle;
+
+		//SAVING SCREEN
+		TexturedAndAnimatedObject displaysTheWordSaving;
+		bool isSaveThreadValid;
+		std::thread saveThread;
 };
 
 #endif

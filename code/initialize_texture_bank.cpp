@@ -285,5 +285,10 @@ TextureBank initializeTextureBank()
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_TOMATO_SEEDS_ICON_TEXTURE, "tomato_seeds_icon.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CUCUMBER_SEEDS_ICON_TEXTURE, "cucumber_seeds_icon.png", &returnValue);
 	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CARROT_SEEDS_ICON_TEXTURE, "carrot_seeds_icon.png", &returnValue);
+
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_SAVE_WARNING_FRAME_ONE, "saving_warning_frame_one.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_SAVE_WARNING_FRAME_TWO, "saving_warning_frame_two.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_SAVE_WARNING_FRAME_THREE, "saving_warning_frame_three.png", &returnValue);
+	addTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_SAVE_WARNING_FRAME_FOUR, "saving_warning_frame_four.png", &returnValue);
 	return returnValue;
 }

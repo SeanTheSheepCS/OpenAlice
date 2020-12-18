@@ -11,7 +11,7 @@ class OAEAnimationInstance
 		void incrementMillisecondCountByAmount(unsigned int amountToIncrementBy);
 		void setMillisecondCountToZero();
 		unsigned int getMillisecondProgressInAnimation() const;
-		const sf::Texture* getCurrentFrame();
+		const sf::Texture* getCurrentFrame() const;
 	protected:
 		//
 	private:

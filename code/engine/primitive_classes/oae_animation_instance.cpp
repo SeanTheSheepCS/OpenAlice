@@ -22,7 +22,7 @@ unsigned int OAEAnimationInstance::getMillisecondProgressInAnimation() const
 	return millisecondsProgressInAnimation;
 }
 
-const sf::Texture* OAEAnimationInstance::getCurrentFrame()
+const sf::Texture* OAEAnimationInstance::getCurrentFrame() const
 {
 	if(animationToUse != nullptr)
 	{
