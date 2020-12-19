@@ -2,6 +2,9 @@
 *~
 *.swp
 
+# Savegames
+saves/*.oas
+
 # So that the dll files used for windows are not included.
 build_windows_10/*.dll
 

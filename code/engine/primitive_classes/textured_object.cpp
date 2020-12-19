@@ -37,6 +37,15 @@ std::vector<unsigned char> TexturedObject::toWriteableForm() const
 	return returnValue;
 }
 
+void fillWithDataFromWriteableForm(std::vector<unsigned char>::iterator& writeableFormIterator)
+{
+	DrawableObject::fillWithDataFromWriteableForm(writeableFormIterator);
+
+	//NOTE: THIS DOES NOT LOAD THE TEXTURE TO BE USED FOR THE OBJECT, OR EVEN ITS REFERENCE NUMBER!!!!!
+	
+	//NOTE: THIS DOES NOT LOAD THE ROTATION FACTOR, ROTATION PERIOD, OR DEGREE INTERVAL!!!!!!
+}
+
 void TexturedObject::decoupleObjectFromItsTexture()
 {
 	this->texturePointer = nullptr;

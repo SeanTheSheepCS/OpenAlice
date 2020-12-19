@@ -5,6 +5,8 @@
 #include <utility>
 #include <vector>
 #include <thread>
+#include <fstream>
+#include <iterator>
 #include "oae_screen.h"
 #include "market_screen.h"
 #include "../engine/primitive_classes/textured_object.h"
@@ -16,6 +18,7 @@
 #include "../engine/advanced_classes/number_display_module/number_display_module.h"
 #include "../engine/advanced_classes/tile_map_module/tile_map_module.h"
 #include "../engine/advanced_classes/player_object_module/player_object_module.h"
+#include "../engine/utilities/utilities.h"
 #include "../actors/alice.h"
 #include "../texture_bank.h"
 #include "../save_file.h"

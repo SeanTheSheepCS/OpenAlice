@@ -367,9 +367,23 @@ void FarmScreen::runSleepSequence(sf::RenderWindow& windowToDrawIn)
 void FarmScreen::runSaveProcedure()
 {
 	this->isSaving = true;
-	std::cout << "BEGIN" << std::endl;
-	usleep(1000000);
-	std::cout << "END" << std::endl;
+
+	std::ofstream fileToWriteSaveTo(pathToSaveFileUsed, std::ofstream::binary);
+	std::ostream_iterator<unsigned char> fileToWriteSaveToIterator(fileToWriteSaveTo);
+
+	std::vector<unsigned char> dayAsUnsignedCharArray = unsignedIntToUnsignedCharVector(dayNumberDisplay.getNumber());
+	std::copy(dayAsUnsignedCharArray.begin(), dayAsUnsignedCharArray.end(), fileToWriteSaveToIterator);
+
+	std::vector<unsigned char> moneyAsUnsignedCharArray = unsignedIntToUnsignedCharVector(moneyDisplay.getNumber());
+	std::copy(moneyAsUnsignedCharArray.begin(), moneyAsUnsignedCharArray.end(), fileToWriteSaveToIterator);
+
+	std::vector<unsigned char> groundTileMapAsUnsignedCharArray = groundTileMap.toWriteableForm();
+	std::copy(groundTileMapAsUnsignedCharArray.begin(), groundTileMapAsUnsignedCharArray.end(), fileToWriteSaveToIterator);
+
+	std::vector<unsigned char> plantTileMapAsUnsignedCharArray = plantTileMap.toWriteableForm();
+	std::copy(plantTileMapAsUnsignedCharArray.begin(), plantTileMapAsUnsignedCharArray.end(), fileToWriteSaveToIterator);
+
+	fileToWriteSaveTo.close();
 	this->isSaving = false;
 }
 
