@@ -699,6 +699,11 @@ void FarmScreen::forceFullDraw(sf::RenderWindow& windowToDrawIn)
 		alice.draw(windowToDrawIn);
 		drawAllObjectsALayerAboveAlice(windowToDrawIn);
 	}
+
+	if(this->isSaving)
+	{
+		displaysTheWordSaving.draw(windowToDrawIn);
+	}
 }
 
 void FarmScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::RenderWindow& windowToDrawIn)

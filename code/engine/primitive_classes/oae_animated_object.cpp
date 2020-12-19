@@ -23,11 +23,11 @@ void OAEAnimatedObject::setCurrentAnimationInstanceReferenceNumber(int currentAn
 		try
 		{
 			referenceNumberToAnimationInstanceMap.at(currentAnimationInstanceReferenceNumber).setMillisecondCountToZero();
-			currentAnimationInstanceReferenceNumber = currentAnimationInstanceReferenceNumberArg;
 		}
 		catch(std::exception& e)
 		{
 
 		}
 	}
+	currentAnimationInstanceReferenceNumber = currentAnimationInstanceReferenceNumberArg;
 }
