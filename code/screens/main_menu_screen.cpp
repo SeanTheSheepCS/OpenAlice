@@ -58,16 +58,17 @@ void MainMenuScreen::handleEvent(sf::Event event, sf::RenderWindow& window)
 			else if(startGameScreenVar.whichSaveGameHasBeenChosenReturnsZeroIfNoSavegameHasBeenChosen() != 0)
 			{
 				savegameToLoadSetToZeroWhenNoSavegameHasBeenChosen = startGameScreenVar.whichSaveGameHasBeenChosenReturnsZeroIfNoSavegameHasBeenChosen();
-				startGameScreenVar.acknowledgeChosenSavegame();
 				if(startGameScreenVar.returnShouldLoadFlag() == true)
 				{
 					this->shouldLoadFlag = true;
 					startGameScreenVar.acknowledgeShouldLoadFlag();
+					startGameScreenVar.acknowledgeChosenSavegame();
 				}
 				if(startGameScreenVar.returnShouldDeleteFlag() == true)
 				{
 					this->shouldDeleteFlag = true;
 					startGameScreenVar.acknowledgeShouldDeleteFlag();
+					startGameScreenVar.acknowledgeChosenSavegame();
 				}
 			}
 			break;

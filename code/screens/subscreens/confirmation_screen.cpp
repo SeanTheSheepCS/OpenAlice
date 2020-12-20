@@ -1,5 +1,4 @@
 #include "confirmation_screen.h"
-#include <iostream>
 
 ConfirmationScreen::ConfirmationScreen(int x, int y, unsigned int width, unsigned int height):
 	OAEScreen(x,y,width, height),
@@ -61,7 +60,7 @@ bool ConfirmationScreen::hasYesChoiceBeenMade()
 
 void ConfirmationScreen::acknowledgeYesChoice()
 {
-	yesChoiceFlag = false;
+	this->yesChoiceFlag = false;
 }
 
 bool ConfirmationScreen::hasNoChoiceBeenMade()
@@ -71,5 +70,5 @@ bool ConfirmationScreen::hasNoChoiceBeenMade()
 
 void ConfirmationScreen::acknowledgeNoChoice()
 {
-	noChoiceFlag = false;
+	this->noChoiceFlag = false;
 }

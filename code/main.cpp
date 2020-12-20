@@ -65,6 +65,7 @@ int main()
 						mainMenuMusicMain.stop();
 						SaveFile fileToLoad = SaveGameHelper::loadSaveFile(mainMenuScreenVar.returnSavegameThatShouldBeLoadedReturnsZeroIfNoSavegameIsChosenYet());
 						mainMenuScreenVar.acknowledgeSavegameChoice();
+						mainMenuScreenVar.acknowledgeShouldLoadFlag();
 						farmScreenVar.loadSaveFile(fileToLoad);
 						pointerToCurrentlyActiveScreen = &farmScreenVar;
 						currentScreenToDisplay = FARM_SCREEN;
@@ -73,6 +74,7 @@ int main()
 					{
 						SaveGameHelper::deleteSaveFile(mainMenuScreenVar.returnSavegameThatShouldBeLoadedReturnsZeroIfNoSavegameIsChosenYet());
 						mainMenuScreenVar.acknowledgeSavegameChoice();
+						mainMenuScreenVar.acknowledgeShouldDeleteFlag();
 					}
 				}
 				break;

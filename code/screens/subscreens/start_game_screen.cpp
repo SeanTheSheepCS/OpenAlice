@@ -75,6 +75,20 @@ void StartGameScreen::handleEvent(sf::Event event, sf::RenderWindow& window)
 			}
 		case START_GAME_SCREEN_SUBSCREEN_STATE_CONFIRMATION_SCREEN_SUBSCREEN_ACTIVE:
 			confirmationScreenVar.handleEvent(event, window);
+			if(confirmationScreenVar.hasYesChoiceBeenMade())
+			{
+				this->subscreenState = START_GAME_SCREEN_SUBSCREEN_STATE_NO_SUBSCREEN_ACTIVE;
+				this->forceFullDraw(window);
+				this->shouldDeleteFlag = true;
+				confirmationScreenVar.acknowledgeYesChoice();
+			}
+			if(confirmationScreenVar.hasNoChoiceBeenMade())
+			{
+				this->subscreenState = START_GAME_SCREEN_SUBSCREEN_STATE_NO_SUBSCREEN_ACTIVE;
+				this->forceFullDraw(window);
+				this->chosenSavegameIsZeroIfNoSavegameHasBeenChosen = 0;
+				confirmationScreenVar.acknowledgeNoChoice();
+			}
 			break;
 	}
 }
@@ -114,21 +128,6 @@ void StartGameScreen::associateWithTexturesInBank(const TextureBank& textureBank
 
 void StartGameScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::RenderWindow& window)
 {
-	if(confirmationScreenVar.hasYesChoiceBeenMade())
-	{
-		this->subscreenState = START_GAME_SCREEN_SUBSCREEN_STATE_NO_SUBSCREEN_ACTIVE;
-		this->forceFullDraw(window);
-		this->shouldDeleteFlag = true;
-		confirmationScreenVar.acknowledgeYesChoice();
-	}
-	if(confirmationScreenVar.hasNoChoiceBeenMade())
-	{
-		this->subscreenState = START_GAME_SCREEN_SUBSCREEN_STATE_NO_SUBSCREEN_ACTIVE;
-		this->forceFullDraw(window);
-		this->chosenSavegameIsZeroIfNoSavegameHasBeenChosen = 0;
-		confirmationScreenVar.acknowledgeNoChoice();
-	}
-	
 }
 
 bool StartGameScreen::hasCloseScreenRequestBeenMade()
