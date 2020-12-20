@@ -7,7 +7,16 @@
 #include "texture_bank.h"
 #include "reference_number_enums.h"
 
-void addTextureToTextureBank(int referenceNumber, std::string path, TextureBank* bankToWriteTo);
-TextureBank initializeTextureBank();
+enum DisplayLanguage
+{
+	DISPLAY_LANGUAGE_ENGLISH = 0,
+	DISPLAY_LANGUAGE_FRENCH = 1
+};
+
+void addNonLanguageDependentTextureToTextureBank(int referenceNumber, std::string path, TextureBank* bankToWriteTo);
+void addLanguageDependentTextureToTextureBank(int referenceNumber, const std::string& languageFolderPath, const std::string& pathToFile, TextureBank* bankToWriteTo);
+TextureBank initializeTextureBank(DisplayLanguage languageToUse);
+void fillTextureBankWithNonLanguageDependentTextures(TextureBank& textureBankToFill);
+void fillTextureBankWithLanguageDependentTextures(TextureBank& textureBankToFill, DisplayLanguage languageToUse);
 
 #endif

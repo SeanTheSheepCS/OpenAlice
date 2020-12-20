@@ -7,7 +7,7 @@
 int main()
 {
 	//TEXTURE VARS
-	TextureBank textureBankForApplication = initializeTextureBank();
+	TextureBank textureBankForApplication = initializeTextureBank(DEFAULT_DISPLAY_LANGUAGE);
 	OAEAnimationBank animationBankForApplication = initializeOAEAnimationBank(textureBankForApplication);
 
 	//MUSIC VARS

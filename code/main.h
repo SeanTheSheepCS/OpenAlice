@@ -1,9 +1,6 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-#define WINDOW_WIDTH 800
-#define WINDOW_HEIGHT 800
-
 #include "screens/screen_enum.h"
 #include "screens/oae_screen.h"
 #include "screens/main_menu_screen.h"
@@ -16,6 +13,11 @@
 #include "reference_number_enums.h"
 #include "initialize_texture_bank.h"
 #include "initialize_oae_animation_bank.h"
+
+#define WINDOW_WIDTH 800
+#define WINDOW_HEIGHT 800
+
+#define DEFAULT_DISPLAY_LANGUAGE DISPLAY_LANGUAGE_ENGLISH
 
 void syncFarmScreenWithMarketScreen(FarmScreen& farmScreenVar, MarketScreen& marketScreenVar);
 void syncMarketScreenWithFarmScreen(MarketScreen& marketScreenVar, FarmScreen& farmScreenVar);
