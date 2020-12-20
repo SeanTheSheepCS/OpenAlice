@@ -10,6 +10,7 @@ class TriggerZone: public CartesianObject
 		TriggerZone(int x, int y, int width, int height, bool activeStatus);
 
 		std::vector<unsigned char> toWriteableForm() const;
+		void fillWithDataFromWriteableForm(std::istream_iterator<unsigned char>& writeableFormIterator);
 
 		void setActive(bool activeStatus);
 		bool isActive() const;

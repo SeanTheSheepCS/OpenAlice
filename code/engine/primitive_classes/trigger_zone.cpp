@@ -23,6 +23,21 @@ std::vector<unsigned char> TriggerZone::toWriteableForm() const
 	return returnValue;
 }
 
+void TriggerZone::fillWithDataFromWriteableForm(std::istream_iterator<unsigned char>& writeableFormIterator)
+{
+	CartesianObject::fillWithDataFromWriteableForm(writeableFormIterator);
+	
+	unsigned char activeStatusChar = (*writeableFormIterator);
+	if(activeStatusChar == 0)
+	{
+		this->activeStatus = false;
+	}
+	else
+	{
+		this->activeStatus = true;
+	}
+}
+
 void TriggerZone::setActive(bool activeStatusArg)
 {
 	this->activeStatus = activeStatusArg;

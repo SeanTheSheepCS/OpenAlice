@@ -7,6 +7,13 @@
 #include "../../texture_bank.h"
 #include "../../engine/primitive_classes/textured_object.h"
 #include "../../engine/primitive_classes/textured_button_object.h"
+#include "confirmation_screen.h"
+
+enum StartGameScreenSubscreenState
+{
+	START_GAME_SCREEN_SUBSCREEN_STATE_NO_SUBSCREEN_ACTIVE = 0,
+	START_GAME_SCREEN_SUBSCREEN_STATE_CONFIRMATION_SCREEN_SUBSCREEN_ACTIVE = 1
+};
 
 class StartGameScreen: public OAEScreen
 {
@@ -25,6 +32,12 @@ class StartGameScreen: public OAEScreen
 		int whichSaveGameHasBeenChosenReturnsZeroIfNoSavegameHasBeenChosen();
 		void acknowledgeChosenSavegame();
 
+		bool returnShouldLoadFlag();
+		void acknowledgeShouldLoadFlag();
+
+		bool returnShouldDeleteFlag();
+		void acknowledgeShouldDeleteFlag();
+
 	protected:
 		//
 	private:
@@ -37,8 +50,15 @@ class StartGameScreen: public OAEScreen
 		TexturedButtonObject selectFileThreeButton;
 		TexturedButtonObject deleteFileThreeButton;
 
+		bool shouldLoadFlag;
+		bool shouldDeleteFlag;
+
 		bool closeScreenRequestFlag;
 		int chosenSavegameIsZeroIfNoSavegameHasBeenChosen;
+		
+		//FOR SUBSCREENS
+		StartGameScreenSubscreenState subscreenState;
+		ConfirmationScreen confirmationScreenVar;
 };
 
 #endif

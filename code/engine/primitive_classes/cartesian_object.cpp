@@ -27,12 +27,12 @@ std::vector<unsigned char> CartesianObject::toWriteableForm() const
 	return returnValue;
 }
 
-void CartesianObject::fillWithDataFromWriteableForm(std::vector<unsigned char>::iterator& writeableFormIterator)
+void CartesianObject::fillWithDataFromWriteableForm(std::istream_iterator<unsigned char>& writeableFormIterator)
 {
-	this->x = unsignedCharVectorToInt(writeableFormIterator);
-	this->y = unsignedCharVectorToInt(writeableFormIterator);
-	this->width = unsignedCharVectorToUnsignedInt(writeableFormIterator);
-	this->height = unsignedCharVectorToUnsignedInt(writeableFormIterator);
+	this->x = readIntFromUnsignedCharIterator(writeableFormIterator);
+	this->y = readIntFromUnsignedCharIterator(writeableFormIterator);
+	this->width = readUnsignedIntFromUnsignedCharIterator(writeableFormIterator);
+	this->height = readUnsignedIntFromUnsignedCharIterator(writeableFormIterator);
 }
 
 int CartesianObject::getX() const

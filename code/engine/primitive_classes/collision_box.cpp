@@ -15,6 +15,11 @@ std::vector<unsigned char> CollisionBox::toWriteableForm() const
 	return returnValue;
 }
 
+void CollisionBox::fillWithDataFromWriteableForm(std::istream_iterator<unsigned char>& writeableFormIterator)
+{
+	TriggerZone::fillWithDataFromWriteableForm(writeableFormIterator);
+}
+
 void CollisionBox::pushDrawableObjectOutsideCollisionBoxIfItIsIntersecting(DrawableObject& objectToPush) const
 {
 	int xAmountToCorrectLeftCollision = ((this->x)+((int)this->width) - objectToPush.getX());

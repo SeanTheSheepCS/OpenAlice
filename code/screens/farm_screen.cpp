@@ -1,7 +1,6 @@
 #include "farm_screen.h"
 
 #include <thread>
-#include <unistd.h>
 
 FarmScreen::FarmScreen(int x, int y, unsigned int width, unsigned int height): 
 	OAEScreen(x, y, width, height),
@@ -385,6 +384,14 @@ void FarmScreen::runSaveProcedure()
 
 	fileToWriteSaveTo.close();
 	this->isSaving = false;
+}
+
+void FarmScreen::runLoadProcedure()
+{
+	this->isLoading = true;
+	std::ifstream fileToReadFrom(pathToSaveFileUsed, std::ifstream::binary);
+	std::istream_iterator<unsigned char> fileToReadFromIterator(fileToReadFrom);
+	this->isLoading = false;
 }
 
 void FarmScreen::runFillWaterContainerSequence(sf::RenderWindow& windowToDrawIn)

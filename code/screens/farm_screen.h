@@ -78,11 +78,6 @@ class FarmScreen: public OAEScreen
 		void drawAllObjectsALayerBelowAlice(sf::RenderWindow& windowToDrawIn); //HELPER FUNCTION FOR A LOT OF FUNCTIONS
 		void drawAllObjectsALayerAboveAlice(sf::RenderWindow& windowToDrawIn); //HELPER FUNCTION FOR A LOT OF FUNCTIONS
 
-		void runSaveProcedure(); 
-		bool isSaving;
-
-		bool isInSleepState;
-
 		bool shouldSwitchToMarketScreenFlag;
 		bool shouldSwitchToMainMenuScreenFlag;
 
@@ -101,13 +96,20 @@ class FarmScreen: public OAEScreen
 
 		Alice alice;
 
-		//SLEEP SCREEN
+		//SLEEP SCREEN AND VARIABLES
 		TexturedObject dayNightCircle;
+		bool isInSleepState;
 
-		//SAVING SCREEN
+		//SAVING SCREEN AND VARIABLES
 		TexturedAndAnimatedObject displaysTheWordSaving;
 		bool isSaveThreadValid;
 		std::thread saveThread;
+		void runSaveProcedure(); 
+		bool isSaving;
+
+		//LOADING VARIABLES
+		bool isLoading;
+		void runLoadProcedure();
 };
 
 #endif

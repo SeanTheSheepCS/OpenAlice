@@ -1,5 +1,7 @@
 #include "save_game_helper.h"
 
+#include <iostream>
+
 /*static*/ SaveFile SaveGameHelper::loadSaveFile(int saveFileNumberToLoad)
 {
 	switch(saveFileNumberToLoad)
@@ -23,4 +25,9 @@
 			}
 			break;
 	}
+}
+
+/* static */ void SaveGameHelper::deleteSaveFile(int saveFileToDelete)
+{
+	std::cout << "TODO: DELETE SAVE FILE PROCEDURE" << std::endl;
 }

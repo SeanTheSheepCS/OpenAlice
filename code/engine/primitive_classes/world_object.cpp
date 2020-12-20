@@ -47,6 +47,25 @@ std::vector<unsigned char> WorldObject::toWriteableForm() const
 	return returnValue;
 }
 
+void WorldObject::fillWithDataFromWriteableForm(std::istream_iterator<unsigned char>& writeableFormIterator)
+{
+	TexturedObject::fillWithDataFromWriteableForm(writeableFormIterator);
+
+	triggerZoneForObject.fillWithDataFromWriteableForm(writeableFormIterator);
+
+	collisionBoxForObject.fillWithDataFromWriteableForm(writeableFormIterator);
+
+	unsigned char visibilityCharacter = (*writeableFormIterator);
+	if(visibilityCharacter == 0)
+	{
+		this->visibility = false;
+	}
+	else
+	{
+		this->visibility = true;
+	}
+}
+
 void WorldObject::setTriggerZoneX(int newX)
 {
 	this->triggerZoneForObject.setX(newX);

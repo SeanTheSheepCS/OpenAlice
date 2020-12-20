@@ -29,6 +29,12 @@ class MainMenuScreen: public OAEScreen
 		int returnSavegameThatShouldBeLoadedReturnsZeroIfNoSavegameIsChosenYet();
 		void acknowledgeSavegameChoice();
 
+		bool returnShouldLoadFlag();
+		void acknowledgeShouldLoadFlag();
+
+		bool returnShouldDeleteFlag();
+		void acknowledgeShouldDeleteFlag();
+
 	protected:
 		//
 	private:
@@ -38,8 +44,10 @@ class MainMenuScreen: public OAEScreen
 		TexturedButtonObject creditsButton;
 		TexturedButtonObject exitGameButton;
 
-		//For signals when savegame is loaded.
+		//For signals when savegame is loaded or deleted.
 		int savegameToLoadSetToZeroWhenNoSavegameHasBeenChosen;
+		bool shouldLoadFlag;
+		bool shouldDeleteFlag;
 
 		//For subscreens
 		MainMenuScreenSubscreenState subscreenState;

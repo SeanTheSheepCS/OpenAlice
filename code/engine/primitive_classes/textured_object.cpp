@@ -37,7 +37,7 @@ std::vector<unsigned char> TexturedObject::toWriteableForm() const
 	return returnValue;
 }
 
-void fillWithDataFromWriteableForm(std::vector<unsigned char>::iterator& writeableFormIterator)
+void TexturedObject::fillWithDataFromWriteableForm(std::istream_iterator<unsigned char>& writeableFormIterator)
 {
 	DrawableObject::fillWithDataFromWriteableForm(writeableFormIterator);
 

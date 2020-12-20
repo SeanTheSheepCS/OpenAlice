@@ -2,6 +2,8 @@
 #define WORLD_OBJECT_H
 
 #include <SFML/Graphics.hpp>
+#include <fstream>
+#include <iterator>
 #include "textured_object.h"
 #include "trigger_zone.h"
 #include "collision_box.h"
@@ -15,6 +17,7 @@ class WorldObject: public TexturedObject
 		WorldObject(TexturedObject parentObject);
 
 		std::vector<unsigned char> toWriteableForm() const;
+		void fillWithDataFromWriteableForm(std::istream_iterator<unsigned char>& writeableFormIterator);
 
 		void setTriggerZoneX(int newX);
 		void setTriggerZoneY(int newY);

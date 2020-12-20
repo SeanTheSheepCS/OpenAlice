@@ -59,13 +59,21 @@ int main()
 				}
 				else
 				{
-					mainMenuMusicStart.stop();
-					mainMenuMusicMain.stop();
-					SaveFile fileToLoad = SaveGameHelper::loadSaveFile(mainMenuScreenVar.returnSavegameThatShouldBeLoadedReturnsZeroIfNoSavegameIsChosenYet());
-					mainMenuScreenVar.acknowledgeSavegameChoice();
-					farmScreenVar.loadSaveFile(fileToLoad);
-					pointerToCurrentlyActiveScreen = &farmScreenVar;
-					currentScreenToDisplay = FARM_SCREEN;
+					if(mainMenuScreenVar.returnShouldLoadFlag() == true)
+					{
+						mainMenuMusicStart.stop();
+						mainMenuMusicMain.stop();
+						SaveFile fileToLoad = SaveGameHelper::loadSaveFile(mainMenuScreenVar.returnSavegameThatShouldBeLoadedReturnsZeroIfNoSavegameIsChosenYet());
+						mainMenuScreenVar.acknowledgeSavegameChoice();
+						farmScreenVar.loadSaveFile(fileToLoad);
+						pointerToCurrentlyActiveScreen = &farmScreenVar;
+						currentScreenToDisplay = FARM_SCREEN;
+					}
+					if(mainMenuScreenVar.returnShouldDeleteFlag() == true)
+					{
+						SaveGameHelper::deleteSaveFile(mainMenuScreenVar.returnSavegameThatShouldBeLoadedReturnsZeroIfNoSavegameIsChosenYet());
+						mainMenuScreenVar.acknowledgeSavegameChoice();
+					}
 				}
 				break;
 			case FARM_SCREEN:

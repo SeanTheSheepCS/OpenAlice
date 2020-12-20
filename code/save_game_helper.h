@@ -11,6 +11,7 @@ class SaveGameHelper
 {
 	public:
 		static SaveFile loadSaveFile(int saveFileNumberToLoad);
+		static void deleteSaveFile(int saveFileNumberToDelete);
 	protected:
 		//
 	private:

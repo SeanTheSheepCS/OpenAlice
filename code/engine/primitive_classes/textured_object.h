@@ -3,6 +3,8 @@
 
 #include <SFML/Graphics.hpp>
 #include <math.h>
+#include <fstream>
+#include <iterator>
 #include "drawable_object.h"
 
 #ifndef PI
@@ -15,7 +17,7 @@ class TexturedObject: public DrawableObject
 		TexturedObject(int x, int y, unsigned int width, unsigned int height, const sf::Texture* texturePointerArg);
 
 		std::vector<unsigned char> toWriteableForm() const;
-		void fillWithDataFromWriteableForm(std::vector<unsigned char>::iterator& writeableFormIterator);
+		void fillWithDataFromWriteableForm(std::istream_iterator<unsigned char>& writeableFormIterator);
 
 		void decoupleObjectFromItsTexture(); //Makes the texture this object is associated to null, this is important in case the texture ever leaves the scope.
 		void associateWithNewTexture(const sf::Texture* newTextureToAssociateWith);
