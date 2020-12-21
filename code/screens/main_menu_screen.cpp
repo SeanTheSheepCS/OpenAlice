@@ -14,6 +14,8 @@ MainMenuScreen::MainMenuScreen(int x, int y, unsigned int width, unsigned int he
 	this->subscreenState = NO_SUBSCREEN_ACTIVE;
 	this->shouldLoadFlag = false;
 	this->shouldDeleteFlag = false;
+	this->hasADisplayLanguageBeenChosenFlag = false;
+	this->chosenDisplayLanguage = DISPLAY_LANGUAGE_ENGLISH; //This is just a default value, it should not matter unless the hasADisplayLanguageBeenChosenFlag is set to true before a new value is written here.
 	this->savegameToLoadSetToZeroWhenNoSavegameHasBeenChosen = 0;
 }
 
@@ -98,10 +100,11 @@ void MainMenuScreen::handleEvent(sf::Event event, sf::RenderWindow& window)
 			}
 			if(languageScreenVar.hasADisplayLanguageBeenChosen())
 			{
-				languageScreenVar.acknowledgeChosenDisplayLanguage();
-				//TODO
-				DisplayLanguage idk = languageScreenVar.returnChosenDisplayLanguage();
+				//Don't change the order of the next two lines, or a race condition may occur if the program is multithreaded.
+				this->chosenDisplayLanguage = languageScreenVar.returnChosenDisplayLanguage();
+				this->hasADisplayLanguageBeenChosenFlag = true;
 				subscreenState = NO_SUBSCREEN_ACTIVE;
+				languageScreenVar.acknowledgeChosenDisplayLanguage();
 				forceFullDraw(window);
 			}
 			break;
@@ -194,4 +197,19 @@ bool MainMenuScreen::returnShouldDeleteFlag()
 void MainMenuScreen::acknowledgeShouldDeleteFlag()
 {
 	this->shouldDeleteFlag = false;
+}
+
+bool MainMenuScreen::hasADisplayLanguageBeenChosen()
+{
+	return hasADisplayLanguageBeenChosenFlag;
+}
+
+DisplayLanguage MainMenuScreen::returnChosenDisplayLanguage()
+{
+	return chosenDisplayLanguage;
+}
+
+void MainMenuScreen::acknowledgeDisplayLanguageChoice()
+{
+	this->hasADisplayLanguageBeenChosenFlag = false;
 }

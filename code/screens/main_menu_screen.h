@@ -37,6 +37,10 @@ class MainMenuScreen: public OAEScreen
 		bool returnShouldDeleteFlag();
 		void acknowledgeShouldDeleteFlag();
 
+		bool hasADisplayLanguageBeenChosen();
+		DisplayLanguage returnChosenDisplayLanguage();
+		void acknowledgeDisplayLanguageChoice();
+
 	protected:
 		//
 	private:
@@ -51,6 +55,10 @@ class MainMenuScreen: public OAEScreen
 		int savegameToLoadSetToZeroWhenNoSavegameHasBeenChosen;
 		bool shouldLoadFlag;
 		bool shouldDeleteFlag;
+
+		//For signals when a display language has been chosen.
+		bool hasADisplayLanguageBeenChosenFlag;
+		DisplayLanguage chosenDisplayLanguage;
 
 		//For subscreens
 		MainMenuScreenSubscreenState subscreenState;

@@ -53,6 +53,19 @@ int main()
 				{
 					mainMenuMusicMain.play();
 				}
+
+				if(mainMenuScreenVar.hasADisplayLanguageBeenChosen())
+				{
+					DisplayLanguage newDisplayLanguage = mainMenuScreenVar.returnChosenDisplayLanguage();
+					textureBankForApplication = initializeTextureBank(newDisplayLanguage);
+					mainMenuScreenVar.associateWithTexturesInBank(textureBankForApplication);
+					farmScreenVar.associateWithTexturesInBank(textureBankForApplication);
+					farmScreenVar.associateWithAnimationsInBank(animationBankForApplication);
+					marketScreenVar.associateWithTexturesInBank(textureBankForApplication);
+					mainMenuScreenVar.acknowledgeDisplayLanguageChoice();
+					mainMenuScreenVar.forceFullDraw(window);
+				}
+
 				if(mainMenuScreenVar.returnSavegameThatShouldBeLoadedReturnsZeroIfNoSavegameIsChosenYet() == 0)
 				{
 					pointerToCurrentlyActiveScreen = &mainMenuScreenVar;
