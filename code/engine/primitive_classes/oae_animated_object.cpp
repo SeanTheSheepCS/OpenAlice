@@ -1,5 +1,4 @@
 #include "oae_animated_object.h"
-#include <iostream>
 
 OAEAnimatedObject::OAEAnimatedObject()
 {
@@ -8,6 +7,10 @@ OAEAnimatedObject::OAEAnimatedObject()
 
 void OAEAnimatedObject::associateReferenceNumberWithAnimationInstance(int referenceNumber, const OAEAnimationInstance animationInstance)
 {
+	if(referenceNumberToAnimationInstanceMap.count(referenceNumber) == 1)
+	{
+		referenceNumberToAnimationInstanceMap.erase(referenceNumber);
+	}
 	referenceNumberToAnimationInstanceMap.insert(std::pair<int, OAEAnimationInstance>(referenceNumber, animationInstance));
 }
 

@@ -58,6 +58,7 @@ int main()
 				{
 					DisplayLanguage newDisplayLanguage = mainMenuScreenVar.returnChosenDisplayLanguage();
 					textureBankForApplication = initializeTextureBank(newDisplayLanguage);
+					animationBankForApplication = initializeOAEAnimationBank(textureBankForApplication);
 					mainMenuScreenVar.associateWithTexturesInBank(textureBankForApplication);
 					farmScreenVar.associateWithTexturesInBank(textureBankForApplication);
 					farmScreenVar.associateWithAnimationsInBank(animationBankForApplication);

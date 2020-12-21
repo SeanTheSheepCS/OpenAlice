@@ -7,6 +7,10 @@ ObjectWithTextureMap::ObjectWithTextureMap()
 
 void ObjectWithTextureMap::associateReferenceNumberWithTexturePointer(int referenceNumber, const sf::Texture* texturePointer)
 {
+	if(refNumberToTexturePointerMap.count(referenceNumber) == 1)
+	{
+		refNumberToTexturePointerMap.erase(referenceNumber);
+	}
 	refNumberToTexturePointerMap.insert(std::pair<int, const sf::Texture*>(referenceNumber, texturePointer));
 }
 

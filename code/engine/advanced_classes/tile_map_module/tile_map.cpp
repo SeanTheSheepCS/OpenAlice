@@ -155,6 +155,10 @@ std::vector<unsigned char> TileMap::toWriteableForm() const
 
 void TileMap::associateReferenceNumberWithTexture(int referenceNumber, const sf::Texture* texture)
 {
+	if(referenceNumberToTexturePointerMap.count(referenceNumber) == 1)
+	{
+		referenceNumberToTexturePointerMap.erase(referenceNumber);
+	}
 	referenceNumberToTexturePointerMap.insert(std::pair<int, const sf::Texture*>(referenceNumber, texture));
 }
 

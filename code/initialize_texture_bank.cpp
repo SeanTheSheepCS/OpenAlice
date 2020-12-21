@@ -35,8 +35,8 @@ void addLanguageDependentTextureToTextureBank(int referenceNumber, const std::st
 TextureBank initializeTextureBank(DisplayLanguage languageToUse)
 {
 	TextureBank textureBankToReturn;    
-	fillTextureBankWithLanguageDependentTextures(textureBankToReturn, languageToUse);
 	fillTextureBankWithNonLanguageDependentTextures(textureBankToReturn);
+	fillTextureBankWithLanguageDependentTextures(textureBankToReturn, languageToUse);
 	return textureBankToReturn;
 }
 
@@ -45,7 +45,6 @@ void fillTextureBankWithNonLanguageDependentTextures(TextureBank& textureBankToF
 	addNonLanguageDependentTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_OUT_OF_BOUNDS_GRASS, "grass_out_of_bounds.png", &textureBankToFill);
 	addNonLanguageDependentTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_IN_BOUNDS_GRASS, "grass.png", &textureBankToFill);
 	addNonLanguageDependentTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT, "dirt_tilled_unwatered.png", &textureBankToFill);
-	addNonLanguageDependentTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_WATERED_TILLED_DIRT, "dirt_tilled_watered.png", &textureBankToFill);
 	addNonLanguageDependentTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_WATERED_TILLED_DIRT, "dirt_tilled_watered.png", &textureBankToFill);
 	
 	addNonLanguageDependentTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_BASE, "alice_down_base.png", &textureBankToFill);
