@@ -7,12 +7,14 @@
 #include "../engine/primitive_classes/textured_button_object.h"
 #include "subscreens/start_game_screen.h"
 #include "subscreens/credits_screen.h"
+#include "subscreens/language_screen.h"
 
 enum MainMenuScreenSubscreenState
 {
 	NO_SUBSCREEN_ACTIVE = 0,
 	START_GAME_SUBSCREEN_ACTIVE = 1,
-	CREDITS_SUBSCREEN_ACTIVE = 2
+	CREDITS_SUBSCREEN_ACTIVE = 2,
+	LANGUAGE_SUBSCREEN_ACTIVE = 3
 };
 
 class MainMenuScreen: public OAEScreen
@@ -43,6 +45,7 @@ class MainMenuScreen: public OAEScreen
 		TexturedButtonObject startGameButton;
 		TexturedButtonObject creditsButton;
 		TexturedButtonObject exitGameButton;
+		TexturedButtonObject languageButton;
 
 		//For signals when savegame is loaded or deleted.
 		int savegameToLoadSetToZeroWhenNoSavegameHasBeenChosen;
@@ -53,6 +56,7 @@ class MainMenuScreen: public OAEScreen
 		MainMenuScreenSubscreenState subscreenState;
 		StartGameScreen startGameScreenVar;
 		CreditsScreen creditsScreenVar;
+		LanguageScreen languageScreenVar;
 };
 
 #endif

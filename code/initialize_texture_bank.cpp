@@ -291,6 +291,12 @@ void fillTextureBankWithNonLanguageDependentTextures(TextureBank& textureBankToF
 	addNonLanguageDependentTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_TOMATO_SEEDS_ICON_TEXTURE, "tomato_seeds_icon.png", &textureBankToFill);
 	addNonLanguageDependentTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CUCUMBER_SEEDS_ICON_TEXTURE, "cucumber_seeds_icon.png", &textureBankToFill);
 	addNonLanguageDependentTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CARROT_SEEDS_ICON_TEXTURE, "carrot_seeds_icon.png", &textureBankToFill);
+
+	addNonLanguageDependentTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_LANGUAGE_SCREEN_BACKGROUND_TEXTURE, "language_screen_background.png", &textureBankToFill);
+	addNonLanguageDependentTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ENGLISH_TEXT_TEXTURE, "english_text.png", &textureBankToFill);
+	addNonLanguageDependentTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ENGLISH_ICON_TEXTURE, "language_icon_en.png", &textureBankToFill);
+	addNonLanguageDependentTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_FRENCH_TEXT_TEXTURE, "french_text.png", &textureBankToFill);
+	addNonLanguageDependentTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_FRENCH_ICON_TEXTURE, "language_icon_fr.png", &textureBankToFill);
 }
 
 void fillTextureBankWithLanguageDependentTextures(TextureBank& textureBankToFill, DisplayLanguage languageToUse)
@@ -336,4 +342,5 @@ void fillTextureBankWithLanguageDependentTextures(TextureBank& textureBankToFill
 	addLanguageDependentTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_SAVE_WARNING_FRAME_FOUR, languageFilePath, "saving_warning_frame_four.png", &textureBankToFill);
 	addLanguageDependentTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CONFIRMATION_SCREEN_BACKGROUND, languageFilePath, "confirmation_window_background.png", &textureBankToFill);
 
+	addLanguageDependentTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_LANGUAGE_BUTTON_ICON, languageFilePath, "language_icon.png", &textureBankToFill);
 }

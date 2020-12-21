@@ -6,8 +6,10 @@ MainMenuScreen::MainMenuScreen(int x, int y, unsigned int width, unsigned int he
 	startGameButton(x+(width*0.1),y+(height*0.55), (width*0.8), (height*0.15), nullptr),
 	creditsButton(x+(width*0.1),y+(height*0.70), (width*0.8), (height*0.15), nullptr),
 	exitGameButton(x+(width*0.1),y+(height*0.85), (width*0.8), (height*0.15), nullptr),
+	languageButton(x+(width*0.05),y+(height*0.05), (width*0.1),(height*0.1), nullptr),
 	startGameScreenVar(x+(width*0.1),y+(height*0.1),(width*0.8),(height*0.8)),
-	creditsScreenVar(x+(width*0.1),y+(height*0.1),(width*0.8),(height*0.8))
+	creditsScreenVar(x+(width*0.1),y+(height*0.1),(width*0.8),(height*0.8)),
+	languageScreenVar(x+(width*0.1),y+(height*0.1),(width*0.8),(height*0.8))
 {
 	this->subscreenState = NO_SUBSCREEN_ACTIVE;
 	this->shouldLoadFlag = false;
@@ -40,6 +42,11 @@ void MainMenuScreen::handleEvent(sf::Event event, sf::RenderWindow& window)
 						else if(exitGameButton.theMouseHasBeenClickedAtTheSpecifiedCoordinatesHasTheButtonBeenClicked(mouseX, mouseY))
 						{
 							window.close();
+						}
+						else if(languageButton.theMouseHasBeenClickedAtTheSpecifiedCoordinatesHasTheButtonBeenClicked(mouseX, mouseY))
+						{
+							subscreenState = LANGUAGE_SUBSCREEN_ACTIVE;
+							languageScreenVar.forceFullDraw(window);
 						}
 					}
 					break;
@@ -81,6 +88,23 @@ void MainMenuScreen::handleEvent(sf::Event event, sf::RenderWindow& window)
 				forceFullDraw(window);
 			}
 			break;
+		case LANGUAGE_SUBSCREEN_ACTIVE:
+			languageScreenVar.handleEvent(event, window);
+			if(languageScreenVar.hasCloseScreenRequestBeenMade())
+			{
+				languageScreenVar.acknowledgeCloseScreenRequest();
+				subscreenState = NO_SUBSCREEN_ACTIVE;
+				forceFullDraw(window);
+			}
+			if(languageScreenVar.hasADisplayLanguageBeenChosen())
+			{
+				languageScreenVar.acknowledgeChosenDisplayLanguage();
+				//TODO
+				DisplayLanguage idk = languageScreenVar.returnChosenDisplayLanguage();
+				subscreenState = NO_SUBSCREEN_ACTIVE;
+				forceFullDraw(window);
+			}
+			break;
 		default:
 			break;
 	}
@@ -92,6 +116,7 @@ void MainMenuScreen::forceFullDraw(sf::RenderWindow& windowToDrawIn)
 	startGameButton.draw(windowToDrawIn);
 	creditsButton.draw(windowToDrawIn);
 	exitGameButton.draw(windowToDrawIn);
+	languageButton.draw(windowToDrawIn);
 	switch (subscreenState)
 	{
 		case START_GAME_SUBSCREEN_ACTIVE:
@@ -99,6 +124,9 @@ void MainMenuScreen::forceFullDraw(sf::RenderWindow& windowToDrawIn)
 			break;
 		case CREDITS_SUBSCREEN_ACTIVE:
 			creditsScreenVar.forceFullDraw(windowToDrawIn);
+			break;
+		case LANGUAGE_SUBSCREEN_ACTIVE:
+			languageScreenVar.forceFullDraw(windowToDrawIn);
 			break;
 		default:
 			break;
@@ -109,10 +137,12 @@ void MainMenuScreen::associateWithTexturesInBank(const TextureBank& textureBankT
 {
 	startGameScreenVar.associateWithTexturesInBank(textureBankToTakeFrom);
 	creditsScreenVar.associateWithTexturesInBank(textureBankToTakeFrom);
+	languageScreenVar.associateWithTexturesInBank(textureBankToTakeFrom);
 	backgroundWithTitle.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_MAIN_MENU_SCREEN_BACKGROUND));
 	startGameButton.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_MAIN_MENU_SCREEN_SELECT_GAME_BUTTON));
 	creditsButton.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_MAIN_MENU_SCREEN_CREDITS_BUTTON));
 	exitGameButton.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_MAIN_MENU_SCREEN_EXIT_BUTTON));
+	languageButton.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_LANGUAGE_BUTTON_ICON));
 }
 
 void MainMenuScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::RenderWindow& window)
@@ -127,6 +157,9 @@ void MainMenuScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::Re
 			break;
 		case CREDITS_SUBSCREEN_ACTIVE:
 			creditsScreenVar.update(millisecondsElapsedSinceLastUpdate, window);
+			break;
+		case LANGUAGE_SUBSCREEN_ACTIVE:
+			languageScreenVar.update(millisecondsElapsedSinceLastUpdate, window);
 			break;
 		default:
 			break;
