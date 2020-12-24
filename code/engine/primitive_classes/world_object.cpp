@@ -56,6 +56,7 @@ void WorldObject::fillWithDataFromWriteableForm(std::istream_iterator<unsigned c
 	collisionBoxForObject.fillWithDataFromWriteableForm(writeableFormIterator);
 
 	unsigned char visibilityCharacter = (*writeableFormIterator);
+	writeableFormIterator++;
 	if(visibilityCharacter == 0)
 	{
 		this->visibility = false;

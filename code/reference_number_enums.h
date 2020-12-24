@@ -7,7 +7,7 @@ enum DisplayLanguage
 	DISPLAY_LANGUAGE_FRENCH = 1
 };
 
-enum worldObjectReferenceNumbers
+enum WorldObjectReferenceNumber
 {
 	WORLD_OBJECT_REF_NUMBER_INVALID = 0,
 	WORLD_OBJECT_REF_NUMBER_HOE = 1,
@@ -50,7 +50,7 @@ enum worldObjectReferenceNumbers
 	WORLD_OBJECT_REF_NUMBER_CARROT_CRATE_THREE_FILLED = 35
 };
 
-enum textureBankReferenceNumbers
+enum TextureBankReferenceNumber
 {
 	TEXTURE_BANK_REF_NUMBER_INVISIBLE = 0,
 
@@ -340,7 +340,7 @@ enum textureBankReferenceNumbers
 
 };
 
-enum animationBankReferenceNumbers
+enum AnimationBankReferenceNumber
 {
 	ANIMATION_BANK_REF_NUMBER_ALICE_DOWN_WALK = 0,
 	ANIMATION_BANK_REF_NUMBER_ALICE_DOWN_WALK_HOE = 1,

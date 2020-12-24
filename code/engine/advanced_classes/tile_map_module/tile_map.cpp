@@ -97,10 +97,10 @@ std::vector<unsigned char> TileMap::toWriteableForm() const
 {
 	std::vector<unsigned char> returnValue;
 
-	std::vector<unsigned char> offsetToMakeScreenStartCenteredXAsUnsignedCharVector = unsignedIntToUnsignedCharVector(offsetToMakeScreenStartCenteredX);
+	std::vector<unsigned char> offsetToMakeScreenStartCenteredXAsUnsignedCharVector = intToUnsignedCharVector(offsetToMakeScreenStartCenteredX);
 	returnValue.insert(returnValue.end(), offsetToMakeScreenStartCenteredXAsUnsignedCharVector.begin(), offsetToMakeScreenStartCenteredXAsUnsignedCharVector.end());
 
-	std::vector<unsigned char> offsetToMakeScreenStartCenteredYAsUnsignedCharVector = unsignedIntToUnsignedCharVector(offsetToMakeScreenStartCenteredY);
+	std::vector<unsigned char> offsetToMakeScreenStartCenteredYAsUnsignedCharVector = intToUnsignedCharVector(offsetToMakeScreenStartCenteredY);
 	returnValue.insert(returnValue.end(), offsetToMakeScreenStartCenteredYAsUnsignedCharVector.begin(), offsetToMakeScreenStartCenteredYAsUnsignedCharVector.end());
 
 	std::vector<unsigned char> tileWidthAsUnsignedCharVector = unsignedIntToUnsignedCharVector(tileWidth);
@@ -143,7 +143,7 @@ std::vector<unsigned char> TileMap::toWriteableForm() const
 
 	for(auto const& [refNum, currentObject] : referenceNumberToWorldObjectMap) //This line iterates through the map, you can think of this as for(currentObject in map)
 	{
-		std::vector<unsigned char> refNumAsUnsignedCharArray = intToUnsignedCharVector(refNum);
+		std::vector<unsigned char> refNumAsUnsignedCharArray = intToUnsignedCharVector((int)refNum);
 		returnValue.insert(returnValue.end(), refNumAsUnsignedCharArray.begin(), refNumAsUnsignedCharArray.end());
 
 		std::vector<unsigned char> currentObjectAsUnsignedCharArray = currentObject.toWriteableForm();
@@ -151,6 +151,51 @@ std::vector<unsigned char> TileMap::toWriteableForm() const
 	}
 
 	return returnValue;
+}
+
+void TileMap::fillWithDataFromWriteableForm(std::istream_iterator<unsigned char>& writeableFormIterator)
+{
+	this->offsetToMakeScreenStartCenteredX = readIntFromUnsignedCharIterator(writeableFormIterator);
+	this->offsetToMakeScreenStartCenteredY = readIntFromUnsignedCharIterator(writeableFormIterator);
+	this->tileWidth = readIntFromUnsignedCharIterator(writeableFormIterator);
+	this->tileHeight = readIntFromUnsignedCharIterator(writeableFormIterator);
+	this->centreOffsetTileCountX.unsigned_int_form = readIntFromUnsignedCharIterator(writeableFormIterator);
+	this->centreOffsetTileCountY.unsigned_int_form = readIntFromUnsignedCharIterator(writeableFormIterator);
+
+	for(unsigned int i = 0; i < this->rowCount; i++)
+	{
+		delete[] referenceNumberTwoDimensionArrayRepresentingTileMap[i];
+	}
+	delete[] referenceNumberTwoDimensionArrayRepresentingTileMap;
+
+	this->rowCount = readUnsignedIntFromUnsignedCharIterator(writeableFormIterator);
+	this->colCount = readUnsignedIntFromUnsignedCharIterator(writeableFormIterator);
+
+	referenceNumberTwoDimensionArrayRepresentingTileMap = new int*[rowCount];
+	for(unsigned int i = 0; i < this->rowCount; i++)
+	{
+		referenceNumberTwoDimensionArrayRepresentingTileMap[i] = new int[colCount];
+	}
+
+	for(unsigned int row = 0; row < rowCount; row++)
+	{
+		for(unsigned int col = 0; col < colCount; col++)
+		{
+			referenceNumberTwoDimensionArrayRepresentingTileMap[row][col] = readIntFromUnsignedCharIterator(writeableFormIterator);
+		}
+	}
+
+	//TEXTURES ARE NOT LOADED...
+	
+	referenceNumberToWorldObjectMap.clear();
+	unsigned int numberOfElementsInReferenceNumberToWorldObjectMap = readUnsignedIntFromUnsignedCharIterator(writeableFormIterator);
+	for(unsigned int worldObjectCount = 0; worldObjectCount < numberOfElementsInReferenceNumberToWorldObjectMap; worldObjectCount++)
+	{
+		WorldObjectReferenceNumber referenceNumber = (WorldObjectReferenceNumber)readIntFromUnsignedCharIterator(writeableFormIterator);
+		WorldObject elementToInsert = WorldObject();
+		elementToInsert.fillWithDataFromWriteableForm(writeableFormIterator);
+		referenceNumberToWorldObjectMap.insert(std::pair<WorldObjectReferenceNumber,WorldObject>(referenceNumber,elementToInsert));
+	}
 }
 
 void TileMap::associateReferenceNumberWithTexture(int referenceNumber, const sf::Texture* texture)
@@ -167,7 +212,7 @@ void TileMap::deassociateTextureWithSpecificReferenceNumber(int referenceNumber)
 	referenceNumberToTexturePointerMap.erase(referenceNumber);
 }
 
-void TileMap::addWorldObjectWithReferenceNumber(int referenceNumber, WorldObject objectToAdd)
+void TileMap::addWorldObjectWithReferenceNumber(WorldObjectReferenceNumber referenceNumber, WorldObject objectToAdd)
 {
 	/* HIGHLY EXPERIMENTAL, UNCOMMENT FOR WEIRDNESS 
 
@@ -176,10 +221,10 @@ void TileMap::addWorldObjectWithReferenceNumber(int referenceNumber, WorldObject
 	   currentObject.pushDrawableObjectOutOfCollisionZoneIfItIntersects(objectToAdd);
 	   }
 	   */
-	referenceNumberToWorldObjectMap.insert(std::pair<int, WorldObject>(referenceNumber, objectToAdd));
+	referenceNumberToWorldObjectMap.insert(std::pair<WorldObjectReferenceNumber, WorldObject>(referenceNumber, objectToAdd));
 }
 
-void TileMap::addWorldObjectWithReferenceNumber(int referenceNumber, WorldObject objectToAdd, int screenX, int screenY)
+void TileMap::addWorldObjectWithReferenceNumber(WorldObjectReferenceNumber referenceNumber, WorldObject objectToAdd, int screenX, int screenY)
 {
 	int worldX = screenXToWorldX(screenX);
 	int worldY = screenYToWorldY(screenY);
@@ -188,12 +233,12 @@ void TileMap::addWorldObjectWithReferenceNumber(int referenceNumber, WorldObject
 	this->addWorldObjectWithReferenceNumber(referenceNumber, objectToAdd);
 }
 
-void TileMap::removeWorldObjectWithReferenceNumber(int referenceNumber)
+void TileMap::removeWorldObjectWithReferenceNumber(WorldObjectReferenceNumber referenceNumber)
 {
 	referenceNumberToWorldObjectMap.erase(referenceNumber);
 }
 
-void TileMap::associateWorldObjectWithReferenceNumberWithTexturePointer(int referenceNumber, const sf::Texture* texturePointer)
+void TileMap::associateWorldObjectWithReferenceNumberWithTexturePointer(WorldObjectReferenceNumber referenceNumber, const sf::Texture* texturePointer)
 {
 	try
 	{
@@ -205,7 +250,7 @@ void TileMap::associateWorldObjectWithReferenceNumberWithTexturePointer(int refe
 	}
 }
 
-void TileMap::deassociateWorldObjectWithReferenceNumberWithItsTexturePointer(int referenceNumber)
+void TileMap::deassociateWorldObjectWithReferenceNumberWithItsTexturePointer(WorldObjectReferenceNumber referenceNumber)
 {
 	try
 	{
@@ -217,7 +262,7 @@ void TileMap::deassociateWorldObjectWithReferenceNumberWithItsTexturePointer(int
 	}
 }
 
-WorldObject TileMap::getWorldObjectWithReferenceNumber(int referenceNumber)
+WorldObject TileMap::getWorldObjectWithReferenceNumber(WorldObjectReferenceNumber referenceNumber)
 {
 	try
 	{
@@ -367,9 +412,9 @@ void TileMap::drawWorldObjects(sf::RenderWindow& windowToDrawIn) //Helper functi
 	}
 }
 
-std::map<int, WorldObject> TileMap::getAllWorldObjectsWithRefNumbersWhoAreCurrentlyTriggeredByDrawableObject(const DrawableObject& objectToCheck)
+std::map<WorldObjectReferenceNumber, WorldObject> TileMap::getAllWorldObjectsWithRefNumbersWhoAreCurrentlyTriggeredByDrawableObject(const DrawableObject& objectToCheck)
 {
-	std::map<int, WorldObject> returnValue;
+	std::map<WorldObjectReferenceNumber, WorldObject> returnValue;
 	for(auto const& [refNum, currentObject] : referenceNumberToWorldObjectMap) //This line iterates through the map, you can think of this as for(currentObject in map)
 	{
 		int screenX = worldXToScreenX(currentObject.getX());
@@ -381,7 +426,7 @@ std::map<int, WorldObject> TileMap::getAllWorldObjectsWithRefNumbersWhoAreCurren
 		worldObjectWithFakeCoords.setTriggerZoneY(screenY);
 		if(worldObjectWithFakeCoords.isDrawableObjectWithinTriggerZone(objectToCheck) == true)
 		{
-			returnValue.insert(std::pair<int, WorldObject>(refNum, currentObject));
+			returnValue.insert(std::pair<WorldObjectReferenceNumber, WorldObject>(refNum, currentObject));
 		}
 	}
 	return returnValue;

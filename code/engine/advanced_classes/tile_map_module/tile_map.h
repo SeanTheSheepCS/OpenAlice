@@ -8,6 +8,7 @@
 #include "../../primitive_classes/textured_object.h"
 #include "../../primitive_classes/world_object.h"
 #include "../../utilities/utilities.h"
+#include "../../../reference_number_enums.h"
 
 union ufloat 
 {
@@ -29,6 +30,7 @@ class TileMap: public DrawableObject
 
 		//FOR READING AND WRITING TILEMAPS TO FILES
 		std::vector<unsigned char> toWriteableForm() const;
+		void fillWithDataFromWriteableForm(std::istream_iterator<unsigned char>& writeableFormIterator);
 
 		//FOR ASSOCIATING AND DEASSOCIATING TEXTURES
 		void associateReferenceNumberWithTexture(int referenceNumber, const sf::Texture* texture);
@@ -48,12 +50,12 @@ class TileMap: public DrawableObject
 		void changeCentreOffsetTileCountYByAmount(float amountToChangeCentreOffsetTileCountYBy);
 
 		//FOR ADDING AND REMOVING AND MANIPULATING WORLD OBJECTS USING THE MAP
-		void addWorldObjectWithReferenceNumber(int referenceNumber, WorldObject objectToAdd);
-		void addWorldObjectWithReferenceNumber(int referenceNumber, WorldObject objectToAdd, int screenX, int screenY);
-		void removeWorldObjectWithReferenceNumber(int referenceNumber);
-		void associateWorldObjectWithReferenceNumberWithTexturePointer(int referenceNumber, const sf::Texture* texturePointer);
-		void deassociateWorldObjectWithReferenceNumberWithItsTexturePointer(int referenceNumber);
-		WorldObject getWorldObjectWithReferenceNumber(int referenceNumber);
+		void addWorldObjectWithReferenceNumber(WorldObjectReferenceNumber referenceNumber, WorldObject objectToAdd);
+		void addWorldObjectWithReferenceNumber(WorldObjectReferenceNumber referenceNumber, WorldObject objectToAdd, int screenX, int screenY);
+		void removeWorldObjectWithReferenceNumber(WorldObjectReferenceNumber referenceNumber);
+		void associateWorldObjectWithReferenceNumberWithTexturePointer(WorldObjectReferenceNumber referenceNumber, const sf::Texture* texturePointer);
+		void deassociateWorldObjectWithReferenceNumberWithItsTexturePointer(WorldObjectReferenceNumber referenceNumber);
+		WorldObject getWorldObjectWithReferenceNumber(WorldObjectReferenceNumber referenceNumber);
 
 		//FUNCTIONS FOR COORDINATE CONVERSIONS
 		int screenXToWorldX(int screenX);
@@ -67,7 +69,7 @@ class TileMap: public DrawableObject
 
 		//SPECIAL FUNCTIONS
 		void draw(sf::RenderWindow& windowToDrawIn);
-		std::map<int, WorldObject> getAllWorldObjectsWithRefNumbersWhoAreCurrentlyTriggeredByDrawableObject(const DrawableObject& objectToCheck);
+		std::map<WorldObjectReferenceNumber, WorldObject> getAllWorldObjectsWithRefNumbersWhoAreCurrentlyTriggeredByDrawableObject(const DrawableObject& objectToCheck);
 		bool returnTrueIfDrawableObjectIntersectsWithAnyCollisionBoxes(const DrawableObject& objectTocheck);
 		std::pair<unsigned int, unsigned int> getRowAndColOfTileNearestToDrawableObject(const DrawableObject& objectToCheckProximityOf);
 
@@ -93,7 +95,7 @@ class TileMap: public DrawableObject
 		int** referenceNumberTwoDimensionArrayRepresentingTileMap;
 		std::map<int, const sf::Texture*> referenceNumberToTexturePointerMap;
 
-		std::map<int, WorldObject> referenceNumberToWorldObjectMap;
+		std::map<WorldObjectReferenceNumber, WorldObject> referenceNumberToWorldObjectMap;
 };
 
 #endif

@@ -28,6 +28,7 @@ void TriggerZone::fillWithDataFromWriteableForm(std::istream_iterator<unsigned c
 	CartesianObject::fillWithDataFromWriteableForm(writeableFormIterator);
 	
 	unsigned char activeStatusChar = (*writeableFormIterator);
+	writeableFormIterator++;
 	if(activeStatusChar == 0)
 	{
 		this->activeStatus = false;
