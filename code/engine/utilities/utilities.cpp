@@ -33,8 +33,8 @@ unsigned int readUnsignedIntFromUnsignedCharIterator(std::istream_iterator<unsig
 	unsigned int returnValue = 0;
 	for(unsigned int i = 0; i < 4; i++)
 	{
-		unsigned int currentValue = (*iteratorToReadFrom);
-		currentValue = (currentValue << (i * 8));
+		unsigned char currentValue = (*iteratorToReadFrom);
+		currentValue = (((unsigned int)currentValue) << ((3-i) * 8));
 		returnValue = (returnValue | currentValue);
 		iteratorToReadFrom++;
 	}
@@ -46,8 +46,8 @@ int readIntFromUnsignedCharIterator(std::istream_iterator<unsigned char>& iterat
 	int returnValue = 0;
 	for(unsigned int i = 0; i < 4; i++)
 	{
-		int currentValue = (*iteratorToReadFrom);
-		currentValue = (currentValue << (i * 8));
+		unsigned char currentValue = (*iteratorToReadFrom);
+		currentValue = (((int)currentValue) << ((3-i) * 8));
 		returnValue = (returnValue | currentValue);
 		iteratorToReadFrom++;
 	}

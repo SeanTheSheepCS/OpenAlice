@@ -109,7 +109,7 @@ class FarmScreen: public OAEScreen
 
 		//LOADING VARIABLES
 		bool isLoading;
-		void runLoadProcedure();
+		void runLoadProcedure(std::string pathOfFileToLoad);
 };
 
 #endif

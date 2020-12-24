@@ -386,13 +386,14 @@ void FarmScreen::runSaveProcedure()
 	this->isSaving = false;
 }
 
-void FarmScreen::runLoadProcedure()
+void FarmScreen::runLoadProcedure(std::string pathOfFileToLoad)
 {
 	this->isLoading = true;
-	std::ifstream fileToReadFrom(pathToSaveFileUsed, std::ifstream::binary);
+	std::ifstream fileToReadFrom(pathOfFileToLoad, std::ifstream::binary);
 	std::istream_iterator<unsigned char> fileToReadFromIterator(fileToReadFrom);
-
+	
 	unsigned int day = readUnsignedIntFromUnsignedCharIterator(fileToReadFromIterator);
+	std::cout << day << std::endl;
 	dayNumberDisplay.setNumberDisplayAmount(day);
 	unsigned int money = readUnsignedIntFromUnsignedCharIterator(fileToReadFromIterator);
 	moneyDisplay.setNumberDisplayAmount(money);
@@ -901,7 +902,7 @@ void FarmScreen::loadSaveFile(const SaveFile& saveFileToLoad)
 	}
 	else
 	{
-		//TODO
+		runLoadProcedure(this->pathToSaveFileUsed);
 	}
 }
 

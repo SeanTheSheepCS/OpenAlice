@@ -96,7 +96,8 @@ std::string SaveFile::getPath() const
 
 void SaveFile::loadFromSaveFile(std::ifstream& streamFromSaveFile)
 {
-	//
+	//IMPLEMENTATION WAS MOVED TO FARM SCREEN BECAUSE THAT IS WHERE THE SAVING FORMAT IS ALSO SAVED. A MORE FLEXIBLE IMPLEMENTATION WOULD PUT THE SAVING AND THE LOADING IN THIS CLASS.
+	loadDefaultSaveFile();
 }
 
 void SaveFile::loadDefaultSaveFile()

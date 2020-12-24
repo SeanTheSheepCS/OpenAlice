@@ -80,7 +80,9 @@ int main()
 						SaveFile fileToLoad = SaveGameHelper::loadSaveFile(mainMenuScreenVar.returnSavegameThatShouldBeLoadedReturnsZeroIfNoSavegameIsChosenYet());
 						mainMenuScreenVar.acknowledgeSavegameChoice();
 						mainMenuScreenVar.acknowledgeShouldLoadFlag();
+						std::cout << "BEGIN" << std::endl;
 						farmScreenVar.loadSaveFile(fileToLoad);
+						std::cout << "END" << std::endl;
 						pointerToCurrentlyActiveScreen = &farmScreenVar;
 						currentScreenToDisplay = FARM_SCREEN;
 					}
