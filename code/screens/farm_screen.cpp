@@ -390,10 +390,10 @@ void FarmScreen::runLoadProcedure(std::string pathOfFileToLoad)
 {
 	this->isLoading = true;
 	std::ifstream fileToReadFrom(pathOfFileToLoad, std::ifstream::binary);
+	fileToReadFrom >> std::noskipws; //DO NOT REMOVE THIS LINE. This line means that if the file contains a 0x09 or a 0x0a which are considered white space, they will not be skipped over. If you omit this line both 0x09 and 0x0a and their family become 0x00! The flag noskipws means do not skip WHITESPACE. DO NOT REMOVE ME.
 	std::istream_iterator<unsigned char> fileToReadFromIterator(fileToReadFrom);
 	
 	unsigned int day = readUnsignedIntFromUnsignedCharIterator(fileToReadFromIterator);
-	std::cout << day << std::endl;
 	dayNumberDisplay.setNumberDisplayAmount(day);
 	unsigned int money = readUnsignedIntFromUnsignedCharIterator(fileToReadFromIterator);
 	moneyDisplay.setNumberDisplayAmount(money);
