@@ -65,7 +65,7 @@ An open source game heavily inspired by the 2007 game Alice Greenfingers.
 <h4> Engine </h4>
  <ul>
   <li> Market is fully functional </li>
-  <li> Save function </li>
+  <li> <s> Save function </s> </li>
  </ul> 
 <h4> Sprites + Animation </h4>
  <ul>
