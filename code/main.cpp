@@ -83,6 +83,8 @@ int main()
 						std::cout << "BEGIN" << std::endl;
 						farmScreenVar.loadSaveFile(fileToLoad);
 						std::cout << "END" << std::endl;
+						farmScreenVar.associateWithTexturesInBank(textureBankForApplication);
+						farmScreenVar.associateWithAnimationsInBank(animationBankForApplication);
 						pointerToCurrentlyActiveScreen = &farmScreenVar;
 						currentScreenToDisplay = FARM_SCREEN;
 					}

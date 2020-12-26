@@ -28,14 +28,16 @@ std::vector<unsigned char> intToUnsignedCharVector(int integerToConvert)
 	return returnValue;
 }
 
+#include <iostream>
+
 unsigned int readUnsignedIntFromUnsignedCharIterator(std::istream_iterator<unsigned char>& iteratorToReadFrom)
 {
 	unsigned int returnValue = 0;
 	for(unsigned int i = 0; i < 4; i++)
 	{
 		unsigned char currentValue = (*iteratorToReadFrom);
-		currentValue = (((unsigned int)currentValue) << ((3-i) * 8));
-		returnValue = (returnValue | currentValue);
+		unsigned char currentValueAsUnsignedInt = (((unsigned int)currentValue) << ((3-i) * 8));
+		returnValue = (returnValue | currentValueAsUnsignedInt);
 		iteratorToReadFrom++;
 	}
 	return returnValue;
@@ -47,8 +49,8 @@ int readIntFromUnsignedCharIterator(std::istream_iterator<unsigned char>& iterat
 	for(unsigned int i = 0; i < 4; i++)
 	{
 		unsigned char currentValue = (*iteratorToReadFrom);
-		currentValue = (((int)currentValue) << ((3-i) * 8));
-		returnValue = (returnValue | currentValue);
+		int currentValueAsInt = (((int)currentValue) << ((3-i) * 8));
+		returnValue = (returnValue | currentValueAsInt);
 		iteratorToReadFrom++;
 	}
 	return returnValue;

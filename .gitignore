@@ -17,3 +17,5 @@ build_windows_10/*.dll
 # So that the executables are not included.
 build_ubuntu_20/alice_game
 build_windows_10/alice_game.exe
+build_ubuntu_20/tests
+build_windows_10/tests.exe
