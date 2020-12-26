@@ -189,11 +189,9 @@ void TileMap::fillWithDataFromWriteableForm(std::istream_iterator<unsigned char>
 	
 	referenceNumberToWorldObjectMap.clear();
 	unsigned int numberOfElementsInReferenceNumberToWorldObjectMap = readUnsignedIntFromUnsignedCharIterator(writeableFormIterator);
-	std::cout << "Number of WorldObjects in Map" << numberOfElementsInReferenceNumberToWorldObjectMap << std::endl;
 	for(unsigned int worldObjectCount = 0; worldObjectCount < numberOfElementsInReferenceNumberToWorldObjectMap; worldObjectCount++)
 	{
 		WorldObjectReferenceNumber referenceNumber = (WorldObjectReferenceNumber)readIntFromUnsignedCharIterator(writeableFormIterator);
-		std::cout << "ReferenceNumber: " << (int) referenceNumber << std::endl;
 		WorldObject elementToInsert = WorldObject();
 		elementToInsert.fillWithDataFromWriteableForm(writeableFormIterator);
 		referenceNumberToWorldObjectMap.insert(std::pair<WorldObjectReferenceNumber,WorldObject>(referenceNumber,elementToInsert));
