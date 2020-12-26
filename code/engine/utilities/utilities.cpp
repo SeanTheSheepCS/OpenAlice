@@ -28,8 +28,6 @@ std::vector<unsigned char> intToUnsignedCharVector(int integerToConvert)
 	return returnValue;
 }
 
-#include <iostream>
-
 unsigned int readUnsignedIntFromUnsignedCharIterator(std::istream_iterator<unsigned char>& iteratorToReadFrom)
 {
 	unsigned int returnValue = 0;

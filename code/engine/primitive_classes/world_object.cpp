@@ -44,6 +44,17 @@ std::vector<unsigned char> WorldObject::toWriteableForm() const
 	}
 	returnValue.push_back(visibilityCharacter);
 
+	unsigned int numberOfProperties = properties.size();
+	std::vector<unsigned char> numberOfPropertiesAsCharVector = unsignedIntToUnsignedCharVector(numberOfProperties);	
+	returnValue.insert(returnValue.end(), numberOfPropertiesAsCharVector.begin(), numberOfPropertiesAsCharVector.end());
+
+	for(unsigned int i = 0; i < properties.size(); i++)
+	{
+		unsigned int propertyAsUnsignedInt = (unsigned int)(properties.at(i));
+		std::vector<unsigned char> propertyAsCharVector = unsignedIntToUnsignedCharVector(propertyAsUnsignedInt);	
+		returnValue.insert(returnValue.end(), propertyAsCharVector.begin(), propertyAsCharVector.end());
+	}
+
 	return returnValue;
 }
 
@@ -64,6 +75,14 @@ void WorldObject::fillWithDataFromWriteableForm(std::istream_iterator<unsigned c
 	else
 	{
 		this->visibility = true;
+	}
+
+	(this->properties).clear();
+	unsigned int numberOfProperties = readUnsignedIntFromUnsignedCharIterator(writeableFormIterator);
+	for(unsigned int i = 0; i < numberOfProperties; i++)
+	{
+		WorldObjectProperty propertyToAdd = (WorldObjectProperty) readUnsignedIntFromUnsignedCharIterator(writeableFormIterator);
+		properties.push_back(propertyToAdd);
 	}
 }
 

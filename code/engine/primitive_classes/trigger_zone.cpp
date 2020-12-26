@@ -13,7 +13,7 @@ std::vector<unsigned char> TriggerZone::toWriteableForm() const
 	std::vector<unsigned char> cartesianObjectToWrite = CartesianObject::toWriteableForm();
 	returnValue.insert(returnValue.end(), cartesianObjectToWrite.begin(), cartesianObjectToWrite.end());
 
-	unsigned char activeStatusChar = 1;
+	unsigned char activeStatusChar = 0x01;
 	if(activeStatus == false)
 	{
 		activeStatusChar = 0;

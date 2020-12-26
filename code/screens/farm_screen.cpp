@@ -356,8 +356,6 @@ void FarmScreen::runHarvestSequence(unsigned int plantTileMapRow, unsigned int p
 
 void FarmScreen::runSleepSequence(sf::RenderWindow& windowToDrawIn)
 {
-	this->saveThread = std::thread(&(FarmScreen::runSaveProcedure), this);
-	this->isSaveThreadValid = true;
 	dayNumberDisplay.incrementNumberDisplayByAmount(1);
 	this->dayNightCircle.setRotationAroundCentre(180.0);
 	this->isInSleepState = true;
@@ -751,6 +749,16 @@ void FarmScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::Render
 		//Change the plant tile map while Alice sleeps, row by row...
 		unsigned int startRowToChangeThisFrame = lastRowOfPlantTileMapUpdatedInSleepCycle+1;
 		unsigned int endRowToChangeThisFrame = startRowToChangeThisFrame + ((unsigned int)(((float)numberOfMillisecondsSinceLastUpdate) / ((float)NUMBER_OF_MILLISECONDS_TO_SLEEP_FOR)) * ((float)plantTileMap.getRowCount()));
+
+		//If you finished early and there is nothing to do this iteration, you can start the save thread!
+		if(lastRowOfPlantTileMapUpdatedInSleepCycle == plantTileMap.getRowCount() + 1)
+		{
+			if((this->isSaveThreadValid) == false)
+			{
+				this->isSaveThreadValid = true;
+				this->saveThread = std::thread(&(FarmScreen::runSaveProcedure), this);
+			}
+		}
 		if(endRowToChangeThisFrame >= plantTileMap.getRowCount())
 		{
 			endRowToChangeThisFrame = plantTileMap.getRowCount()+1;
@@ -759,14 +767,21 @@ void FarmScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::Render
 		//This next line checks if we are done sleeping (if this is our last iteration)
 		if(numberOfMillisecondsPassedInSleepStateSinceLastWakeUp > NUMBER_OF_MILLISECONDS_TO_SLEEP_FOR)
 		{
-			if((this->isSaveThreadValid) == true)
-			{
-				(this->saveThread).join();
-			}
 			if(endRowToChangeThisFrame != (plantTileMap.getRowCount() - 1))
 			{
 				//Clean up the rows if this is the last iteration, this is our last chance!
 				this->updateTheFollowingRowsInThePlantTileMapBothBoundsInclusive(endRowToChangeThisFrame+1, plantTileMap.getRowCount() - 1);
+				//We need to start the save thread here too, because if it didn't finish properly, we have not saved yet!
+				if((this->isSaveThreadValid) == false)
+				{
+					this->isSaveThreadValid = true;
+					this->saveThread = std::thread(&(FarmScreen::runSaveProcedure), this);
+				}
+			}
+			if((this->isSaveThreadValid) == true)
+			{
+				(this->saveThread).join();
+				this->isSaveThreadValid = false;
 			}
 			this->isInSleepState = false;
 			numberOfMillisecondsPassedInSleepStateSinceLastWakeUp = 0;
