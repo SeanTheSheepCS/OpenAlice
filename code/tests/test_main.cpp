@@ -8,4 +8,5 @@ int main()
 void runAllTests()
 {
 	runTestUnsignedIntToCharVectorTests();
+	runTestIstreamIteratorToUnsignedIntTests();
 }

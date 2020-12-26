@@ -36,7 +36,7 @@ unsigned int readUnsignedIntFromUnsignedCharIterator(std::istream_iterator<unsig
 	for(unsigned int i = 0; i < 4; i++)
 	{
 		unsigned char currentValue = (*iteratorToReadFrom);
-		unsigned char currentValueAsUnsignedInt = (((unsigned int)currentValue) << ((3-i) * 8));
+		unsigned int currentValueAsUnsignedInt = (((unsigned int)currentValue) << ((3-i) * 8));
 		returnValue = (returnValue | currentValueAsUnsignedInt);
 		iteratorToReadFrom++;
 	}
