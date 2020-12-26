@@ -11,7 +11,7 @@ void runTestIstreamIteratorToUnsignedIntTests()
 void runTestIstreamIteratorToUnsignedIntTestOne()
 {
 	unsigned int expectedValue = 200;
-	std::ifstream fileToReadFrom("test_istream_iterator_to_unsigned_int_test_file_one.bin", std::ifstream::binary);
+	std::ifstream fileToReadFrom("../code/tests/test_istream_iterator_to_unsigned_int_test_file_one.bin", std::ifstream::binary);
 	fileToReadFrom >> std::noskipws; //See the runLoadProcedure in FarmScreen for a complete explanation of why this line is necessary.
 	std::istream_iterator<unsigned char> iteratorToReadFrom(fileToReadFrom);
 	unsigned int actualValue = readUnsignedIntFromUnsignedCharIterator(iteratorToReadFrom);
@@ -28,7 +28,7 @@ void runTestIstreamIteratorToUnsignedIntTestOne()
 void runTestIstreamIteratorToUnsignedIntTestTwo()
 {
 	unsigned int expectedValue = 300;
-	std::ifstream fileToReadFrom("test_istream_iterator_to_unsigned_int_test_file_two.bin", std::ifstream::binary);
+	std::ifstream fileToReadFrom("../code/tests/test_istream_iterator_to_unsigned_int_test_file_two.bin", std::ifstream::binary);
 	fileToReadFrom >> std::noskipws; //See the runLoadProcedure in FarmScreen for a complete explanation of why this line is necessary.
 	std::istream_iterator<unsigned char> iteratorToReadFrom(fileToReadFrom);
 	unsigned int actualValue = readUnsignedIntFromUnsignedCharIterator(iteratorToReadFrom);
@@ -45,7 +45,7 @@ void runTestIstreamIteratorToUnsignedIntTestTwo()
 void runTestIstreamIteratorToUnsignedIntTestThree()
 {
 	unsigned int expectedValue = 202020;
-	std::ifstream fileToReadFrom("test_istream_iterator_to_unsigned_int_test_file_three.bin", std::ifstream::binary);
+	std::ifstream fileToReadFrom("../code/tests/test_istream_iterator_to_unsigned_int_test_file_three.bin", std::ifstream::binary);
 	fileToReadFrom >> std::noskipws; //See the runLoadProcedure in FarmScreen for a complete explanation of why this line is necessary.
 	std::istream_iterator<unsigned char> iteratorToReadFrom(fileToReadFrom);
 	unsigned int actualValue = readUnsignedIntFromUnsignedCharIterator(iteratorToReadFrom);
@@ -62,7 +62,7 @@ void runTestIstreamIteratorToUnsignedIntTestThree()
 void runTestIstreamIteratorToUnsignedIntTestFour()
 {
 	unsigned int expectedValue = 99999999;
-	std::ifstream fileToReadFrom("test_istream_iterator_to_unsigned_int_test_file_four.bin", std::ifstream::binary);
+	std::ifstream fileToReadFrom("../code/tests/test_istream_iterator_to_unsigned_int_test_file_four.bin", std::ifstream::binary);
 	fileToReadFrom >> std::noskipws; //See the runLoadProcedure in FarmScreen for a complete explanation of why this line is necessary.
 	std::istream_iterator<unsigned char> iteratorToReadFrom(fileToReadFrom);
 	unsigned int actualValue = readUnsignedIntFromUnsignedCharIterator(iteratorToReadFrom);
