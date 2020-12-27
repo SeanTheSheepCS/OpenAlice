@@ -168,7 +168,7 @@ void MarketOffer::draw(sf::RenderWindow& windowToDrawObjectIn)
 	selectButton.draw(windowToDrawObjectIn);
 }
 
-void MarketOffer::setCommodityToBeTraded(TradeableCommodityEnum newCommodityToBeTraded, int newAmountToBeTraded)
+void MarketOffer::setCommodityToBeTraded(TradeableCommodityEnum newCommodityToBeTraded, unsigned int newAmountToBeTraded)
 {
 	this->commodityToBeTraded = newCommodityToBeTraded;
 	if(textureBankToTakeTexturesFrom != nullptr)
@@ -204,7 +204,7 @@ void MarketOffer::setCommodityToBeTraded(TradeableCommodityEnum newCommodityToBe
 	commodityOneCountDisplay.setNumberDisplayAmount(newAmountToBeTraded);
 }
 
-void MarketOffer::setCommodityToBeTradedFor(TradeableCommodityEnum newCommodityToBeTradedFor, int newAmountToBeTradedFor)
+void MarketOffer::setCommodityToBeTradedFor(TradeableCommodityEnum newCommodityToBeTradedFor, unsigned int newAmountToBeTradedFor)
 {
 	this->commodityToBeTradedFor = newCommodityToBeTradedFor;
 	if(textureBankToTakeTexturesFrom != nullptr)
