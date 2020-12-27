@@ -25,6 +25,7 @@ FarmScreen::FarmScreen(int x, int y, unsigned int width, unsigned int height):
 	this->dayNightCircle.setDegreeInterval(45.0);
 	this->shouldSwitchToMainMenuScreenFlag = false;
 	this->shouldSwitchToMarketScreenFlag = false;
+	this->shouldUpdateMarketScreenFlag = false;
 	this->plantTileMap.setTileWidth(100);
 	this->plantTileMap.setTileHeight(100);
 	this->groundTileMap.setTileWidth(100);
@@ -359,6 +360,7 @@ void FarmScreen::runSleepSequence(sf::RenderWindow& windowToDrawIn)
 	dayNumberDisplay.incrementNumberDisplayByAmount(1);
 	this->dayNightCircle.setRotationAroundCentre(180.0);
 	this->isInSleepState = true;
+	this->shouldUpdateMarketScreenFlag = true;
 }
 
 void FarmScreen::runSaveProcedure()
@@ -888,7 +890,7 @@ bool FarmScreen::returnIfShouldSwitchToMarketScreen() const
 
 void FarmScreen::acknowledgeShouldSwitchToMarketScreen()
 {
-	shouldSwitchToMarketScreenFlag = false;
+	(this->shouldSwitchToMarketScreenFlag) = false;
 }
 
 bool FarmScreen::returnIfShouldSwitchToMainMenuScreen() const
@@ -898,7 +900,17 @@ bool FarmScreen::returnIfShouldSwitchToMainMenuScreen() const
 
 void FarmScreen::acknowledgeShouldSwitchToMainMenuScreen()
 {
-	shouldSwitchToMainMenuScreenFlag = false;
+	(this->shouldSwitchToMainMenuScreenFlag) = false;
+}
+
+bool FarmScreen::returnIfShouldUpdateMarketScreen() const
+{
+	return shouldUpdateMarketScreenFlag;
+}
+
+void FarmScreen::acknowledgeShouldUpdateMarketScreen()
+{
+	(this->shouldUpdateMarketScreenFlag) = false;
 }
 
 void FarmScreen::loadSaveFile(const SaveFile& saveFileToLoad)

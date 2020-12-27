@@ -63,6 +63,9 @@ class FarmScreen: public OAEScreen
 		bool returnIfShouldSwitchToMainMenuScreen() const;
 		void acknowledgeShouldSwitchToMainMenuScreen();
 
+		bool returnIfShouldUpdateMarketScreen() const;
+		void acknowledgeShouldUpdateMarketScreen();
+
 		unsigned int getDay() const;
 		unsigned int getMoneyAmount() const;
 		void setMoneyDisplayAmount(unsigned int moneyDisplayAmount);
@@ -78,8 +81,10 @@ class FarmScreen: public OAEScreen
 		void drawAllObjectsALayerBelowAlice(sf::RenderWindow& windowToDrawIn); //HELPER FUNCTION FOR A LOT OF FUNCTIONS
 		void drawAllObjectsALayerAboveAlice(sf::RenderWindow& windowToDrawIn); //HELPER FUNCTION FOR A LOT OF FUNCTIONS
 
+		//FLAGS FOR INTERACTING WITH OTHER SCREENS
 		bool shouldSwitchToMarketScreenFlag;
 		bool shouldSwitchToMainMenuScreenFlag;
+		bool shouldUpdateMarketScreenFlag;
 
 		std::string pathToSaveFileUsed;
 
