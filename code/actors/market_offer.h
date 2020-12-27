@@ -35,8 +35,13 @@ class MarketOffer: public DrawableObject
 
 		bool isInvalid();
 
-		void setCommodityToBeTraded(TradeableCommodityEnum newCommodityToBeTraded, int newAmountToBeTraded);
-		void setCommodityToBeTradedFor(TradeableCommodityEnum newCommodityToBeTradedFor, int newAmountToBeTradedFor);
+		void setCommodityToBeTraded(TradeableCommodityEnum newCommodityToBeTraded, unsigned int newAmountToBeTraded);
+		void setCommodityToBeTradedFor(TradeableCommodityEnum newCommodityToBeTradedFor, unsigned int newAmountToBeTradedFor);
+
+		TradeableCommodityEnum getCommodityToBeTraded();
+		unsigned int getAmountTraded();
+		TradeableCommodityEnum getCommodityToBeTradedFor();
+		unsigned int getAmountTradedFor();
 
 		void draw(sf::RenderWindow& windowToDrawObjectIn);
 	protected:

@@ -42,7 +42,7 @@ void MarketOfferList::associateWithTexturesInBank(const TextureBank& textureBank
 	textureBankToAssociateMarketOffersWithAsTheyComeIn = &textureBankToTakeFrom;
 }
 
-int MarketOfferList::returnIndexOfSelectedMarketOfferIfOneHasBeenSelectedElseReturnMinusOne(int mouseX, int mouseY)
+unsigned int MarketOfferList::returnIndexOfSelectedMarketOfferIfOneHasBeenSelectedElseReturnMinusOne(int mouseX, int mouseY)
 {
 	for(int i = 0; i <  marketOfferVector.size(); i++)
 	{
@@ -52,6 +52,11 @@ int MarketOfferList::returnIndexOfSelectedMarketOfferIfOneHasBeenSelectedElseRet
 		}
 	}
 	return -1;
+}
+
+MarketOffer MarketOfferList::returnMarketOfferAtIndex(unsigned int index)
+{
+	return marketOfferVector.at(index);
 }
 
 void MarketOfferList::draw(sf::RenderWindow& windowToDrawObjectIn)

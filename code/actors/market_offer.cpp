@@ -239,3 +239,23 @@ void MarketOffer::setCommodityToBeTradedFor(TradeableCommodityEnum newCommodityT
 	}
 	commodityTwoCountDisplay.setNumberDisplayAmount(newAmountToBeTradedFor);
 }
+
+TradeableCommodityEnum MarketOffer::getCommodityToBeTraded()
+{
+	return this->commodityToBeTraded;
+}
+
+unsigned int MarketOffer::getAmountTraded()
+{
+	return (this->commodityOneCountDisplay.getNumber());
+}
+
+TradeableCommodityEnum MarketOffer::getCommodityToBeTradedFor()
+{
+	return this->commodityToBeTradedFor;
+}
+
+unsigned int MarketOffer::getAmountTradedFor()
+{
+	return (this->commodityTwoCountDisplay.getNumber());
+}

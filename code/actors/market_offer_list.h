@@ -15,7 +15,8 @@ class MarketOfferList: public DrawableObject
 
 		void associateWithTexturesInBank(const TextureBank& textureBankToTakeFrom);
 
-		int returnIndexOfSelectedMarketOfferIfOneHasBeenSelectedElseReturnMinusOne(int mouseX, int mouseY);
+		unsigned int returnIndexOfSelectedMarketOfferIfOneHasBeenSelectedElseReturnMinusOne(int mouseX, int mouseY);
+		MarketOffer returnMarketOfferAtIndex(unsigned int index);
 
 		void draw(sf::RenderWindow& windowToDrawObjectIn);
 	protected:

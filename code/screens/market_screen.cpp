@@ -37,17 +37,17 @@ void MarketScreen::handleEvent(sf::Event event, sf::RenderWindow& window)
 				}
 
 				//Check for events with itemsForSale and itemsToBuy
-				int indexOfSaleOffer = itemsForSale.returnIndexOfSelectedMarketOfferIfOneHasBeenSelectedElseReturnMinusOne(mouseX, mouseY);
+				unsigned int indexOfSaleOffer = itemsForSale.returnIndexOfSelectedMarketOfferIfOneHasBeenSelectedElseReturnMinusOne(mouseX, mouseY);
 				if(indexOfSaleOffer != -1)
 				{
-					itemsForSale.eraseOfferAtIndex(indexOfSaleOffer);
+					handlePurchase(indexOfSaleOffer);
 					itemsForSale.draw(window);
 				}
 
-				int indexOfBuyOffer = itemsToBuy.returnIndexOfSelectedMarketOfferIfOneHasBeenSelectedElseReturnMinusOne(mouseX, mouseY);
+				unsigned int indexOfBuyOffer = itemsToBuy.returnIndexOfSelectedMarketOfferIfOneHasBeenSelectedElseReturnMinusOne(mouseX, mouseY);
 				if(indexOfBuyOffer != -1)
 				{
-					itemsToBuy.eraseOfferAtIndex(indexOfBuyOffer);
+					handleSale(indexOfBuyOffer);
 					itemsToBuy.draw(window);
 				}
 
@@ -57,6 +57,18 @@ void MarketScreen::handleEvent(sf::Event event, sf::RenderWindow& window)
 			//
 			break;
 	}
+}
+
+void MarketScreen::handlePurchase(int indexOfSaleOffer)
+{
+	//TODO
+	itemsForSale.eraseOfferAtIndex(indexOfSaleOffer);
+}
+
+void MarketScreen::handlePurchase(int indexOfBuyOffer)
+{
+	//TODO
+	itemsToBuy.eraseOfferAtIndex(indexOfBuyOffer);
 }
 
 void MarketScreen::forceFullDraw(sf::RenderWindow& windowToDrawIn)

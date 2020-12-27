@@ -39,6 +39,9 @@ class MarketScreen: public OAEScreen
 	protected:
 		//
 	private:
+		void handlePurchase(unsigned int indexOfSaleOffer);
+		void handleSale(unsigned int indexOfBuyOffer);
+
 		bool shouldSwitchToFarmScreenFlag;
 
 		//Shared with farm screen
