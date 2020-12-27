@@ -39,6 +39,10 @@ class MarketScreen: public OAEScreen
 		void setMoneyDisplayAmount(unsigned int moneyDisplayAmount);
 		void setDayDisplayAmount(unsigned int dayDisplayAmount);
 
+		void setTradeableTomatoCount(unsigned int newTradeableTomatoCount);
+		void setTradeableCucumberCount(unsigned int newTradeableCucumberCount);
+		void setTradeableCarrotCount(unsigned int newTradeableCarrotCount);
+
 		std::vector<WorldObject> getWorldObjectsPurchased();
 		std::vector<WorldObjectReferenceNumber> getSuggestedWorldObjectReferenceNumbersForWorldObjectsPurchased();
 		void acknowledgePurchasedWorldObjects();

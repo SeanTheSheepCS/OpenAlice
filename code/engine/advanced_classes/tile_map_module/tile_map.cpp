@@ -221,6 +221,10 @@ void TileMap::addWorldObjectWithReferenceNumber(WorldObjectReferenceNumber refer
 	   currentObject.pushDrawableObjectOutOfCollisionZoneIfItIntersects(objectToAdd);
 	   }
 	   */
+	if(referenceNumberToWorldObjectMap.count(referenceNumber) == 1)
+	{
+		referenceNumberToWorldObjectMap.erase(referenceNumber);
+	}
 	referenceNumberToWorldObjectMap.insert(std::pair<WorldObjectReferenceNumber, WorldObject>(referenceNumber, objectToAdd));
 }
 

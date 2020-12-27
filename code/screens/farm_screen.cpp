@@ -926,6 +926,9 @@ void FarmScreen::loadSaveFile(const SaveFile& saveFileToLoad)
 				plantTileMap.setReferenceNumberAtIndicesAndDoNotPartialDraw(i,j, saveFileToLoad.getReferenceNumberAtRowAndColPlantTileMap(i,j));
 			}
 		}
+		this->initializeWorldObjectsInGroundTileMap();
+		dayNumberDisplay.setNumberDisplayAmount(1);
+		moneyDisplay.setNumberDisplayAmount(0);
 	}
 	else
 	{

@@ -131,8 +131,50 @@ void MarketScreen::handlePurchase(unsigned int indexOfBuyOffer)
 
 void MarketScreen::handleSale(unsigned int indexOfSaleOffer)
 {
-	//TODO
-	sellOffers.eraseOfferAtIndex(indexOfSaleOffer);
+	TradeableCommodityEnum commodityToBeTraded = sellOffers.returnMarketOfferAtIndex(indexOfSaleOffer).getCommodityToBeTraded();
+	unsigned int amountToBeTraded = sellOffers.returnMarketOfferAtIndex(indexOfSaleOffer).getAmountTraded();
+	TradeableCommodityEnum commodityToBeTradedFor = sellOffers.returnMarketOfferAtIndex(indexOfSaleOffer).getCommodityToBeTradedFor();
+	unsigned int amountToBeTradedFor = sellOffers.returnMarketOfferAtIndex(indexOfSaleOffer).getAmountTradedFor();
+
+	switch(commodityToBeTradedFor)
+	{
+		case TRADEABLE_COMMODITY_ENUM_TOMATO_CRATE:
+			if(tomatoCount.getNumber() <= amountToBeTraded)
+			{
+				tomatoCount.decrementNumberDisplayByAmount(amountToBeTraded);
+				for(int i = 0; i < amountToBeTraded; i++)
+				{
+					suggestedReferenceNumbersOfCratesWhoseContentsWereSold.push_back(WORLD_OBJECT_REF_NUMBER_TOMATO_CRATE_ONE);
+				}
+				moneyDisplay.incrementNumberDisplayByAmount(amountToBeTradedFor);
+				sellOffers.eraseOfferAtIndex(indexOfSaleOffer);
+			}
+			break;
+		case TRADEABLE_COMMODITY_ENUM_CUCUMBER_CRATE:
+			if(cucumberCount.getNumber() <= amountToBeTraded)
+			{
+				cucumberCount.decrementNumberDisplayByAmount(amountToBeTraded);
+				for(int i = 0; i < amountToBeTraded; i++)
+				{
+					suggestedReferenceNumbersOfCratesWhoseContentsWereSold.push_back(WORLD_OBJECT_REF_NUMBER_CUCUMBER_CRATE_ONE);
+				}
+				moneyDisplay.incrementNumberDisplayByAmount(amountToBeTradedFor);
+				sellOffers.eraseOfferAtIndex(indexOfSaleOffer);
+			}
+			break;
+		case TRADEABLE_COMMODITY_ENUM_CARROT_CRATE:
+			if(carrotCount.getNumber() <= amountToBeTraded)
+			{
+				carrotCount.decrementNumberDisplayByAmount(amountToBeTraded);
+				for(int i = 0; i < amountToBeTraded; i++)
+				{
+					suggestedReferenceNumbersOfCratesWhoseContentsWereSold.push_back(WORLD_OBJECT_REF_NUMBER_CARROT_CRATE_ONE);
+				}
+				moneyDisplay.incrementNumberDisplayByAmount(amountToBeTradedFor);
+				sellOffers.eraseOfferAtIndex(indexOfSaleOffer);
+			}
+			break;
+	}
 }
 
 void MarketScreen::forceFullDraw(sf::RenderWindow& windowToDrawIn)
