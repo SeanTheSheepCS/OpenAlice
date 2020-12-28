@@ -7,6 +7,7 @@
 #include <thread>
 #include <fstream>
 #include <iterator>
+#include <algorithm>
 #include "oae_screen.h"
 #include "market_screen.h"
 
@@ -85,7 +86,6 @@ class FarmScreen: public OAEScreen
 	protected:
 		//
 	private:
-		void associateAliceWithCorrectAnimation(); //HELPER FUNCTION FOR UPDATE
 		void handlePickUpEvent(sf::RenderWindow& windowToDrawIn); //HELPER FUNCTION FOR HANDLEEVENT
 		void handleItemUseEvent(sf::RenderWindow& windowToDrawIn); //HELPER FUNCTION FOR HANDLEEVENT
 		void runHarvestSequence(unsigned int plantTileMapRow, unsigned int plantTileMapCol, sf::RenderWindow& windowToDrawIn);
@@ -127,6 +127,11 @@ class FarmScreen: public OAEScreen
 		//LOADING VARIABLES
 		bool isLoading;
 		void runLoadProcedure(std::string pathOfFileToLoad);
+		
+		//FOR HANDLING ERRORS
+		void enterErrorState();
+		bool isInErrorState;
+		TexturedObject errorMessage;
 };
 
 #endif

@@ -342,4 +342,6 @@ void fillTextureBankWithLanguageDependentTextures(TextureBank& textureBankToFill
 	addLanguageDependentTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_CONFIRMATION_SCREEN_BACKGROUND, languageFilePath, "confirmation_window_background.png", &textureBankToFill);
 
 	addLanguageDependentTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_LANGUAGE_BUTTON_ICON, languageFilePath, "language_icon.png", &textureBankToFill);
+	
+	addLanguageDependentTextureToTextureBank(TEXTURE_BANK_REF_NUMBER_ERROR_MESSAGE_TEXTURE, languageFilePath, "error_message.png", &textureBankToFill);
 }

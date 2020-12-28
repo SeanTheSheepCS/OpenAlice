@@ -15,8 +15,10 @@ FarmScreen::FarmScreen(int x, int y, unsigned int width, unsigned int height):
 	groundTileMap(x, y+(height*0.1), width, (height*0.9), 40, 40),
 	plantTileMap(x, y+(height*0.1), width, (height*0.9), 40, 40),
 	alice(x+(width*0.45), y+(height*0.4), width*0.1, height*0.2),
-	dayNightCircle(x-(width*0.75), y-(height*0.25), width*2.5, height*2.5, nullptr)
+	dayNightCircle(x-(width*0.75), y-(height*0.25), width*2.5, height*2.5, nullptr),
+	errorMessage(x+(width*0.2), y+(height*0.2), width*0.6, height*0.6, nullptr)
 {
+	this->isInErrorState = false;
 	this->isSaveThreadValid = false;
 	this->pathToSaveFileUsed = "";
 	this->isInSleepState = false;
@@ -54,6 +56,11 @@ std::vector<unsigned char> FarmScreen::toWriteableForm()
 
 void FarmScreen::handleEvent(sf::Event event, sf::RenderWindow& window)
 {
+	if(this->isInErrorState)
+	{
+		return;
+	}
+
 	switch(event.type)
 	{
 		case sf::Event::KeyPressed:
@@ -125,6 +132,11 @@ void FarmScreen::handleEvent(sf::Event event, sf::RenderWindow& window)
 
 void FarmScreen::handlePickUpEvent(sf::RenderWindow& windowToDrawIn)
 {
+	if(this->isInErrorState)
+	{
+		return;
+	}
+
 	std::map<WorldObjectReferenceNumber, WorldObject> worldObjectsAndRefNumbersThatAreIntersectingWithAlice = groundTileMap.getAllWorldObjectsWithRefNumbersWhoAreCurrentlyTriggeredByDrawableObject(alice);
 	bool hasPickedUpObjectThisTime = false;
 	for(auto const& [refNum, currentObject] : worldObjectsAndRefNumbersThatAreIntersectingWithAlice) //This line iterates through the map, you can think of this as for(currentObject in map)
@@ -162,6 +174,11 @@ void FarmScreen::handlePickUpEvent(sf::RenderWindow& windowToDrawIn)
 
 void FarmScreen::handleItemUseEvent(sf::RenderWindow& windowToDrawIn)
 {
+	if(this->isInErrorState)
+	{
+		return;
+	}
+
 	if(alice.isHoldingObject())
 	{
 		std::pair<unsigned int, unsigned int> rowAndColGroundTileMap = groundTileMap.getRowAndColOfTileNearestToDrawableObject(alice);
@@ -365,6 +382,11 @@ void FarmScreen::runSleepSequence(sf::RenderWindow& windowToDrawIn)
 
 void FarmScreen::runSaveProcedure()
 {
+	if(this->isInErrorState)
+	{
+		return;
+	}
+
 	this->isSaving = true;
 
 	std::ofstream fileToWriteSaveTo(pathToSaveFileUsed, std::ofstream::binary);
@@ -564,6 +586,9 @@ void FarmScreen::associateWithTexturesInBank(const TextureBank& textureBankToTak
 	displaysAMoneySign.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_MONEY_SIGN_DISPLAY_TEXTURE));
 	mainMenuButton.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_BACK_TO_MAIN_MENU_BUTTON_TEXTURE));
 	marketButton.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_GO_TO_MARKET_BUTTON_TEXTURE));
+	
+	//FOR ERROR STATE
+	errorMessage.associateWithNewTexture(textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber(TEXTURE_BANK_REF_NUMBER_ERROR_MESSAGE_TEXTURE));
 }
 
 void FarmScreen::associateWithAnimationsInBank(const OAEAnimationBank& animationBankToTakeFrom)
@@ -720,6 +745,11 @@ void FarmScreen::initializeWorldObjectsInGroundTileMap()
 
 void FarmScreen::forceFullDraw(sf::RenderWindow& windowToDrawIn)
 {
+	if(this->isInErrorState)
+	{
+		errorMessage.draw(windowToDrawIn);
+		return;
+	}
 	if(this->isInSleepState)
 	{
 		dayNightCircle.draw(windowToDrawIn);
@@ -741,6 +771,12 @@ void FarmScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::Render
 {
 	static unsigned int numberOfMillisecondsPassedInSleepStateSinceLastWakeUp = 0;
 	static unsigned int lastRowOfPlantTileMapUpdatedInSleepCycle = -1;
+
+	if(this->isInErrorState)
+	{
+		errorMessage.draw(windowToDrawIn);
+		return;
+	}
 
 	if(this->isInSleepState)
 	{
@@ -915,12 +951,51 @@ void FarmScreen::acknowledgeShouldUpdateMarketScreen()
 
 void FarmScreen::handlePurchaseEvent(PurchaseEvent purchaseEventToHandle)
 {
-	//TODO
+	WorldObjectReferenceNumber suggestedPurchasedWorldObjectReferenceNumber = purchaseEventToHandle.getSuggestedPurchasedObjectReferenceNumber();
+	WorldObject worldObjectBought = purchaseEventToHandle.getPurchasedWorldObject();
+	std::vector<WorldObjectReferenceNumber> allWorldObjectReferenceNumbersInGroundTileMap = groundTileMap.getAllWorldObjectReferenceNumbersInTileMap();
+	switch(suggestedPurchasedWorldObjectReferenceNumber)
+	{
+		case WORLD_OBJECT_REF_NUMBER_TOMATO_SEED_PACKET_ONE:
+			//if there is no world object with a refernece number of WORLD_OBJECT_REF_NUMBER_TOMATO_SEED_PACKET_ONE...
+			if(!(std::find(allWorldObjectReferenceNumbersInGroundTileMap.begin(), allWorldObjectReferenceNumbersInGroundTileMap.end(), WORLD_OBJECT_REF_NUMBER_TOMATO_SEED_PACKET_ONE) != allWorldObjectReferenceNumbersInGroundTileMap.end()))
+			{
+				//
+			}
+			//if there is no world object with a refernece number of WORLD_OBJECT_REF_NUMBER_TOMATO_SEED_PACKET_TWO...
+			else if(!(std::find(allWorldObjectReferenceNumbersInGroundTileMap.begin(), allWorldObjectReferenceNumbersInGroundTileMap.end(), WORLD_OBJECT_REF_NUMBER_TOMATO_SEED_PACKET_TWO) != allWorldObjectReferenceNumbersInGroundTileMap.end()))
+			{
+				//
+			}
+			//if there is no world object with a refernece number of WORLD_OBJECT_REF_NUMBER_TOMATO_SEED_PACKET_THREE...
+			else if(!(std::find(allWorldObjectReferenceNumbersInGroundTileMap.begin(), allWorldObjectReferenceNumbersInGroundTileMap.end(), WORLD_OBJECT_REF_NUMBER_TOMATO_SEED_PACKET_THREE) != allWorldObjectReferenceNumbersInGroundTileMap.end()))
+			{
+				//
+			}
+			//else, the farm already has three tomato seed packets...
+			else
+			{
+				//The market should not allow purchases that would result in more than three seed packets of a cetain type on the farm. If you got here, the farm should enter error state.
+				this->enterErrorState();
+			}
+			break;
+		case WORLD_OBJECT_REF_NUMBER_CUCUMBER_SEED_PACKET_ONE:
+			//
+			break;
+		case WORLD_OBJECT_REF_NUMBER_CARROT_SEED_PACKET_ONE:
+			//
+			break;
+	}
 }
 
 void FarmScreen::handleSaleEvent(SaleEvent saleEventToHandle)
 {
 	//TODO
+}
+
+void FarmScreen::enterErrorState()
+{
+	this->isInErrorState = true;
 }
 
 void FarmScreen::loadSaveFile(const SaveFile& saveFileToLoad)
@@ -964,13 +1039,13 @@ unsigned int FarmScreen::getTradeableTomatoCrateCount() const
 	{
 		switch(currentRefNum)
 		{
-			case WORLD_OBJECT_REF_NUMBER_TOMATO_CRATE_ONE:
+			case WORLD_OBJECT_REF_NUMBER_TOMATO_CRATE_ONE_FILLED:
 				numberOfTradeableTomatoCrates++;
 				break;
-			case WORLD_OBJECT_REF_NUMBER_TOMATO_CRATE_TWO:
+			case WORLD_OBJECT_REF_NUMBER_TOMATO_CRATE_TWO_FILLED:
 				numberOfTradeableTomatoCrates++;
 				break;
-			case WORLD_OBJECT_REF_NUMBER_TOMATO_CRATE_THREE:
+			case WORLD_OBJECT_REF_NUMBER_TOMATO_CRATE_THREE_FILLED:
 				numberOfTradeableTomatoCrates++;
 				break;
 		}
@@ -986,13 +1061,13 @@ unsigned int FarmScreen::getTradeableCucumberCrateCount() const
 	{
 		switch(currentRefNum)
 		{
-			case WORLD_OBJECT_REF_NUMBER_CUCUMBER_CRATE_ONE:
+			case WORLD_OBJECT_REF_NUMBER_CUCUMBER_CRATE_ONE_FILLED:
 				numberOfTradeableCucumberCrates++;
 				break;
-			case WORLD_OBJECT_REF_NUMBER_CUCUMBER_CRATE_TWO:
+			case WORLD_OBJECT_REF_NUMBER_CUCUMBER_CRATE_TWO_FILLED:
 				numberOfTradeableCucumberCrates++;
 				break;
-			case WORLD_OBJECT_REF_NUMBER_CUCUMBER_CRATE_THREE:
+			case WORLD_OBJECT_REF_NUMBER_CUCUMBER_CRATE_THREE_FILLED:
 				numberOfTradeableCucumberCrates++;
 				break;
 		}
