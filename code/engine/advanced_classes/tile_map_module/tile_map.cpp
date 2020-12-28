@@ -455,6 +455,26 @@ bool TileMap::returnTrueIfDrawableObjectIntersectsWithAnyCollisionBoxes(const Dr
 	return false;
 }
 
+std::vector<WorldObjectReferenceNumber> TileMap::getAllWorldObjectReferenceNumbersInTileMap() const
+{
+	std::vector<WorldObjectReferenceNumber> returnValue;
+	for(auto const& [refNum, currentObject] : referenceNumberToWorldObjectMap) //This line iterates through the map, you can think of this as for(currentObject in map)
+	{
+		returnValue.push_back(refNum);
+	}
+	return returnValue;
+}
+
+std::vector<WorldObject> TileMap::getAllWorldObjectsInTileMap() const
+{
+	std::vector<WorldObject> returnValue;
+	for(auto const& [refNum, currentObject] : referenceNumberToWorldObjectMap) //This line iterates through the map, you can think of this as for(currentObject in map)
+	{
+		returnValue.push_back(currentObject);
+	}
+	return returnValue;
+}
+
 std::pair<unsigned int, unsigned int> TileMap::getRowAndColOfTileNearestToDrawableObject(const DrawableObject& objectToCheckProximityOfInScreenCoordinates)
 {
 	std::pair<unsigned int, unsigned int> returnValue;
@@ -470,36 +490,37 @@ std::pair<unsigned int, unsigned int> TileMap::getRowAndColOfTileNearestToDrawab
 	return returnValue;
 }
 
-int TileMap::screenXToWorldX(int screenX)
+int TileMap::screenXToWorldX(int screenX) const
 {
 	return -x + screenX - (((float) tileWidth)*(centreOffsetTileCountX.float_form)) + this->offsetToMakeScreenStartCenteredX;
 }
-int TileMap::worldXToScreenX(int worldX)
+
+int TileMap::worldXToScreenX(int worldX) const
 {
 	return x + worldX + (((float) tileWidth)*(centreOffsetTileCountX.float_form)) - this->offsetToMakeScreenStartCenteredX;
 }
 
-int TileMap::screenYToWorldY(int screenY)
+int TileMap::screenYToWorldY(int screenY) const
 {
 	return -y + screenY - (((float) tileHeight)*(centreOffsetTileCountY.float_form)) + this->offsetToMakeScreenStartCenteredY;
 }
 
-int TileMap::worldYToScreenY(int worldY)
+int TileMap::worldYToScreenY(int worldY) const
 {
 	return y + worldY + (((float) tileHeight)*(centreOffsetTileCountY.float_form)) - this->offsetToMakeScreenStartCenteredY;
 }
 
-unsigned int TileMap::getRowCount()
+unsigned int TileMap::getRowCount() const
 {
 	return rowCount;
 }
 
-unsigned int TileMap::getColCount()
+unsigned int TileMap::getColCount() const
 {
 	return colCount;
 }
 
-int TileMap::roundFloat(float floatToRound) //Helper function for getRowAndColOfTileNearestToDrawableObject(...)
+/* static */ int TileMap::roundFloat(float floatToRound) //Helper function for getRowAndColOfTileNearestToDrawableObject(...)
 {
 	int bottomRoundingNumber = (int)floatToRound;
 	int topRoundingNumber = ((int)floatToRound)+1;

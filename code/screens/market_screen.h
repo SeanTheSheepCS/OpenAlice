@@ -11,6 +11,8 @@
 #include "../engine/primitive_classes/textured_button_object.h"
 #include "../engine/advanced_classes/number_display_module/number_display_module.h"
 #include "../actors/market_offer.h"
+#include "../actors/purchase_event.h"
+#include "../actors/sale_event.h"
 #include "../actors/market_offer_list.h"
 
 class MarketScreen: public OAEScreen
@@ -43,12 +45,11 @@ class MarketScreen: public OAEScreen
 		void setTradeableCucumberCount(unsigned int newTradeableCucumberCount);
 		void setTradeableCarrotCount(unsigned int newTradeableCarrotCount);
 
-		std::vector<WorldObject> getWorldObjectsPurchased();
-		std::vector<WorldObjectReferenceNumber> getSuggestedWorldObjectReferenceNumbersForWorldObjectsPurchased();
-		void acknowledgePurchasedWorldObjects();
+		std::vector<PurchaseEvent> getAllPurchaseEvents() const;
+		void acknowledgeAllPurchaseEvents();
 
-		std::vector<WorldObjectReferenceNumber> getSuggestedReferenceNumbersOfCratesWhoseContentsWereSold();
-		void acknowledgeSuggestedReferenceNumbersOfCratesWhoseContentsWereSold();
+		std::vector<SaleEvent> getAllSaleEvents() const;
+		void acknowledgeAllSaleEvents();
 	protected:
 		//
 	private:
@@ -58,9 +59,8 @@ class MarketScreen: public OAEScreen
 		bool shouldSwitchToFarmScreenFlag;
 
 		//For giving information to the farm screen so that it can update appropriately.
-		std::vector<WorldObject> worldObjectsPurchased;
-		std::vector<WorldObjectReferenceNumber> worldObjectsPurchasedSuggestedReferenceNumbers;
-		std::vector<WorldObjectReferenceNumber> suggestedReferenceNumbersOfCratesWhoseContentsWereSold;
+		std::vector<PurchaseEvent> purchaseEvents;
+		std::vector<SaleEvent> saleEvents;
 
 		//Shared with farm screen
 		TexturedObject displaysTheWordDay;

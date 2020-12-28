@@ -1,7 +1,3 @@
-#include <SFML/Graphics.hpp>
-#include <SFML/Audio.hpp>
-#include <iostream>
-#include <string>
 #include "main.h"
 
 int main()
@@ -171,10 +167,31 @@ void syncFarmScreenWithMarketScreen(FarmScreen& farmScreenVar, MarketScreen& mar
 {
 	farmScreenVar.setMoneyDisplayAmount(marketScreenVar.getMoneyAmount());
 	farmScreenVar.setDayDisplayAmount(marketScreenVar.getDay());
+	if(marketScreenVar.getAllPurchaseEvents().size() > 0)
+	{
+		std::vector<PurchaseEvent> allPurchaseEvents = marketScreenVar.getAllPurchaseEvents();
+		for(PurchaseEvent currentPurchaseEvent : allPurchaseEvents)
+		{
+			farmScreenVar.handlePurchaseEvent(currentPurchaseEvent);
+		}
+		marketScreenVar.acknowledgeAllPurchaseEvents();
+	}
+	if(marketScreenVar.getAllSaleEvents().size() > 0)
+	{
+		std::vector<SaleEvent> allSaleEvents = marketScreenVar.getAllSaleEvents();
+		for(SaleEvent currentSaleEvent : allSaleEvents)
+		{
+			farmScreenVar.handleSaleEvent(currentSaleEvent);
+		}
+		marketScreenVar.acknowledgeAllSaleEvents();
+	}
 }
 
 void syncMarketScreenWithFarmScreen(MarketScreen& marketScreenVar, FarmScreen& farmScreenVar)
 {
 	marketScreenVar.setMoneyDisplayAmount(farmScreenVar.getMoneyAmount());
 	marketScreenVar.setDayDisplayAmount(farmScreenVar.getDay());
+	marketScreenVar.setTradeableTomatoCount(farmScreenVar.getTradeableTomatoCrateCount());
+	marketScreenVar.setTradeableCucumberCount(farmScreenVar.getTradeableCucumberCrateCount());
+	marketScreenVar.setTradeableCarrotCount(farmScreenVar.getTradeableCarrotCrateCount());
 }

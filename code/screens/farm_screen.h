@@ -9,6 +9,7 @@
 #include <iterator>
 #include "oae_screen.h"
 #include "market_screen.h"
+
 #include "../engine/primitive_classes/textured_object.h"
 #include "../engine/primitive_classes/textured_and_animated_object.h"
 #include "../engine/primitive_classes/textured_button_object.h"
@@ -19,7 +20,11 @@
 #include "../engine/advanced_classes/tile_map_module/tile_map_module.h"
 #include "../engine/advanced_classes/player_object_module/player_object_module.h"
 #include "../engine/utilities/utilities.h"
+
 #include "../actors/alice.h"
+#include "../actors/purchase_event.h"
+#include "../actors/sale_event.h"
+
 #include "../texture_bank.h"
 #include "../save_file.h"
 #include "../oae_animation_bank.h"
@@ -66,8 +71,15 @@ class FarmScreen: public OAEScreen
 		bool returnIfShouldUpdateMarketScreen() const;
 		void acknowledgeShouldUpdateMarketScreen();
 
+		void handlePurchaseEvent(PurchaseEvent purchaseEventToHandle);
+		void handleSaleEvent(SaleEvent saleEventToHandle);
+
 		unsigned int getDay() const;
 		unsigned int getMoneyAmount() const;
+		unsigned int getTradeableTomatoCrateCount() const;
+		unsigned int getTradeableCucumberCrateCount() const;
+		unsigned int getTradeableCarrotCrateCount() const;
+
 		void setMoneyDisplayAmount(unsigned int moneyDisplayAmount);
 		void setDayDisplayAmount(unsigned int dayDisplayAmount);
 	protected:

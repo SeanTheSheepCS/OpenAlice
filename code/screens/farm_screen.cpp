@@ -913,6 +913,16 @@ void FarmScreen::acknowledgeShouldUpdateMarketScreen()
 	(this->shouldUpdateMarketScreenFlag) = false;
 }
 
+void FarmScreen::handlePurchaseEvent(PurchaseEvent purchaseEventToHandle)
+{
+	//TODO
+}
+
+void FarmScreen::handleSaleEvent(SaleEvent saleEventToHandle)
+{
+	//TODO
+}
+
 void FarmScreen::loadSaveFile(const SaveFile& saveFileToLoad)
 {
 	this->pathToSaveFileUsed = saveFileToLoad.getPath();
@@ -944,6 +954,72 @@ unsigned int FarmScreen::getDay() const
 unsigned int FarmScreen::getMoneyAmount() const
 {
 	return moneyDisplay.getNumber();
+}
+
+unsigned int FarmScreen::getTradeableTomatoCrateCount() const
+{
+	unsigned int numberOfTradeableTomatoCrates = 0;
+	std::vector<WorldObjectReferenceNumber> refNumsOfAllWorldObjectsInFarmScreen = groundTileMap.getAllWorldObjectReferenceNumbersInTileMap();
+	for(WorldObjectReferenceNumber& currentRefNum : refNumsOfAllWorldObjectsInFarmScreen)
+	{
+		switch(currentRefNum)
+		{
+			case WORLD_OBJECT_REF_NUMBER_TOMATO_CRATE_ONE:
+				numberOfTradeableTomatoCrates++;
+				break;
+			case WORLD_OBJECT_REF_NUMBER_TOMATO_CRATE_TWO:
+				numberOfTradeableTomatoCrates++;
+				break;
+			case WORLD_OBJECT_REF_NUMBER_TOMATO_CRATE_THREE:
+				numberOfTradeableTomatoCrates++;
+				break;
+		}
+	}
+	return numberOfTradeableTomatoCrates;
+}
+
+unsigned int FarmScreen::getTradeableCucumberCrateCount() const
+{
+	unsigned int numberOfTradeableCucumberCrates = 0;
+	std::vector<WorldObjectReferenceNumber> refNumsOfAllWorldObjectsInFarmScreen = groundTileMap.getAllWorldObjectReferenceNumbersInTileMap();
+	for(WorldObjectReferenceNumber& currentRefNum : refNumsOfAllWorldObjectsInFarmScreen)
+	{
+		switch(currentRefNum)
+		{
+			case WORLD_OBJECT_REF_NUMBER_CUCUMBER_CRATE_ONE:
+				numberOfTradeableCucumberCrates++;
+				break;
+			case WORLD_OBJECT_REF_NUMBER_CUCUMBER_CRATE_TWO:
+				numberOfTradeableCucumberCrates++;
+				break;
+			case WORLD_OBJECT_REF_NUMBER_CUCUMBER_CRATE_THREE:
+				numberOfTradeableCucumberCrates++;
+				break;
+		}
+	}
+	return numberOfTradeableCucumberCrates;
+}
+
+unsigned int FarmScreen::getTradeableCarrotCrateCount() const
+{
+	unsigned int numberOfTradeableCarrotCrates = 0;
+	std::vector<WorldObjectReferenceNumber> refNumsOfAllWorldObjectsInFarmScreen = groundTileMap.getAllWorldObjectReferenceNumbersInTileMap();
+	for(WorldObjectReferenceNumber& currentRefNum : refNumsOfAllWorldObjectsInFarmScreen)
+	{
+		switch(currentRefNum)
+		{
+			case WORLD_OBJECT_REF_NUMBER_CARROT_CRATE_ONE:
+				numberOfTradeableCarrotCrates++;
+				break;
+			case WORLD_OBJECT_REF_NUMBER_CARROT_CRATE_TWO:
+				numberOfTradeableCarrotCrates++;
+				break;
+			case WORLD_OBJECT_REF_NUMBER_CARROT_CRATE_THREE:
+				numberOfTradeableCarrotCrates++;
+				break;
+		}
+	}
+	return numberOfTradeableCarrotCrates;
 }
 
 void FarmScreen::setMoneyDisplayAmount(unsigned int moneyDisplayAmount)

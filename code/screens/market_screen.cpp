@@ -123,8 +123,8 @@ void MarketScreen::handlePurchase(unsigned int indexOfBuyOffer)
 				}
 				break;
 		}
-		worldObjectsPurchased.push_back(worldObjectBought);
-		worldObjectsPurchasedSuggestedReferenceNumbers.push_back(worldObjectBoughtSuggestedReferenceNumber);
+		PurchaseEvent purchaseEventToAdd = PurchaseEvent(worldObjectBoughtSuggestedReferenceNumber, worldObjectBought);
+		purchaseEvents.push_back(purchaseEventToAdd);
 		buyOffers.eraseOfferAtIndex(indexOfBuyOffer);
 	}
 }
@@ -144,7 +144,8 @@ void MarketScreen::handleSale(unsigned int indexOfSaleOffer)
 				tomatoCount.decrementNumberDisplayByAmount(amountToBeTraded);
 				for(int i = 0; i < amountToBeTraded; i++)
 				{
-					suggestedReferenceNumbersOfCratesWhoseContentsWereSold.push_back(WORLD_OBJECT_REF_NUMBER_TOMATO_CRATE_ONE);
+					SaleEvent saleEventToAdd = SaleEvent(WORLD_OBJECT_REF_NUMBER_TOMATO_CRATE_ONE);
+					saleEvents.push_back(saleEventToAdd);
 				}
 				moneyDisplay.incrementNumberDisplayByAmount(amountToBeTradedFor);
 				sellOffers.eraseOfferAtIndex(indexOfSaleOffer);
@@ -156,7 +157,8 @@ void MarketScreen::handleSale(unsigned int indexOfSaleOffer)
 				cucumberCount.decrementNumberDisplayByAmount(amountToBeTraded);
 				for(int i = 0; i < amountToBeTraded; i++)
 				{
-					suggestedReferenceNumbersOfCratesWhoseContentsWereSold.push_back(WORLD_OBJECT_REF_NUMBER_CUCUMBER_CRATE_ONE);
+					SaleEvent saleEventToAdd = SaleEvent(WORLD_OBJECT_REF_NUMBER_CUCUMBER_CRATE_ONE);
+					saleEvents.push_back(saleEventToAdd);
 				}
 				moneyDisplay.incrementNumberDisplayByAmount(amountToBeTradedFor);
 				sellOffers.eraseOfferAtIndex(indexOfSaleOffer);
@@ -168,7 +170,8 @@ void MarketScreen::handleSale(unsigned int indexOfSaleOffer)
 				carrotCount.decrementNumberDisplayByAmount(amountToBeTraded);
 				for(int i = 0; i < amountToBeTraded; i++)
 				{
-					suggestedReferenceNumbersOfCratesWhoseContentsWereSold.push_back(WORLD_OBJECT_REF_NUMBER_CARROT_CRATE_ONE);
+					SaleEvent saleEventToAdd = SaleEvent(WORLD_OBJECT_REF_NUMBER_CARROT_CRATE_ONE);
+					saleEvents.push_back(saleEventToAdd);
 				}
 				moneyDisplay.incrementNumberDisplayByAmount(amountToBeTradedFor);
 				sellOffers.eraseOfferAtIndex(indexOfSaleOffer);
@@ -314,32 +317,41 @@ void MarketScreen::setDayDisplayAmount(unsigned int dayDisplayAmount)
 	dayNumberDisplay.setNumberDisplayAmount(dayDisplayAmount);
 }
 
+void MarketScreen::setTradeableTomatoCount(unsigned int newTradeableTomatoCount)
+{
+	tomatoCount.setNumberDisplayAmount(newTradeableTomatoCount);
+}
+
+void MarketScreen::setTradeableCucumberCount(unsigned int newTradeableCucumberCount)
+{
+	cucumberCount.setNumberDisplayAmount(newTradeableCucumberCount);
+}
+
+void MarketScreen::setTradeableCarrotCount(unsigned int newTradeableCarrotCount)
+{
+	carrotCount.setNumberDisplayAmount(newTradeableCarrotCount);
+}	
+
 void MarketScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::RenderWindow& window)
 {
 }
 
-std::vector<WorldObject> MarketScreen::getWorldObjectsPurchased()
+std::vector<PurchaseEvent> MarketScreen::getAllPurchaseEvents() const
 {
-	return worldObjectsPurchased;
+	return (this->purchaseEvents);
 }
 
-std::vector<WorldObjectReferenceNumber> MarketScreen::getSuggestedWorldObjectReferenceNumbersForWorldObjectsPurchased()
+void MarketScreen::acknowledgeAllPurchaseEvents()
 {
-	return worldObjectsPurchasedSuggestedReferenceNumbers;
+	(this->purchaseEvents).clear();
 }
 
-void MarketScreen::acknowledgePurchasedWorldObjects()
+std::vector<SaleEvent> MarketScreen::getAllSaleEvents() const
 {
-	worldObjectsPurchased.clear();
-	worldObjectsPurchasedSuggestedReferenceNumbers.clear();
+	return (this->saleEvents);
 }
 
-std::vector<WorldObjectReferenceNumber> MarketScreen::getSuggestedReferenceNumbersOfCratesWhoseContentsWereSold()
+void MarketScreen::acknowledgeAllSaleEvents()
 {
-	return suggestedReferenceNumbersOfCratesWhoseContentsWereSold;
-}
-
-void MarketScreen::acknowledgeSuggestedReferenceNumbersOfCratesWhoseContentsWereSold()
-{
-	suggestedReferenceNumbersOfCratesWhoseContentsWereSold.clear();
+	(this->saleEvents).clear();
 }

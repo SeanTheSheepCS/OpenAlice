@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <utility>
+#include <vector>
 #include "../../primitive_classes/drawable_object.h"
 #include "../../primitive_classes/textured_object.h"
 #include "../../primitive_classes/world_object.h"
@@ -57,15 +58,11 @@ class TileMap: public DrawableObject
 		void deassociateWorldObjectWithReferenceNumberWithItsTexturePointer(WorldObjectReferenceNumber referenceNumber);
 		WorldObject getWorldObjectWithReferenceNumber(WorldObjectReferenceNumber referenceNumber);
 
-		//FUNCTIONS FOR COORDINATE CONVERSIONS
-		int screenXToWorldX(int screenX);
-		int worldXToScreenX(int worldX);
-		int screenYToWorldY(int screenY);
-		int worldYToScreenY(int worldY);
-
 		//GETTERS
-		unsigned int getRowCount();
-		unsigned int getColCount();
+		unsigned int getRowCount() const;
+		unsigned int getColCount() const;
+		std::vector<WorldObjectReferenceNumber> getAllWorldObjectReferenceNumbersInTileMap() const;
+		std::vector<WorldObject> getAllWorldObjectsInTileMap() const;
 
 		//SPECIAL FUNCTIONS
 		void draw(sf::RenderWindow& windowToDrawIn);
@@ -74,13 +71,19 @@ class TileMap: public DrawableObject
 		std::pair<unsigned int, unsigned int> getRowAndColOfTileNearestToDrawableObject(const DrawableObject& objectToCheckProximityOf);
 
 	protected:
-		// 
+		//
 	private:
+		//FUNCTIONS FOR COORDINATE CONVERSIONS
+		int screenXToWorldX(int screenX) const;
+		int worldXToScreenX(int worldX) const;
+		int screenYToWorldY(int screenY) const;
+		int worldYToScreenY(int worldY) const;
+
 		void deleteTileMap(); //Helper function for ~TileMap() and TileMap& operator=(...)
 
 		void drawTileAtRowAndColInWindow(int row, int col, sf::RenderWindow& windowToDrawIn); //Helper function for draw(...) and setTileAtIndicesToReferenceNumberAndPartialDraw(...).
 		void drawWorldObjects(sf::RenderWindow& windowToDrawIn); //Helper function for draw(...)
-		int roundFloat(float floatToRound); //Helper function for getRowAndColOfTileNearestToDrawableObject(...)
+		static int roundFloat(float floatToRound); //Helper function for getRowAndColOfTileNearestToDrawableObject(...)
 
 		int offsetToMakeScreenStartCenteredX;
 		int offsetToMakeScreenStartCenteredY;
