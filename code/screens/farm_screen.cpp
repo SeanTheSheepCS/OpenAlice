@@ -377,7 +377,6 @@ void FarmScreen::runSleepSequence(sf::RenderWindow& windowToDrawIn)
 	dayNumberDisplay.incrementNumberDisplayByAmount(1);
 	this->dayNightCircle.setRotationAroundCentre(180.0);
 	this->isInSleepState = true;
-	this->shouldUpdateMarketScreenFlag = true;
 }
 
 void FarmScreen::runSaveProcedure()
@@ -405,6 +404,8 @@ void FarmScreen::runSaveProcedure()
 	std::copy(plantTileMapAsUnsignedCharArray.begin(), plantTileMapAsUnsignedCharArray.end(), fileToWriteSaveToIterator);
 
 	fileToWriteSaveTo.close();
+
+	this->shouldUpdateMarketScreenFlag = true;
 	this->isSaving = false;
 }
 
@@ -1376,6 +1377,46 @@ void FarmScreen::setMoneyDisplayAmount(unsigned int moneyDisplayAmount)
 void FarmScreen::setDayDisplayAmount(unsigned int dayDisplayAmount)
 {
 	dayNumberDisplay.setNumberDisplayAmount(dayDisplayAmount);
+}
+
+unsigned int FarmScreen::generateSeedFromSavedData()
+{
+	// In this function, variables can only be used if they:
+	//    1. Are saved in the savefile or derive exclusively from variables saved in the save file.
+	//    2. Do not depend on anything that is not saved in the save file.
+	// The use of any other kind of variable will mean that any "random" events that actually depend on the data saved in your save file will not work as intended. This includes the market which is "random" but results appear to be saved, in reality we are just using the same seed to generate offers again.
+	// In summary, with this function: SAME SAVE FILE -> SAME SEED GENERATED EACH TIME
+	unsigned int returnValue = 0x00000000;
+
+	unsigned int day = dayNumberDisplay.getNumber();
+	unsigned int money = moneyDisplay.getNumber();
+	unsigned int numberOfWorldObjectsInGroundTileMap = groundTileMap.getAllWorldObjectReferenceNumbersInTileMap().size();
+
+	unsigned int groundTileMapPseudorandomValue = 0x00000000;
+	for(int i = 0; i < groundTileMap.getRowCount(); i++)
+	{
+		for(int j = 0; j < groundTileMap.getColCount(); j++)
+		{
+			groundTileMapPseudorandomValue += groundTileMap.getReferenceNumberAtIndices(i, j);
+		}
+	}
+
+	unsigned int plantTileMapPseudorandomValue = 0x00000000;
+	for(int i = 0; i < plantTileMap.getRowCount(); i++)
+	{
+		for(int j = 0; j < plantTileMap.getColCount(); j++)
+		{
+			plantTileMapPseudorandomValue += plantTileMap.getReferenceNumberAtIndices(i, j);
+		}
+	}
+
+	returnValue = ( (returnValue) ^ (day << 24) );
+	returnValue = ( (returnValue) ^ (money << 8) );
+	returnValue = ( (returnValue) ^ (numberOfWorldObjectsInGroundTileMap << 0) );
+	returnValue = ( (returnValue) ^ (groundTileMapPseudorandomValue) << 16);
+	returnValue = ( (returnValue) ^ (plantTileMapPseudorandomValue) << 0 );
+
+	return returnValue;
 }
 
 void FarmScreen::drawAllObjectsALayerBelowAlice(sf::RenderWindow& windowToDrawIn) //HELPER FUNCTION FOR A LOT OF FUNCTIONS

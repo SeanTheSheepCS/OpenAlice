@@ -32,7 +32,6 @@ int main()
 
 	MarketScreen marketScreenVar(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
 	marketScreenVar.associateWithTexturesInBank(textureBankForApplication);
-	marketScreenVar.populateMarketWithRandomOffers();
 	OAEScreen* pointerToCurrentlyActiveScreen = nullptr;
 
 	//VARS FOR SFML
@@ -79,6 +78,7 @@ int main()
 						farmScreenVar.loadSaveFile(fileToLoad);
 						farmScreenVar.associateWithTexturesInBank(textureBankForApplication);
 						farmScreenVar.associateWithAnimationsInBank(animationBankForApplication);
+						marketScreenVar.populateMarketWithRandomOffers(farmScreenVar.generateSeedFromSavedData());
 						pointerToCurrentlyActiveScreen = &farmScreenVar;
 						currentScreenToDisplay = FARM_SCREEN;
 					}
@@ -108,7 +108,7 @@ int main()
 				}
 				else if(farmScreenVar.returnIfShouldUpdateMarketScreen())
 				{
-					marketScreenVar.populateMarketWithRandomOffers();
+					marketScreenVar.populateMarketWithRandomOffers(farmScreenVar.generateSeedFromSavedData());
 					farmScreenVar.acknowledgeShouldUpdateMarketScreen();
 				}
 				break;

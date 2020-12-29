@@ -30,7 +30,7 @@ class MarketScreen: public OAEScreen
 		void populateMarketWithBuyOffer(MarketOffer buyOffer);
 
 		void populateMarketWithGarbageData();
-		void populateMarketWithRandomOffers();
+		void populateMarketWithRandomOffers(unsigned int seed);
 
 		bool returnIfShouldSwitchToFarmScreen();
 		void acknowledgeShouldSwitchToFarmScreen();

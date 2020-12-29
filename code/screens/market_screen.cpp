@@ -243,12 +243,12 @@ void MarketScreen::populateMarketWithGarbageData()
 	populateMarketWithBuyOffer(MarketOffer(0,0,0,0));
 }
 
-void MarketScreen::populateMarketWithRandomOffers()
+void MarketScreen::populateMarketWithRandomOffers(unsigned int seed)
 {
 	sellOffers.clearMarketOffers();
 	buyOffers.clearMarketOffers();
 
-	srand(time(NULL));
+	srand(seed);
 
 	MarketOffer tomatoCrateForMoney = MarketOffer(0,0,0,0);
 	tomatoCrateForMoney.setCommodityToBeTraded(TRADEABLE_COMMODITY_ENUM_TOMATO_CRATE, 1);

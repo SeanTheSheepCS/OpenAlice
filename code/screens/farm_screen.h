@@ -83,6 +83,9 @@ class FarmScreen: public OAEScreen
 
 		void setMoneyDisplayAmount(unsigned int moneyDisplayAmount);
 		void setDayDisplayAmount(unsigned int dayDisplayAmount);
+
+		//SPECIAL FUNCTIONS
+		unsigned int generateSeedFromSavedData();
 	protected:
 		//
 	private:
