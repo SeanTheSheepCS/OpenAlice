@@ -125,6 +125,7 @@ void MarketScreen::handlePurchase(unsigned int indexOfBuyOffer)
 		}
 		PurchaseEvent purchaseEventToAdd = PurchaseEvent(worldObjectBoughtSuggestedReferenceNumber, worldObjectBought);
 		purchaseEvents.push_back(purchaseEventToAdd);
+		moneyDisplay.decrementNumberDisplayByAmount(amountToBeTraded);
 		buyOffers.eraseOfferAtIndex(indexOfBuyOffer);
 	}
 }
@@ -135,8 +136,7 @@ void MarketScreen::handleSale(unsigned int indexOfSaleOffer)
 	unsigned int amountToBeTraded = sellOffers.returnMarketOfferAtIndex(indexOfSaleOffer).getAmountTraded();
 	TradeableCommodityEnum commodityToBeTradedFor = sellOffers.returnMarketOfferAtIndex(indexOfSaleOffer).getCommodityToBeTradedFor();
 	unsigned int amountToBeTradedFor = sellOffers.returnMarketOfferAtIndex(indexOfSaleOffer).getAmountTradedFor();
-
-	switch(commodityToBeTradedFor)
+	switch(commodityToBeTraded)
 	{
 		case TRADEABLE_COMMODITY_ENUM_TOMATO_CRATE:
 			if(tomatoCount.getNumber() <= amountToBeTraded)
@@ -144,7 +144,7 @@ void MarketScreen::handleSale(unsigned int indexOfSaleOffer)
 				tomatoCount.decrementNumberDisplayByAmount(amountToBeTraded);
 				for(int i = 0; i < amountToBeTraded; i++)
 				{
-					SaleEvent saleEventToAdd = SaleEvent(WORLD_OBJECT_REF_NUMBER_TOMATO_CRATE_ONE);
+					SaleEvent saleEventToAdd = SaleEvent(WORLD_OBJECT_REF_NUMBER_TOMATO_CRATE_ONE_FILLED);
 					saleEvents.push_back(saleEventToAdd);
 				}
 				moneyDisplay.incrementNumberDisplayByAmount(amountToBeTradedFor);
@@ -157,7 +157,7 @@ void MarketScreen::handleSale(unsigned int indexOfSaleOffer)
 				cucumberCount.decrementNumberDisplayByAmount(amountToBeTraded);
 				for(int i = 0; i < amountToBeTraded; i++)
 				{
-					SaleEvent saleEventToAdd = SaleEvent(WORLD_OBJECT_REF_NUMBER_CUCUMBER_CRATE_ONE);
+					SaleEvent saleEventToAdd = SaleEvent(WORLD_OBJECT_REF_NUMBER_CUCUMBER_CRATE_ONE_FILLED);
 					saleEvents.push_back(saleEventToAdd);
 				}
 				moneyDisplay.incrementNumberDisplayByAmount(amountToBeTradedFor);
@@ -170,7 +170,7 @@ void MarketScreen::handleSale(unsigned int indexOfSaleOffer)
 				carrotCount.decrementNumberDisplayByAmount(amountToBeTraded);
 				for(int i = 0; i < amountToBeTraded; i++)
 				{
-					SaleEvent saleEventToAdd = SaleEvent(WORLD_OBJECT_REF_NUMBER_CARROT_CRATE_ONE);
+					SaleEvent saleEventToAdd = SaleEvent(WORLD_OBJECT_REF_NUMBER_CARROT_CRATE_ONE_FILLED);
 					saleEvents.push_back(saleEventToAdd);
 				}
 				moneyDisplay.incrementNumberDisplayByAmount(amountToBeTradedFor);

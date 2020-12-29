@@ -475,6 +475,11 @@ std::vector<WorldObject> TileMap::getAllWorldObjectsInTileMap() const
 	return returnValue;
 }
 
+void TileMap::clearAllWorldObjectsInTileMap()
+{
+	referenceNumberToWorldObjectMap.clear();
+}
+
 std::pair<unsigned int, unsigned int> TileMap::getRowAndColOfTileNearestToDrawableObject(const DrawableObject& objectToCheckProximityOfInScreenCoordinates)
 {
 	std::pair<unsigned int, unsigned int> returnValue;

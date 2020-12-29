@@ -707,15 +707,95 @@ void FarmScreen::initializeWorldObjectsInGroundTileMap()
 	initialTomatoSeeds.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_DELETES_WHEN_FILLED_WITH_0);
 	groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_TOMATO_SEED_PACKET_ONE, initialTomatoSeeds);
 
-	WorldObject initialTomatoCrate = WorldObject(2000, 2100, 100, 100, nullptr);
-	TriggerZone initialTomatoCrateTriggerZone = TriggerZone(2000, 2100, 100, 100, true);
-	initialTomatoCrate.attachTriggerZone(initialTomatoCrateTriggerZone);
-	initialTomatoCrate.setVisibility(true);
-	initialTomatoCrate.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_PICKUPABLE);
-	initialTomatoCrate.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_ACTION_HARVEST_TOMATO);
-	initialTomatoCrate.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_CAPACITY_10);
-	initialTomatoCrate.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_FILLED_WITH_0);
-	groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_TOMATO_CRATE_ONE, initialTomatoCrate);
+	WorldObject initialTomatoCrateOne = WorldObject(2000, 2100, 100, 100, nullptr);
+	TriggerZone initialTomatoCrateOneTriggerZone = TriggerZone(2000, 2100, 100, 100, true);
+	initialTomatoCrateOne.attachTriggerZone(initialTomatoCrateOneTriggerZone);
+	initialTomatoCrateOne.setVisibility(true);
+	initialTomatoCrateOne.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_PICKUPABLE);
+	initialTomatoCrateOne.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_ACTION_HARVEST_TOMATO);
+	initialTomatoCrateOne.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_CAPACITY_10);
+	initialTomatoCrateOne.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_FILLED_WITH_0);
+	groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_TOMATO_CRATE_ONE, initialTomatoCrateOne);
+
+	WorldObject initialTomatoCrateTwo = WorldObject(2000, 2300, 100, 100, nullptr);
+	TriggerZone initialTomatoCrateTwoTriggerZone = TriggerZone(2000, 2300, 100, 100, true);
+	initialTomatoCrateTwo.attachTriggerZone(initialTomatoCrateTwoTriggerZone);
+	initialTomatoCrateTwo.setVisibility(true);
+	initialTomatoCrateTwo.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_PICKUPABLE);
+	initialTomatoCrateTwo.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_ACTION_HARVEST_TOMATO);
+	initialTomatoCrateTwo.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_CAPACITY_10);
+	initialTomatoCrateTwo.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_FILLED_WITH_0);
+	groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_TOMATO_CRATE_TWO, initialTomatoCrateTwo);
+
+	WorldObject initialTomatoCrateThree = WorldObject(2000, 2500, 100, 100, nullptr);
+	TriggerZone initialTomatoCrateThreeTriggerZone = TriggerZone(2000, 2500, 100, 100, true);
+	initialTomatoCrateThree.attachTriggerZone(initialTomatoCrateThreeTriggerZone);
+	initialTomatoCrateThree.setVisibility(true);
+	initialTomatoCrateThree.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_PICKUPABLE);
+	initialTomatoCrateThree.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_ACTION_HARVEST_TOMATO);
+	initialTomatoCrateThree.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_CAPACITY_10);
+	initialTomatoCrateThree.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_FILLED_WITH_0);
+	groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_TOMATO_CRATE_THREE, initialTomatoCrateThree);
+
+	WorldObject initialCucumberCrateOne = WorldObject(2200, 2100, 100, 100, nullptr);
+	TriggerZone initialCucumberCrateOneTriggerZone = TriggerZone(2200, 2100, 100, 100, true);
+	initialCucumberCrateOne.attachTriggerZone(initialCucumberCrateOneTriggerZone);
+	initialCucumberCrateOne.setVisibility(true);
+	initialCucumberCrateOne.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_PICKUPABLE);
+	initialCucumberCrateOne.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_ACTION_HARVEST_CUCUMBER);
+	initialCucumberCrateOne.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_CAPACITY_10);
+	initialCucumberCrateOne.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_FILLED_WITH_0);
+	groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_CUCUMBER_CRATE_ONE, initialCucumberCrateOne);
+
+	WorldObject initialCucumberCrateTwo = WorldObject(2200, 2300, 100, 100, nullptr);
+	TriggerZone initialCucumberCrateTwoTriggerZone = TriggerZone(2200, 2300, 100, 100, true);
+	initialCucumberCrateTwo.attachTriggerZone(initialCucumberCrateTwoTriggerZone);
+	initialCucumberCrateTwo.setVisibility(true);
+	initialCucumberCrateTwo.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_PICKUPABLE);
+	initialCucumberCrateTwo.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_ACTION_HARVEST_CUCUMBER);
+	initialCucumberCrateTwo.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_CAPACITY_10);
+	initialCucumberCrateTwo.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_FILLED_WITH_0);
+	groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_CUCUMBER_CRATE_TWO, initialCucumberCrateTwo);
+
+	WorldObject initialCucumberCrateThree = WorldObject(2200, 2500, 100, 100, nullptr);
+	TriggerZone initialCucumberCrateThreeTriggerZone = TriggerZone(2200, 2500, 100, 100, true);
+	initialCucumberCrateThree.attachTriggerZone(initialCucumberCrateThreeTriggerZone);
+	initialCucumberCrateThree.setVisibility(true);
+	initialCucumberCrateThree.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_PICKUPABLE);
+	initialCucumberCrateThree.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_ACTION_HARVEST_CUCUMBER);
+	initialCucumberCrateThree.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_CAPACITY_10);
+	initialCucumberCrateThree.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_FILLED_WITH_0);
+	groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_CUCUMBER_CRATE_THREE, initialCucumberCrateThree);
+
+	WorldObject initialCarrotCrateOne = WorldObject(2400, 2100, 100, 100, nullptr);
+	TriggerZone initialCarrotCrateOneTriggerZone = TriggerZone(2400, 2100, 100, 100, true);
+	initialCarrotCrateOne.attachTriggerZone(initialCarrotCrateOneTriggerZone);
+	initialCarrotCrateOne.setVisibility(true);
+	initialCarrotCrateOne.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_PICKUPABLE);
+	initialCarrotCrateOne.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_ACTION_HARVEST_CARROT);
+	initialCarrotCrateOne.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_CAPACITY_10);
+	initialCarrotCrateOne.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_FILLED_WITH_0);
+	groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_CARROT_CRATE_ONE, initialCarrotCrateOne);
+
+	WorldObject initialCarrotCrateTwo = WorldObject(2400, 2300, 100, 100, nullptr);
+	TriggerZone initialCarrotCrateTwoTriggerZone = TriggerZone(2400, 2300, 100, 100, true);
+	initialCarrotCrateTwo.attachTriggerZone(initialCarrotCrateTwoTriggerZone);
+	initialCarrotCrateTwo.setVisibility(true);
+	initialCarrotCrateTwo.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_PICKUPABLE);
+	initialCarrotCrateTwo.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_ACTION_HARVEST_CARROT);
+	initialCarrotCrateTwo.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_CAPACITY_10);
+	initialCarrotCrateTwo.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_FILLED_WITH_0);
+	groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_CARROT_CRATE_TWO, initialCarrotCrateTwo);
+
+	WorldObject initialCarrotCrateThree = WorldObject(2400, 2500, 100, 100, nullptr);
+	TriggerZone initialCarrotCrateThreeTriggerZone = TriggerZone(2400, 2500, 100, 100, true);
+	initialCarrotCrateThree.attachTriggerZone(initialCarrotCrateThreeTriggerZone);
+	initialCarrotCrateThree.setVisibility(true);
+	initialCarrotCrateThree.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_PICKUPABLE);
+	initialCarrotCrateThree.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_ACTION_HARVEST_CARROT);
+	initialCarrotCrateThree.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_CAPACITY_10);
+	initialCarrotCrateThree.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_FILLED_WITH_0);
+	groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_CARROT_CRATE_THREE, initialCarrotCrateThree);
 
 	WorldObject topBorder = WorldObject(0,0,4000,500,nullptr);
 	CollisionBox topBorderCollisionBox = CollisionBox(0,0,4000,500,true);
@@ -957,40 +1037,230 @@ void FarmScreen::handlePurchaseEvent(PurchaseEvent purchaseEventToHandle)
 	switch(suggestedPurchasedWorldObjectReferenceNumber)
 	{
 		case WORLD_OBJECT_REF_NUMBER_TOMATO_SEED_PACKET_ONE:
-			//if there is no world object with a refernece number of WORLD_OBJECT_REF_NUMBER_TOMATO_SEED_PACKET_ONE...
+		{
+			//if there is no world object with a reference number of WORLD_OBJECT_REF_NUMBER_TOMATO_SEED_PACKET_ONE...
+			WorldObjectReferenceNumber worldObjectReferenceNumber;
 			if(!(std::find(allWorldObjectReferenceNumbersInGroundTileMap.begin(), allWorldObjectReferenceNumbersInGroundTileMap.end(), WORLD_OBJECT_REF_NUMBER_TOMATO_SEED_PACKET_ONE) != allWorldObjectReferenceNumbersInGroundTileMap.end()))
 			{
-				//
+				worldObjectReferenceNumber = WORLD_OBJECT_REF_NUMBER_TOMATO_SEED_PACKET_ONE;
 			}
-			//if there is no world object with a refernece number of WORLD_OBJECT_REF_NUMBER_TOMATO_SEED_PACKET_TWO...
+			//if there is no world object with a reference number of WORLD_OBJECT_REF_NUMBER_TOMATO_SEED_PACKET_TWO...
 			else if(!(std::find(allWorldObjectReferenceNumbersInGroundTileMap.begin(), allWorldObjectReferenceNumbersInGroundTileMap.end(), WORLD_OBJECT_REF_NUMBER_TOMATO_SEED_PACKET_TWO) != allWorldObjectReferenceNumbersInGroundTileMap.end()))
 			{
-				//
+				worldObjectReferenceNumber = WORLD_OBJECT_REF_NUMBER_TOMATO_SEED_PACKET_TWO;
 			}
-			//if there is no world object with a refernece number of WORLD_OBJECT_REF_NUMBER_TOMATO_SEED_PACKET_THREE...
+			//if there is no world object with a reference number of WORLD_OBJECT_REF_NUMBER_TOMATO_SEED_PACKET_THREE...
 			else if(!(std::find(allWorldObjectReferenceNumbersInGroundTileMap.begin(), allWorldObjectReferenceNumbersInGroundTileMap.end(), WORLD_OBJECT_REF_NUMBER_TOMATO_SEED_PACKET_THREE) != allWorldObjectReferenceNumbersInGroundTileMap.end()))
 			{
-				//
+				worldObjectReferenceNumber = WORLD_OBJECT_REF_NUMBER_TOMATO_SEED_PACKET_THREE;
 			}
 			//else, the farm already has three tomato seed packets...
 			else
 			{
 				//The market should not allow purchases that would result in more than three seed packets of a cetain type on the farm. If you got here, the farm should enter error state.
 				this->enterErrorState();
+				return;
 			}
+			groundTileMap.addWorldObjectWithReferenceNumber(worldObjectReferenceNumber, worldObjectBought);
 			break;
+		}
 		case WORLD_OBJECT_REF_NUMBER_CUCUMBER_SEED_PACKET_ONE:
-			//
+		{
+			WorldObjectReferenceNumber worldObjectReferenceNumber;
+			//if there is no world object with a reference number of WORLD_OBJECT_REF_NUMBER_CUCUMBER_SEED_PACKET_ONE...
+			if(!(std::find(allWorldObjectReferenceNumbersInGroundTileMap.begin(), allWorldObjectReferenceNumbersInGroundTileMap.end(), WORLD_OBJECT_REF_NUMBER_CUCUMBER_SEED_PACKET_ONE) != allWorldObjectReferenceNumbersInGroundTileMap.end()))
+			{
+				worldObjectReferenceNumber = WORLD_OBJECT_REF_NUMBER_CUCUMBER_SEED_PACKET_ONE;
+			}
+			//if there is no world object with a reference number of WORLD_OBJECT_REF_NUMBER_CUCUMBER_SEED_PACKET_TWO...
+			else if(!(std::find(allWorldObjectReferenceNumbersInGroundTileMap.begin(), allWorldObjectReferenceNumbersInGroundTileMap.end(), WORLD_OBJECT_REF_NUMBER_CUCUMBER_SEED_PACKET_TWO) != allWorldObjectReferenceNumbersInGroundTileMap.end()))
+			{
+				worldObjectReferenceNumber = WORLD_OBJECT_REF_NUMBER_CUCUMBER_SEED_PACKET_TWO;
+			}
+			//if there is no world object with a reference number of WORLD_OBJECT_REF_NUMBER_CUCUMBER_SEED_PACKET_THREE...
+			else if(!(std::find(allWorldObjectReferenceNumbersInGroundTileMap.begin(), allWorldObjectReferenceNumbersInGroundTileMap.end(), WORLD_OBJECT_REF_NUMBER_CUCUMBER_SEED_PACKET_THREE) != allWorldObjectReferenceNumbersInGroundTileMap.end()))
+			{
+				worldObjectReferenceNumber = WORLD_OBJECT_REF_NUMBER_CUCUMBER_SEED_PACKET_THREE;
+			}
+			//else, the farm already has three cucumber seed packets...
+			else
+			{
+				//The market should not allow purchases that would result in more than three seed packets of a cetain type on the farm. If you got here, the farm should enter error state.
+				this->enterErrorState();
+				return;
+			}
+			groundTileMap.addWorldObjectWithReferenceNumber(worldObjectReferenceNumber, worldObjectBought);
 			break;
+		}
 		case WORLD_OBJECT_REF_NUMBER_CARROT_SEED_PACKET_ONE:
-			//
+		{
+			WorldObjectReferenceNumber worldObjectReferenceNumber;
+			//if there is no world object with a reference number of WORLD_OBJECT_REF_NUMBER_CARROT_SEED_PACKET_ONE...
+			if(!(std::find(allWorldObjectReferenceNumbersInGroundTileMap.begin(), allWorldObjectReferenceNumbersInGroundTileMap.end(), WORLD_OBJECT_REF_NUMBER_CARROT_SEED_PACKET_ONE) != allWorldObjectReferenceNumbersInGroundTileMap.end()))
+			{
+				worldObjectReferenceNumber = WORLD_OBJECT_REF_NUMBER_CARROT_SEED_PACKET_ONE;
+			}
+			//if there is no world object with a reference number of WORLD_OBJECT_REF_NUMBER_CARROT_SEED_PACKET_TWO...
+			else if(!(std::find(allWorldObjectReferenceNumbersInGroundTileMap.begin(), allWorldObjectReferenceNumbersInGroundTileMap.end(), WORLD_OBJECT_REF_NUMBER_CARROT_SEED_PACKET_TWO) != allWorldObjectReferenceNumbersInGroundTileMap.end()))
+			{
+				worldObjectReferenceNumber = WORLD_OBJECT_REF_NUMBER_CARROT_SEED_PACKET_TWO;
+			}
+			//if there is no world object with a reference number of WORLD_OBJECT_REF_NUMBER_CARROT_SEED_PACKET_THREE...
+			else if(!(std::find(allWorldObjectReferenceNumbersInGroundTileMap.begin(), allWorldObjectReferenceNumbersInGroundTileMap.end(), WORLD_OBJECT_REF_NUMBER_CARROT_SEED_PACKET_THREE) != allWorldObjectReferenceNumbersInGroundTileMap.end()))
+			{
+				worldObjectReferenceNumber = WORLD_OBJECT_REF_NUMBER_CARROT_SEED_PACKET_THREE;
+			}
+			//else, the farm already has three carrot seed packets...
+			else
+			{
+				//The market should not allow purchases that would result in more than three seed packets of a cetain type on the farm. If you got here, the farm should enter error state.
+				this->enterErrorState();
+				return;
+			}
+			groundTileMap.addWorldObjectWithReferenceNumber(worldObjectReferenceNumber, worldObjectBought);
 			break;
+		}
 	}
 }
 
+#include <iostream>
+
 void FarmScreen::handleSaleEvent(SaleEvent saleEventToHandle)
 {
-	//TODO
+	WorldObjectReferenceNumber suggestedSoldWorldObjectReferenceNumber = saleEventToHandle.getSuggestedSoldWorldObjectReferenceNumber();
+	std::vector<WorldObjectReferenceNumber> allWorldObjectReferenceNumbersInGroundTileMap = groundTileMap.getAllWorldObjectReferenceNumbersInTileMap();
+	switch(suggestedSoldWorldObjectReferenceNumber)
+	{
+		case WORLD_OBJECT_REF_NUMBER_TOMATO_CRATE_ONE_FILLED:
+		{
+			//if there is a world object with a reference number of WORLD_OBJECT_REF_NUMBER_TOMATO_CRATE_ONE_FILLED...
+			WorldObjectReferenceNumber worldObjectReferenceNumber;
+			if(std::find(allWorldObjectReferenceNumbersInGroundTileMap.begin(), allWorldObjectReferenceNumbersInGroundTileMap.end(), WORLD_OBJECT_REF_NUMBER_TOMATO_CRATE_ONE_FILLED) != allWorldObjectReferenceNumbersInGroundTileMap.end())
+			{
+				worldObjectReferenceNumber = WORLD_OBJECT_REF_NUMBER_TOMATO_CRATE_ONE_FILLED;
+			}
+			//if there is a world object with a reference number of WORLD_OBJECT_REF_NUMBER_TOMATO_CRATE_TWO_FILLED...
+			else if(std::find(allWorldObjectReferenceNumbersInGroundTileMap.begin(), allWorldObjectReferenceNumbersInGroundTileMap.end(), WORLD_OBJECT_REF_NUMBER_TOMATO_CRATE_TWO_FILLED) != allWorldObjectReferenceNumbersInGroundTileMap.end())
+			{
+				worldObjectReferenceNumber = WORLD_OBJECT_REF_NUMBER_TOMATO_CRATE_TWO_FILLED;
+			}
+			//if there is a world object with a reference number of WORLD_OBJECT_REF_NUMBER_TOMATO_CRATE_THREE_FILLED...
+			else if(std::find(allWorldObjectReferenceNumbersInGroundTileMap.begin(), allWorldObjectReferenceNumbersInGroundTileMap.end(), WORLD_OBJECT_REF_NUMBER_TOMATO_CRATE_THREE_FILLED) != allWorldObjectReferenceNumbersInGroundTileMap.end())
+			{
+				worldObjectReferenceNumber = WORLD_OBJECT_REF_NUMBER_TOMATO_CRATE_THREE_FILLED;
+			}
+			//else, the farm does not have any tomato crates...
+			else
+			{
+				//The market should not allow you to sell tomato crates when you don't have any.
+				this->enterErrorState();
+				return;
+			}
+			WorldObject tomatoCrateToModify = groundTileMap.getWorldObjectWithReferenceNumber(worldObjectReferenceNumber);
+			groundTileMap.removeWorldObjectWithReferenceNumber(worldObjectReferenceNumber);
+			tomatoCrateToModify.removeWorldObjectProperty(WORLD_OBJECT_PROPERTY_FILLED_WITH_10);
+			tomatoCrateToModify.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_FILLED_WITH_0);
+			switch(worldObjectReferenceNumber)
+			{
+				case WORLD_OBJECT_REF_NUMBER_TOMATO_CRATE_ONE_FILLED:
+					groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_TOMATO_CRATE_ONE, tomatoCrateToModify);
+					break;
+				case WORLD_OBJECT_REF_NUMBER_TOMATO_CRATE_TWO_FILLED:
+					groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_TOMATO_CRATE_TWO, tomatoCrateToModify);
+					break;
+				case WORLD_OBJECT_REF_NUMBER_TOMATO_CRATE_THREE_FILLED:
+					groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_TOMATO_CRATE_THREE, tomatoCrateToModify);
+					break;
+			}
+			break;
+		}
+		case WORLD_OBJECT_REF_NUMBER_CUCUMBER_CRATE_ONE:
+		{
+			WorldObjectReferenceNumber worldObjectReferenceNumber;
+			//if there is a world object with a reference number of WORLD_OBJECT_REF_NUMBER_CUCUMBER_CRATE_ONE_FILLED...
+			if(std::find(allWorldObjectReferenceNumbersInGroundTileMap.begin(), allWorldObjectReferenceNumbersInGroundTileMap.end(), WORLD_OBJECT_REF_NUMBER_CUCUMBER_CRATE_ONE_FILLED) != allWorldObjectReferenceNumbersInGroundTileMap.end())
+			{
+				worldObjectReferenceNumber = WORLD_OBJECT_REF_NUMBER_CUCUMBER_CRATE_ONE_FILLED;
+			}
+			//if there is a world object with a reference number of WORLD_OBJECT_REF_NUMBER_CUCUMBER_CRATE_TWO_FILLED...
+			else if(std::find(allWorldObjectReferenceNumbersInGroundTileMap.begin(), allWorldObjectReferenceNumbersInGroundTileMap.end(), WORLD_OBJECT_REF_NUMBER_CUCUMBER_CRATE_TWO_FILLED) != allWorldObjectReferenceNumbersInGroundTileMap.end())
+			{
+				worldObjectReferenceNumber = WORLD_OBJECT_REF_NUMBER_CUCUMBER_CRATE_TWO_FILLED;
+			}
+			//if there is a world object with a reference number of WORLD_OBJECT_REF_NUMBER_CUCUMBER_CRATE_THREE_FILLED...
+			else if(std::find(allWorldObjectReferenceNumbersInGroundTileMap.begin(), allWorldObjectReferenceNumbersInGroundTileMap.end(), WORLD_OBJECT_REF_NUMBER_CUCUMBER_CRATE_THREE_FILLED) != allWorldObjectReferenceNumbersInGroundTileMap.end())
+			{
+				worldObjectReferenceNumber = WORLD_OBJECT_REF_NUMBER_CUCUMBER_CRATE_THREE_FILLED;
+			}
+			//else, the farm already has three cucumber crates...
+			else
+			{
+				//The market should not allow you to sell cucumber crates when you don't have any.
+				this->enterErrorState();
+				return;
+			}
+			WorldObject cucumberCrateToModify = groundTileMap.getWorldObjectWithReferenceNumber(worldObjectReferenceNumber);
+			groundTileMap.removeWorldObjectWithReferenceNumber(worldObjectReferenceNumber);
+			cucumberCrateToModify.removeWorldObjectProperty(WORLD_OBJECT_PROPERTY_FILLED_WITH_10);
+			cucumberCrateToModify.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_FILLED_WITH_0);
+			switch(worldObjectReferenceNumber)
+			{
+				case WORLD_OBJECT_REF_NUMBER_CUCUMBER_CRATE_ONE_FILLED:
+					groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_CUCUMBER_CRATE_ONE, cucumberCrateToModify);
+					break;
+				case WORLD_OBJECT_REF_NUMBER_CUCUMBER_CRATE_TWO_FILLED:
+					groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_CUCUMBER_CRATE_TWO, cucumberCrateToModify);
+					break;
+				case WORLD_OBJECT_REF_NUMBER_CUCUMBER_CRATE_THREE_FILLED:
+					groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_CUCUMBER_CRATE_THREE, cucumberCrateToModify);
+					break;
+			}
+			break;
+		}
+		case WORLD_OBJECT_REF_NUMBER_CARROT_SEED_PACKET_ONE:
+		{
+			WorldObjectReferenceNumber worldObjectReferenceNumber;
+			//if there is a world object with a reference number of WORLD_OBJECT_REF_NUMBER_CARROT_CRATE_ONE_FILLED...
+			if(std::find(allWorldObjectReferenceNumbersInGroundTileMap.begin(), allWorldObjectReferenceNumbersInGroundTileMap.end(), WORLD_OBJECT_REF_NUMBER_CARROT_CRATE_ONE_FILLED) != allWorldObjectReferenceNumbersInGroundTileMap.end())
+			{
+				worldObjectReferenceNumber = WORLD_OBJECT_REF_NUMBER_CARROT_CRATE_ONE_FILLED;
+			}
+			//if there is a world object with a reference number of WORLD_OBJECT_REF_NUMBER_CARROT_CRATE_TWO_FILLED...
+			else if(std::find(allWorldObjectReferenceNumbersInGroundTileMap.begin(), allWorldObjectReferenceNumbersInGroundTileMap.end(), WORLD_OBJECT_REF_NUMBER_CARROT_CRATE_TWO_FILLED) != allWorldObjectReferenceNumbersInGroundTileMap.end())
+			{
+				worldObjectReferenceNumber = WORLD_OBJECT_REF_NUMBER_CARROT_CRATE_TWO_FILLED;
+			}
+			//if there is a world object with a reference number of WORLD_OBJECT_REF_NUMBER_CARROT_CRATE_THREE_FILLED...
+			else if(std::find(allWorldObjectReferenceNumbersInGroundTileMap.begin(), allWorldObjectReferenceNumbersInGroundTileMap.end(), WORLD_OBJECT_REF_NUMBER_CARROT_CRATE_THREE_FILLED) != allWorldObjectReferenceNumbersInGroundTileMap.end())
+			{
+				worldObjectReferenceNumber = WORLD_OBJECT_REF_NUMBER_CARROT_CRATE_THREE_FILLED;
+			}
+			//else, the farm already has three carrot crates...
+			else
+			{
+				//The market should not allow you to sell carrot crates when you don't have any.
+				this->enterErrorState();
+				return;
+			}
+			WorldObject carrotCrateToModify = groundTileMap.getWorldObjectWithReferenceNumber(worldObjectReferenceNumber);
+			groundTileMap.removeWorldObjectWithReferenceNumber(worldObjectReferenceNumber);
+			carrotCrateToModify.removeWorldObjectProperty(WORLD_OBJECT_PROPERTY_FILLED_WITH_10);
+			carrotCrateToModify.addWorldObjectProperty(WORLD_OBJECT_PROPERTY_FILLED_WITH_0);
+			switch(worldObjectReferenceNumber)
+			{
+				case WORLD_OBJECT_REF_NUMBER_CARROT_CRATE_ONE_FILLED:
+					groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_CARROT_CRATE_ONE, carrotCrateToModify);
+					break;
+				case WORLD_OBJECT_REF_NUMBER_CARROT_CRATE_TWO_FILLED:
+					groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_CARROT_CRATE_TWO, carrotCrateToModify);
+					break;
+				case WORLD_OBJECT_REF_NUMBER_CARROT_CRATE_THREE_FILLED:
+					groundTileMap.addWorldObjectWithReferenceNumber(WORLD_OBJECT_REF_NUMBER_CARROT_CRATE_THREE, carrotCrateToModify);
+					break;
+			}
+			break;
+		}
+	}
 }
 
 void FarmScreen::enterErrorState()
@@ -1011,6 +1281,7 @@ void FarmScreen::loadSaveFile(const SaveFile& saveFileToLoad)
 				plantTileMap.setReferenceNumberAtIndicesAndDoNotPartialDraw(i,j, saveFileToLoad.getReferenceNumberAtRowAndColPlantTileMap(i,j));
 			}
 		}
+		groundTileMap.clearAllWorldObjectsInTileMap();
 		this->initializeWorldObjectsInGroundTileMap();
 		dayNumberDisplay.setNumberDisplayAmount(1);
 		moneyDisplay.setNumberDisplayAmount(0);

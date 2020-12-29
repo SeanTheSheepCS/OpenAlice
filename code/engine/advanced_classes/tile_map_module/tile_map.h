@@ -64,6 +64,9 @@ class TileMap: public DrawableObject
 		std::vector<WorldObjectReferenceNumber> getAllWorldObjectReferenceNumbersInTileMap() const;
 		std::vector<WorldObject> getAllWorldObjectsInTileMap() const;
 
+		//CLEARING WORLD OBJECTS
+		void clearAllWorldObjectsInTileMap();
+
 		//SPECIAL FUNCTIONS
 		void draw(sf::RenderWindow& windowToDrawIn);
 		std::map<WorldObjectReferenceNumber, WorldObject> getAllWorldObjectsWithRefNumbersWhoAreCurrentlyTriggeredByDrawableObject(const DrawableObject& objectToCheck);
