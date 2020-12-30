@@ -139,7 +139,7 @@ void MarketScreen::handleSale(unsigned int indexOfSaleOffer)
 	switch(commodityToBeTraded)
 	{
 		case TRADEABLE_COMMODITY_ENUM_TOMATO_CRATE:
-			if(tomatoCount.getNumber() <= amountToBeTraded)
+			if(tomatoCount.getNumber() >= amountToBeTraded)
 			{
 				tomatoCount.decrementNumberDisplayByAmount(amountToBeTraded);
 				for(int i = 0; i < amountToBeTraded; i++)
@@ -152,7 +152,7 @@ void MarketScreen::handleSale(unsigned int indexOfSaleOffer)
 			}
 			break;
 		case TRADEABLE_COMMODITY_ENUM_CUCUMBER_CRATE:
-			if(cucumberCount.getNumber() <= amountToBeTraded)
+			if(cucumberCount.getNumber() >= amountToBeTraded)
 			{
 				cucumberCount.decrementNumberDisplayByAmount(amountToBeTraded);
 				for(int i = 0; i < amountToBeTraded; i++)
@@ -165,7 +165,7 @@ void MarketScreen::handleSale(unsigned int indexOfSaleOffer)
 			}
 			break;
 		case TRADEABLE_COMMODITY_ENUM_CARROT_CRATE:
-			if(carrotCount.getNumber() <= amountToBeTraded)
+			if(carrotCount.getNumber() >= amountToBeTraded)
 			{
 				carrotCount.decrementNumberDisplayByAmount(amountToBeTraded);
 				for(int i = 0; i < amountToBeTraded; i++)
