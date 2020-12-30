@@ -226,6 +226,10 @@ void TileMap::addWorldObjectWithReferenceNumber(WorldObjectReferenceNumber refer
 		referenceNumberToWorldObjectMap.erase(referenceNumber);
 	}
 	referenceNumberToWorldObjectMap.insert(std::pair<WorldObjectReferenceNumber, WorldObject>(referenceNumber, objectToAdd));
+	if(worldObjectReferenceNumberToTextureMap.count(referenceNumber) == 1)
+	{
+		referenceNumberToWorldObjectMap.at(referenceNumber).associateWithNewTexture(worldObjectReferenceNumberToTextureMap.at(referenceNumber));
+	}
 }
 
 void TileMap::addWorldObjectWithReferenceNumber(WorldObjectReferenceNumber referenceNumber, WorldObject objectToAdd, int screenX, int screenY)
@@ -244,13 +248,14 @@ void TileMap::removeWorldObjectWithReferenceNumber(WorldObjectReferenceNumber re
 
 void TileMap::associateWorldObjectWithReferenceNumberWithTexturePointer(WorldObjectReferenceNumber referenceNumber, const sf::Texture* texturePointer)
 {
+	worldObjectReferenceNumberToTextureMap.insert(std::pair<WorldObjectReferenceNumber, const sf::Texture*>(referenceNumber, texturePointer));
 	try
 	{
 		referenceNumberToWorldObjectMap.at(referenceNumber).associateWithNewTexture(texturePointer);
 	}
 	catch(std::exception& e)
 	{
-		std::cout << "failed to access referencenumber " << referenceNumber << " in tilemap referencenumbertoworldobjectmap." << std::endl;
+		//Perfectly okay, it just means that the specified world object reference number is not present in the tile map yet :)
 	}
 }
 
@@ -258,11 +263,19 @@ void TileMap::deassociateWorldObjectWithReferenceNumberWithItsTexturePointer(Wor
 {
 	try
 	{
+		worldObjectReferenceNumberToTextureMap.erase(referenceNumber);
+	}
+	catch(std::exception& e)
+	{
+		//Perfectly okay, it just means that the worldObjectReferenceNumber had no texture associated to it in the first place.
+	}
+	try
+	{
 		referenceNumberToWorldObjectMap.at(referenceNumber).decoupleObjectFromItsTexture();
 	}
 	catch(std::exception& e)
 	{
-		std::cout << "Failed to access referenceNumber " << referenceNumber << " in TileMap referenceNumberToWorldObjectMap." << std::endl;
+		//Perfectly okay, it just means that the specified world object reference number is not present in the tile map yet :)
 	}
 }
 

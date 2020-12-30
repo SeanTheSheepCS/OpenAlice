@@ -102,6 +102,7 @@ class TileMap: public DrawableObject
 		std::map<int, const sf::Texture*> referenceNumberToTexturePointerMap;
 
 		std::map<WorldObjectReferenceNumber, WorldObject> referenceNumberToWorldObjectMap;
+		std::map<WorldObjectReferenceNumber, const sf::Texture*> worldObjectReferenceNumberToTextureMap;
 };
 
 #endif
