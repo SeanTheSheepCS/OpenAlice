@@ -17,6 +17,19 @@ int main()
 	{
 		std::cout << "Failed to open music music/main_menu_music_main.wav" << std::endl;
 	}
+	sf::Music marketMusic;
+	if(!(marketMusic.openFromFile("../music/market_music.wav")))
+	{
+		std::cout << "Failed to open music music/market_music.wav" << std::endl;
+	}
+	sf::Music farmMusic;
+	if(!(farmMusic.openFromFile("../music/farm_music.wav")))
+	{
+		std::cout << "Failed to open music music/farm_music.wav" << std::endl;
+	}
+	mainMenuMusicMain.setLoop(true);
+	marketMusic.setLoop(true);
+	farmMusic.setLoop(true);
 	mainMenuMusicStart.play();
 
 	//SCREEN STATE MACHINE VARS
@@ -72,6 +85,7 @@ int main()
 					{
 						mainMenuMusicStart.stop();
 						mainMenuMusicMain.stop();
+						farmMusic.play();
 						SaveFile fileToLoad = SaveGameHelper::loadSaveFile(mainMenuScreenVar.returnSavegameThatShouldBeLoadedReturnsZeroIfNoSavegameIsChosenYet());
 						mainMenuScreenVar.acknowledgeSavegameChoice();
 						mainMenuScreenVar.acknowledgeShouldLoadFlag();
@@ -94,6 +108,8 @@ int main()
 				pointerToCurrentlyActiveScreen = &farmScreenVar;
 				if(farmScreenVar.returnIfShouldSwitchToMarketScreen())
 				{
+					farmMusic.stop();
+					marketMusic.play();
 					syncMarketScreenWithFarmScreen(marketScreenVar, farmScreenVar);
 					pointerToCurrentlyActiveScreen = &marketScreenVar;
 					currentScreenToDisplay = MARKET_SCREEN;
@@ -101,6 +117,7 @@ int main()
 				}
 				else if(farmScreenVar.returnIfShouldSwitchToMainMenuScreen())
 				{
+					farmMusic.stop();
 					mainMenuMusicMain.play();
 					pointerToCurrentlyActiveScreen = &mainMenuScreenVar;
 					currentScreenToDisplay = MAIN_MENU_SCREEN;
@@ -116,6 +133,8 @@ int main()
 				pointerToCurrentlyActiveScreen = &marketScreenVar;
 				if(marketScreenVar.returnIfShouldSwitchToFarmScreen())
 				{
+					marketMusic.stop();
+					farmMusic.play();
 					syncFarmScreenWithMarketScreen(farmScreenVar, marketScreenVar);
 					pointerToCurrentlyActiveScreen = &farmScreenVar;
 					currentScreenToDisplay = FARM_SCREEN;
