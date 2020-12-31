@@ -3,30 +3,14 @@
 
 NumberDisplay::NumberDisplay(int x, int y, unsigned int width, unsigned int height, unsigned int digitCountArg):
 	DrawableObject(x, y, width, height),
-	background(x, y, width, height, nullptr),
-	digits{
-		{x,y,width,height,nullptr},
-		{x,y,width,height,nullptr},
-		{x,y,width,height,nullptr},
-		{x,y,width,height,nullptr},
-		{x,y,width,height,nullptr},
-		{x,y,width,height,nullptr},
-		{x,y,width,height,nullptr},
-		{x,y,width,height,nullptr},
-		{x,y,width,height,nullptr},
-		{x,y,width,height,nullptr}
-	}
+	background(x, y, width, height, nullptr)
 {
-	if(digitCountArg > NUMBER_DISPLAY_MAXIMUM_DIGITS_COUNT)
-	{
-		digitCountArg = NUMBER_DISPLAY_MAXIMUM_DIGITS_COUNT;
-	}
 	this->digitCount = digitCountArg;
 
 	int incrementAmountX = (width / digitCountArg);
 	for(unsigned int i = 0; i < digitCountArg; i++)
 	{
-		digits[i] = TexturedObject(x+(i*incrementAmountX),y,incrementAmountX,height,nullptr);
+		digits.push_back(TexturedObject(x+(i*incrementAmountX),y,incrementAmountX,height,nullptr));
 	}
 
 	this->digitAsInteger = 0;
@@ -62,7 +46,7 @@ void NumberDisplay::draw(sf::RenderWindow& windowToDrawObjectIn)
 	//background.draw(windowToDrawObjectIn);
 	for(unsigned int i = 0; i < digitCount; i++)
 	{
-		digits[i].draw(windowToDrawObjectIn);
+		digits.at(i).draw(windowToDrawObjectIn);
 	}
 }
 
@@ -99,34 +83,34 @@ void NumberDisplay::updateDigitTextures()
 			switch(digitAsIntegerTemp % 10)
 			{
 				case 0:
-					digits[digitCount-(i+1)].associateWithNewTexture(texturePack.numberDisplayZeroTexture);
+					digits.at(digitCount-(i+1)).associateWithNewTexture(texturePack.numberDisplayZeroTexture);
 					break;
 				case 1:
-					digits[digitCount-(i+1)].associateWithNewTexture(texturePack.numberDisplayOneTexture);
+					digits.at(digitCount-(i+1)).associateWithNewTexture(texturePack.numberDisplayOneTexture);
 					break;
 				case 2:
-					digits[digitCount-(i+1)].associateWithNewTexture(texturePack.numberDisplayTwoTexture);
+					digits.at(digitCount-(i+1)).associateWithNewTexture(texturePack.numberDisplayTwoTexture);
 					break;
 				case 3:
-					digits[digitCount-(i+1)].associateWithNewTexture(texturePack.numberDisplayThreeTexture);
+					digits.at(digitCount-(i+1)).associateWithNewTexture(texturePack.numberDisplayThreeTexture);
 					break;
 				case 4:
-					digits[digitCount-(i+1)].associateWithNewTexture(texturePack.numberDisplayFourTexture);
+					digits.at(digitCount-(i+1)).associateWithNewTexture(texturePack.numberDisplayFourTexture);
 					break;
 				case 5:
-					digits[digitCount-(i+1)].associateWithNewTexture(texturePack.numberDisplayFiveTexture);
+					digits.at(digitCount-(i+1)).associateWithNewTexture(texturePack.numberDisplayFiveTexture);
 					break;
 				case 6:
-					digits[digitCount-(i+1)].associateWithNewTexture(texturePack.numberDisplaySixTexture);
+					digits.at(digitCount-(i+1)).associateWithNewTexture(texturePack.numberDisplaySixTexture);
 					break;
 				case 7:
-					digits[digitCount-(i+1)].associateWithNewTexture(texturePack.numberDisplaySevenTexture);
+					digits.at(digitCount-(i+1)).associateWithNewTexture(texturePack.numberDisplaySevenTexture);
 					break;
 				case 8:
-					digits[digitCount-(i+1)].associateWithNewTexture(texturePack.numberDisplayEightTexture);
+					digits.at(digitCount-(i+1)).associateWithNewTexture(texturePack.numberDisplayEightTexture);
 					break;
 				case 9:
-					digits[digitCount-(i+1)].associateWithNewTexture(texturePack.numberDisplayNineTexture);
+					digits.at(digitCount-(i+1)).associateWithNewTexture(texturePack.numberDisplayNineTexture);
 					break;
 			}
 		}
@@ -144,7 +128,7 @@ void NumberDisplay::setXRecursiveWithinComponents(int newX)
 	int incrementAmountX = (width / digitCount);
 	for(unsigned int i = 0; i < digitCount; i++)
 	{
-		digits[i] = TexturedObject(newX+(i*incrementAmountX),y,incrementAmountX,height,nullptr);
+		digits.at(i) = TexturedObject(newX+(i*incrementAmountX),y,incrementAmountX,height,nullptr);
 	}
 	this->setNumberDisplayAmount(digitAsInteger);
 }
@@ -156,7 +140,7 @@ void NumberDisplay::setYRecursiveWithinComponents(int newY)
 	int incrementAmountX = (width / digitCount);
 	for(unsigned int i = 0; i < digitCount; i++)
 	{
-		digits[i] = TexturedObject(x+(i*incrementAmountX),newY,incrementAmountX,height,nullptr);
+		digits.at(i) = TexturedObject(x+(i*incrementAmountX),newY,incrementAmountX,height,nullptr);
 	}
 	this->setNumberDisplayAmount(digitAsInteger);
 }
@@ -168,7 +152,7 @@ void NumberDisplay::setWidthRecursiveWithinComponents(unsigned int newWidth)
 	int incrementAmountX = (newWidth / digitCount);
 	for(unsigned int i = 0; i < digitCount; i++)
 	{
-		digits[i] = TexturedObject(x+(i*incrementAmountX),y,incrementAmountX,height,nullptr);
+		digits.at(i) = TexturedObject(x+(i*incrementAmountX),y,incrementAmountX,height,nullptr);
 	}
 	this->setNumberDisplayAmount(digitAsInteger);
 }
@@ -180,7 +164,7 @@ void NumberDisplay::setHeightRecursiveWithinComponents(unsigned int newHeight)
 	int incrementAmountX = (width / digitCount);
 	for(unsigned int i = 0; i < digitCount; i++)
 	{
-		digits[i] = TexturedObject(x+(i*incrementAmountX),y,incrementAmountX,newHeight,nullptr);
+		digits.at(i) = TexturedObject(x+(i*incrementAmountX),y,incrementAmountX,newHeight,nullptr);
 	}
 	this->setNumberDisplayAmount(digitAsInteger);
 }

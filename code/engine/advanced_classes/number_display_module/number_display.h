@@ -10,11 +10,6 @@
 #include "../../../reference_number_enums.h"
 #include "number_display_texture_pack.h"
 
-//SPECIAL NOTE: VERY IMPORTANT DO NOT DISREGARD
-//IF YOU WANT TO CHANGE THE DEFINE HERE, YOU NEED TO CHANGE THE MEMBER INITIALIZATION LIST IN THE CONSTRUCTION OR ELSE THE PROGRAM WILL NOT COMPILE! DO NOT CHANGE THIS UNLESS 100% NECESSARY!
-
-#define NUMBER_DISPLAY_MAXIMUM_DIGITS_COUNT 10
-
 class NumberDisplay: public DrawableObject
 {
 	public:
@@ -46,7 +41,7 @@ class NumberDisplay: public DrawableObject
 		unsigned int digitCount;
 		unsigned int digitAsInteger;
 		TexturedObject background;
-		TexturedObject digits[NUMBER_DISPLAY_MAXIMUM_DIGITS_COUNT];
+		std::vector<TexturedObject> digits;
 		NumberDisplayTexturePackStruct texturePack;
 };
 
