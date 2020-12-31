@@ -2,21 +2,22 @@
 #define OAE_ANIMATION_H
 
 #include <SFML/Graphics.hpp>
+#include <vector>
 
 class OAEAnimation
 {
 	public:
-		OAEAnimation(unsigned int speedInMillisecondsPerAdvanceFrame);
+		OAEAnimation();
+		void setLingerAmountVector(std::vector<unsigned int> newAmountsToLinger);
 		unsigned int getFrameVectorSize() const;
-		void setAnimationSpeedInMillisecondsPerAdvanceFrame(unsigned int newSpeed);
 		const sf::Texture* getFrameAtSpecifiedMilliseconds(unsigned int specifiedMilliseconds) const;
 		unsigned int getTotalMillisecondCountForAnimation() const;
-		void appendTextureToAnimation(const sf::Texture* textureToAppend);
+		void appendTextureToAnimation(const sf::Texture* textureToAppend, unsigned int millisecondsToLinger);
 	protected:
 		//
 	private:
 		std::vector<const sf::Texture*> frameVector;
-		unsigned int animationSpeedInMillisecondsToAdvanceFrame;
+		std::vector<unsigned int> animationNumberOfMillisecondsToLingerOnEachFrame;
 };
 
 #endif
