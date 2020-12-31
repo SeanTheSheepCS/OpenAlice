@@ -249,46 +249,29 @@ void TileMap::removeWorldObjectWithReferenceNumber(WorldObjectReferenceNumber re
 void TileMap::associateWorldObjectWithReferenceNumberWithTexturePointer(WorldObjectReferenceNumber referenceNumber, const sf::Texture* texturePointer)
 {
 	worldObjectReferenceNumberToTextureMap.insert(std::pair<WorldObjectReferenceNumber, const sf::Texture*>(referenceNumber, texturePointer));
-	try
+	if(referenceNumberToWorldObjectMap.count(referenceNumber))
 	{
 		referenceNumberToWorldObjectMap.at(referenceNumber).associateWithNewTexture(texturePointer);
-	}
-	catch(std::exception& e)
-	{
-		//Perfectly okay, it just means that the specified world object reference number is not present in the tile map yet :)
 	}
 }
 
 void TileMap::deassociateWorldObjectWithReferenceNumberWithItsTexturePointer(WorldObjectReferenceNumber referenceNumber)
 {
-	try
+	if(worldObjectReferenceNumberToTextureMap.count(referenceNumber) == 1)
 	{
 		worldObjectReferenceNumberToTextureMap.erase(referenceNumber);
 	}
-	catch(std::exception& e)
-	{
-		//Perfectly okay, it just means that the worldObjectReferenceNumber had no texture associated to it in the first place.
-	}
-	try
+	if(referenceNumberToWorldObjectMap.count(referenceNumber) == 1)
 	{
 		referenceNumberToWorldObjectMap.at(referenceNumber).decoupleObjectFromItsTexture();
-	}
-	catch(std::exception& e)
-	{
-		//Perfectly okay, it just means that the specified world object reference number is not present in the tile map yet :)
 	}
 }
 
 WorldObject TileMap::getWorldObjectWithReferenceNumber(WorldObjectReferenceNumber referenceNumber)
 {
-	try
+	if(referenceNumberToWorldObjectMap.count(referenceNumber) == 1)
 	{
 		return referenceNumberToWorldObjectMap.at(referenceNumber);
-	}
-	catch(std::exception& e)
-	{
-		std::cout << "failed to access referencenumber " << referenceNumber << " in tilemap referencenumbertoworldobjectmap." << std::endl;
-		return WorldObject();
 	}
 }
 
