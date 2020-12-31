@@ -912,6 +912,7 @@ void FarmScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::Render
 		//If you finished the nightly update early, you can start the save thread!
 		if(((this->isNightlyUpdateThreadRunning) == false) && ((this->isNightlyUpdateThreadValid) == true))
 		{
+			nightlyUpdateThread.join();
 			this->isNightlyUpdateThreadValid = false;
 			if((this->isSaveThreadValid) == false)
 			{
