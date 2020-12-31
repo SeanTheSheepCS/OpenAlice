@@ -116,6 +116,7 @@ class FarmScreen: public OAEScreen
 
 		Alice alice;
 
+
 		//SLEEP SCREEN AND VARIABLES
 		TexturedObject dayNightCircle;
 		bool isInSleepState;
@@ -123,9 +124,15 @@ class FarmScreen: public OAEScreen
 		//SAVING SCREEN AND VARIABLES
 		TexturedAndAnimatedObject displaysTheWordSaving;
 		bool isSaveThreadValid;
+		bool isSaving;
 		std::thread saveThread;
 		void runSaveProcedure(); 
-		bool isSaving;
+
+		//FOR RUNNING NIGHTLY UPDATES
+		bool isNightlyUpdateThreadValid;
+		bool isNightlyUpdateThreadRunning;
+		std::thread nightlyUpdateThread;
+		void runNightlyUpdates();
 
 		//LOADING VARIABLES
 		bool isLoading;

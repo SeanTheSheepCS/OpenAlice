@@ -23,6 +23,7 @@ FarmScreen::FarmScreen(int x, int y, unsigned int width, unsigned int height):
 	this->pathToSaveFileUsed = "";
 	this->isInSleepState = false;
 	this->isSaving = false;
+	this->isNightlyUpdateThreadValid = false;
 	this->dayNightCircle.addPeriodicRotation(NUMBER_OF_MILLISECONDS_TO_SLEEP_FOR);
 	this->dayNightCircle.setDegreeInterval(45.0);
 	this->shouldSwitchToMainMenuScreenFlag = false;
@@ -377,6 +378,53 @@ void FarmScreen::runSleepSequence(sf::RenderWindow& windowToDrawIn)
 	dayNumberDisplay.incrementNumberDisplayByAmount(1);
 	this->dayNightCircle.setRotationAroundCentre(180.0);
 	this->isInSleepState = true;
+
+	this->isNightlyUpdateThreadValid = true;
+	this->isNightlyUpdateThreadRunning = true;
+	this->nightlyUpdateThread = std::thread(&(FarmScreen::runNightlyUpdates), this);
+}
+
+void FarmScreen::runNightlyUpdates()
+{
+	for(int row = 0; row < plantTileMap.getRowCount(); row++)
+	{
+		for(int col = 0; col < plantTileMap.getColCount(); col++)
+		{
+			int currentTileReferenceNumber = plantTileMap.getReferenceNumberAtIndices(row, col);
+			//THIS NEXT LINE IS MESSED UP AND IS PART OF THE CAUSE OF ISSUE #14, this causes bugs when the groundTileMap and plantTileMap are not perfectly superimposted!!!!! See Issue #14 for more details. If you are reading this comment, Issue #14 is still an existing problem.
+            int currentTileReferenceNumberOnTheGroundTileMap = groundTileMap.getReferenceNumberAtIndices(row, col);
+			if(currentTileReferenceNumberOnTheGroundTileMap == TEXTURE_BANK_REF_NUMBER_WATERED_TILLED_DIRT)
+			{
+			    //THIS NEXT LINE IS MESSED UP AND IS PART OF THE CAUSE OF ISSUE #14, this causes bugs when the groundTileMap and plantTileMap are not perfectly superimposted!!!!! See Issue #14 for more details. If you are reading this comment, Issue #14 is still an existing problem.
+				groundTileMap.setReferenceNumberAtIndicesAndDoNotPartialDraw(row, col, TEXTURE_BANK_REF_NUMBER_UNWATERED_TILLED_DIRT);
+			    if((currentTileReferenceNumber >= TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_ONE_TEXTURE) && (currentTileReferenceNumber < TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_SIX_TEXTURE))
+			    {
+			    	if((currentTileReferenceNumber != TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_FIVE_HARVEST_ONE_TEXTURE) &&
+			    		(currentTileReferenceNumber != TEXTURE_BANK_REF_NUMBER_TOMATO_STAGE_FIVE_HARVEST_TWO_TEXTURE))
+			    	{
+			    		plantTileMap.setReferenceNumberAtIndicesAndDoNotPartialDraw(row, col, ++currentTileReferenceNumber);
+			    	}
+			    }
+			    else if((currentTileReferenceNumber >= TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_ONE_TEXTURE) && (currentTileReferenceNumber < TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_ELEVEN_TEXTURE))
+			    {
+			    	if((currentTileReferenceNumber != TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_TEN_HARVEST_ONE_TEXTURE) &&
+			    		(currentTileReferenceNumber != TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_TEN_HARVEST_TWO_TEXTURE) &&
+			    		(currentTileReferenceNumber != TEXTURE_BANK_REF_NUMBER_CUCUMBER_STAGE_TEN_HARVEST_THREE_TEXTURE))
+			    	{
+			    		plantTileMap.setReferenceNumberAtIndicesAndDoNotPartialDraw(row, col, ++currentTileReferenceNumber);
+			    	}
+			    }
+			    else if((currentTileReferenceNumber >= TEXTURE_BANK_REF_NUMBER_CARROTS_STAGE_ONE_TEXTURE) && (currentTileReferenceNumber < TEXTURE_BANK_REF_NUMBER_CARROTS_STAGE_THREE_TEXTURE))
+			    {
+			    	if(currentTileReferenceNumber != TEXTURE_BANK_REF_NUMBER_CARROTS_STAGE_THREE_TEXTURE)
+			    	{
+			    		plantTileMap.setReferenceNumberAtIndicesAndDoNotPartialDraw(row, col, ++currentTileReferenceNumber);
+			    	}
+			    }
+			}
+		}
+	}
+	this->isNightlyUpdateThreadRunning = false;
 }
 
 void FarmScreen::runSaveProcedure()
@@ -385,8 +433,6 @@ void FarmScreen::runSaveProcedure()
 	{
 		return;
 	}
-
-	this->isSaving = true;
 
 	std::ofstream fileToWriteSaveTo(pathToSaveFileUsed, std::ofstream::binary);
 	std::ostream_iterator<unsigned char> fileToWriteSaveToIterator(fileToWriteSaveTo);
@@ -851,7 +897,6 @@ void FarmScreen::forceFullDraw(sf::RenderWindow& windowToDrawIn)
 void FarmScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::RenderWindow& windowToDrawIn)
 {
 	static unsigned int numberOfMillisecondsPassedInSleepStateSinceLastWakeUp = 0;
-	static unsigned int lastRowOfPlantTileMapUpdatedInSleepCycle = -1;
 
 	if(this->isInErrorState)
 	{
@@ -861,42 +906,41 @@ void FarmScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::Render
 
 	if(this->isInSleepState)
 	{
-		unsigned int numberOfMillisecondsSinceLastUpdate = millisecondsElapsedSinceLastUpdate;
-		unsigned int numberOfMillisecondsPassedInSleepStateSinceLastWakeUpLastIteration = numberOfMillisecondsPassedInSleepStateSinceLastWakeUp;
-		numberOfMillisecondsPassedInSleepStateSinceLastWakeUp += numberOfMillisecondsSinceLastUpdate;
-		dayNightCircle.draw(windowToDrawIn, numberOfMillisecondsSinceLastUpdate);
-		//Change the plant tile map while Alice sleeps, row by row...
-		unsigned int startRowToChangeThisFrame = lastRowOfPlantTileMapUpdatedInSleepCycle+1;
-		unsigned int endRowToChangeThisFrame = startRowToChangeThisFrame + ((unsigned int)(((float)numberOfMillisecondsSinceLastUpdate) / ((float)NUMBER_OF_MILLISECONDS_TO_SLEEP_FOR)) * ((float)plantTileMap.getRowCount()));
+		numberOfMillisecondsPassedInSleepStateSinceLastWakeUp += millisecondsElapsedSinceLastUpdate;
+		dayNightCircle.draw(windowToDrawIn, millisecondsElapsedSinceLastUpdate);
 
-		//If you finished early and there is nothing to do this iteration, you can start the save thread!
-		if(lastRowOfPlantTileMapUpdatedInSleepCycle == plantTileMap.getRowCount() + 1)
+		//If you finished the nightly update early, you can start the save thread!
+		if(((this->isNightlyUpdateThreadRunning) == false) && ((this->isNightlyUpdateThreadValid) == true))
 		{
+			this->isNightlyUpdateThreadValid = false;
 			if((this->isSaveThreadValid) == false)
 			{
 				this->isSaveThreadValid = true;
+				this->isSaving = true;
 				this->saveThread = std::thread(&(FarmScreen::runSaveProcedure), this);
 			}
 		}
-		if(endRowToChangeThisFrame >= plantTileMap.getRowCount())
-		{
-			endRowToChangeThisFrame = plantTileMap.getRowCount()+1;
-		}
-		lastRowOfPlantTileMapUpdatedInSleepCycle = endRowToChangeThisFrame;
-		//This next line checks if we are done sleeping (if this is our last iteration)
+
+		//If we are done sleeping...
 		if(numberOfMillisecondsPassedInSleepStateSinceLastWakeUp > NUMBER_OF_MILLISECONDS_TO_SLEEP_FOR)
 		{
-			if(endRowToChangeThisFrame != (plantTileMap.getRowCount() - 1))
+			//Handle the nightly update thread first...
+			
+			//Is the thread joinable still? Has the ending of this thread already been handled?
+			if((this->isNightlyUpdateThreadValid) == true)
 			{
-				//Clean up the rows if this is the last iteration, this is our last chance!
-				this->updateTheFollowingRowsInThePlantTileMapBothBoundsInclusive(endRowToChangeThisFrame+1, plantTileMap.getRowCount() - 1);
-				//We need to start the save thread here too, because if it didn't finish properly, we have not saved yet!
+				nightlyUpdateThread.join();
+				this->isNightlyUpdateThreadValid = false;
 				if((this->isSaveThreadValid) == false)
 				{
 					this->isSaveThreadValid = true;
+					this->isSaving = true;
 					this->saveThread = std::thread(&(FarmScreen::runSaveProcedure), this);
 				}
 			}
+			//Handle the saving thread afterwards...
+
+			//Is the thread joinable still? Has the ending of this thread already been handled?
 			if((this->isSaveThreadValid) == true)
 			{
 				(this->saveThread).join();
@@ -904,11 +948,6 @@ void FarmScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::Render
 			}
 			this->isInSleepState = false;
 			numberOfMillisecondsPassedInSleepStateSinceLastWakeUp = 0;
-			lastRowOfPlantTileMapUpdatedInSleepCycle = -1;
-		}
-		else
-		{
-			this->updateTheFollowingRowsInThePlantTileMapBothBoundsInclusive(startRowToChangeThisFrame, endRowToChangeThisFrame);
 		}
 	}
 	else
