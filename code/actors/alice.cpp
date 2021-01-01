@@ -1,10 +1,19 @@
 #include "alice.h"
 
+AliceAnimationAndTextureDecisionFactors::AliceAnimationAndTextureDecisionFactors()
+{
+	this->heldWorldObjectReferenceNumber = WORLD_OBJECT_REF_NUMBER_INVALID;
+	this->xMovementAmount = 0;
+	this->yMovementAmount = 0;
+	this->capacityOfObject = -1;
+}
+
 bool AliceAnimationAndTextureDecisionFactors::operator ==(const AliceAnimationAndTextureDecisionFactors& rhs) const
 {
 	if(((this->heldWorldObjectReferenceNumber) == rhs.heldWorldObjectReferenceNumber) &&
 		((this->xMovementAmount) == rhs.xMovementAmount) &&
-		((this->yMovementAmount) == rhs.yMovementAmount))
+		((this->yMovementAmount) == rhs.yMovementAmount) &&
+		((this->capacityOfObject) == rhs.capacityOfObject))
 	{
 		return true;
 	}
@@ -36,6 +45,15 @@ bool AliceAnimationAndTextureDecisionFactors::operator <(const AliceAnimationAnd
 	}
 	//PRIORITY THREE: xMovementAmount
 	if((this->yMovementAmount) < (rhs.yMovementAmount))
+	{
+		return true;
+	}
+	else if((this->yMovementAmount) > (rhs.yMovementAmount))
+	{
+		return false;
+	}
+	//PRIORITY FOUR: capacityOfObject
+	if((this->capacityOfObject) < (rhs.capacityOfObject))
 	{
 		return true;
 	}
@@ -103,8 +121,33 @@ void Alice::associateWithCorrectAnimation()
 		key.yMovementAmount = -1;
 	}
 
-	this->setCurrentTextureReferenceNumber(decisionFactorsToTextureBankRefNumberMap.at(key));
-	this->setCurrentAnimationInstanceReferenceNumber(decisionFactorsToAnimationBankRefNumberMap.at(key));
+	key.capacityOfObject = this->returnFilledAmountPropertyOfHeldWorldObject();
+	if(decisionFactorsToTextureBankRefNumberMap.count(key) == 1)
+	{
+		this->setCurrentTextureReferenceNumber(decisionFactorsToTextureBankRefNumberMap.at(key));
+	}
+	else
+	{
+		key.capacityOfObject = -1;
+		if(decisionFactorsToTextureBankRefNumberMap.count(key) == 1)
+		{
+			this->setCurrentTextureReferenceNumber(decisionFactorsToTextureBankRefNumberMap.at(key));
+		}
+		key.capacityOfObject = this->returnCapacityOfHeldWorldObject();
+	}
+	if(decisionFactorsToAnimationBankRefNumberMap.count(key) == 1)
+	{
+		this->setCurrentAnimationInstanceReferenceNumber(decisionFactorsToAnimationBankRefNumberMap.at(key));
+	}
+	else
+	{
+		key.capacityOfObject = -1;
+		if(decisionFactorsToAnimationBankRefNumberMap.count(key) == 1)
+		{
+			this->setCurrentAnimationInstanceReferenceNumber(decisionFactorsToAnimationBankRefNumberMap.at(key));
+		}
+		key.capacityOfObject = this->returnCapacityOfHeldWorldObject();
+	}
 }
 
 bool Alice::isHoldingObject() const
@@ -268,22 +311,21 @@ void Alice::decrementFilledAmountPropertyOfHeldWorldObject()
 			{
 				case WORLD_OBJECT_PROPERTY_FILLED_WITH_1:
 					{
-					    bool shouldRemoveTheWorldObjectFilledWithZeroProperty = false;
+						bool hasEncounteredASpecialProperty = false;
 					    for(unsigned int j = 0; j < propertiesOfHeldObject.size(); j++)
 					    {
 					    	if(propertiesOfHeldObject.at(j) == WORLD_OBJECT_PROPERTY_DELETES_WHEN_FILLED_WITH_0)
 					    	{
-					    		shouldRemoveTheWorldObjectFilledWithZeroProperty = true;
+					    		this->deleteHeldWorldObject();
+								hasEncounteredASpecialProperty = true;
+								break;
 					    	}
 					    }
-					    if(shouldRemoveTheWorldObjectFilledWithZeroProperty == true)
-					    {
-					    	this->deleteHeldWorldObject();
-					    }
-					    else
-					    {
+						//If you didn't encounter any of these special properties, just use the normal behaviour.
+						if(hasEncounteredASpecialProperty == false)
+						{
 					    	propertyToWrite = WORLD_OBJECT_PROPERTY_FILLED_WITH_0;
-					    }
+						}
 					}
 					break;
 				case WORLD_OBJECT_PROPERTY_FILLED_WITH_2:
@@ -358,6 +400,7 @@ void Alice::initializeDecisionFactorsToTextureBankRefNumberMap()
 	initializeEntryGroupInDecisionFactorToTextureBankRefNumberMap(WORLD_OBJECT_REF_NUMBER_HOE, TEXTURE_BANK_REF_NUMBER_ALICE_LEFT_BASE_HOE, TEXTURE_BANK_REF_NUMBER_ALICE_RIGHT_BASE_HOE, TEXTURE_BANK_REF_NUMBER_ALICE_UP_BASE_HOE, TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_BASE_HOE);
 
 	initializeEntryGroupInDecisionFactorToTextureBankRefNumberMap(WORLD_OBJECT_REF_NUMBER_WATERING_CAN, TEXTURE_BANK_REF_NUMBER_ALICE_LEFT_BASE_WATERING_CAN, TEXTURE_BANK_REF_NUMBER_ALICE_RIGHT_BASE_WATERING_CAN, TEXTURE_BANK_REF_NUMBER_ALICE_UP_BASE_WATERING_CAN, TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_BASE_WATERING_CAN);
+	initializeEntryGroupInDecisionFactorToTextureBankRefNumberMap(WORLD_OBJECT_REF_NUMBER_WATERING_CAN, TEXTURE_BANK_REF_NUMBER_ALICE_LEFT_BASE_WATERING_CAN_EMPTY, TEXTURE_BANK_REF_NUMBER_ALICE_RIGHT_BASE_WATERING_CAN_EMPTY, TEXTURE_BANK_REF_NUMBER_ALICE_UP_BASE_WATERING_CAN_EMPTY, TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_BASE_WATERING_CAN_EMPTY, 0);
 
 	//TOMATO CRATE TEXTURES
 	initializeEntryGroupInDecisionFactorToTextureBankRefNumberMap(WORLD_OBJECT_REF_NUMBER_TOMATO_CRATE_ONE, TEXTURE_BANK_REF_NUMBER_ALICE_LEFT_BASE_TOMATO_CRATE, TEXTURE_BANK_REF_NUMBER_ALICE_RIGHT_BASE_TOMATO_CRATE, TEXTURE_BANK_REF_NUMBER_ALICE_UP_BASE_TOMATO_CRATE, TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_BASE_TOMATO_CRATE);
@@ -402,25 +445,26 @@ void Alice::initializeDecisionFactorsToTextureBankRefNumberMap()
 	initializeEntryGroupInDecisionFactorToTextureBankRefNumberMap(WORLD_OBJECT_REF_NUMBER_INVALID, TEXTURE_BANK_REF_NUMBER_ALICE_LEFT_BASE, TEXTURE_BANK_REF_NUMBER_ALICE_RIGHT_BASE, TEXTURE_BANK_REF_NUMBER_ALICE_UP_BASE, TEXTURE_BANK_REF_NUMBER_ALICE_DOWN_BASE);
 }
 
-void Alice::initializeEntryGroupInDecisionFactorToTextureBankRefNumberMap(WorldObjectReferenceNumber heldWorldObjectReferenceNumberArg, TextureBankReferenceNumber leftTexture, TextureBankReferenceNumber rightTexture, TextureBankReferenceNumber upTexture, TextureBankReferenceNumber downTexture)
+void Alice::initializeEntryGroupInDecisionFactorToTextureBankRefNumberMap(WorldObjectReferenceNumber heldWorldObjectReferenceNumberArg, TextureBankReferenceNumber leftTexture, TextureBankReferenceNumber rightTexture, TextureBankReferenceNumber upTexture, TextureBankReferenceNumber downTexture, int capacity)
 {
-	this->initializeEntryInDecisionFactorToTextureBankRefNumberMap(heldWorldObjectReferenceNumberArg,-1,-1,rightTexture);
-	this->initializeEntryInDecisionFactorToTextureBankRefNumberMap(heldWorldObjectReferenceNumberArg,-1,0,rightTexture);
-	this->initializeEntryInDecisionFactorToTextureBankRefNumberMap(heldWorldObjectReferenceNumberArg,-1,1,rightTexture);
-	this->initializeEntryInDecisionFactorToTextureBankRefNumberMap(heldWorldObjectReferenceNumberArg,0,-1,downTexture);
-	this->initializeEntryInDecisionFactorToTextureBankRefNumberMap(heldWorldObjectReferenceNumberArg,0,0,downTexture);
-	this->initializeEntryInDecisionFactorToTextureBankRefNumberMap(heldWorldObjectReferenceNumberArg,0,1,upTexture);
-	this->initializeEntryInDecisionFactorToTextureBankRefNumberMap(heldWorldObjectReferenceNumberArg,1,-1,leftTexture);
-	this->initializeEntryInDecisionFactorToTextureBankRefNumberMap(heldWorldObjectReferenceNumberArg,1,0,leftTexture);
-	this->initializeEntryInDecisionFactorToTextureBankRefNumberMap(heldWorldObjectReferenceNumberArg,1,1,leftTexture);
+	this->initializeEntryInDecisionFactorToTextureBankRefNumberMap(heldWorldObjectReferenceNumberArg,-1,-1,capacity,rightTexture);
+	this->initializeEntryInDecisionFactorToTextureBankRefNumberMap(heldWorldObjectReferenceNumberArg,-1,0,capacity,rightTexture);
+	this->initializeEntryInDecisionFactorToTextureBankRefNumberMap(heldWorldObjectReferenceNumberArg,-1,1,capacity,rightTexture);
+	this->initializeEntryInDecisionFactorToTextureBankRefNumberMap(heldWorldObjectReferenceNumberArg,0,-1,capacity,downTexture);
+	this->initializeEntryInDecisionFactorToTextureBankRefNumberMap(heldWorldObjectReferenceNumberArg,0,0,capacity,downTexture);
+	this->initializeEntryInDecisionFactorToTextureBankRefNumberMap(heldWorldObjectReferenceNumberArg,0,1,capacity,upTexture);
+	this->initializeEntryInDecisionFactorToTextureBankRefNumberMap(heldWorldObjectReferenceNumberArg,1,-1,capacity,leftTexture);
+	this->initializeEntryInDecisionFactorToTextureBankRefNumberMap(heldWorldObjectReferenceNumberArg,1,0,capacity,leftTexture);
+	this->initializeEntryInDecisionFactorToTextureBankRefNumberMap(heldWorldObjectReferenceNumberArg,1,1,capacity,leftTexture);
 }
 
-void Alice::initializeEntryInDecisionFactorToTextureBankRefNumberMap(WorldObjectReferenceNumber heldWorldObjectReferenceNumberArg, int xMovementAmountArg, int yMovementAmountArg, TextureBankReferenceNumber textureBankRefNumberArg)
+void Alice::initializeEntryInDecisionFactorToTextureBankRefNumberMap(WorldObjectReferenceNumber heldWorldObjectReferenceNumberArg, int xMovementAmountArg, int yMovementAmountArg, int capacity, TextureBankReferenceNumber textureBankRefNumberArg)
 {
 	AliceAnimationAndTextureDecisionFactors keyToAdd;
 	keyToAdd.heldWorldObjectReferenceNumber = heldWorldObjectReferenceNumberArg;
 	keyToAdd.xMovementAmount = xMovementAmountArg;
 	keyToAdd.yMovementAmount = yMovementAmountArg;
+	keyToAdd.capacityOfObject = capacity;
 	if(decisionFactorsToTextureBankRefNumberMap.count(keyToAdd) == 1)
 	{
 		decisionFactorsToTextureBankRefNumberMap.erase(keyToAdd);
@@ -435,6 +479,7 @@ void Alice::initializeDecisionFactorsToAnimationBankRefNumberMap()
 
 	//WATERING CAN TEXTURES
 	initializeEntryGroupInDecisionFactorToAnimationBankRefNumberMap(WORLD_OBJECT_REF_NUMBER_WATERING_CAN, ANIMATION_BANK_REF_NUMBER_ALICE_LEFT_WALK_WATERING_CAN, ANIMATION_BANK_REF_NUMBER_ALICE_RIGHT_WALK_WATERING_CAN, ANIMATION_BANK_REF_NUMBER_ALICE_UP_WALK_WATERING_CAN, ANIMATION_BANK_REF_NUMBER_ALICE_DOWN_WALK_WATERING_CAN);
+	initializeEntryGroupInDecisionFactorToAnimationBankRefNumberMap(WORLD_OBJECT_REF_NUMBER_WATERING_CAN, ANIMATION_BANK_REF_NUMBER_ALICE_LEFT_WALK_WATERING_CAN_EMPTY, ANIMATION_BANK_REF_NUMBER_ALICE_RIGHT_WALK_WATERING_CAN_EMPTY, ANIMATION_BANK_REF_NUMBER_ALICE_UP_WALK_WATERING_CAN_EMPTY, ANIMATION_BANK_REF_NUMBER_ALICE_DOWN_WALK_WATERING_CAN_EMPTY, 0);
 
 	//TOMATO CRATE TEXTURES
 	initializeEntryGroupInDecisionFactorToAnimationBankRefNumberMap(WORLD_OBJECT_REF_NUMBER_TOMATO_CRATE_ONE, ANIMATION_BANK_REF_NUMBER_ALICE_LEFT_WALK_TOMATO_CRATE, ANIMATION_BANK_REF_NUMBER_ALICE_RIGHT_WALK_TOMATO_CRATE, ANIMATION_BANK_REF_NUMBER_ALICE_UP_WALK_TOMATO_CRATE, ANIMATION_BANK_REF_NUMBER_ALICE_DOWN_WALK_TOMATO_CRATE);
@@ -479,25 +524,26 @@ void Alice::initializeDecisionFactorsToAnimationBankRefNumberMap()
 	initializeEntryGroupInDecisionFactorToAnimationBankRefNumberMap(WORLD_OBJECT_REF_NUMBER_INVALID, ANIMATION_BANK_REF_NUMBER_ALICE_LEFT_WALK, ANIMATION_BANK_REF_NUMBER_ALICE_RIGHT_WALK, ANIMATION_BANK_REF_NUMBER_ALICE_UP_WALK, ANIMATION_BANK_REF_NUMBER_ALICE_DOWN_WALK);
 }
 
-void Alice::initializeEntryGroupInDecisionFactorToAnimationBankRefNumberMap(WorldObjectReferenceNumber heldWorldObjectReferenceNumberArg, AnimationBankReferenceNumber leftAnimation, AnimationBankReferenceNumber rightAnimation, AnimationBankReferenceNumber upAnimation, AnimationBankReferenceNumber downAnimation)
+void Alice::initializeEntryGroupInDecisionFactorToAnimationBankRefNumberMap(WorldObjectReferenceNumber heldWorldObjectReferenceNumberArg, AnimationBankReferenceNumber leftAnimation, AnimationBankReferenceNumber rightAnimation, AnimationBankReferenceNumber upAnimation, AnimationBankReferenceNumber downAnimation, int capacity)
 {
-	this->initializeEntryInDecisionFactorToAnimationBankRefNumberMap(heldWorldObjectReferenceNumberArg,-1,-1,rightAnimation);
-	this->initializeEntryInDecisionFactorToAnimationBankRefNumberMap(heldWorldObjectReferenceNumberArg,-1,0,rightAnimation);
-	this->initializeEntryInDecisionFactorToAnimationBankRefNumberMap(heldWorldObjectReferenceNumberArg,-1,1,rightAnimation);
-	this->initializeEntryInDecisionFactorToAnimationBankRefNumberMap(heldWorldObjectReferenceNumberArg,0,-1,downAnimation);
-	this->initializeEntryInDecisionFactorToAnimationBankRefNumberMap(heldWorldObjectReferenceNumberArg,0,0,downAnimation);
-	this->initializeEntryInDecisionFactorToAnimationBankRefNumberMap(heldWorldObjectReferenceNumberArg,0,1,upAnimation);
-	this->initializeEntryInDecisionFactorToAnimationBankRefNumberMap(heldWorldObjectReferenceNumberArg,1,-1,leftAnimation);
-	this->initializeEntryInDecisionFactorToAnimationBankRefNumberMap(heldWorldObjectReferenceNumberArg,1,0,leftAnimation);
-	this->initializeEntryInDecisionFactorToAnimationBankRefNumberMap(heldWorldObjectReferenceNumberArg,1,1,leftAnimation);
+	this->initializeEntryInDecisionFactorToAnimationBankRefNumberMap(heldWorldObjectReferenceNumberArg,-1,-1,capacity,rightAnimation);
+	this->initializeEntryInDecisionFactorToAnimationBankRefNumberMap(heldWorldObjectReferenceNumberArg,-1,0,capacity,rightAnimation);
+	this->initializeEntryInDecisionFactorToAnimationBankRefNumberMap(heldWorldObjectReferenceNumberArg,-1,1,capacity,rightAnimation);
+	this->initializeEntryInDecisionFactorToAnimationBankRefNumberMap(heldWorldObjectReferenceNumberArg,0,-1,capacity,downAnimation);
+	this->initializeEntryInDecisionFactorToAnimationBankRefNumberMap(heldWorldObjectReferenceNumberArg,0,0,capacity,downAnimation);
+	this->initializeEntryInDecisionFactorToAnimationBankRefNumberMap(heldWorldObjectReferenceNumberArg,0,1,capacity,upAnimation);
+	this->initializeEntryInDecisionFactorToAnimationBankRefNumberMap(heldWorldObjectReferenceNumberArg,1,-1,capacity,leftAnimation);
+	this->initializeEntryInDecisionFactorToAnimationBankRefNumberMap(heldWorldObjectReferenceNumberArg,1,0,capacity,leftAnimation);
+	this->initializeEntryInDecisionFactorToAnimationBankRefNumberMap(heldWorldObjectReferenceNumberArg,1,1,capacity,leftAnimation);
 }
 
-void Alice::initializeEntryInDecisionFactorToAnimationBankRefNumberMap(WorldObjectReferenceNumber heldWorldObjectReferenceNumberArg, int xMovementAmount, int yMovementAmount, AnimationBankReferenceNumber animationBankRefNumberArg)
+void Alice::initializeEntryInDecisionFactorToAnimationBankRefNumberMap(WorldObjectReferenceNumber heldWorldObjectReferenceNumberArg, int xMovementAmount, int yMovementAmount, int capacity, AnimationBankReferenceNumber animationBankRefNumberArg)
 {
 	AliceAnimationAndTextureDecisionFactors keyToAdd;
 	keyToAdd.heldWorldObjectReferenceNumber = heldWorldObjectReferenceNumberArg;
 	keyToAdd.xMovementAmount = xMovementAmount;
 	keyToAdd.yMovementAmount = yMovementAmount;
+	keyToAdd.capacityOfObject = capacity;
 	if(decisionFactorsToTextureBankRefNumberMap.count(keyToAdd) == 1)
 	{
 		decisionFactorsToAnimationBankRefNumberMap.erase(keyToAdd);

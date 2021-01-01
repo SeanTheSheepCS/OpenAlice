@@ -5,14 +5,16 @@
 #include "../engine/advanced_classes/player_object_module/player_object_module.h"
 #include "../engine/advanced_classes/tile_map_module/tile_map_module.h"
 #include "../engine/primitive_classes/world_object.h"
-#include <unordered_map>
+#include <map>
 
 class AliceAnimationAndTextureDecisionFactors
 {
 	public:
+		AliceAnimationAndTextureDecisionFactors();
 		WorldObjectReferenceNumber heldWorldObjectReferenceNumber; 
 		int xMovementAmount;
 		int yMovementAmount;
+		int capacityOfObject; //-1 denotes that the capacity is irrelevant.
 		bool operator ==(const AliceAnimationAndTextureDecisionFactors& rhs) const;
 		bool operator <(const AliceAnimationAndTextureDecisionFactors& rhs) const;
 	protected:
@@ -49,11 +51,12 @@ class Alice: public PlayerObject
 		//
 	private:
 		void initializeDecisionFactorsToTextureBankRefNumberMap();
-		void initializeEntryGroupInDecisionFactorToTextureBankRefNumberMap(WorldObjectReferenceNumber heldWorldObjectReferenceNumberArg, TextureBankReferenceNumber leftTexture, TextureBankReferenceNumber rightTexture, TextureBankReferenceNumber upTexture, TextureBankReferenceNumber downTexture);
-		void initializeEntryInDecisionFactorToTextureBankRefNumberMap(WorldObjectReferenceNumber heldWorldObjectReferenceNumber, int xMovementAmount, int yMovementAmount, TextureBankReferenceNumber textureBankRefNumber);
+		void initializeEntryGroupInDecisionFactorToTextureBankRefNumberMap(WorldObjectReferenceNumber heldWorldObjectReferenceNumberArg, TextureBankReferenceNumber leftTexture, TextureBankReferenceNumber rightTexture, TextureBankReferenceNumber upTexture, TextureBankReferenceNumber downTexture, int capacity = -1);
+		void initializeEntryInDecisionFactorToTextureBankRefNumberMap(WorldObjectReferenceNumber heldWorldObjectReferenceNumber, int xMovementAmount, int yMovementAmount, int capacity, TextureBankReferenceNumber textureBankRefNumber);
+
 		void initializeDecisionFactorsToAnimationBankRefNumberMap();
-		void initializeEntryGroupInDecisionFactorToAnimationBankRefNumberMap(WorldObjectReferenceNumber heldWorldObjectReferenceNumberArg, AnimationBankReferenceNumber leftAnimation, AnimationBankReferenceNumber rightAnimation, AnimationBankReferenceNumber upAnimation, AnimationBankReferenceNumber downAnimation);
-		void initializeEntryInDecisionFactorToAnimationBankRefNumberMap(WorldObjectReferenceNumber heldWorldObjectReferenceNumber, int xMovementAmount, int yMovementAmount, AnimationBankReferenceNumber AnimationBankRefNumber);
+		void initializeEntryGroupInDecisionFactorToAnimationBankRefNumberMap(WorldObjectReferenceNumber heldWorldObjectReferenceNumberArg, AnimationBankReferenceNumber leftAnimation, AnimationBankReferenceNumber rightAnimation, AnimationBankReferenceNumber upAnimation, AnimationBankReferenceNumber downAnimation, int capacity = -1);
+		void initializeEntryInDecisionFactorToAnimationBankRefNumberMap(WorldObjectReferenceNumber heldWorldObjectReferenceNumber, int xMovementAmount, int yMovementAmount, int capacity, AnimationBankReferenceNumber AnimationBankRefNumber);
 
 		WorldObjectReferenceNumber referenceNumberOfHeldWorldObject;
 		WorldObject heldWorldObject;

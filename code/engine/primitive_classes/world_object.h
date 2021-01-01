@@ -7,7 +7,7 @@
 #include "textured_object.h"
 #include "trigger_zone.h"
 #include "collision_box.h"
-#include "world_object_properties.h"
+#include "../../world_object_properties.h"
 
 class WorldObject: public TexturedObject
 {
