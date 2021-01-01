@@ -243,7 +243,7 @@ void MarketScreen::populateMarketWithGarbageData()
 	populateMarketWithBuyOffer(MarketOffer(0,0,0,0));
 }
 
-void MarketScreen::populateMarketWithRandomOffers(unsigned int seed)
+void MarketScreen::populateMarketWithRandomOffers(unsigned int seed, unsigned int tomatoSeedPacketCount, unsigned int cucumberSeedPacketCount, unsigned int carrotSeedPacketCount)
 {
 	sellOffers.clearMarketOffers();
 	buyOffers.clearMarketOffers();
@@ -272,19 +272,28 @@ void MarketScreen::populateMarketWithRandomOffers(unsigned int seed)
 	unsigned int tomatoSeedsPrice = (rand() % 20)+20;
 	moneyForTomatoSeeds.setCommodityToBeTraded(TRADEABLE_COMMODITY_ENUM_MONEY, tomatoSeedsPrice);
 	moneyForTomatoSeeds.setCommodityToBeTradedFor(TRADEABLE_COMMODITY_ENUM_TOMATO_SEEDS, 1);
-	buyOffers.appendMarketOffer(moneyForTomatoSeeds);
+	if(tomatoSeedPacketCount < 3) //Remember, only three tomato seed packets are permissible at once.
+	{
+		buyOffers.appendMarketOffer(moneyForTomatoSeeds);
+	}
 
 	MarketOffer moneyForCucumberSeeds = MarketOffer(0,0,0,0);
 	unsigned int cucumberSeedsPrice = (rand() % 40)+30;
 	moneyForCucumberSeeds.setCommodityToBeTraded(TRADEABLE_COMMODITY_ENUM_MONEY, cucumberSeedsPrice);
 	moneyForCucumberSeeds.setCommodityToBeTradedFor(TRADEABLE_COMMODITY_ENUM_CUCUMBER_SEEDS, 1);
-	buyOffers.appendMarketOffer(moneyForCucumberSeeds);
+	if(cucumberSeedPacketCount < 3) //Remember, only three cucumber seed packets are permissible at once.
+	{
+		buyOffers.appendMarketOffer(moneyForCucumberSeeds);
+	}
 
 	MarketOffer moneyForCarrotSeeds = MarketOffer(0,0,0,0);
 	unsigned int carrotSeedsPrice = (rand() % 5)+5;
 	moneyForCarrotSeeds.setCommodityToBeTraded(TRADEABLE_COMMODITY_ENUM_MONEY, carrotSeedsPrice);
 	moneyForCarrotSeeds.setCommodityToBeTradedFor(TRADEABLE_COMMODITY_ENUM_CARROT_SEEDS, 1);
-	buyOffers.appendMarketOffer(moneyForCarrotSeeds);
+	if(carrotSeedPacketCount < 3) //Remember, only three carrot seed packets are permissible at once.
+	{
+		buyOffers.appendMarketOffer(moneyForCarrotSeeds);
+	}
 }
 
 bool MarketScreen::returnIfShouldSwitchToFarmScreen()

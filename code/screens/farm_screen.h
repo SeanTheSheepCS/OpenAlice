@@ -77,9 +77,14 @@ class FarmScreen: public OAEScreen
 
 		unsigned int getDay() const;
 		unsigned int getMoneyAmount() const;
+		
 		unsigned int getTradeableTomatoCrateCount() const;
 		unsigned int getTradeableCucumberCrateCount() const;
 		unsigned int getTradeableCarrotCrateCount() const;
+
+		unsigned int getTomatoSeedPacketCount() const;
+		unsigned int getCucumberSeedPacketCount() const;
+		unsigned int getCarrotSeedPacketCount() const;
 
 		void setMoneyDisplayAmount(unsigned int moneyDisplayAmount);
 		void setDayDisplayAmount(unsigned int dayDisplayAmount);

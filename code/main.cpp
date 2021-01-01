@@ -92,7 +92,7 @@ int main()
 						farmScreenVar.loadSaveFile(fileToLoad);
 						farmScreenVar.associateWithTexturesInBank(textureBankForApplication);
 						farmScreenVar.associateWithAnimationsInBank(animationBankForApplication);
-						marketScreenVar.populateMarketWithRandomOffers(farmScreenVar.generateSeedFromSavedData());
+						marketScreenVar.populateMarketWithRandomOffers(farmScreenVar.generateSeedFromSavedData(), farmScreenVar.getTomatoSeedPacketCount(), farmScreenVar.getCucumberSeedPacketCount(), farmScreenVar.getCarrotSeedPacketCount());
 						pointerToCurrentlyActiveScreen = &farmScreenVar;
 						currentScreenToDisplay = FARM_SCREEN;
 					}
@@ -125,7 +125,7 @@ int main()
 				}
 				else if(farmScreenVar.returnIfShouldUpdateMarketScreen())
 				{
-					marketScreenVar.populateMarketWithRandomOffers(farmScreenVar.generateSeedFromSavedData());
+					marketScreenVar.populateMarketWithRandomOffers(farmScreenVar.generateSeedFromSavedData(), farmScreenVar.getTomatoSeedPacketCount(), farmScreenVar.getCucumberSeedPacketCount(), farmScreenVar.getCarrotSeedPacketCount());
 					farmScreenVar.acknowledgeShouldUpdateMarketScreen();
 				}
 				break;

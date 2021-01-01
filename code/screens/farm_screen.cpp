@@ -1417,6 +1417,72 @@ unsigned int FarmScreen::getTradeableCarrotCrateCount() const
 	return numberOfTradeableCarrotCrates;
 }
 
+unsigned int FarmScreen::getTomatoSeedPacketCount() const
+{
+	unsigned int numberOfTomatoSeedPackets = 0;
+	std::vector<WorldObjectReferenceNumber> refNumsOfAllWorldObjectsInFarmScreen = groundTileMap.getAllWorldObjectReferenceNumbersInTileMap();
+	for(WorldObjectReferenceNumber& currentRefNum : refNumsOfAllWorldObjectsInFarmScreen)
+	{
+		switch(currentRefNum)
+		{
+			case WORLD_OBJECT_REF_NUMBER_TOMATO_SEED_PACKET_ONE:
+				numberOfTomatoSeedPackets++;
+				break;
+			case WORLD_OBJECT_REF_NUMBER_TOMATO_SEED_PACKET_TWO:
+				numberOfTomatoSeedPackets++;
+				break;
+			case WORLD_OBJECT_REF_NUMBER_TOMATO_SEED_PACKET_THREE:
+				numberOfTomatoSeedPackets++;
+				break;
+		}
+	}
+	return numberOfTomatoSeedPackets;
+}
+
+unsigned int FarmScreen::getCucumberSeedPacketCount() const
+{
+	unsigned int numberOfCucumberSeedPackets = 0;
+	std::vector<WorldObjectReferenceNumber> refNumsOfAllWorldObjectsInFarmScreen = groundTileMap.getAllWorldObjectReferenceNumbersInTileMap();
+	for(WorldObjectReferenceNumber& currentRefNum : refNumsOfAllWorldObjectsInFarmScreen)
+	{
+		switch(currentRefNum)
+		{
+			case WORLD_OBJECT_REF_NUMBER_CUCUMBER_SEED_PACKET_ONE:
+				numberOfCucumberSeedPackets++;
+				break;
+			case WORLD_OBJECT_REF_NUMBER_CUCUMBER_SEED_PACKET_TWO:
+				numberOfCucumberSeedPackets++;
+				break;
+			case WORLD_OBJECT_REF_NUMBER_CUCUMBER_SEED_PACKET_THREE:
+				numberOfCucumberSeedPackets++;
+				break;
+		}
+	}
+	return numberOfCucumberSeedPackets;
+}
+
+unsigned int FarmScreen::getCarrotSeedPacketCount() const
+{
+	unsigned int numberOfCarrotSeedPackets = 0;
+	std::vector<WorldObjectReferenceNumber> refNumsOfAllWorldObjectsInFarmScreen = groundTileMap.getAllWorldObjectReferenceNumbersInTileMap();
+	for(WorldObjectReferenceNumber& currentRefNum : refNumsOfAllWorldObjectsInFarmScreen)
+	{
+		switch(currentRefNum)
+		{
+			case WORLD_OBJECT_REF_NUMBER_CARROT_SEED_PACKET_ONE:
+				numberOfCarrotSeedPackets++;
+				break;
+			case WORLD_OBJECT_REF_NUMBER_CARROT_SEED_PACKET_TWO:
+				numberOfCarrotSeedPackets++;
+				break;
+			case WORLD_OBJECT_REF_NUMBER_CARROT_SEED_PACKET_THREE:
+				numberOfCarrotSeedPackets++;
+				break;
+		}
+	}
+	return numberOfCarrotSeedPackets;
+}
+
 void FarmScreen::setMoneyDisplayAmount(unsigned int moneyDisplayAmount)
 {
 	moneyDisplay.setNumberDisplayAmount(moneyDisplayAmount);
