@@ -80,7 +80,7 @@ An open source game heavily inspired by the 2007 game Alice Greenfingers.
 <h3> January </h3>
 <h4> Engine </h4>
  <ul>
-  <li> Reserved for fixing bugs with the engine </li>
+  <li> <s> Reserved for fixing bugs with the engine </s> </li>
  </ul> 
 <h4> Sprites + Animation </h4>
  <ul>
