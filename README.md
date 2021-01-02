@@ -16,18 +16,11 @@
 
 <h4> Simple Installation </h4>
 <p> First, clone the repository to your computer. Navigate to the folder where you want to keep the OpenAlice files and run the following command.</p>
-```sh
-   git clone https://github.com/SeanTheSheepCS/OpenAlice.git
-```
-
+<h6> git clone https://github.com/SeanTheSheepCS/OpenAlice.git </h6>
 <p> Second, navigate into the OpenAlice directory. </p>
-```sh
-   cd OpenAlice
-```
+<h6> cd OpenAlice </h6>
 <p> Third, move to the Windows 10 Release 64 bit branch. </p>
-```sh
-   git checkout windows_10_64_bit_v1
-```
+<h6> git checkout windows_10_64_bit_v1 </h6>
 <p> Lastly, go to the folder called game and click on alice_game.exe. </p>
 
 <h4> Compile-It-Yourself Installation </h4>
@@ -63,3 +56,4 @@ This work is published from:
   Canada</span>.
 <h4> If you are curious about any aspect of OpenAlice, please open up an issue on this repository with your question. </h4>
 <h4> Thank you for interest in OpenAlice! </h4>
+</html>
