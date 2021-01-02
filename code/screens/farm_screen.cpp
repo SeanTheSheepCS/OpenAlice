@@ -1403,13 +1403,13 @@ unsigned int FarmScreen::getTradeableCarrotCrateCount() const
 	{
 		switch(currentRefNum)
 		{
-			case WORLD_OBJECT_REF_NUMBER_CARROT_CRATE_ONE:
+			case WORLD_OBJECT_REF_NUMBER_CARROT_CRATE_ONE_FILLED:
 				numberOfTradeableCarrotCrates++;
 				break;
-			case WORLD_OBJECT_REF_NUMBER_CARROT_CRATE_TWO:
+			case WORLD_OBJECT_REF_NUMBER_CARROT_CRATE_TWO_FILLED:
 				numberOfTradeableCarrotCrates++;
 				break;
-			case WORLD_OBJECT_REF_NUMBER_CARROT_CRATE_THREE:
+			case WORLD_OBJECT_REF_NUMBER_CARROT_CRATE_THREE_FILLED:
 				numberOfTradeableCarrotCrates++;
 				break;
 		}
