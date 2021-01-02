@@ -1,7 +1,7 @@
-<h2> What is OpenAlice? </h2>
+<h1> What is OpenAlice? </h1>
 <p> OpenAlice is a open source game written in C++ that is heavily inspired by the 2007 game Alice Greenfingers. In OpenAlice you control Alice, a scarecrow who wants to plant crops and watch them grow. Once they mature, Alice can sell her produce at the market. </p>
 
-<h2> How To Play </h2>
+<h1> How To Play </h1>
 <ul>
  <li> Pressing the Q key picks up an item. </li>
  <li> Pressing the E key uses said item. You can refill your watering can when it is empty by clicking E next to the well while you are holding it. You can go to sleep by pressing E next to Alice's house while you have no items in your hands. </li>
@@ -11,10 +11,9 @@
  <li> Going to sleep saves your progress, so don't quit without going to sleep first! </li>
 </ul>
 
-<h2> Installation Guide </h2>
-<h3> Windows 10 (64 Bit) </h3>
+<h1> Windows 10 (64 Bit) Installation </h1>
 
-<h4> Simple Installation </h4>
+<h2> Simple Installation </h2>
 <p> First, clone the repository to your computer. Navigate to the folder where you want to keep the OpenAlice files and run the following command.</p>
 <h6> git clone https://github.com/SeanTheSheepCS/OpenAlice.git </h6>
 <p> Second, navigate into the OpenAlice directory. </p>
@@ -23,7 +22,7 @@
 <h6> git checkout windows_10_64_bit_v1 </h6>
 <p> Lastly, go to the folder called game and click on alice_game.exe. </p>
 
-<h4> Compile-It-Yourself Installation </h4>
+<h2> Compile-It-Yourself Installation </h4>
 <p> To compile the code yourself, please install the following two zipped files and extract them. </p>
 <ul>
  <li> MINGW GCC 7.3.0 for Windows 10 64 bit, available here: https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/7.3.0/threads-posix/seh/x86_64-7.3.0-release-posix-seh-rt_v5-rev0.7z/download </li>
@@ -41,16 +40,16 @@
 <p> After these changes, please run the following command inside the build_windows_10 directory. </p>
 <h6> make alice_game </h6>
 <p> After the code has compiled, run alice_game.exe.</p>
-<h3> Ubuntu 20 (64 Bit) </h3>
-<h4> Simple Installation </h4>
+<h1> Ubuntu 20 (64 Bit) Installation </h3>
+<h2> Simple Installation </h4>
 <p> </p>
-<h4> Compile-It-Yourself Installation </h4>
+<h2> Compile-It-Yourself Installation </h4>
 <p> </p>
 
-<h2> What Libraries Does OpenAlice Use? </h2>
+<h1> What Libraries Does OpenAlice Use? </h1>
 <p> OpenAlice uses SFML for graphics and audio. The following link will take you to a page that contains tutorials on using SFML and a link where you can donate to the creators of this library. https://www.sfml-dev.org/ </p>
 
-<h2> License </h2>
+<h1> License </h1>
 <p> 
   OpenAlice has been released into the public domain. Anyone is free to use, modify, or distribute this work for any purpose. The Unlicense applies to the source code and a zlib/png license applies to the SFML library which this game depends on. If I have made a licensing mistake or any mistakes in the proper procedure for releasing the contents of this repository to the public domain, please contact me by opening up an issue on this repository. 
 </p>
