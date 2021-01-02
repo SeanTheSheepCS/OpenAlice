@@ -1,95 +1,50 @@
-# OpenAlice
-An open source game heavily inspired by the 2007 game Alice Greenfingers.
+<h2> What is OpenAlice? </h2>
+<p> OpenAlice is a open source game written in C++ that is heavily inspired by the 2007 game Alice Greenfingers. In OpenAlice you control Alice, a scarecrow who wants to plant crops and watch them grow. Once they mature, Alice can sell her produce at the market. </p>
 
-<h2> Development Roadmap </h2>
+<h2> How To Play </h2>
+<ul>
+ <li> Pressing the Q key picks up an item. </li>
+ <li> Pressing the E key uses said item. You can refill your watering can when it is empty by clicking E next to the well while you are holding it. You can go to sleep by pressing E next to Alice's house while you have no items in your hands. </li>
+ <li> You can till soil by using the hoe on grass and plant seeds by using them on tilled dirt. </li>
+ <li> Water your plants every day so that they grow big and produce lots of crops! </li>
+ <li> Harvest your crops by placing them in crates to be sold! Crates fill once they have </li>
+ <li> Going to sleep saves your progress, so don't quit without going to sleep first! </li>
+</ul>
 
-<h3> September </h3>
-<h4> Engine </h4>
- <ul>
-  <li> <s> State machine for screens is established </s> </li>
-  <li> <s> Structure for classes is established </s> </li>
-  <li> <s> Barebones version of each screen is established </s> </li>
-  <li> <s> Alice can move, and the screen adjusts accordingly </s> </li>
- </ul> 
-<h4> Sprites + Animation </h4>
- <ul>
-  <li> <s> Sprite for tomato at each stage of growth </s> </li>
-  <li> <s> Sprite for regular grass and tilled grass </s> </li>
-  <li> <s> Sprite for grass outside the playable zone </s> </li>
-  <li> <s> Sprite for each tool that can be picked up </s> </li>
- </ul> 
-<h4> Music </h4>
- <ul>
-  <li> <s> Startup jingle is completed </s> </li>
- </ul>
-<h5> September milestone completed on September 21st </h5> 
+<h2> Installation Guide </h2>
+<h3> Windows 10 (64 Bit) </h3>
+<h4> Simple Installation </h4>
+<p> </p>
+<h4> Compile-It-Yourself Installation </h4>
+<p> </p>
+<h3> Linux (64 Bit) </h3>
+<h4> Simple Installation </h4>
+<p> </p>
+<h4> Compile-It-Yourself Installation </h4>
+<p> </p>
 
-<h3> October </h3>
-<h4> Engine </h4>
- <ul>
-  <li> <s> Full version of each screen is established </s> </li>
-  <li> <s> Animated sprites are handled </s> </li>
- </ul> 
-<h4> Sprites + Animation </h4>
- <ul>
-  <li> <s> Sprite for Alice </s> </li>
-  <li> <s> Animation for Alice walking </s> </li>
-  <li> <s> Sprite for cucumber at each stage of growth </s> </li>
-  <li> <s> Sprite for house </s> </li>
-  <li> <s> Sprite for well </s> </li>
- </ul> 
-<h4> Music </h4>
- <ul>
-  <li> <s> Main menu music </s> </li>
- </ul> 
-<h5> October milestone completed on October 9th </h5> 
+<h2> What Libraries Does OpenAlice Use? </h2>
+<p> OpenAlice uses SFML for graphics and audio. The following link will take you to a page that contains tutorials on using SFML and a link where you can donate to the creators of this library. https://www.sfml-dev.org/ </p>
 
-<h3> November </h3>
-<h4> Engine </h4>
- <ul>
-  <li> <s> Farm is fully functional </s> </li>
- </ul> 
-<h4> Sprites + Animation </h4>
- <ul>
-  <li> <s> Sprites for main menu </s> </li>
-  <li> <s> Sprites for game select </s> </li>
-  <li> <s> Sprite for carrots at each stage of growth </s> </li>
- </ul> 
-<h4> Music </h4>
- <ul>
-  <li> <s> Market music is completed </s> </li>
- </ul> 
-<h5> November milestone completed on November 30th </h5> 
-
-<h3> December </h3>
-<h4> Engine </h4>
- <ul>
-  <li> <s> Market is fully functional </s> </li>
-  <li> <s> Save function </s> </li>
- </ul> 
-<h4> Sprites + Animation </h4>
- <ul>
-  <li> <s>Sprites for market</s> </li>
- </ul> 
-<h4> Music </h4>
- <ul>
-  <li> <s> Farm music is completed </s> </li>
- </ul> 
-<h5> December milestone completed on December 30th </h5> 
-
-<h3> January </h3>
-<h4> Engine </h4>
- <ul>
-  <li> <s> Reserved for fixing bugs with the engine </s> </li>
- </ul> 
-<h4> Sprites + Animation </h4>
- <ul>
-  <li> <s> Sprites for credits </s> </li>
-  <li> <s> Fixing any sprites that do not look good </s> </li>
-  <li> <s> Polishing any animations that look unnatural </s> </li>
- </ul> 
-<h4> Music </h4>
- <ul>
-  <li> <s> No music in January </s> </li>
- </ul> 
-<h5> January milestone completed on January 1st</h5> 
+<h2> License </h2>
+<p> 
+  OpenAlice has been released into the public domain. Anyone is free to use, modify, or distribute this work for any purpose. The Unlicense applies to the source code and a zlib/png license applies to the SFML library which this game depends on. If I have made a licensing mistake or any mistakes in the proper procedure for releasing the contents of this repository to the public domain, please contact me by opening up an issue on this repository. 
+</p>
+<p xmlns:dct="http://purl.org/dc/terms/" xmlns:vcard="http://www.w3.org/2001/vcard-rdf/3.0#">
+  <a rel="license"
+     href="http://creativecommons.org/publicdomain/zero/1.0/">
+    <img src="http://i.creativecommons.org/p/zero/1.0/88x31.png" style="border-style: none;" alt="CC0" />
+  </a>
+  <br />
+  To the extent possible under law,
+  <a rel="dct:publisher"
+     href="https://github.com/SeanTheSheepCS/">
+    <span property="dct:title">Sean Kenny</span></a>
+  has waived all copyright and related or neighboring rights to
+  <span property="dct:title">OpenAlice</span>.
+This work is published from:
+<span property="vcard:Country" datatype="dct:ISO3166"
+      content="CA" about="https://github.com/SeanTheSheepCS/OpenAlice/">
+  Canada</span>.
+<h4> If you are curious about any aspect of OpenAlice, please open up an issue on this repository with your question. </h4>
+<h4> Thank you for interest in OpenAlice! </h4>
