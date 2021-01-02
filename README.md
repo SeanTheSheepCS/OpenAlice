@@ -13,8 +13,23 @@
 
 <h2> Installation Guide </h2>
 <h3> Windows 10 (64 Bit) </h3>
+
 <h4> Simple Installation </h4>
-<p> </p>
+<p> First, clone the repository to your computer. Navigate to the folder where you want to keep the OpenAlice files and run the following command.</p>
+```sh
+   git clone https://github.com/SeanTheSheepCS/OpenAlice.git
+```
+
+<p> Second, navigate into the OpenAlice directory. </p>
+```sh
+   cd OpenAlice
+```
+<p> Third, move to the Windows 10 Release 64 bit branch. </p>
+```sh
+   git checkout windows_10_64_bit_v1
+```
+<p> Lastly, go to the folder called game and click on alice_game.exe. </p>
+
 <h4> Compile-It-Yourself Installation </h4>
 <p> </p>
 <h3> Ubuntu 20 (64 Bit) </h3>
