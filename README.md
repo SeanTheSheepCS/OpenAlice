@@ -92,3 +92,4 @@ An open source game heavily inspired by the 2007 game Alice Greenfingers.
  <ul>
   <li> <s> No music in January </s> </li>
  </ul> 
+<h5> January milestone completed on January 1st</h5> 
