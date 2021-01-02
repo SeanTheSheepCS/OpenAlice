@@ -24,7 +24,23 @@
 <p> Lastly, go to the folder called game and click on alice_game.exe. </p>
 
 <h4> Compile-It-Yourself Installation </h4>
-<p> </p>
+<p> To compile the code yourself, please install the following two zipped files and extract them. </p>
+<ul>
+ <li> MINGW GCC 7.3.0 for Windows 10 64 bit, available here: https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/7.3.0/threads-posix/seh/x86_64-7.3.0-release-posix-seh-rt_v5-rev0.7z/download </li>
+ <li> SFML for Windows 10 64 Bit GCC 7.3.0. Please click the download link that says GCC 7.3.0 MinGW (SEH) - 64-bit. Download links avaiable here: https://www.sfml-dev.org/download/sfml/2.5.1/ </li>
+</ul>
+<p> By this step, you should have two files, one called "mingw64" and one called "SFML-2.5.1". Place those two folders wherever you please, but remember where you put them. Next, clone this repository to your computer by running the following command. </p>
+<h6> git clone https://github.com/SeanTheSheepCS/OpenAlice.git </h6>
+<p> Next, go to the build_windows_10 folder and open the Makefile because we will need to make modifications to it. </p>
+<ul>
+ <li> Modification 1: Change the first line of the Makefile to reflect the location of your SFML installation. For example, if you downloaded SFML to the folder C:/Users/Tom/Desktop/, you would change the first line to "IPATH=C:/Users/Tom/Desktop/SFML-2.5.1/include"</li>
+ <li> Modification 2: Change the seventh line of the Makefile to reflect the location of your SFML installation. For example, if you downloaded SFML to the folder D:/Libraries/, you would change the seventh line to "LPATH=D:/Libraries/SFML-2.5.1/lib"</li>
+ <li> Modification 3: Change the ninth line of the Makefile to reflect the location of your MINGW64-GCC7.3.0 installation. For example, if you downloaded MINGW64-GCC7.3.0 to the folder C:/BigFolder/SmallFolder/, you would change the ninth line to "CXX=C:/BigFolder/SmallFolder/mingw64/bin/g++.exe"</li>
+</ul>
+<p> Next, navigate to the bin folder inside the SFML-2.5.1 folder and copy all of the .dll files there into the build_windows_10 directory of OpenAlice. </p>
+<p> After these changes, please run the following command inside the build_windows_10 directory. </p>
+<h6> make alice_game </h6>
+<p> After the code has compiled, run alice_game.exe.</p>
 <h3> Ubuntu 20 (64 Bit) </h3>
 <h4> Simple Installation </h4>
 <p> </p>
