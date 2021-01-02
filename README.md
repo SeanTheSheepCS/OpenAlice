@@ -85,8 +85,8 @@ An open source game heavily inspired by the 2007 game Alice Greenfingers.
 <h4> Sprites + Animation </h4>
  <ul>
   <li> <s> Sprites for credits </s> </li>
-  <li> Fixing any sprites that do not look good </li>
-  <li> Polishing any animations that look unnatural</li>
+  <li> <s> Fixing any sprites that do not look good </s> </li>
+  <li> <s> Polishing any animations that look unnatural </s> </li>
  </ul> 
 <h4> Music </h4>
  <ul>
