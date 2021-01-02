@@ -1,3 +1,5 @@
+<img src="readme_images/title.png" alt="Displays the title OpenAlice"> 
+
 <h1> What is OpenAlice? </h1>
 <p> OpenAlice is a open source game written in C++ that is heavily inspired by the 2007 game Alice Greenfingers. In OpenAlice you control Alice, a scarecrow who wants to plant crops and watch them grow. Once they mature, Alice can sell her produce at the market. </p>
 
