@@ -17,7 +17,7 @@
 <p> </p>
 <h4> Compile-It-Yourself Installation </h4>
 <p> </p>
-<h3> Linux (64 Bit) </h3>
+<h3> Ubuntu 20 (64 Bit) </h3>
 <h4> Simple Installation </h4>
 <p> </p>
 <h4> Compile-It-Yourself Installation </h4>
