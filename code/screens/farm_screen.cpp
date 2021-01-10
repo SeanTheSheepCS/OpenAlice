@@ -343,7 +343,14 @@ void FarmScreen::runHarvestSequence(unsigned int plantTileMapRow, unsigned int p
 		filled_amount++;
 		alice.incrementFilledAmountPropertyOfHeldWorldObject();
 	    int referenceNumberAtPlantTileMapIndices = plantTileMap.getReferenceNumberAtIndices(plantTileMapRow, plantTileMapCol);
-	    plantTileMap.setTileAtIndicesToReferenceNumberAndPartialDraw(plantTileMapRow, plantTileMapCol, ++referenceNumberAtPlantTileMapIndices, windowToDrawIn);
+		if(referenceNumberAtPlantTileMapIndices == TEXTURE_BANK_REF_NUMBER_CARROTS_STAGE_THREE_TEXTURE)
+		{
+	    	plantTileMap.setTileAtIndicesToReferenceNumberAndPartialDraw(plantTileMapRow, plantTileMapCol, TEXTURE_BANK_REF_NUMBER_INVISIBLE, windowToDrawIn);
+		}
+		else
+		{
+	    	plantTileMap.setTileAtIndicesToReferenceNumberAndPartialDraw(plantTileMapRow, plantTileMapCol, ++referenceNumberAtPlantTileMapIndices, windowToDrawIn);
+		}
 		if(filled_amount >= capacity)
 		{
 			switch(alice.returnReferenceNumberOfHeldObject())
@@ -514,12 +521,13 @@ void FarmScreen::associateWithTexturesInBank(const TextureBank& textureBankToTak
 	groundTileMap.associateWorldObjectWithReferenceNumberWithTexturePointer(WORLD_OBJECT_REF_NUMBER_TOMATO_CRATE_TWO, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber((int)TEXTURE_BANK_REF_NUMBER_TOMATO_CRATE_TEXTURE));
 	groundTileMap.associateWorldObjectWithReferenceNumberWithTexturePointer(WORLD_OBJECT_REF_NUMBER_TOMATO_CRATE_THREE, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber((int)TEXTURE_BANK_REF_NUMBER_TOMATO_CRATE_TEXTURE));
 	groundTileMap.associateWorldObjectWithReferenceNumberWithTexturePointer(WORLD_OBJECT_REF_NUMBER_TOMATO_CRATE_ONE_FILLED, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber((int)TEXTURE_BANK_REF_NUMBER_TOMATO_CRATE_FILLED_TEXTURE));
-	groundTileMap.associateWorldObjectWithReferenceNumberWithTexturePointer(WORLD_OBJECT_REF_NUMBER_TOMATO_CRATE_TWO_FILLED, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber((int)TEXTURE_BANK_REF_NUMBER_CUCUMBER_CRATE_FILLED_TEXTURE));
-	groundTileMap.associateWorldObjectWithReferenceNumberWithTexturePointer(WORLD_OBJECT_REF_NUMBER_TOMATO_CRATE_THREE_FILLED, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber((int)TEXTURE_BANK_REF_NUMBER_CARROT_CRATE_FILLED_TEXTURE));
+	groundTileMap.associateWorldObjectWithReferenceNumberWithTexturePointer(WORLD_OBJECT_REF_NUMBER_TOMATO_CRATE_TWO_FILLED, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber((int)TEXTURE_BANK_REF_NUMBER_TOMATO_CRATE_FILLED_TEXTURE));
+	groundTileMap.associateWorldObjectWithReferenceNumberWithTexturePointer(WORLD_OBJECT_REF_NUMBER_TOMATO_CRATE_THREE_FILLED, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber((int)TEXTURE_BANK_REF_NUMBER_TOMATO_CRATE_FILLED_TEXTURE));
 
 	groundTileMap.associateWorldObjectWithReferenceNumberWithTexturePointer(WORLD_OBJECT_REF_NUMBER_CUCUMBER_SEED_PACKET_ONE, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber((int)TEXTURE_BANK_REF_NUMBER_CUCUMBER_SEED_PACKET_TEXTURE));
 	groundTileMap.associateWorldObjectWithReferenceNumberWithTexturePointer(WORLD_OBJECT_REF_NUMBER_CUCUMBER_SEED_PACKET_TWO, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber((int)TEXTURE_BANK_REF_NUMBER_CUCUMBER_SEED_PACKET_TEXTURE));
 	groundTileMap.associateWorldObjectWithReferenceNumberWithTexturePointer(WORLD_OBJECT_REF_NUMBER_CUCUMBER_SEED_PACKET_THREE, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber((int)TEXTURE_BANK_REF_NUMBER_CUCUMBER_SEED_PACKET_TEXTURE));
+
 	groundTileMap.associateWorldObjectWithReferenceNumberWithTexturePointer(WORLD_OBJECT_REF_NUMBER_CUCUMBER_CRATE_ONE, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber((int)TEXTURE_BANK_REF_NUMBER_CUCUMBER_CRATE_TEXTURE));
 	groundTileMap.associateWorldObjectWithReferenceNumberWithTexturePointer(WORLD_OBJECT_REF_NUMBER_CUCUMBER_CRATE_TWO, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber((int)TEXTURE_BANK_REF_NUMBER_CUCUMBER_CRATE_TEXTURE));
 	groundTileMap.associateWorldObjectWithReferenceNumberWithTexturePointer(WORLD_OBJECT_REF_NUMBER_CUCUMBER_CRATE_THREE, textureBankToTakeFrom.getTextureAssociatedWithReferenceNumber((int)TEXTURE_BANK_REF_NUMBER_CUCUMBER_CRATE_TEXTURE));
@@ -1172,8 +1180,6 @@ void FarmScreen::handlePurchaseEvent(PurchaseEvent purchaseEventToHandle)
 	}
 }
 
-#include <iostream>
-
 void FarmScreen::handleSaleEvent(SaleEvent saleEventToHandle)
 {
 	WorldObjectReferenceNumber suggestedSoldWorldObjectReferenceNumber = saleEventToHandle.getSuggestedSoldWorldObjectReferenceNumber();
@@ -1223,7 +1229,7 @@ void FarmScreen::handleSaleEvent(SaleEvent saleEventToHandle)
 			}
 			break;
 		}
-		case WORLD_OBJECT_REF_NUMBER_CUCUMBER_CRATE_ONE:
+		case WORLD_OBJECT_REF_NUMBER_CUCUMBER_CRATE_ONE_FILLED:
 		{
 			WorldObjectReferenceNumber worldObjectReferenceNumber;
 			//if there is a world object with a reference number of WORLD_OBJECT_REF_NUMBER_CUCUMBER_CRATE_ONE_FILLED...
@@ -1266,7 +1272,7 @@ void FarmScreen::handleSaleEvent(SaleEvent saleEventToHandle)
 			}
 			break;
 		}
-		case WORLD_OBJECT_REF_NUMBER_CARROT_SEED_PACKET_ONE:
+		case WORLD_OBJECT_REF_NUMBER_CARROT_CRATE_ONE_FILLED:
 		{
 			WorldObjectReferenceNumber worldObjectReferenceNumber;
 			//if there is a world object with a reference number of WORLD_OBJECT_REF_NUMBER_CARROT_CRATE_ONE_FILLED...
