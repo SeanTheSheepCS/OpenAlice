@@ -1,3 +1,5 @@
+<img src="readme_images/title.png" alt="Displays the title OpenAlice"> 
+
 <h1> What is OpenAlice? </h1>
 <p> OpenAlice is a open source game written in C++ that is heavily inspired by the 2007 game Alice Greenfingers. In OpenAlice you control Alice, a scarecrow who wants to plant crops and watch them grow. Once they mature, Alice can sell her produce at the market. </p>
 
@@ -23,7 +25,7 @@
 <p> Lastly, go to the folder called game and click on alice_game.exe. </p>
 
 <h2> Compile-It-Yourself Installation </h4>
-<p> To compile the code yourself, please install the following two zipped files and extract them. </p>
+<p> To compile the code yourself, please install Make along with the following two zipped files and extract them. </p>
 <ul>
  <li> MINGW GCC 7.3.0 for Windows 10 64 bit, available here: https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/7.3.0/threads-posix/seh/x86_64-7.3.0-release-posix-seh-rt_v5-rev0.7z/download </li>
  <li> SFML for Windows 10 64 Bit GCC 7.3.0. Please click the download link that says GCC 7.3.0 MinGW (SEH) - 64-bit. Download links avaiable here: https://www.sfml-dev.org/download/sfml/2.5.1/ </li>
@@ -42,9 +44,45 @@
 <p> After the code has compiled, run alice_game.exe.</p>
 <h1> Ubuntu 20 (64 Bit) Installation </h3>
 <h2> Simple Installation </h4>
-<p> </p>
+<p> First, you need to install SFML to your computer. You can do that by running the following command: </p>
+<h6> sudo apt-get install libsfml-dev </h6>
+<p> Then, you need to clone the repository and switch to the correct branch by running the following commands: </p>
+<h6> git clone https://github.com/SeanTheSheepCS/OpenAlice.git </h6>
+<h6> cd OpenAlice </h6>
+<h6> git checkout ubuntu_20_64_bit_v1 </h6>
+<p> To run the game afterwards, all you have to do is type the following command </p>
+<h6> ./game/alice_game </h6>
 <h2> Compile-It-Yourself Installation </h4>
-<p> </p>
+<p> You need to install three things to make the compile-it-yourself version work. </p>
+<ul>
+ <li> 
+  <p> SFML, we will install it once for it's headers and so that we can link to it, and then once more for usage after we no longer need to compile our code. </p>
+  <p> Install one can be installed from https://www.sfml-dev.org/download/sfml/2.5.1/ by choosing the "Linux GCC-64 bit" option. Please extract this file and put it in a place that you will remember, we will need to know it's path for later steps. After you can run OpenAlice successfully, feel free to remove this install, we will only need the second one. </p>
+  <p> Install two can be installed by running the following command: </p>
+  <h6> sudo apt-get install libsfml-dev </h6>
+ </li>
+ <li>
+  <p> Make, which can be installed by running the following command: </p>
+  <h6> sudo apt-get install make </h6>
+ </li>
+ <li>
+  <p> G++, which can be installed by running the following command: </p>
+  <h6> sudo apt-get install g++ </h6>
+ </li>
+</ul>
+<p> After all the installations, please clone the OpenAlice repository by running the following command </p>
+<h6> git clone https://github.com/SeanTheSheepCS/OpenAlice.git </h6>
+<p> Navigate to the build_ubuntu_20 folder by running the following command: </p>
+<h6> cd OpenAlice/build_ubuntu_20 </h6>
+<p> There is a Makefile in that folder. Please make the following modifications to the Makefile. </p>
+<ul>
+ <li> Modification 1: Change the first line of the Makefile to reflect the location of your SFML installation. For example, if you downloaded SFML to the folder ~/Desktop/MyFolder, you would change the first line to "IPATH=~/Desktop/MyFolder/SFML-2.5.1/include"</li>
+ <li> Modification 2: Change the seventh line of the Makefile to reflect the location of your SFML installation. For example, if you downloaded SFML to the folder ~/Desktop/, you would change the seventh line to "LPATH=~/Desktop/SFML-2.5.1/lib"</li>
+</ul>
+<p> After these modifications, please run the following command. </p>
+<h6> make alice_game </h6>
+<p> Lastly, OpenAlice can be started by running the following command. </p>
+<h6> ./alice_game </h6>
 
 <h1> What Libraries Does OpenAlice Use? </h1>
 <p> OpenAlice uses SFML for graphics and audio. The following link will take you to a page that contains tutorials on using SFML and a link where you can donate to the creators of this library. https://www.sfml-dev.org/ </p>

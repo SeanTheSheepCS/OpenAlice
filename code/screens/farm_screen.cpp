@@ -396,7 +396,7 @@ void FarmScreen::runSleepSequence(sf::RenderWindow& windowToDrawIn)
 
 	this->isNightlyUpdateThreadValid = true;
 	this->isNightlyUpdateThreadRunning = true;
-	this->nightlyUpdateThread = std::thread(&(FarmScreen::runNightlyUpdates), this);
+	this->nightlyUpdateThread = std::thread(&FarmScreen::runNightlyUpdates, this);
 }
 
 void FarmScreen::runNightlyUpdates()
@@ -934,7 +934,7 @@ void FarmScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::Render
 			{
 				this->isSaveThreadValid = true;
 				this->isSaving = true;
-				this->saveThread = std::thread(&(FarmScreen::runSaveProcedure), this);
+				this->saveThread = std::thread(&FarmScreen::runSaveProcedure, this);
 			}
 		}
 
@@ -952,7 +952,7 @@ void FarmScreen::update(sf::Int32 millisecondsElapsedSinceLastUpdate, sf::Render
 				{
 					this->isSaveThreadValid = true;
 					this->isSaving = true;
-					this->saveThread = std::thread(&(FarmScreen::runSaveProcedure), this);
+					this->saveThread = std::thread(&FarmScreen::runSaveProcedure, this);
 				}
 			}
 			//Handle the saving thread afterwards...
